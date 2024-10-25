@@ -18,7 +18,7 @@ BookNest is a comprehensive library management system built with .NET WPF, desig
 2. **Clone the repository and navigate to the project directory**:
 
    ```bash
-   git clone https://github.com/yourusername/BookNest.git && cd BookNest
+   git clone https://github.com/jamesnpe13/BookNest-Library-Management-System.git && cd BookNest
    ```
 
 3. **Restore dependencies, build the project, and run the application**:
