@@ -28,7 +28,13 @@ BookNest is a comprehensive library management system built with .NET WPF, desig
 3. **Restore dependencies, build the project, and run the application**:
 
    ```bash
-   dotnet restore && dotnet build && dotnet run
+   dotnet restore
+   ```
+   ```bash
+   dotnet build
+   ```
+   ```bash
+   dotnet run
    ```
 
 ## Contributing
