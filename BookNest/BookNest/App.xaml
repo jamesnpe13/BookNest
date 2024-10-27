@@ -15,7 +15,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <Style TargetType="local:MainWindow">
-                <Setter Property="Background" Value="Black" />
+                <Setter Property="Background" Value="{StaticResource Black}" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>
