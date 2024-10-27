@@ -9,8 +9,8 @@
     Title="MainWindow"
     Width="800"
     Height="450"
-    Background="black"
     mc:Ignorable="d">
+
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <components:DisplayMessage />
     </Grid>
