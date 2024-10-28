@@ -8,11 +8,9 @@
     xmlns:local="clr-namespace:BookNest"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="{StaticResource AppTitle}"
-    Width="800"
-    Height="450"
+    Width="{StaticResource WindowDimensionsX}"
+    Height="{StaticResource WindowDimensionsY}"
     Icon="/favicon.png"
-    mc:Ignorable="d">
-
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <StackPanel Orientation="Vertical">
 
@@ -47,3 +45,5 @@
         </StackPanel>
     </Grid>
 </Window>
+    WindowState="Maximized"
+    mc:Ignorable="d" />

@@ -8,8 +8,9 @@
 
     <!--  Blue tones  -->
     <SolidColorBrush x:Key="Blue1" Color="#3C4661" />
-    <SolidColorBrush x:Key="Blue2" Color="#262C3F" />
-    <SolidColorBrush x:Key="Blue3" Color="#1E2536" />
+    <SolidColorBrush x:Key="Blue2" Color="#2B3349" />
+    <SolidColorBrush x:Key="Blue3" Color="#FF2D3345" />
+    <SolidColorBrush x:Key="Blue4" Color="#FF252C3B" />
 
     <!--  Black and white  -->
     <SolidColorBrush x:Key="Black" Color="#22242C" />

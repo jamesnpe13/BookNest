@@ -22,6 +22,10 @@
                 <Setter Property="Background" Value="{StaticResource Black}" />
             </Style>
 
+            <!--  Window dimensions  -->
+            <System:Double x:Key="WindowDimensionsY">600</System:Double>
+            <System:Double x:Key="WindowDimensionsX">1000</System:Double>
+
             <!--  Title bar  -->
             <System:String x:Key="AppTitle">BookNest</System:String>
         </ResourceDictionary>
