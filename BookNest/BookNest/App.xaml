@@ -14,12 +14,13 @@
                 <ResourceDictionary Source="Styles/ColoursStyles.xaml" />
                 <ResourceDictionary Source="Styles/LayoutsStyles.xaml" />
                 <ResourceDictionary Source="Styles/PagesStyles.xaml" />
+                <ResourceDictionary Source="Styles/GlobalVariables.xaml" />
                 <ResourceDictionary Source="Styles/TypographyStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <!--  Window background  -->
             <Style TargetType="local:MainWindow">
-                <Setter Property="Background" Value="{StaticResource Black}" />
+                <Setter Property="Background" Value="Black" />
             </Style>
 
             <!--  Window dimensions  -->
