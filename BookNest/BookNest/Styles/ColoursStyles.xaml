@@ -3,7 +3,7 @@
     <!--  Accents  -->
     <SolidColorBrush x:Key="Primary" Color="#43C476" />
     <SolidColorBrush x:Key="Secondary" Color="#DA0463" />
-    <SolidColorBrush x:Key="LightBlue" Color="#DB5656" />
+    <SolidColorBrush x:Key="LightBlue" Color="#DBEDF3" />
     <SolidColorBrush x:Key="Destructive" Color="#DB5656" />
 
     <!--  Blue tones  -->
