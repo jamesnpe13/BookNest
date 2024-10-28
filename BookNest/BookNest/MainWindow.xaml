@@ -11,6 +11,9 @@
     Width="{StaticResource WindowDimensionsX}"
     Height="{StaticResource WindowDimensionsY}"
     Icon="/favicon.png"
+    WindowState="Maximized"
+    mc:Ignorable="d">
+
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <StackPanel Orientation="Vertical">
 
@@ -45,5 +48,3 @@
         </StackPanel>
     </Grid>
 </Window>
-    WindowState="Maximized"
-    mc:Ignorable="d" />
