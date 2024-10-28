@@ -1,0 +1,14 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+    <!--  system ns  -->
+
+    <System:Double x:Key="XXLarge">28</System:Double>
+    <System:Double x:Key="XLarge">24</System:Double>
+    <System:Double x:Key="Large">20</System:Double>
+    <System:Double x:Key="Normal">16</System:Double>
+    <System:Double x:Key="Small">12</System:Double>
+    <System:Double x:Key="XSmall">10</System:Double>
+    <System:Double x:Key="XXSmall">8</System:Double>
+</ResourceDictionary>
