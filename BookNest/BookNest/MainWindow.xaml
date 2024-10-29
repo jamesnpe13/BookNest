@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:BookNest"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:modules="clr-namespace:BookNest.Modules"
     Title="{StaticResource AppTitle}"
     Width="{StaticResource WindowDimensionsX}"
     Height="{StaticResource WindowDimensionsY}"
@@ -14,37 +15,11 @@
     WindowState="Maximized"
     mc:Ignorable="d">
 
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <StackPanel Orientation="Vertical">
-
-            <Label
-                Content="XX Large"
-                FontSize="{StaticResource XXLarge}"
-                Foreground="{StaticResource Primary}" />
-            <Label
-                Content="X Large"
-                FontSize="{StaticResource XLarge}"
-                Foreground="{StaticResource Secondary}" />
-            <Label
-                Content="Large"
-                FontSize="{StaticResource Large}"
-                Foreground="{StaticResource Destructive}" />
-            <Label
-                Content="Normal"
-                FontSize="{StaticResource Normal}"
-                Foreground="{StaticResource Blue1}" />
-            <Label
-                Content="Small"
-                FontSize="{StaticResource Small}"
-                Foreground="{StaticResource LightBlue}" />
-            <Label
-                Content="X Small"
-                FontSize="{StaticResource XSmall}"
-                Foreground="{StaticResource Grey3}" />
-            <Label
-                Content="XX Small"
-                FontSize="{StaticResource XXSmall}"
-                Foreground="{StaticResource Primary}" />
-        </StackPanel>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <modules:SideNavModule />
     </Grid>
 </Window>
