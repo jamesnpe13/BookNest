@@ -50,22 +50,20 @@
 
         <!--  Main nav section  -->
         <Border Grid.Row="1" Padding="0,20,0,20">
-            <StackPanel Orientation="Vertical">
-                <components:NavButton ButtonStyle="{StaticResource NavButtonTransparent}" ButtonText="Dashboard" />
-
-                <components:NavButton ButtonStyle="{StaticResource NavButtonTransparent}" ButtonText="Books" />
-
-                <components:NavButton ButtonStyle="{StaticResource NavButtonTransparent}" ButtonText="My Bag" />
-
-                <components:NavButton ButtonStyle="{StaticResource NavButtonTransparent}" ButtonText="Watchlist" />
-            </StackPanel>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Orientation="Vertical">
+                    <components:NavButton ButtonStyle="{StaticResource NavButtonTransparent}" ButtonText="Dashboard" />
+                    <components:NavButton ButtonStyle="{StaticResource NavButtonTransparent}" ButtonText="Books" />
+                    <components:NavButton ButtonStyle="{StaticResource NavButtonTransparent}" ButtonText="My Bag" />
+                    <components:NavButton ButtonStyle="{StaticResource NavButtonTransparent}" ButtonText="Watchlist" />
+                </StackPanel>
+            </ScrollViewer>
         </Border>
 
         <!--  Footer section section  -->
         <Border Grid.Row="2" Padding="0">
             <StackPanel Orientation="Vertical">
                 <components:NavButton ButtonStyle="{StaticResource NavButtonPrimary}" ButtonText="My Account" />
-
                 <components:NavButton ButtonStyle="{StaticResource NavButtonTransparent}" ButtonText="Sign out" />
             </StackPanel>
         </Border>
