@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace BookNest.Modules
 {
-    /// <summary>
-    /// Interaction logic for SideNavModule.xaml
-    /// </summary>
     public partial class SideNavModule : UserControl
     {
         public SideNavModule()

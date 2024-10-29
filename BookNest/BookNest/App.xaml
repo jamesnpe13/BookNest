@@ -10,12 +10,12 @@
         <ResourceDictionary>
             <!--  Resource dictionaries  -->
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/ButtonsStyles.xaml" />
                 <ResourceDictionary Source="Styles/ColoursStyles.xaml" />
-                <ResourceDictionary Source="Styles/LayoutsStyles.xaml" />
-                <ResourceDictionary Source="Styles/PagesStyles.xaml" />
                 <ResourceDictionary Source="Styles/GlobalVariables.xaml" />
                 <ResourceDictionary Source="Styles/TypographyStyles.xaml" />
+                <ResourceDictionary Source="Styles/PagesStyles.xaml" />
+                <ResourceDictionary Source="Styles/LayoutsStyles.xaml" />
+                <ResourceDictionary Source="Styles/ButtonsStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <!--  Window background  -->
@@ -24,8 +24,8 @@
             </Style>
 
             <!--  Window dimensions  -->
-            <System:Double x:Key="WindowDimensionsY">600</System:Double>
-            <System:Double x:Key="WindowDimensionsX">1000</System:Double>
+            <System:Double x:Key="WindowDimensionsY">800</System:Double>
+            <System:Double x:Key="WindowDimensionsX">1500</System:Double>
 
             <!--  Title bar  -->
             <System:String x:Key="AppTitle">BookNest</System:String>
