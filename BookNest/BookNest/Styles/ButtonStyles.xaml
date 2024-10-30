@@ -40,4 +40,14 @@
         <Setter Property="CornerRadius" Value="{StaticResource CornerRadius1}" />
     </Style>
 
+    <!--  Destructive  -->
+    <Style x:Key="ButtonLabelTransparent" TargetType="Label">
+        <Setter Property="Content" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource White}" />
+    </Style>
+    <Style x:Key="ButtonBorderTransparent" TargetType="Border">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="CornerRadius" Value="{StaticResource CornerRadius1}" />
+    </Style>
+
 </ResourceDictionary>
