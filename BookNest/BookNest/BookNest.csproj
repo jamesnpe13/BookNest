@@ -9,10 +9,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\icons\Icon awesome-binoculars.png" />
+    <None Remove="assets\icons\Icon awesome-book-open.png" />
+    <None Remove="assets\icons\Icon awesome-shopping-bag.png" />
+    <None Remove="assets\icons\Icon awesome-thumbs-up.png" />
+    <None Remove="assets\icons\Icon material-account-box.png" />
+    <None Remove="assets\icons\Icon material-assignment-return.png" />
+    <None Remove="assets\icons\Icon material-dashboard.png" />
+    <None Remove="assets\icons\Icon material-people.png" />
+    <None Remove="assets\icons\Icon metro-pin.png" />
+    <None Remove="assets\icons\Icon open-account-logout.png" />
     <None Remove="favicon.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="assets\icons\Icon awesome-binoculars.png" />
+    <Resource Include="assets\icons\Icon awesome-book-open.png" />
+    <Resource Include="assets\icons\Icon awesome-shopping-bag.png" />
+    <Resource Include="assets\icons\Icon awesome-thumbs-up.png" />
+    <Resource Include="assets\icons\Icon material-account-box.png" />
+    <Resource Include="assets\icons\Icon material-assignment-return.png" />
+    <Resource Include="assets\icons\Icon material-dashboard.png" />
+    <Resource Include="assets\icons\Icon material-people.png" />
+    <Resource Include="assets\icons\Icon metro-pin.png" />
+    <Resource Include="assets\icons\Icon open-account-logout.png" />
     <Resource Include="favicon.png" />
   </ItemGroup>
 
