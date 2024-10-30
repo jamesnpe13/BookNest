@@ -20,8 +20,12 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
         <modules:SideNavModule Grid.Column="0" />
         <StackPanel
             Grid.Column="1"
@@ -29,5 +33,9 @@
             VerticalAlignment="Top">
             <modules:HeaderBarModule />
         </StackPanel>
+        <StackPanel
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Background="{StaticResource Grey4}" />
     </Grid>
 </Window>
