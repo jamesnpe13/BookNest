@@ -87,8 +87,6 @@
                         ButtonStyle="Transparent"
                         ButtonText="People"
                         IconSource="../assets/icons/Icon material-people.png" />
-
-                    <components:Dropdown />
                 </StackPanel>
             </ScrollViewer>
         </Border>
