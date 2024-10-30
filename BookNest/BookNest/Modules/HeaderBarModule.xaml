@@ -32,20 +32,10 @@
         </Border>
         <Border>
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                <Border
-                    Margin="0,0,20,0"
-                    Background="{StaticResource White}"
-                    CornerRadius="{StaticResource CornerRadius1}">
-                    <TextBox
-                        Width="300"
-                        Height="30"
-                        Padding="10,0,10,0"
-                        VerticalContentAlignment="Center"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        FontSize="{StaticResource Small}"
-                        Foreground="{StaticResource Grey3}" />
-                </Border>
+                <components:TextInputField
+                    Width="250"
+                    Margin="0,0,10,0"
+                    Placeholder="Enter keyword" />
                 <components:Button ButtonStyle="Primary" ButtonText="Search" />
             </StackPanel>
         </Border>
