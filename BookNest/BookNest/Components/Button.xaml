@@ -6,13 +6,10 @@
     xmlns:local="clr-namespace:BookNest.Components"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="auto"
-    Height="auto"
+    Height="30"
     mc:Ignorable="d">
 
-    <Grid
-        Width="auto"
-        Height="40"
-        HorizontalAlignment="Center">
+    <Grid HorizontalAlignment="Center">
         <Border x:Name="UCBorder" Style="{StaticResource ButtonBorderDefault}">
             <Label
                 x:Name="UCLabel"

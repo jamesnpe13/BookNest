@@ -12,9 +12,10 @@
     <SolidColorBrush x:Key="Blue2" Color="#2B3349" />
     <SolidColorBrush x:Key="Blue3" Color="#FF2D3345" />
     <SolidColorBrush x:Key="Blue4" Color="#FF252C3B" />
+    <SolidColorBrush x:Key="Blue5" Color="#22242C" />
 
     <!--  Black and white  -->
-    <SolidColorBrush x:Key="Black" Color="#22242C" />
+    <SolidColorBrush x:Key="Black" Color="#FF1E1F22" />
     <SolidColorBrush x:Key="White" Color="#F2F2F2" />
 
     <!--  Grey tones  -->

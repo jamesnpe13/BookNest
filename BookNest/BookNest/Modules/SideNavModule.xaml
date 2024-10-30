@@ -7,13 +7,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:BookNest.Modules"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Width="auto"
+    Width="250"
     Height="auto"
+    VerticalAlignment="Stretch"
+    Background="{StaticResource Black}"
     mc:Ignorable="d">
 
     <UserControl.Resources>
         <ResourceDictionary>
-            <System:Double x:Key="SideNavWidth">300</System:Double>
 
             <System:Double x:Key="HeaderSectionHeight">80</System:Double>
             <System:Double x:Key="FooterSectionHeight">40</System:Double>
@@ -26,7 +27,7 @@
 
     </UserControl.Resources>
 
-    <Grid Width="{StaticResource SideNavWidth}" Background="{StaticResource Black}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
@@ -37,14 +38,14 @@
         <Border Grid.Row="0" Background="{StaticResource Blue4}">
 
             <StackPanel Orientation="Vertical">
-                <Label
-                    Content="Hi, User."
-                    FontSize="{StaticResource XXLarge}"
-                    Foreground="{StaticResource White}" />
-                <Label
-                    Content="Welcome back!"
+                <TextBlock
                     FontSize="{StaticResource XLarge}"
-                    Foreground="{StaticResource White}" />
+                    Foreground="{StaticResource White}"
+                    Text="Hi, User." />
+                <TextBlock
+                    FontSize="{StaticResource Large}"
+                    Foreground="{StaticResource White}"
+                    Text="Welcome back!" />
             </StackPanel>
         </Border>
 
