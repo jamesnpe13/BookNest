@@ -89,10 +89,12 @@
         <Border Grid.Row="2" Padding="0">
             <StackPanel Orientation="Vertical">
                 <components:NavButton
+                    Height="60"
                     ButtonStyle="Primary"
                     ButtonText="My Account"
                     IconSource="../assets/icons/Icon material-account-box.png" />
                 <components:NavButton
+                    Height="60"
                     ButtonStyle="Transparent"
                     ButtonText="Sign out"
                     IconSource="../assets/icons/Icon open-account-logout.png" />
