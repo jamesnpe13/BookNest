@@ -18,6 +18,10 @@
     <!--  Title bar  -->
     <System:String x:Key="AppTitle">BookNest</System:String>
 
+    <!--  User controls  -->
     <CornerRadius x:Key="CornerRadius1">4</CornerRadius>
+    <System:Double x:Key="Controlheight">30</System:Double>
+    <System:Double x:Key="DropShadowOpacity">0.25</System:Double>
+    <System:Double x:Key="DropShadowBlur">10</System:Double>
 
 </ResourceDictionary>

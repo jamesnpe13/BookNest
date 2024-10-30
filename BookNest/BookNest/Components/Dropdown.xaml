@@ -1,10 +1,11 @@
 ﻿<UserControl
-    x:Class="BookNest.Components.TextInputField"
+    x:Class="BookNest.Components.Dropdown"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:BookNest.Components"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Height="{StaticResource Controlheight}"
     HorizontalAlignment="Stretch"
     mc:Ignorable="d">
 
@@ -12,16 +13,11 @@
         <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
     </UserControl.Effect>
 
-    <Border Style="{StaticResource TextBoxBorder}">
-        <Grid>
-            <Label
-                x:Name="PlaceholderLabel"
-                Content="{Binding Placeholder, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                Style="{StaticResource PlaceholderLabel}" />
-            <TextBox
-                x:Name="TextInputFieldTextBox"
-                Style="{StaticResource TextBoxTextBox}"
-                TextChanged="TextInputFieldTextBox_TextChanged" />
-        </Grid>
-    </Border>
+    <ComboBox
+        Width="200"
+        VerticalContentAlignment="Center"
+        SelectedIndex="0">
+        <ComboBoxItem Content="{Binding Placeholder, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+    </ComboBox>
+
 </UserControl>
