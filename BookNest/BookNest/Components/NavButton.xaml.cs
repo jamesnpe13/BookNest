@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
@@ -38,7 +39,7 @@ namespace BookNest.Components
             x.OnButtonStylePropertyChanged(newValue);
         }
 
-        protected virtual void OnButtonStylePropertyChanged(string oldValue)
+        protected virtual void OnButtonStylePropertyChanged(string newValue)
         {
             switch (ButtonStyle)
             {
@@ -69,6 +70,7 @@ namespace BookNest.Components
 
         public string ButtonText
         {
+
             get { return (string)GetValue(ButtonTextProperty); }
             set { SetValue(ButtonTextProperty, value); }
         }
@@ -76,6 +78,20 @@ namespace BookNest.Components
         // Using a DependencyProperty as the backing store for ButtonText.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ButtonTextProperty =
             DependencyProperty.Register("ButtonText", typeof(string), typeof(NavButton), new PropertyMetadata("No button text"));
+
+        // ****************** Icon source dependency property and CLR
+
+        public ImageSource IconSource
+        {
+            get { return (ImageSource)GetValue(IconSourceProperty); }
+            set { SetValue(IconSourceProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IconSource.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IconSourceProperty =
+            DependencyProperty.Register("IconSource", typeof(ImageSource), typeof(NavButton), new PropertyMetadata(null));
+
+        // ****************** Constructor
 
         public NavButton()
         {

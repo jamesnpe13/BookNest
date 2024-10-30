@@ -23,7 +23,7 @@
                     MaxWidth="{StaticResource Normal}"
                     MaxHeight="{StaticResource Normal}"
                     Margin="0,0,15,0"
-                    Source="/assets/icons/Icon material-dashboard.png" />
+                    Source="{Binding IconSource, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                 <Label
                     x:Name="NavButtonLabel"
                     Padding="0"

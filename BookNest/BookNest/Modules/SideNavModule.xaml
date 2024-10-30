@@ -52,10 +52,34 @@
         <Border Grid.Row="1" Padding="0,20,0,20">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel Orientation="Vertical">
-                    <components:NavButton ButtonStyle="Transparent" ButtonText="Dashboard" />
-                    <components:NavButton ButtonStyle="Transparent" ButtonText="Books" />
-                    <components:NavButton ButtonStyle="Transparent" ButtonText="My Bag" />
-                    <components:NavButton ButtonStyle="Transparent" ButtonText="Watchlist" />
+                    <components:NavButton
+                        ButtonStyle="Transparent"
+                        ButtonText="Dashboard"
+                        IconSource="../assets/icons/Icon awesome-book-open.png" />
+                    <components:NavButton
+                        ButtonStyle="Transparent"
+                        ButtonText="Books"
+                        IconSource="../assets/icons/Icon awesome-book-open.png" />
+                    <components:NavButton
+                        ButtonStyle="Transparent"
+                        ButtonText="My Bag"
+                        IconSource="../assets/icons/Icon awesome-shopping-bag.png" />
+                    <components:NavButton
+                        ButtonStyle="Transparent"
+                        ButtonText="Watchlist"
+                        IconSource="../assets/icons/Icon awesome-binoculars.png" />
+                    <components:NavButton
+                        ButtonStyle="Transparent"
+                        ButtonText="Returns"
+                        IconSource="../assets/icons/Icon material-assignment-return.png" />
+                    <components:NavButton
+                        ButtonStyle="Transparent"
+                        ButtonText="Reserved"
+                        IconSource="../assets/icons/Icon metro-pin.png" />
+                    <components:NavButton
+                        ButtonStyle="Transparent"
+                        ButtonText="People"
+                        IconSource="../assets/icons/Icon material-people.png" />
 
                 </StackPanel>
             </ScrollViewer>
@@ -63,8 +87,14 @@
         <!--  Footer section section  -->
         <Border Grid.Row="2" Padding="0">
             <StackPanel Orientation="Vertical">
-                <components:NavButton ButtonStyle="Primary" ButtonText="My Account" />
-                <components:NavButton ButtonStyle="Transparent" ButtonText="Sign out" />
+                <components:NavButton
+                    ButtonStyle="Primary"
+                    ButtonText="My Account"
+                    IconSource="../assets/icons/Icon material-account-box.png" />
+                <components:NavButton
+                    ButtonStyle="Transparent"
+                    ButtonText="Sign out"
+                    IconSource="../assets/icons/Icon open-account-logout.png" />
             </StackPanel>
         </Border>
     </Grid>
