@@ -13,9 +13,11 @@
                 <ResourceDictionary Source="Styles/ColoursStyles.xaml" />
                 <ResourceDictionary Source="Styles/GlobalVariables.xaml" />
                 <ResourceDictionary Source="Styles/TypographyStyles.xaml" />
+
                 <ResourceDictionary Source="Styles/PagesStyles.xaml" />
                 <ResourceDictionary Source="Styles/LayoutsStyles.xaml" />
-                <ResourceDictionary Source="Styles/ButtonsStyles.xaml" />
+                <ResourceDictionary Source="Styles/NavButtonStyles.xaml" />
+                <ResourceDictionary Source="Styles/ButtonStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <!--  Window background  -->

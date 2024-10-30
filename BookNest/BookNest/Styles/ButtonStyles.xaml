@@ -1,0 +1,43 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  Default  -->
+    <Style x:Key="ButtonLabelDefault" TargetType="Label">
+        <Setter Property="Content" Value="Greyed-out" />
+        <Setter Property="Foreground" Value="{StaticResource Grey2}" />
+    </Style>
+    <Style x:Key="ButtonBorderDefault" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource Grey1}" />
+        <Setter Property="CornerRadius" Value="{StaticResource CornerRadius1}" />
+    </Style>
+
+    <!--  Primary  -->
+    <Style x:Key="ButtonLabelPrimary" TargetType="Label">
+        <Setter Property="Content" Value="Primary" />
+        <Setter Property="Foreground" Value="{StaticResource White}" />
+    </Style>
+    <Style x:Key="ButtonBorderPrimary" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource Primary}" />
+        <Setter Property="CornerRadius" Value="{StaticResource CornerRadius1}" />
+    </Style>
+
+    <!--  Secondary  -->
+    <Style x:Key="ButtonLabelSecondary" TargetType="Label">
+        <Setter Property="Content" Value="Secondary" />
+        <Setter Property="Foreground" Value="{StaticResource White}" />
+    </Style>
+    <Style x:Key="ButtonBorderSecondary" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource Blue2}" />
+        <Setter Property="CornerRadius" Value="{StaticResource CornerRadius1}" />
+    </Style>
+
+    <!--  Destructive  -->
+    <Style x:Key="ButtonLabelDestructive" TargetType="Label">
+        <Setter Property="Content" Value="Destructive" />
+        <Setter Property="Foreground" Value="{StaticResource White}" />
+    </Style>
+    <Style x:Key="ButtonBorderDestructive" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource Destructive}" />
+        <Setter Property="CornerRadius" Value="{StaticResource CornerRadius1}" />
+    </Style>
+
+</ResourceDictionary>
