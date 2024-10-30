@@ -1,7 +1,23 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:System="clr-namespace:System;assembly=mscorlib">
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:local="clr-namespace:BookNest">
 
-    <CornerRadius x:Key="CornerRadius1">6</CornerRadius>
+    <!--  Window background  -->
+    <Style TargetType="local:MainWindow">
+        <Setter Property="Background" Value="Black" />
+    </Style>
+
+    <!--  Window dimensions  -->
+    <System:Double x:Key="WindowDimensionsY">700</System:Double>
+    <System:Double x:Key="WindowDimensionsX">1300</System:Double>
+    <System:Double x:Key="WindowDimensionsYMin">550</System:Double>
+    <System:Double x:Key="WindowDimensionsXMin">1100</System:Double>
+
+    <!--  Title bar  -->
+    <System:String x:Key="AppTitle">BookNest</System:String>
+
+    <CornerRadius x:Key="CornerRadius1">4</CornerRadius>
+
 </ResourceDictionary>

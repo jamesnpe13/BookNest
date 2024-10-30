@@ -20,17 +20,6 @@
                 <ResourceDictionary Source="Styles/ButtonStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <!--  Window background  -->
-            <Style TargetType="local:MainWindow">
-                <Setter Property="Background" Value="Black" />
-            </Style>
-
-            <!--  Window dimensions  -->
-            <System:Double x:Key="WindowDimensionsY">800</System:Double>
-            <System:Double x:Key="WindowDimensionsX">1500</System:Double>
-
-            <!--  Title bar  -->
-            <System:String x:Key="AppTitle">BookNest</System:String>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
