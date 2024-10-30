@@ -5,9 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:BookNest.Components"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    HorizontalAlignment="Center"
-    d:DesignHeight="40"
-    d:DesignWidth="200"
+    Width="auto"
+    Height="auto"
     mc:Ignorable="d">
 
     <Grid

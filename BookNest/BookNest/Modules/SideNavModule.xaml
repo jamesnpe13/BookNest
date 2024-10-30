@@ -7,8 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:BookNest.Modules"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="{StaticResource WindowDimensionsY}"
-    d:DesignWidth="800"
+    Width="auto"
+    Height="auto"
     mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -55,11 +55,10 @@
                     <components:NavButton ButtonStyle="{StaticResource NavButtonTransparent}" ButtonText="Dashboard" />
                     <components:NavButton ButtonStyle="{StaticResource NavButtonTransparent}" ButtonText="Books" />
                     <components:NavButton ButtonStyle="{StaticResource NavButtonTransparent}" ButtonText="My Bag" />
-                    <components:NavButton ButtonStyle="{StaticResource NavButtonTransparent}" ButtonText="Watchlist" />
+                    <components:NavButton ButtonStyle="{StaticResource NavButtonTransparent}" ButtonText="Watchlist" />                
                 </StackPanel>
             </ScrollViewer>
         </Border>
-
         <!--  Footer section section  -->
         <Border Grid.Row="2" Padding="0">
             <StackPanel Orientation="Vertical">
