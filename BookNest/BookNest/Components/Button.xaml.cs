@@ -77,6 +77,10 @@ namespace BookNest.Components
                     UCLabel.Style = (Style)FindResource("ButtonLabelDestructive");
                     UCBorder.Style = (Style)FindResource("ButtonBorderDestructive");
                     break;
+                case "Transparent":
+                    UCLabel.Style = (Style)FindResource("ButtonLabelTransparent");
+                    UCBorder.Style = (Style)FindResource("ButtonBorderTransparent");
+                    break;
                 default:
                     UCLabel.Style = (Style)FindResource("ButtonLabelDefault");
                     UCBorder.Style = (Style)FindResource("ButtonBorderDefault");
