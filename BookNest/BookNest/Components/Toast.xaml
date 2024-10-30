@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="BookNest.Components.Toast"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookNest.Components"
+             mc:Ignorable="d" 
+             Width="400"
+             Height="100">
+
+    <Grid HorizontalAlignment="Right" Width="400">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- กำหนด Border เพื่อสร้างขอบโค้งมนให้กับ Grid ทั้งหมด -->
+        <Border  CornerRadius="10" Background="{StaticResource White}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Label สำหรับไอคอน -->
+                <Label Grid.Column="0" Background="{StaticResource Primary}"/>
+
+
+                <!-- Label สำหรับข้อความ -->
+                <Label x:Name="SuccessfulToast"
+                   Content="Success Toast"
+                   Foreground="{StaticResource Grey2}"
+                   FontSize="{StaticResource Normal}"
+                   Grid.Column="1"
+                   Background="{StaticResource White}"/>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
