@@ -11,7 +11,7 @@
 
     <UserControl.Resources />
 
-    <Grid Height="40" HorizontalAlignment="Stretch">
+    <Grid Height="50">
         <Border
             x:Name="NavButtonBorder"
             Padding="20,0,20,0"
@@ -23,16 +23,12 @@
                     MaxWidth="{StaticResource Normal}"
                     MaxHeight="{StaticResource Normal}"
                     Margin="0,0,15,0"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Source="../assets/favicon.png" />
+                    Source="/assets/icons/Icon material-dashboard.png" />
                 <Label
                     x:Name="NavButtonLabel"
                     Padding="0"
-                    VerticalAlignment="Center"
-                    HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Center"
                     Content="{Binding ButtonText, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    FontSize="{StaticResource Normal}"
                     Foreground="white"
                     Style="{StaticResource ButtonLabelDefault}" />
             </StackPanel>

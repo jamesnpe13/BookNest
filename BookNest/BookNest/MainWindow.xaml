@@ -25,6 +25,5 @@
             Grid.Column="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Center" />
-
     </Grid>
 </Window>
