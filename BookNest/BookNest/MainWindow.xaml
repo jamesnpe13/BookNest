@@ -11,6 +11,8 @@
     Title="{StaticResource AppTitle}"
     Width="{StaticResource WindowDimensionsX}"
     Height="{StaticResource WindowDimensionsY}"
+    MinWidth="{StaticResource WindowDimensionsXMin}"
+    MinHeight="{StaticResource WindowDimensionsYMin}"
     Icon="/favicon.png"
     WindowState="Maximized"
     mc:Ignorable="d">
@@ -23,7 +25,9 @@
         <modules:SideNavModule Grid.Column="0" />
         <StackPanel
             Grid.Column="1"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center" />
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top">
+            <modules:HeaderBarModule />
+        </StackPanel>
     </Grid>
 </Window>

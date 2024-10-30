@@ -6,12 +6,10 @@
     xmlns:local="clr-namespace:BookNest.Components"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="auto"
-    Height="auto"
+    Height="40"
     mc:Ignorable="d">
 
-    <UserControl.Resources />
-
-    <Grid Height="50">
+    <Grid>
         <Border
             x:Name="NavButtonBorder"
             Padding="20,0,20,0"

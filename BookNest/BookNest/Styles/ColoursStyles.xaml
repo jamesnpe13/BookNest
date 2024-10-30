@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!--  Accents  -->
-    <SolidColorBrush x:Key="Primary" Color="#FF4EC443" />
-    <SolidColorBrush x:Key="Primary2" Color="#FF5CDF90" />
+    <SolidColorBrush x:Key="Primary" Color="#FF4B923A" />
+    <SolidColorBrush x:Key="Primary2" Color="#FF54A142" />
     <SolidColorBrush x:Key="Secondary" Color="#DA0463" />
     <SolidColorBrush x:Key="LightBlue" Color="#DBEDF3" />
     <SolidColorBrush x:Key="Destructive" Color="#DB5656" />
@@ -12,9 +12,10 @@
     <SolidColorBrush x:Key="Blue2" Color="#2B3349" />
     <SolidColorBrush x:Key="Blue3" Color="#FF2D3345" />
     <SolidColorBrush x:Key="Blue4" Color="#FF252C3B" />
+    <SolidColorBrush x:Key="Blue5" Color="#22242C" />
 
     <!--  Black and white  -->
-    <SolidColorBrush x:Key="Black" Color="#22242C" />
+    <SolidColorBrush x:Key="Black" Color="#FF16171A" />
     <SolidColorBrush x:Key="White" Color="#F2F2F2" />
 
     <!--  Grey tones  -->
