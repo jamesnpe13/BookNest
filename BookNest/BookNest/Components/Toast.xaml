@@ -5,35 +5,63 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BookNest.Components"
              mc:Ignorable="d" 
-             Width="400"
-             Height="100">
-
-    <Grid HorizontalAlignment="Right" Width="400">
+             Width="800"
+             Height="450">
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- กำหนด Border เพื่อสร้างขอบโค้งมนให้กับ Grid ทั้งหมด -->
-        <Border  CornerRadius="10" Background="{StaticResource White}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Label Grid.Column="0" Background="{StaticResource Primary}"/>
+        <Label x:Name="SuccessfulToastLaber"
+               Grid.Column="1"
+               Content="Success Toast"
+               Foreground="{StaticResource Grey2}"
+               FontSize="{StaticResource Normal}"
 
-                <!-- Label สำหรับไอคอน -->
-                <Label Grid.Column="0" Background="{StaticResource Primary}"/>
+               Background="{StaticResource White}" 
+               HorizontalContentAlignment="Center" 
+               VerticalContentAlignment="Center"/>
 
+        <Label Grid.Column="0" Grid.Row="1" Background="{StaticResource Destructive}"/>
+        <Label x:Name="ErrorToastLaber"
+               Grid.Column="1" Grid.Row="1"
+               Content="Error Toast"
+               Foreground="{StaticResource Grey2}"
+               FontSize="{StaticResource Normal}"
 
-                <!-- Label สำหรับข้อความ -->
-                <Label x:Name="SuccessfulToast"
-                   Content="Success Toast"
-                   Foreground="{StaticResource Grey2}"
-                   FontSize="{StaticResource Normal}"
-                   Grid.Column="1"
-                   Background="{StaticResource White}"/>
-            </Grid>
-        </Border>
+               Background="{StaticResource White}" 
+               HorizontalContentAlignment="Center" 
+               VerticalContentAlignment="Center"/>
+
+        <Label Grid.Column="0" Grid.Row="2" Background="{StaticResource Warning}"/>
+        <Label x:Name="WarningToastLaber"
+               Grid.Column="1" Grid.Row="2"
+               Content="Warning Toast"
+               Foreground="{StaticResource Grey2}"
+               FontSize="{StaticResource Normal}"
+
+               Background="{StaticResource White}" 
+               HorizontalContentAlignment="Center" 
+               VerticalContentAlignment="Center"/>
+        
+        <Label Grid.Column="0" Grid.Row="3" Background="{StaticResource Grey2}"/>
+        <Label x:Name="GreyedOutToastLaber"
+               Grid.Column="1" Grid.Row="3"
+               Content="Greyed Out Toast"
+               Foreground="{StaticResource Grey2}"
+               FontSize="{StaticResource Normal}"
+
+               Background="{StaticResource White}" 
+               HorizontalContentAlignment="Center" 
+               VerticalContentAlignment="Center"/>
     </Grid>
 </UserControl>
