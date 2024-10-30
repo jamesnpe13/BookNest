@@ -6,14 +6,19 @@
     xmlns:local="clr-namespace:BookNest.Components"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="auto"
-    Height="30"
+    Height="{StaticResource Controlheight}"
     mc:Ignorable="d">
+
+    <UserControl.Effect>
+        <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
+    </UserControl.Effect>
 
     <Grid HorizontalAlignment="Center">
         <Border x:Name="UCBorder" Style="{StaticResource ButtonBorderDefault}">
             <Label
                 x:Name="UCLabel"
                 Padding="20,0,20,0"
+                VerticalAlignment="Center"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
                 Content="{Binding ButtonText, RelativeSource={RelativeSource AncestorType=UserControl}}"

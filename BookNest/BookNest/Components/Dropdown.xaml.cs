@@ -13,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BookNest.Modules
+namespace BookNest.Components
 {
     /// <summary>
-    /// Interaction logic for HeaderBarModule.xaml
+    /// Interaction logic for Dropdown.xaml
     /// </summary>
-    public partial class HeaderBarModule : UserControl
+    public partial class Dropdown : UserControl
     {
-        public HeaderBarModule()
+        public Dropdown()
         {
             InitializeComponent();
         }
-
     }
 }

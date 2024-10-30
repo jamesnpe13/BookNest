@@ -13,6 +13,10 @@
     Background="{StaticResource Black}"
     mc:Ignorable="d">
 
+    <UserControl.Effect>
+        <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
+    </UserControl.Effect>
+
     <UserControl.Resources>
         <ResourceDictionary>
 
@@ -36,7 +40,9 @@
 
         <!--  Header section  -->
         <Border Grid.Row="0" Background="{StaticResource Blue5}">
-
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
+            </Border.Effect>
             <StackPanel Orientation="Vertical">
                 <TextBlock
                     FontSize="{StaticResource XLarge}"
@@ -82,6 +88,7 @@
                         ButtonText="People"
                         IconSource="../assets/icons/Icon material-people.png" />
 
+                    <components:Dropdown />
                 </StackPanel>
             </ScrollViewer>
         </Border>
@@ -92,7 +99,11 @@
                     Height="60"
                     ButtonStyle="Primary"
                     ButtonText="My Account"
-                    IconSource="../assets/icons/Icon material-account-box.png" />
+                    IconSource="../assets/icons/Icon material-account-box.png">
+                    <UserControl.Effect>
+                        <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
+                    </UserControl.Effect>
+                </components:NavButton>
                 <components:NavButton
                     Height="60"
                     ButtonStyle="Transparent"

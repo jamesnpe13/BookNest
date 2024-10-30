@@ -12,6 +12,10 @@
     Background="{StaticResource Blue4}"
     mc:Ignorable="d">
 
+    <UserControl.Effect>
+        <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
+    </UserControl.Effect>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
