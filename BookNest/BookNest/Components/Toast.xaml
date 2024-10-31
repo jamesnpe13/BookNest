@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="BookNest.Components.Toast"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookNest.Components"
+             mc:Ignorable="d" 
+             Width="800"
+             Height="450">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Label Grid.Column="0" Background="{StaticResource Primary}"/>
+        <Label x:Name="SuccessfulToastLaber"
+               Grid.Column="1"
+               Content="Success Toast"
+               Foreground="{StaticResource Grey2}"
+               FontSize="{StaticResource Normal}"
+
+               Background="{StaticResource White}" 
+               HorizontalContentAlignment="Center" 
+               VerticalContentAlignment="Center"/>
+
+        <Label Grid.Column="0" Grid.Row="1" Background="{StaticResource Destructive}"/>
+        <Label x:Name="ErrorToastLaber"
+               Grid.Column="1" Grid.Row="1"
+               Content="Error Toast"
+               Foreground="{StaticResource Grey2}"
+               FontSize="{StaticResource Normal}"
+
+               Background="{StaticResource White}" 
+               HorizontalContentAlignment="Center" 
+               VerticalContentAlignment="Center"/>
+
+        <Label Grid.Column="0" Grid.Row="2" Background="{StaticResource Warning}"/>
+        <Label x:Name="WarningToastLaber"
+               Grid.Column="1" Grid.Row="2"
+               Content="Warning Toast"
+               Foreground="{StaticResource Grey2}"
+               FontSize="{StaticResource Normal}"
+
+               Background="{StaticResource White}" 
+               HorizontalContentAlignment="Center" 
+               VerticalContentAlignment="Center"/>
+        
+        <Label Grid.Column="0" Grid.Row="3" Background="{StaticResource Grey2}"/>
+        <Label x:Name="GreyedOutToastLaber"
+               Grid.Column="1" Grid.Row="3"
+               Content="Greyed Out Toast"
+               Foreground="{StaticResource Grey2}"
+               FontSize="{StaticResource Normal}"
+
+               Background="{StaticResource White}" 
+               HorizontalContentAlignment="Center" 
+               VerticalContentAlignment="Center"/>
+    </Grid>
+</UserControl>
