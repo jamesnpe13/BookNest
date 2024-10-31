@@ -23,6 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0-preview1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="assets\icons\Icon awesome-binoculars.png" />
     <Resource Include="assets\icons\Icon awesome-book-open.png" />
     <Resource Include="assets\icons\Icon awesome-shopping-bag.png" />
