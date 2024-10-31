@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace BookNest.Components
 {
     /// <summary>
-    /// Interaction logic for Book_list_view_Bag_.xaml
+    /// Interaction logic for Book_Grid_view_single.xaml
     /// </summary>
-    public partial class Book_list_view_Bag_ : UserControl
+    public partial class Book_Grid_view_single : UserControl
     {
-        public Book_list_view_Bag_()
+        public Book_Grid_view_single()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
