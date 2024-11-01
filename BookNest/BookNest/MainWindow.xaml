@@ -17,10 +17,18 @@
     WindowState="Maximized"
     mc:Ignorable="d">
 
-    <Frame
-        x:Name="MainFrame"
-        Grid.Row="0"
-        Content="{Binding CurrentPage}"
-        NavigationUIVisibility="Hidden" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Frame
+            x:Name="MainFrame"
+            Grid.Row="0"
+            Content="{Binding CurrentPage}"
+            NavigationUIVisibility="Hidden" />
+        <modules:TempPageNav Grid.Row="1" />
+    </Grid>
 
 </Window>

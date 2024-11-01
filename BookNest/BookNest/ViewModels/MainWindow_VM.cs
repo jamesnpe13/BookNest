@@ -33,6 +33,7 @@ partial class MainWindow_VM : ObservableObject
     {
         if (page == "MainPage") CurrentPage = _MainPage;
         if (page == "SignInPage") CurrentPage = _SignInPage;
+        if (page == "RegistrationPage") CurrentPage = _RegistrationPage;
     }
 
     // Override OnPropertyChanged to handle property changes
