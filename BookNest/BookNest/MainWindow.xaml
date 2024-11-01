@@ -17,25 +17,10 @@
     WindowState="Maximized"
     mc:Ignorable="d">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="20" />
-        </Grid.RowDefinitions>
-        <modules:SideNavModule Grid.Column="0" />
-        <StackPanel
-            Grid.Column="1"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top">
-            <modules:HeaderBarModule />
-        </StackPanel>
-        <StackPanel
-            Grid.Row="1"
-            Grid.ColumnSpan="2"
-            Background="{StaticResource Grey4}" />
-    </Grid>
+    <Frame
+        x:Name="MainFrame"
+        Grid.Row="0"
+        Content="{Binding CurrentPage}"
+        NavigationUIVisibility="Hidden" />
+
 </Window>

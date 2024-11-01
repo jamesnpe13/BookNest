@@ -103,10 +103,12 @@
                     </UserControl.Effect>
                 </components:NavButton>
                 <components:NavButton
+                    x:Name="SignOutButton"
                     Height="60"
                     ButtonStyle="Transparent"
                     ButtonText="Sign out"
-                    IconSource="../assets/icons/Icon open-account-logout.png" />
+                    IconSource="../assets/icons/Icon open-account-logout.png"
+                    MouseDown="SignOutButton_MouseDown" />
             </StackPanel>
         </Border>
     </Grid>
