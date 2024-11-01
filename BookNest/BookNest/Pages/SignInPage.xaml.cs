@@ -1,5 +1,8 @@
-﻿using BookNest.ViewModels;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -10,15 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BookNest
+namespace BookNest.Pages
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for SignInPage.xaml
+    /// </summary>
+    public partial class SignInPage : Page
     {
-        public MainWindow()
+        public SignInPage()
         {
             InitializeComponent();
-            MainWindow_VM vm = new();
-            DataContext = vm;
         }
     }
 }

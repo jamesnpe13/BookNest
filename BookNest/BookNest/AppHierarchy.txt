@@ -1,0 +1,40 @@
+App
+	|__ MainWindow
+		|__ Page
+		|	|__ View
+		|	|	|__ Module
+		|	|	|	|__ Component
+		|	|	|	|__ Component
+		|	|	|
+		|	|	|__ Module
+		|	|		|__ Component
+		|	|		|__ Component
+		|	|
+		|	|__	View
+		|		|__ Module
+		|		|	|__ Component
+		|		|	|__ Component
+		|		|
+		|		|__ Module
+		|			|__ Component
+		|			|__ Component
+		|
+		|__	Page
+			|__ View
+			|	|__ Module
+			|	|	|__ Component
+			|	|	|__ Component
+			|	|
+			|	|__ Module
+			|		|__ Component
+			|		|__ Component
+			|
+			|__	View
+				|__ Module
+				|	|__ Component
+				|	|__ Component
+				|
+				|__ Module
+					|__ Component
+					|__ Component
+	
