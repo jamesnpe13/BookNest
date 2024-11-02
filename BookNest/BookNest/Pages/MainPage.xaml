@@ -26,7 +26,7 @@
             <modules:HeaderBarModule />
 
             <Grid />
-        </StackPanel>
+        </StackPanel> 
         <StackPanel
             Grid.Row="1"
             Grid.ColumnSpan="2"

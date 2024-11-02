@@ -17,7 +17,7 @@
             <Setter Property="BorderBrush" Value="Transparent" />
             <Setter Property="FontSize" Value="14" />
             <Setter Property="Foreground" Value="white" />
-
+            <Setter Property="Cursor" Value="Hand" />
         </Style>
     </UserControl.Resources>
 
@@ -30,19 +30,20 @@
             <Label
                 Margin="0,0,50,0"
                 Content="Temporary page navigation:"
+                Cursor="Arrow"
                 Foreground="#FF6A3F0B" />
 
             <Label
                 x:Name="SignInPageButton"
-                Content="SignIn page"
+                Content="[SignIn page]"
                 MouseDown="SignInPageButton_MouseDown" />
             <Label
                 x:Name="RegistrationPageButton"
-                Content="Registration page"
+                Content="[Registration page]"
                 MouseDown="RegistrationPageButton_MouseDown" />
             <Label
                 x:Name="MainPageButton"
-                Content="Main page"
+                Content="[Main page]"
                 MouseDown="MainPageButton_MouseDown" />
         </StackPanel>
 
