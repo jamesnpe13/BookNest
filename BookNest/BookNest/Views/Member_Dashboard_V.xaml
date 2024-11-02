@@ -1,0 +1,22 @@
+﻿<UserControl
+    x:Class="BookNest.Views.Member_Dashboard_V"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BookNest.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:modules="clr-namespace:BookNest.Modules"
+    mc:Ignorable="d">
+
+    <StackPanel
+        Grid.Column="1"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Top">
+
+        <!--  Header bar  -->
+        <modules:HeaderBarModule />
+
+        <!--  Main section  -->
+        <Grid />
+    </StackPanel>
+</UserControl>
