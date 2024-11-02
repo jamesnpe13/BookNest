@@ -28,24 +28,17 @@ namespace BookNest.Modules
             InitializeComponent();
         }
 
-        private void SignInPageButton_MouseDown(object sender, MouseButtonEventArgs e)
-        {
+        // page navigation router
+        private void SignInPageButton_MouseDown(object sender, MouseButtonEventArgs e) =>
             NavigateToPage("SignInPage");
-        }
-
-        private void RegistrationPageButton_MouseDown(object sender, MouseButtonEventArgs e)
-        {
+        private void RegistrationPageButton_MouseDown(object sender, MouseButtonEventArgs e) =>
             NavigateToPage("RegistrationPage");
-        }
-
-        private void MainPageButton_MouseDown(object sender, MouseButtonEventArgs e)
-        {
+        private void MainPageButton_MouseDown(object sender, MouseButtonEventArgs e) =>
             NavigateToPage("MainPage");
-        }
 
-        public void NavigateToPage(string targetPage)
-        {
+        // navigate message sender
+        public void NavigateToPage(string targetPage) =>
             WeakReferenceMessenger.Default.Send(new NavigateToPage_Message(targetPage));
-        }
+
     }
 }

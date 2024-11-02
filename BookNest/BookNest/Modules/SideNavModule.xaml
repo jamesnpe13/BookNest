@@ -59,33 +59,47 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel Orientation="Vertical">
                     <components:NavButton
+                        x:Name="DashboardNavButton"
                         ButtonStyle="Transparent"
                         ButtonText="Dashboard"
-                        IconSource="../assets/icons/Icon material-dashboard.png" />
+                        IconSource="../assets/icons/Icon material-dashboard.png"
+                        MouseDown="DashboardNavButton_MouseDown" />
                     <components:NavButton
+                        x:Name="BooksNavButton"
                         ButtonStyle="Transparent"
                         ButtonText="Books"
-                        IconSource="../assets/icons/Icon awesome-book-open.png" />
+                        IconSource="../assets/icons/Icon awesome-book-open.png"
+                        MouseDown="BooksNavButton_MouseDown" />
                     <components:NavButton
+                        x:Name="BagNavButton"
                         ButtonStyle="Transparent"
                         ButtonText="My Bag"
-                        IconSource="../assets/icons/Icon awesome-shopping-bag.png" />
+                        IconSource="../assets/icons/Icon awesome-shopping-bag.png"
+                        MouseDown="BagNavButton_MouseDown" />
                     <components:NavButton
+                        x:Name="WatchlistNavButton"
                         ButtonStyle="Transparent"
                         ButtonText="Watchlist"
-                        IconSource="../assets/icons/Icon awesome-binoculars.png" />
+                        IconSource="../assets/icons/Icon awesome-binoculars.png"
+                        MouseDown="WatchlistNavButton_MouseDown" />
                     <components:NavButton
+                        x:Name="ReturnsNavButton"
                         ButtonStyle="Transparent"
                         ButtonText="Returns"
-                        IconSource="../assets/icons/Icon material-assignment-return.png" />
+                        IconSource="../assets/icons/Icon material-assignment-return.png"
+                        MouseDown="ReturnsNavButton_MouseDown" />
                     <components:NavButton
+                        x:Name="ReservedNavButton"
                         ButtonStyle="Transparent"
                         ButtonText="Reserved"
-                        IconSource="../assets/icons/Icon metro-pin.png" />
+                        IconSource="../assets/icons/Icon metro-pin.png"
+                        MouseDown="ReservedNavButton_MouseDown" />
                     <components:NavButton
+                        x:Name="PeopleNavButton"
                         ButtonStyle="Transparent"
                         ButtonText="People"
-                        IconSource="../assets/icons/Icon material-people.png" />
+                        IconSource="../assets/icons/Icon material-people.png"
+                        MouseDown="PeopleNavButton_MouseDown" />
                 </StackPanel>
             </ScrollViewer>
         </Border>
@@ -93,21 +107,23 @@
         <Border Grid.Row="2" Padding="0">
             <StackPanel Orientation="Vertical">
                 <components:NavButton
+                    x:Name="AccountNavButton"
                     Height="60"
                     ButtonStyle="Primary"
                     ButtonText="My Account"
-                    IconSource="../assets/icons/Icon material-account-box.png">
+                    IconSource="../assets/icons/Icon material-account-box.png"
+                    MouseDown="AccountNavButton_MouseDown">
                     <UserControl.Effect>
                         <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
                     </UserControl.Effect>
                 </components:NavButton>
                 <components:NavButton
-                    x:Name="SignOutButton"
+                    x:Name="SignOutNavButton"
                     Height="60"
                     ButtonStyle="Transparent"
                     ButtonText="Sign out"
                     IconSource="../assets/icons/Icon open-account-logout.png"
-                    MouseDown="SignOutButton_MouseDown" />
+                    MouseDown="SignOutNavButton_MouseDown" />
             </StackPanel>
         </Border>
     </Grid>
