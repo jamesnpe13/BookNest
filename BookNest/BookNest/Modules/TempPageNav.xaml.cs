@@ -1,4 +1,5 @@
 ﻿using BookNest.Services;
+using BookNest.ViewModels;
 using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
@@ -29,16 +30,21 @@ namespace BookNest.Modules
         }
 
         // page navigation router
-        private void SignInPageButton_MouseDown(object sender, MouseButtonEventArgs e) =>
-            NavigateToPage("SignInPage");
-        private void RegistrationPageButton_MouseDown(object sender, MouseButtonEventArgs e) =>
-            NavigateToPage("RegistrationPage");
-        private void MainPageButton_MouseDown(object sender, MouseButtonEventArgs e) =>
-            NavigateToPage("MainPage");
+        private void SignInPageButton_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (DataContext is MainWindow_VM vm)
+                vm.SetCurrentPage("SignInPage");
+        }
 
-        // navigate message sender
-        public void NavigateToPage(string targetPage) =>
-            WeakReferenceMessenger.Default.Send(new NavigateToPage_Message(targetPage));
-
+        private void RegistrationPageButton_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (DataContext is MainWindow_VM vm)
+                vm.SetCurrentPage("RegistrationPage");
+        }
+        private void MainPageButton_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (DataContext is MainWindow_VM vm)
+                vm.SetCurrentPage("MainPage");
+        }
     }
 }
