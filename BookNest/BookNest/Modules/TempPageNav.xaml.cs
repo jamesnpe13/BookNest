@@ -1,4 +1,5 @@
 ﻿using BookNest.Services;
+using BookNest.ViewModels;
 using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
@@ -28,24 +29,22 @@ namespace BookNest.Modules
             InitializeComponent();
         }
 
+        // page navigation router
         private void SignInPageButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            NavigateToPage("SignInPage");
+            if (DataContext is MainWindow_VM vm)
+                vm.SetCurrentPage("SignInPage");
         }
 
         private void RegistrationPageButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            NavigateToPage("RegistrationPage");
+            if (DataContext is MainWindow_VM vm)
+                vm.SetCurrentPage("RegistrationPage");
         }
-
         private void MainPageButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            NavigateToPage("MainPage");
-        }
-
-        public void NavigateToPage(string targetPage)
-        {
-            WeakReferenceMessenger.Default.Send(new NavigateToPage_Message(targetPage));
+            if (DataContext is MainWindow_VM vm)
+                vm.SetCurrentPage("MainPage");
         }
     }
 }

@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:BookNest.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:modules="clr-namespace:BookNest.Modules"
+    xmlns:view="clr-namespace:BookNest.Views"
     Title="MainPage"
     mc:Ignorable="d">
 
@@ -18,14 +19,15 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
+
         <modules:SideNavModule Grid.Column="0" />
         <StackPanel
             Grid.Column="1"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Top">
-            <modules:HeaderBarModule />
 
-            <Grid />
+            <ContentControl Content="{Binding CurrentView}" />
+
         </StackPanel>
         <StackPanel
             Grid.Row="1"
