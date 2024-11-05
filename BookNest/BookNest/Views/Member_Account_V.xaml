@@ -9,9 +9,6 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>
-        <Label
-            Content="{Binding DataContext.CurrentUser, RelativeSource={RelativeSource AncestorType=Page}}"
-            FontSize="20"
-            Foreground="white" />
+        
     </Grid>
 </UserControl>

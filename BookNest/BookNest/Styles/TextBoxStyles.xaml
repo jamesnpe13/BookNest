@@ -14,6 +14,16 @@
         <Setter Property="Foreground" Value="{StaticResource Grey3}" />
         <Setter Property="FontSize" Value="{StaticResource Small}" />
     </Style>
+    <Style x:Key="PasswordBoxTextBox" TargetType="PasswordBox">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="Padding" Value="10,0,10,0" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="{StaticResource Grey3}" />
+        <Setter Property="FontSize" Value="{StaticResource Small}" />
+    </Style>
     <Style x:Key="PlaceholderLabel" TargetType="Label">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Height" Value="30" />

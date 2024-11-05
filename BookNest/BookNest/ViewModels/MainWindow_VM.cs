@@ -19,6 +19,13 @@ partial class MainWindow_VM : ObservableObject
 
     public MainWindow_VM()
     {
+
+        // register navigate message reciever
+        WeakReferenceMessenger.Default.Register<NavigateToPage_Message>(this, (r, message) =>
+        {
+            SetCurrentPage(message.TargetPage);
+        });
+
         SetCurrentPage("MainPage"); // set default page
 
         //currentUser = Services.AppData.Instance.CurrentUser;
