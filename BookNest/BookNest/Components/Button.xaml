@@ -14,7 +14,10 @@
     </UserControl.Effect>
 
     <Grid>
-        <Border x:Name="UCBorder" Style="{StaticResource ButtonBorderDefault}">
+        <Border
+            x:Name="UCBorder"
+            Cursor="Hand"
+            Style="{StaticResource ButtonBorderDefault}">
             <Label
                 x:Name="UCLabel"
                 Padding="20,0,20,0"

@@ -14,6 +14,7 @@
             x:Name="NavButtonBorder"
             Padding="20,0,20,0"
             CornerRadius="0"
+            Cursor="Hand"
             Style="{StaticResource ButtonBorderDefault}">
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                 <Image
