@@ -13,16 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BookNest.Views
+namespace BookNest.Views;
+
+public partial class Member_Account_V : UserControl
 {
-    /// <summary>
-    /// Interaction logic for Member_Account_V.xaml
-    /// </summary>
-    public partial class Member_Account_V : UserControl
+    public Member_Account_V()
     {
-        public Member_Account_V()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

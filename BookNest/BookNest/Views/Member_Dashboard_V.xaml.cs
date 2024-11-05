@@ -1,5 +1,8 @@
-﻿using System;
+﻿using BookNest.Models;
+using BookNest.Services;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,11 +18,9 @@ using System.Windows.Shapes;
 
 namespace BookNest.Views
 {
-    /// <summary>
-    /// Interaction logic for Member_Dashboard_V.xaml
-    /// </summary>
     public partial class Member_Dashboard_V : UserControl
     {
+
         public Member_Dashboard_V()
         {
             InitializeComponent();

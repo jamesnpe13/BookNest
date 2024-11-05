@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BookNest.Services;
 
 namespace BookNest.Views
 {
@@ -23,6 +24,7 @@ namespace BookNest.Views
         public Member_Books_V()
         {
             InitializeComponent();
+            BooksList.DataContext = DataCollections.Instance;
         }
     }
 }

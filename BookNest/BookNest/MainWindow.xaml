@@ -8,6 +8,8 @@
     xmlns:local="clr-namespace:BookNest"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:modules="clr-namespace:BookNest.Modules"
+    xmlns:viewmodels="clr-namespace:BookNest.ViewModels"
+    x:Name="MainWin"
     Title="{StaticResource AppTitle}"
     Width="{StaticResource WindowDimensionsX}"
     Height="{StaticResource WindowDimensionsY}"
@@ -18,8 +20,10 @@
     mc:Ignorable="d">
 
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
@@ -28,6 +32,7 @@
             Grid.Row="0"
             Content="{Binding CurrentPage}"
             NavigationUIVisibility="Hidden" />
+
         <modules:TempPageNav Grid.Row="1" />
     </Grid>
 

@@ -5,23 +5,23 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System.ComponentModel;
 using System.Net.Http.Headers;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace BookNest.ViewModels;
 
 partial class MainWindow_VM : ObservableObject
 {
 
-    [ObservableProperty] private object currentPage; // bound to Main Frame that displays current page
+    [ObservableProperty] private Object currentPage; // bound to Main Frame that displays current page
     [ObservableProperty] private string targetPage;
+    [ObservableProperty] private string currentUser;
 
     public MainWindow_VM()
     {
-        WeakReferenceMessenger.Default.Register<NavigateToPage_Message>(this, (r, page) =>
-        {
-            TargetPage = page.TargetPage;
-        });
-
         SetCurrentPage("MainPage"); // set default page
+
+        //currentUser = Services.AppData.Instance.CurrentUser;
     }
 
     // Page router
