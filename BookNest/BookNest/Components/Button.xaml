@@ -5,15 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:BookNest.Components"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Width="auto"
     Height="{StaticResource Controlheight}"
+    HorizontalAlignment="Center"
     mc:Ignorable="d">
 
     <UserControl.Effect>
         <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
     </UserControl.Effect>
 
-    <Grid HorizontalAlignment="Center">
+    <Grid>
         <Border x:Name="UCBorder" Style="{StaticResource ButtonBorderDefault}">
             <Label
                 x:Name="UCLabel"

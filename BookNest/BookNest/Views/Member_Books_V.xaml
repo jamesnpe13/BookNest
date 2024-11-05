@@ -1,12 +1,51 @@
-﻿<UserControl x:Class="BookNest.Views.Member_Books_V"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:BookNest.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<UserControl
+    x:Class="BookNest.Views.Member_Books_V"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BookNest.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
     <Grid>
-            
+        <ItemsControl x:Name="BooksList" ItemsSource="{Binding BooksCollection}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        Padding="20"
+                        BorderBrush="White"
+                        BorderThickness="1">
+                        <StackPanel Orientation="Vertical">
+                            <Label
+                                Content="{Binding Title}"
+                                FontSize="{StaticResource XLarge}"
+                                Foreground="white" />
+                            <Label
+                                Content="{Binding Description}"
+                                FontSize="{StaticResource Normal}"
+                                Foreground="{StaticResource Grey1}" />
+                            <Label
+                                Content="{Binding Publisher}"
+                                FontSize="{StaticResource Normal}"
+                                Foreground="{StaticResource Grey1}" />
+                            <Label
+                                Content="{Binding Genre}"
+                                FontSize="{StaticResource Normal}"
+                                Foreground="{StaticResource Grey1}" />
+                            <Label
+                                Content="{Binding Likes}"
+                                FontSize="{StaticResource Normal}"
+                                Foreground="{StaticResource Grey1}" />
+                            <Label
+                                Content="{Binding Id}"
+                                FontSize="{StaticResource Normal}"
+                                Foreground="{StaticResource Grey1}" />
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
     </Grid>
 </UserControl>
