@@ -1,8 +1,10 @@
 ﻿using BookNest.Pages;
+using BookNest.Services;
 using BookNest.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace BookNest;
 
@@ -35,14 +37,22 @@ public static class ServiceCollectionExtensions
 {
     public static void ConfigureServices(this IServiceCollection services)
     {
-        // register services here
+
         services.AddSingleton<MainWindow>();
         services.AddSingleton<MainWindow_VM>();
 
         // pages
         services.AddTransient<MainPage>();
+        services.AddTransient<MainPage_VM>();
+
         services.AddTransient<SignInPage>();
+        services.AddTransient<SignInPage_VM>();
+
         services.AddTransient<RegistrationPage>();
+        services.AddTransient<RegistrationPage_VM>();
+
+        // services
+        services.AddSingleton<PageNavigationService>();
 
     }
 }

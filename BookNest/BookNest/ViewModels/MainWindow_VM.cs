@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using System.ComponentModel;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -14,23 +15,17 @@ namespace BookNest.ViewModels;
 public partial class MainWindow_VM : ObservableObject
 {
     private readonly IServiceProvider sp;
+    private readonly PageNavigationService ns;
 
-    [ObservableProperty] private Page currentPage; // bound to Main Frame that displays current page
     [ObservableProperty] private string targetPage;
+    [ObservableProperty] private Page currentPage;
 
-    public MainWindow_VM(IServiceProvider _sp)
+    public MainWindow_VM(IServiceProvider _sp, PageNavigationService _ns)
     {
         sp = _sp;
+        ns = _ns;
 
-        SetCurrentPage("MainPage"); // set default page
+        ns.SetCurrentPage("SignInPage"); // sets default page
     }
 
-    // Page router
-    [RelayCommand]
-    public void SetCurrentPage(string page)
-    {
-        if (page == "MainPage") CurrentPage = sp.GetRequiredService<MainPage>();
-        if (page == "SignInPage") CurrentPage = sp.GetRequiredService<SignInPage>();
-        if (page == "RegistrationPage") CurrentPage = sp.GetRequiredService<RegistrationPage>();
-    }
 }

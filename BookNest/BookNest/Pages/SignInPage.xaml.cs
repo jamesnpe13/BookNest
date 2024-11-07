@@ -8,10 +8,13 @@ namespace BookNest.Pages;
 
 public partial class SignInPage : Page
 {
-    public SignInPage()
+    private readonly SignInPage_VM vm;
+    public SignInPage(SignInPage_VM _vm)
     {
         InitializeComponent();
-        DataContext = new SignInPage_VM();
+        vm = _vm;
+        DataContext = vm;
+        //ns = _ns;
     }
 
     private void UsernameField_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -43,8 +46,7 @@ public partial class SignInPage : Page
 
     private void SubmitForm()
     {
-        if (DataContext is SignInPage_VM vm)
-            vm.SubmitForm();
+        vm.SubmitForm();
     }
 
 }

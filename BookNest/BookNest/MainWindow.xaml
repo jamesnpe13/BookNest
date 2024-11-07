@@ -31,6 +31,7 @@
             x:Name="MainFrame"
             Grid.Row="0"
             Content="{Binding CurrentPage}"
+            DataContext="{Binding PageNavigationService}"
             NavigationUIVisibility="Hidden" />
 
         <modules:TempPageNav Grid.Row="1" />

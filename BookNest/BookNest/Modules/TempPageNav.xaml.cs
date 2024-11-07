@@ -15,19 +15,19 @@ namespace BookNest.Modules
         // page navigation router
         private void SignInPageButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (DataContext is MainWindow_VM vm)
-                vm.SetCurrentPage("SignInPage");
+            //if (DataContext is MainWindow_VM vm)
+            //    vm.SetCurrentPage("SignInPage");
         }
 
         private void RegistrationPageButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (DataContext is MainWindow_VM vm)
-                vm.SetCurrentPage("RegistrationPage");
+            //if (DataContext is MainWindow_VM vm)
+            //    vm.SetCurrentPage("RegistrationPage");
         }
         private void MainPageButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (DataContext is MainWindow_VM vm)
-                vm.SetCurrentPage("MainPage");
+            //if (DataContext is MainWindow_VM vm)
+            //    vm.SetCurrentPage("MainPage");
         }
     }
 }
