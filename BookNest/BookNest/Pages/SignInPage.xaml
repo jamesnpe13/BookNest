@@ -2,17 +2,64 @@
     x:Class="BookNest.Pages.SignInPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:components="clr-namespace:BookNest.Components"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:BookNest.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:BookNest.ViewModels"
     Title="SignInPage"
-    Background="{StaticResource White}"
+    Background="{StaticResource Blue5}"
     mc:Ignorable="d">
 
-    <Grid>
-        <Label
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="Sign In Page" />
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+
+        <Border
+            Width="400"
+            Height="auto"
+            Padding="60,80,60,80"
+            Background="{StaticResource Blue2}">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <!--  Image section  -->
+
+                <Border Grid.Row="0" Margin="0,0,0,40">
+                    <!--  Image here  -->
+                    <Image Source="../assets/signin-graphic.png" />
+                </Border>
+
+                <!--  Form section  -->
+                <Border Grid.Row="1" Margin="0,0,0,40">
+
+                    <StackPanel Orientation="Vertical">
+                        <components:TextInputField
+                            x:Name="UsernameField"
+                            Margin="0,0,0,10"
+                            KeyDown="UsernameField_KeyDown"
+                            Placeholder="Username" />
+                        <components:PasswordInputField
+                            x:Name="PasswordField"
+                            Margin="0,0,0,20"
+                            KeyDown="PasswordField_KeyDown"
+                            Placeholder="Password" />
+                        <components:Button
+                            x:Name="SignInButton"
+                            Height="40"
+                            HorizontalAlignment="Stretch"
+                            ButtonHeight="Tall"
+                            ButtonStyle="Primary"
+                            ButtonText="Sign in"
+                            MouseDown="SignInButton_MouseDown" />
+                    </StackPanel>
+                </Border>
+                <!--  Button section  -->
+                <Border Grid.Row="2" />
+            </Grid>
+        </Border>
     </Grid>
 </Page>

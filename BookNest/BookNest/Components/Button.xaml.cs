@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -7,6 +8,16 @@ namespace BookNest.Components;
 public partial class Button : UserControl
 {
     // ******************************* BUTTON STYLE PROPERTY DEPENDENCY ****************************************
+
+    public string ButtonHeight
+    {
+        get { return (string)GetValue(ButtonHeightProperty); }
+        set { SetValue(ButtonHeightProperty, value); }
+    }
+
+    // Using a DependencyProperty as the backing store for ButtonHeight.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty ButtonHeightProperty =
+        DependencyProperty.Register("ButtonHeight", typeof(string), typeof(Button), new PropertyMetadata(null, OnButtonHeightPropertyChanged));
 
     // *** CLR Wrapper
     public string ButtonStyle
@@ -46,6 +57,22 @@ public partial class Button : UserControl
 
             x.OnButtonStylePropertyChanged(oldValue, newValue);
         }
+    }
+
+    private static void OnButtonHeightPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        Button x = d as Button;
+        if (x != null)
+        {
+            string newValue = (string)e.NewValue;
+
+            x.OnButtonHeightPropertyChanged(newValue);
+        }
+    }
+
+    protected virtual void OnButtonHeightPropertyChanged(string newValue)
+    {
+        if (newValue == "Tall") this.Height = 50;
     }
 
     // *** Instance method

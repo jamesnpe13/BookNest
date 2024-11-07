@@ -3,33 +3,29 @@ using BookNest.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Extensions.DependencyInjection;
 using System.ComponentModel;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace BookNest.ViewModels;
 
-partial class MainWindow_VM : ObservableObject
+public partial class MainWindow_VM : ObservableObject
 {
+    private readonly IServiceProvider sp;
+    private readonly PageNavigationService ns;
 
-    [ObservableProperty] private Object currentPage; // bound to Main Frame that displays current page
     [ObservableProperty] private string targetPage;
-    [ObservableProperty] private string currentUser;
+    [ObservableProperty] private Page currentPage;
 
-    public MainWindow_VM()
+    public MainWindow_VM(IServiceProvider _sp, PageNavigationService _ns)
     {
-        SetCurrentPage("MainPage"); // set default page
+        sp = _sp;
+        ns = _ns;
 
-        //currentUser = Services.AppData.Instance.CurrentUser;
+        ns.SetCurrentPage("SignInPage"); // sets default page
     }
 
-    // Page router
-    [RelayCommand]
-    public void SetCurrentPage(string page)
-    {
-        if (page == "MainPage") CurrentPage = new MainPage();
-        if (page == "SignInPage") CurrentPage = new SignInPage();
-        if (page == "RegistrationPage") CurrentPage = new RegistrationPage();
-    }
 }

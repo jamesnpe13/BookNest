@@ -19,11 +19,14 @@
     <None Remove="assets\icons\Icon material-people.png" />
     <None Remove="assets\icons\Icon metro-pin.png" />
     <None Remove="assets\icons\Icon open-account-logout.png" />
+    <None Remove="assets\signin-graphic.png" />
     <None Remove="favicon.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0-preview1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0-rc.2.24473.5" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0-rc.2.24473.5" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,7 +40,14 @@
     <Resource Include="assets\icons\Icon material-people.png" />
     <Resource Include="assets\icons\Icon metro-pin.png" />
     <Resource Include="assets\icons\Icon open-account-logout.png" />
+    <Resource Include="assets\signin-graphic.png" />
     <Resource Include="favicon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Components\PasswordInputField.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
 ﻿using BookNest.Pages;
+using BookNest.Services;
 using BookNest.ViewModels;
 using BookNest.Views;
 using System.Windows;
@@ -7,12 +8,10 @@ namespace BookNest;
 
 public partial class MainWindow : Window
 {
-    public MainWindow()
+    public MainWindow(MainWindow_VM vm, PageNavigationService _ps)
     {
         InitializeComponent();
-        DataContext = new MainWindow_VM();
-
-        MainFrame.Navigate(new MainPage());
-
+        MainFrame.DataContext = _ps;
+        DataContext = vm;
     }
 }
