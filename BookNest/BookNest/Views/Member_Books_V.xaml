@@ -9,43 +9,21 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>
-        <ItemsControl x:Name="BooksList" ItemsSource="{Binding BooksCollection}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Border
-                        Padding="20"
-                        BorderBrush="White"
-                        BorderThickness="1">
-                        <StackPanel Orientation="Vertical">
-                            <Label
-                                Content="{Binding Title}"
-                                FontSize="{StaticResource XLarge}"
-                                Foreground="white" />
-                            <Label
-                                Content="{Binding Description}"
-                                FontSize="{StaticResource Normal}"
-                                Foreground="{StaticResource Grey1}" />
-                            <Label
-                                Content="{Binding Publisher}"
-                                FontSize="{StaticResource Normal}"
-                                Foreground="{StaticResource Grey1}" />
-                            <Label
-                                Content="{Binding Genre}"
-                                FontSize="{StaticResource Normal}"
-                                Foreground="{StaticResource Grey1}" />
-                            <Label
-                                Content="{Binding Likes}"
-                                FontSize="{StaticResource Normal}"
-                                Foreground="{StaticResource Grey1}" />
-                            <Label
-                                Content="{Binding Id}"
-                                FontSize="{StaticResource Normal}"
-                                Foreground="{StaticResource Grey1}" />
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
 
+        <Border
+            Padding="20"
+            BorderBrush="White"
+            BorderThickness="1">
+            <StackPanel Orientation="Vertical">
+                <Label
+                    x:Name="TestStringLabel"
+                    FontSize="{StaticResource XLarge}"
+                    Foreground="white" />
+                <Label
+                    x:Name="TestIntLabel"
+                    FontSize="{StaticResource Normal}"
+                    Foreground="{StaticResource Grey1}" />
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

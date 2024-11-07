@@ -1,30 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using BookNest.Services;
+using Microsoft.Extensions.DependencyInjection;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using BookNest.Services;
 
-namespace BookNest.Views
+namespace BookNest.Views;
+
+public partial class Member_Books_V : UserControl
 {
-    /// <summary>
-    /// Interaction logic for Member_Books_V.xaml
-    /// </summary>
-    public partial class Member_Books_V : UserControl
+
+    public Member_Books_V()
     {
-        public Member_Books_V()
-        {
-            InitializeComponent();
-            BooksList.DataContext = DataCollections.Instance;
-        }
+        InitializeComponent();
+        //BooksList.DataContext = DataCollections.Instance;
     }
 }
