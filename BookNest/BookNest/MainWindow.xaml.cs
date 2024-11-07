@@ -7,10 +7,10 @@ namespace BookNest;
 
 public partial class MainWindow : Window
 {
-    public MainWindow()
+    public MainWindow(MainWindow_VM vm)
     {
         InitializeComponent();
-        DataContext = new MainWindow_VM();
+        DataContext = vm;
 
         MainFrame.Navigate(new MainPage());
 

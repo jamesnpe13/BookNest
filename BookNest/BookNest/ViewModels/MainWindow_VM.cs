@@ -10,7 +10,7 @@ using System.Windows.Controls;
 
 namespace BookNest.ViewModels;
 
-partial class MainWindow_VM : ObservableObject
+public partial class MainWindow_VM : ObservableObject
 {
 
     [ObservableProperty] private Object currentPage; // bound to Main Frame that displays current page
