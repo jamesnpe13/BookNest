@@ -3,6 +3,7 @@ using BookNest.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Extensions.DependencyInjection;
 using System.ComponentModel;
 using System.Net.Http.Headers;
 using System.Windows;
@@ -12,31 +13,24 @@ namespace BookNest.ViewModels;
 
 public partial class MainWindow_VM : ObservableObject
 {
+    private readonly IServiceProvider sp;
 
-    [ObservableProperty] private Object currentPage; // bound to Main Frame that displays current page
+    [ObservableProperty] private Page currentPage; // bound to Main Frame that displays current page
     [ObservableProperty] private string targetPage;
-    [ObservableProperty] private string currentUser;
 
-    public MainWindow_VM()
+    public MainWindow_VM(IServiceProvider _sp)
     {
-
-        // register navigate message reciever
-        WeakReferenceMessenger.Default.Register<NavigateToPage_Message>(this, (r, message) =>
-        {
-            SetCurrentPage(message.TargetPage);
-        });
+        sp = _sp;
 
         SetCurrentPage("MainPage"); // set default page
-
-        //currentUser = Services.AppData.Instance.CurrentUser;
     }
 
     // Page router
     [RelayCommand]
     public void SetCurrentPage(string page)
     {
-        if (page == "MainPage") CurrentPage = new MainPage();
-        if (page == "SignInPage") CurrentPage = new SignInPage();
-        if (page == "RegistrationPage") CurrentPage = new RegistrationPage();
+        if (page == "MainPage") CurrentPage = sp.GetRequiredService<MainPage>();
+        if (page == "SignInPage") CurrentPage = sp.GetRequiredService<SignInPage>();
+        if (page == "RegistrationPage") CurrentPage = sp.GetRequiredService<RegistrationPage>();
     }
 }

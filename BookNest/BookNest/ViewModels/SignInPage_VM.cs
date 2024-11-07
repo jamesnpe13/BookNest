@@ -15,8 +15,5 @@ partial class SignInPage_VM : ObservableObject
     public void SubmitForm()
     {
         // input validation
-
-        // bypass validation
-        WeakReferenceMessenger.Default.Send(new NavigateToPage_Message("MainPage"));
     }
 }

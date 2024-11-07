@@ -11,8 +11,5 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         DataContext = vm;
-
-        MainFrame.Navigate(new MainPage());
-
     }
 }
