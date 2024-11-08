@@ -38,6 +38,10 @@ public static class ServiceCollectionExtensions
 {
     public static void ConfigureServices(this IServiceCollection services)
     {
+        // services
+        services.AddSingleton<AppData>();
+        services.AddSingleton<PageNavigationService>();
+
         // main window
         services.AddSingleton<MainWindow>();
         services.AddSingleton<MainWindow_VM>();
@@ -53,10 +57,6 @@ public static class ServiceCollectionExtensions
         services.AddTransient<RegistrationPage_VM>();
 
         // user controls / modules / components
-
-        // services
-        services.AddSingleton<AppData>();
-        services.AddSingleton<PageNavigationService>();
 
     }
 }

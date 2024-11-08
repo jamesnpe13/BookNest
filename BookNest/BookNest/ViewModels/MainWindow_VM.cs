@@ -34,5 +34,5 @@ public partial class MainWindow_VM : ObservableObject
     public void NavigateToPage(string targetPage)
     {
         ns.SetCurrentPage(targetPage);
-    }  
+    }
 }
