@@ -13,6 +13,7 @@
     <Border>
         <TextBlock
             x:Name="ButtonTextBlock"
+            FontSize="{StaticResource XSmall}"
             Foreground="{Binding ButtonStyle, RelativeSource={RelativeSource AncestorType=UserControl}}"
             Text="{Binding ButtonText, RelativeSource={RelativeSource AncestorType=UserControl}}" />
     </Border>

@@ -8,7 +8,7 @@
     <System:Double x:Key="XLarge">24</System:Double>
     <System:Double x:Key="Large">20</System:Double>
     <System:Double x:Key="Normal">16</System:Double>
-    <System:Double x:Key="Small">12</System:Double>
-    <System:Double x:Key="XSmall">10</System:Double>
-    <System:Double x:Key="XXSmall">8</System:Double>
+    <System:Double x:Key="Small">14</System:Double>
+    <System:Double x:Key="XSmall">12</System:Double>
+    <System:Double x:Key="XXSmall">10</System:Double>
 </ResourceDictionary>

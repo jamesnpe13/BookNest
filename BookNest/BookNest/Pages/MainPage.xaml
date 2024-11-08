@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:database="clr-namespace:BookNest.Data"
     xmlns:local="clr-namespace:BookNest.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:modules="clr-namespace:BookNest.Modules"
@@ -36,6 +37,20 @@
         <StackPanel
             Grid.Row="1"
             Grid.ColumnSpan="2"
-            Background="{StaticResource Grey4}" />
+            Height="auto"
+            Background="{StaticResource Grey4}">
+
+            <Label
+                Margin="20,0,20,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Content="{Binding DbConnectionStatus}"
+                FontSize="{StaticResource XXSmall}"
+                Foreground=" white">
+                <Label.DataContext>
+                    <database:DatabaseService />
+                </Label.DataContext>
+            </Label>
+        </StackPanel>
     </Grid>
 </Page>

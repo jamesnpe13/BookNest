@@ -14,6 +14,23 @@ public partial class RegistrationPage : Page
         InitializeComponent();
         vm = _vm;
         DataContext = vm;
+        CreateComboboxItems();
+
+    }
+
+    private void CreateComboboxItems()
+    {
+        //ComboBoxItem cbItem1 = new ComboBoxItem();
+        ComboBoxItem cbItem2 = new ComboBoxItem();
+        ComboBoxItem cbItem3 = new ComboBoxItem();
+
+        //cbItem1.Content = "Account Type";
+        cbItem2.Content = "Member";
+        cbItem3.Content = "Administrator";
+
+        //RegistrationTypeDropdown.DropdownCombobox.Items.Add(cbItem1);
+        RegistrationTypeDropdown.DropdownCombobox.Items.Add(cbItem2);
+        RegistrationTypeDropdown.DropdownCombobox.Items.Add(cbItem3);
     }
 
     private void SubmitIfNotEmptyOrNull(string field)
@@ -47,4 +64,23 @@ public partial class RegistrationPage : Page
         vm.SubmitForm();
     }
 
+    private void ConfirmPasswordField_KeyDown(object sender, KeyEventArgs e)
+    {
+
+    }
+
+    private void FirstNameField_KeyDown(object sender, KeyEventArgs e)
+    {
+
+    }
+
+    private void LastNameField_KeyDown(object sender, KeyEventArgs e)
+    {
+
+    }
+
+    private void EmailField_KeyDown(object sender, KeyEventArgs e)
+    {
+
+    }
 }

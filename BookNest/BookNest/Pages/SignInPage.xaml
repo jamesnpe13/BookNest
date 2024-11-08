@@ -17,7 +17,7 @@
             <Border
                 Width="400"
                 Height="auto"
-                Padding="60,80,60,80"
+                Padding="60,80,60,60"
                 Background="{StaticResource Blue2}"
                 CornerRadius="{StaticResource CornerRadius2}">
 
@@ -64,7 +64,7 @@
                                 Height="40"
                                 Margin="0,0,0,10"
                                 HorizontalAlignment="Stretch"
-                                ButtonHeight="Tall"
+                                ButtonHeight="Medium"
                                 ButtonStyle="Primary"
                                 ButtonText="Sign in"
                                 MouseDown="SignInButton_MouseDown" />
@@ -84,7 +84,6 @@
                     <Border Grid.Row="2">
                         <components:Button
                             x:Name="SwitchTypeButton"
-                            Margin="0,0,0,20"
                             HorizontalAlignment="Stretch"
                             ButtonHeight="Medium"
                             ButtonStyle="Neutral"

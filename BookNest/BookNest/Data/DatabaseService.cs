@@ -5,6 +5,10 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
+using System.Windows.Documents;
+using System.Xml;
+using BookNest.Models;
 
 namespace BookNest.Data;
 
@@ -25,54 +29,117 @@ public partial class DatabaseService : ObservableObject
 
     public DatabaseService()
     {
-
-        DbInit();
         TableInit();
-        DbConnectionStatus = "Database connected status: " + System.Data.ConnectionState.Open;
+
+        //AddTestAccount();
     }
 
-    // initialize database
-    void DbInit()
+    void AddTestAccount()
     {
-        Connection = new SQLiteConnection(DB_STRING);
-        Connection.Open();
-
-        if (Connection.State == System.Data.ConnectionState.Open)
+        var TestAccount = new Account_M()
         {
-            Console.WriteLine(Connection.State == System.Data.ConnectionState.Open);
-        }
+            FirstName = "James",
+            LastName = "Elazegui",
+            Username = "jamesnpe13",
+            Email = "jameselazegui21@gmail.com",
+            AccountType = "Admin",
+        };
+
+        AddAccount(TestAccount);
+    }
+
+    void UpdateDbConnectionStatus()
+    {
+        DbConnectionStatus = "Database connection status: " + System.Data.ConnectionState.Open;
     }
 
     // initialize tables
     void TableInit()
     {
-        var createTableQuery = @"
-            CREATE TABLE IF NOT EXISTS ToDoItems(
-            Id    INTEGER NOT NULL UNIQUE,
-            FirstName TEXT NOT NULL,
-            LastName TEXT NOT NULL,
-            Username TEXT NOT NULL UNIQUE,            
-            PRIMARY KEY(Id AUTOINCREMENT))"
-            ;
+        Connection = new SQLiteConnection(DB_STRING);
+        Connection.Open();
+        UpdateDbConnectionStatus();
 
-        using var cmdCreateTable = new SQLiteCommand(createTableQuery, Connection, Transaction);
-        cmdCreateTable.ExecuteNonQuery();
-        Console.WriteLine("Table 'ToDoItems' created successfully.");
+        // CREATE TABLE FOR ACCOUNTS
+        var createAccountsTable =
+            @"
+                CREATE TABLE IF NOT EXISTS Accounts(
+                UserID    INTEGER NOT NULL UNIQUE,
+                FirstName TEXT NOT NULL,
+                LastName TEXT NOT NULL,
+                Username TEXT NOT NULL UNIQUE,
+                PasswordHash TEXT NOT NULL DEFAULT 'password hash not set',
+                Salt TEXT NOT NULL,
+                Email TEXT,
+                AccountType TEXT NOT NULL,
+                PRIMARY KEY(UserID AUTOINCREMENT))
+            ";
 
+        using var cmdCreateAccountsTable = new SQLiteCommand(createAccountsTable, Connection, Transaction);
+
+        // CREATE TABLE FOR BOOKS
+        var createBooksTable =
+            @"
+                CREATE TABLE IF NOT EXISTS Books(
+                BookID    INTEGER NOT NULL UNIQUE,
+                ISBN  TEXT NOT NULL DEFAULT 'No ISBN' UNIQUE,
+                Title TEXT NOT NULL DEFAULT 'No Title',
+                Author    TEXT NOT NULL DEFAULT 'Author unknown',
+                YearOfPublication TEXT NOT NULL DEFAULT 'Year of publication unknown',
+                Publisher TEXT NOT NULL DEFAULT 'Publisher unknown',
+                PRIMARY KEY(BookID AUTOINCREMENT))
+            ";
+
+        using var cmdCreateBooksTable = new SQLiteCommand(createBooksTable, Connection, Transaction);
+
+        // CREATE TABLE FOR LOAN TRANSACTIONS
+        var createLoanTransactionsTable =
+            @"
+                CREATE TABLE IF NOT EXISTS LoanTransactions(
+                TransactionID    INTEGER NOT NULL UNIQUE,
+                MemberId  INTEGER NOT NULL,
+                BookId    INTEGER NOT NULL,
+                LoanDate  TEXT NOT NULL,
+                DueDate   TEXT NOT NULL,
+                ReturnDate    INTEGER,
+                Status    TEXT,
+                PRIMARY KEY(TransactionID AUTOINCREMENT))
+            ";
+
+        using (var cmdCreateLoanTransactionsTable = new SQLiteCommand(createLoanTransactionsTable, Connection, Transaction))
+        {
+            cmdCreateAccountsTable.ExecuteNonQuery();
+            cmdCreateBooksTable.ExecuteNonQuery();
+            cmdCreateLoanTransactionsTable.ExecuteNonQuery();
+        };
+        UpdateDbConnectionStatus();
     }
 
-    public void AddItem(string title, string description)
+    public void AddAccount(Account_M account)
     {
-        var sql =
-        "INSERT INTO ToDoItems(title, description)" +
-        " VALUES(@title, @description)";
+        using (var connection = new SQLiteConnection(DB_STRING))
+        {
+            connection.Open();
 
-        using var cmdInsertBook = new SQLiteCommand(sql, Connection, Transaction);
+            string addItemSql =
+                @"
+                    INSERT INTO Accounts (FirstName, LastName, Username, PasswordHash, Salt, Email, AccountType) 
+                    VALUES (@FirstName, @LastName, @Username, @PasswordHash, @Salt, @Email, @AccountType)
+                ";
 
-        cmdInsertBook.Parameters.AddWithValue("@title", title);
-        cmdInsertBook.Parameters.AddWithValue("@description", description);
+            using (var command = new SQLiteCommand(addItemSql, connection))
+            {
+                command.Parameters.AddWithValue("@FirstName", account.FirstName);
+                command.Parameters.AddWithValue("@LastName", account.LastName);
+                command.Parameters.AddWithValue("@Username", account.Username);
+                command.Parameters.AddWithValue("@PasswordHash", "Password Has not set");
+                command.Parameters.AddWithValue("@Salt", "Salt not set");
+                command.Parameters.AddWithValue("@Email", account.Email);
+                command.Parameters.AddWithValue("@AccountType", account.AccountType);
 
-        cmdInsertBook.ExecuteNonQuery();
+                command.ExecuteNonQuery();
+            }
+        }
     }
 
     public void RemoveItem(int id)

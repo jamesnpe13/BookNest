@@ -16,7 +16,7 @@
             <Border
                 Width="400"
                 Height="auto"
-                Padding="60,80,60,80"
+                Padding="60,80,60,60"
                 Background="{StaticResource Blue2}"
                 CornerRadius="{StaticResource CornerRadius2}">
 
@@ -39,15 +39,39 @@
                     </Border>
 
                     <!--  Form section  -->
-                    <Border Grid.Row="1" Margin="0,0,0,40">
+                    <Border Grid.Row="1">
 
                         <StackPanel Orientation="Vertical">
                             <Label
-                                Margin="0,0,0,20"
-                                Content="Register [UserType]"
+                                Margin="0,0,0,40"
+                                Content="Create an account"
                                 FontSize="{StaticResource Large}"
                                 FontWeight="SemiBold"
                                 Foreground="{StaticResource White}" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <components:TextInputField
+                                    x:Name="FirstNameField"
+                                    Grid.Column="0"
+                                    Margin="0,0,5,10"
+                                    KeyDown="FirstNameField_KeyDown"
+                                    Placeholder="First name" />
+                                <components:TextInputField
+                                    x:Name="LastNameField"
+                                    Grid.Column="1"
+                                    Margin="5,0,0,10"
+                                    KeyDown="LastNameField_KeyDown"
+                                    Placeholder="Last name" />
+                            </Grid>
+                            <components:TextInputField
+                                x:Name="EmailField"
+                                Margin="0,0,0,10"
+                                KeyDown="EmailField_KeyDown"
+                                Placeholder="Email" />
                             <components:TextInputField
                                 x:Name="UsernameField"
                                 Margin="0,0,0,10"
@@ -55,17 +79,28 @@
                                 Placeholder="Username" />
                             <components:PasswordInputField
                                 x:Name="PasswordField"
-                                Margin="0,0,0,20"
+                                Margin="0,0,0,10"
                                 KeyDown="PasswordField_KeyDown"
                                 Placeholder="Password" />
+                            <components:PasswordInputField
+                                x:Name="ConfirmPasswordField"
+                                Margin="0,0,0,10"
+                                KeyDown="ConfirmPasswordField_KeyDown"
+                                Placeholder="Confirm password" />
                             <components:Button
                                 x:Name="RegisterButton"
                                 Height="40"
+                                Margin="0,0,0,10"
                                 HorizontalAlignment="Stretch"
-                                ButtonHeight="Tall"
+                                ButtonHeight="Medium"
                                 ButtonStyle="Primary"
                                 ButtonText="Sign in"
                                 MouseDown="RegisterButton_MouseDown" />
+                            <components:Dropdown
+                                x:Name="RegistrationTypeDropdown"
+                                Width="auto"
+                                HorizontalAlignment="Stretch"
+                                Placeholder="Account type" />
                         </StackPanel>
                     </Border>
                     <!--  Button section  -->

@@ -14,6 +14,9 @@ public partial class Account_M : ObservableObject
     private string username;
 
     [ObservableProperty]
+    private string email;
+
+    [ObservableProperty]
     private string password;
 
     [ObservableProperty]
@@ -21,16 +24,4 @@ public partial class Account_M : ObservableObject
 
     [ObservableProperty]
     private int id;
-
-    public Account_M()
-    {
-        GenerateId();
-    }
-
-    private void GenerateId()
-    {
-        Random random = new();
-        int randomNum = random.Next(10000000, 100000000);
-        this.Id = randomNum;
-    }
 }

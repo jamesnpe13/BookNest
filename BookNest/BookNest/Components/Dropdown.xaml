@@ -5,8 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:BookNest.Components"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="200"
     Height="{StaticResource Controlheight}"
-    HorizontalAlignment="Stretch"
+    HorizontalAlignment="center"
     mc:Ignorable="d">
 
     <UserControl.Effect>
@@ -14,7 +15,7 @@
     </UserControl.Effect>
 
     <ComboBox
-        Width="200"
+        x:Name="DropdownCombobox"
         VerticalContentAlignment="Center"
         SelectedIndex="0">
         <ComboBoxItem Content="{Binding Placeholder, RelativeSource={RelativeSource AncestorType=UserControl}}" />
