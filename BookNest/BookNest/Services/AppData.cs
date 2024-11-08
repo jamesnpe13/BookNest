@@ -10,35 +10,18 @@ namespace BookNest.Services;
 
 public partial class AppData : ObservableObject
 {
-    // instance of AppData
-    private static AppData _instance;
-    public static AppData Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = new AppData();
-            }
+    // Page entry point (Default page)
+    public string DefaultPage { get => "RegistrationPage"; }
 
-            return _instance;
-        }
-    }
-
-    // Currently active account
+    // currently signed in user
     [ObservableProperty]
-    public Account_M activeAccount;
+    private Account_M currentAccount;
 
-    // Books collection
+    // data collections
 
-    // Accounts collection
-
-    // CTOR
-    private AppData()
+    public AppData()
     {
-    }
 
-    // sets active user
-    public void SetActiveUser(Account_M account) => ActiveAccount = account;
+    }
 
 }

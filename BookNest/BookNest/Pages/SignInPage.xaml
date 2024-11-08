@@ -12,12 +12,14 @@
     mc:Ignorable="d">
 
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-
         <Border
             Width="400"
             Height="auto"
             Padding="60,80,60,80"
             Background="{StaticResource Blue2}">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
+            </Border.Effect>
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -37,6 +39,12 @@
                 <Border Grid.Row="1" Margin="0,0,0,40">
 
                     <StackPanel Orientation="Vertical">
+                        <Label
+                            Margin="0,0,0,20"
+                            Content="Sign In [UserType]"
+                            FontSize="{StaticResource Large}"
+                            FontWeight="SemiBold"
+                            Foreground="{StaticResource White}" />
                         <components:TextInputField
                             x:Name="UsernameField"
                             Margin="0,0,0,10"

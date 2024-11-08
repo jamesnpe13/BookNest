@@ -1,4 +1,5 @@
-﻿using BookNest.Pages;
+﻿using BookNest.Modules;
+using BookNest.Pages;
 using BookNest.Services;
 using BookNest.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,7 +38,7 @@ public static class ServiceCollectionExtensions
 {
     public static void ConfigureServices(this IServiceCollection services)
     {
-
+        // main window
         services.AddSingleton<MainWindow>();
         services.AddSingleton<MainWindow_VM>();
 
@@ -51,7 +52,10 @@ public static class ServiceCollectionExtensions
         services.AddTransient<RegistrationPage>();
         services.AddTransient<RegistrationPage_VM>();
 
+        // user controls / modules / components
+
         // services
+        services.AddSingleton<AppData>();
         services.AddSingleton<PageNavigationService>();
 
     }
