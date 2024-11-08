@@ -6,6 +6,7 @@
     xmlns:components="clr-namespace:BookNest.Components"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:services="clr-namespace:BookNest.Services"
     Width="250"
     Height="auto"
     VerticalAlignment="Stretch"
@@ -39,6 +40,9 @@
 
         <!--  Header section  -->
         <Border Grid.Row="0" Background="{StaticResource Blue5}">
+            <Border.DataContext>
+                <services:AppData />
+            </Border.DataContext>
             <Border.Effect>
                 <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
             </Border.Effect>
@@ -46,11 +50,11 @@
                 <TextBlock
                     FontSize="{StaticResource XLarge}"
                     Foreground="{StaticResource White}"
-                    Text="Hi, User." />
+                    Text="{Binding WelcomeTextLine1}" />
                 <TextBlock
                     FontSize="{StaticResource Large}"
                     Foreground="{StaticResource White}"
-                    Text="Welcome back!" />
+                    Text="{Binding WelcomeTextLine2}" />
             </StackPanel>
         </Border>
 
