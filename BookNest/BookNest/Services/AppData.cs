@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,35 +11,25 @@ namespace BookNest.Services;
 
 public partial class AppData : ObservableObject
 {
-    // instance of AppData
-    private static AppData _instance;
-    public static AppData Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = new AppData();
-            }
+    // Page entry point (Default page)
+    public string DefaultPage { get => "RegistrationPage"; }
 
-            return _instance;
-        }
-    }
-
-    // Currently active account
+    // currently signed in user
     [ObservableProperty]
-    public Account_M activeAccount;
+    private Account_M currentAccount;
 
-    // Books collection
+    [ObservableProperty]
+    private string testString;
 
-    // Accounts collection
+    //[ObservableProperty]
 
-    // CTOR
-    private AppData()
+    // data collections
+    public ObservableCollection<Account_M> AccountsCollection;
+    public ObservableCollection<Book_M> BooksCollection;
+
+    public AppData()
     {
+        AccountsCollection = new();
     }
-
-    // sets active user
-    public void SetActiveUser(Account_M account) => ActiveAccount = account;
 
 }

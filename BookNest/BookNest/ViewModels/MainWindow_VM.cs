@@ -16,16 +16,23 @@ public partial class MainWindow_VM : ObservableObject
 {
     private readonly IServiceProvider sp;
     private readonly PageNavigationService ns;
+    private readonly AppData ad;
 
     [ObservableProperty] private string targetPage;
     [ObservableProperty] private Page currentPage;
 
-    public MainWindow_VM(IServiceProvider _sp, PageNavigationService _ns)
+    public MainWindow_VM(IServiceProvider _sp, PageNavigationService _ns, AppData _ad)
     {
         sp = _sp;
         ns = _ns;
+        ad = _ad;
 
-        ns.SetCurrentPage("SignInPage"); // sets default page
+        ns.SetCurrentPage(ad.DefaultPage); // sets default page
     }
 
+    [RelayCommand]
+    public void NavigateToPage(string targetPage)
+    {
+        ns.SetCurrentPage(targetPage);
+    }
 }
