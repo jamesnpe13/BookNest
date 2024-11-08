@@ -10,6 +10,16 @@
         <Setter Property="CornerRadius" Value="{StaticResource CornerRadius1}" />
     </Style>
 
+    <!--  Neutral  -->
+    <Style x:Key="ButtonLabelNeutral" TargetType="Label">
+        <Setter Property="Content" Value="Neutralt" />
+        <Setter Property="Foreground" Value="{StaticResource Blue3}" />
+    </Style>
+    <Style x:Key="ButtonBorderNeutral" TargetType="Border">
+        <Setter Property="Background" Value="#FFE1E1E1" />
+        <Setter Property="CornerRadius" Value="{StaticResource CornerRadius1}" />
+    </Style>
+
     <!--  Primary  -->
     <Style x:Key="ButtonLabelPrimary" TargetType="Label">
         <Setter Property="Content" Value="Primary" />

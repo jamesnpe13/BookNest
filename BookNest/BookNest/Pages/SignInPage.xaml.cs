@@ -9,10 +9,15 @@ namespace BookNest.Pages;
 public partial class SignInPage : Page
 {
     private readonly SignInPage_VM vm;
-    public SignInPage(SignInPage_VM _vm)
+    private readonly AppData ad;
+    private readonly PageNavigationService pn;
+
+    public SignInPage(SignInPage_VM _vm, AppData _ad, PageNavigationService _pn)
     {
         InitializeComponent();
         vm = _vm;
+        ad = _ad;
+        pn = _pn;
         DataContext = vm;
         //ns = _ns;
     }
@@ -49,4 +54,20 @@ public partial class SignInPage : Page
         vm.SubmitForm();
     }
 
+    private void SwitchTypeButton_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        vm.IsAdmin = !vm.IsAdmin;
+        vm.SetFormType();
+        Console.WriteLine("IsAdmin: " + vm.IsAdmin);
+    }
+
+    private void ResetPasswordButton_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+
+    }
+
+    private void CreateAccountButton_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        pn.SetCurrentPage("RegistrationPage");
+    }
 }

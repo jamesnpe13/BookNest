@@ -11,63 +11,89 @@
     Background="{StaticResource Blue5}"
     mc:Ignorable="d">
 
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Border
-            Width="400"
-            Height="auto"
-            Padding="60,80,60,80"
-            Background="{StaticResource Blue2}">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
-            </Border.Effect>
+    <ScrollViewer VerticalScrollBarVisibility="auto">
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="150" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border
+                Width="400"
+                Height="auto"
+                Padding="60,80,60,80"
+                Background="{StaticResource Blue2}"
+                CornerRadius="{StaticResource CornerRadius2}">
 
-                <!--  Image section  -->
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
+                </Border.Effect>
 
-                <Border Grid.Row="0" Margin="0,0,0,40">
-                    <!--  Image here  -->
-                    <Image Source="../assets/signin-graphic.png" />
-                </Border>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
 
-                <!--  Form section  -->
-                <Border Grid.Row="1" Margin="0,0,0,40">
+                    <!--  Image section  -->
 
-                    <StackPanel Orientation="Vertical">
-                        <Label
-                            Margin="0,0,0,20"
-                            Content="Sign In [UserType]"
-                            FontSize="{StaticResource Large}"
-                            FontWeight="SemiBold"
-                            Foreground="{StaticResource White}" />
-                        <components:TextInputField
-                            x:Name="UsernameField"
-                            Margin="0,0,0,10"
-                            KeyDown="UsernameField_KeyDown"
-                            Placeholder="Username" />
-                        <components:PasswordInputField
-                            x:Name="PasswordField"
-                            Margin="0,0,0,20"
-                            KeyDown="PasswordField_KeyDown"
-                            Placeholder="Password" />
+                    <Border Grid.Row="0" Margin="0,0,0,40">
+                        <!--  Image here  -->
+                        <Image Source="../assets/signin-graphic.png" />
+                    </Border>
+
+                    <!--  Form section  -->
+                    <Border Grid.Row="1" Margin="0,0,0,40">
+
+                        <StackPanel Orientation="Vertical">
+                            <Label
+                                Margin="0,0,0,40"
+                                Content="{Binding FormLabelText}"
+                                FontSize="{StaticResource Large}"
+                                FontWeight="SemiBold"
+                                Foreground="{StaticResource White}" />
+                            <components:TextInputField
+                                x:Name="UsernameField"
+                                Margin="0,0,0,10"
+                                KeyDown="UsernameField_KeyDown"
+                                Placeholder="Username" />
+                            <components:PasswordInputField
+                                x:Name="PasswordField"
+                                Margin="0,0,0,10"
+                                KeyDown="PasswordField_KeyDown"
+                                Placeholder="Password" />
+                            <components:Button
+                                x:Name="SignInButton"
+                                Height="40"
+                                Margin="0,0,0,10"
+                                HorizontalAlignment="Stretch"
+                                ButtonHeight="Tall"
+                                ButtonStyle="Primary"
+                                ButtonText="Sign in"
+                                MouseDown="SignInButton_MouseDown" />
+                            <components:TextButton
+                                x:Name="ResetPasswordButton"
+                                Margin="0,0,0,10"
+                                HorizontalAlignment="Left"
+                                ButtonText="Forgot password?"
+                                MouseDown="ResetPasswordButton_MouseDown" />
+                            <components:TextButton
+                                x:Name="CreateAccountButton"
+                                HorizontalAlignment="Left"
+                                ButtonText="Create an account"
+                                MouseDown="CreateAccountButton_MouseDown" />
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Row="2">
                         <components:Button
-                            x:Name="SignInButton"
-                            Height="40"
+                            x:Name="SwitchTypeButton"
+                            Margin="0,0,0,20"
                             HorizontalAlignment="Stretch"
-                            ButtonHeight="Tall"
-                            ButtonStyle="Primary"
-                            ButtonText="Sign in"
-                            MouseDown="SignInButton_MouseDown" />
-                    </StackPanel>
-                </Border>
-                <!--  Button section  -->
-                <Border Grid.Row="2" />
-            </Grid>
-        </Border>
-    </Grid>
+                            ButtonHeight="Medium"
+                            ButtonStyle="Neutral"
+                            ButtonText="{Binding SwitchTypeButtonText}"
+                            MouseDown="SwitchTypeButton_MouseDown" />
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+
 </Page>

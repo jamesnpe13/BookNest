@@ -19,7 +19,7 @@ public partial class Book_M : ObservableObject
     [ObservableProperty]
     private string description;
 
-    [ObservableProperty]
+    [ObservableProperty]    
     private string publisher;
 
     [ObservableProperty]

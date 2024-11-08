@@ -1,4 +1,5 @@
-﻿using BookNest.Modules;
+﻿    using BookNest.Data;
+using BookNest.Modules;
 using BookNest.Pages;
 using BookNest.Services;
 using BookNest.ViewModels;
@@ -41,6 +42,9 @@ public static class ServiceCollectionExtensions
         // services
         services.AddSingleton<AppData>();
         services.AddSingleton<PageNavigationService>();
+
+        // database
+        services.AddSingleton<DatabaseService>();
 
         // main window
         services.AddSingleton<MainWindow>();

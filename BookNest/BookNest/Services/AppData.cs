@@ -12,7 +12,7 @@ namespace BookNest.Services;
 public partial class AppData : ObservableObject
 {
     // Page entry point (Default page)
-    public string DefaultPage { get => "RegistrationPage"; }
+    public string DefaultPage { get => "SignInPage"; }
 
     // currently signed in user
     [ObservableProperty]
@@ -20,8 +20,6 @@ public partial class AppData : ObservableObject
 
     [ObservableProperty]
     private string testString;
-
-    //[ObservableProperty]
 
     // data collections
     public ObservableCollection<Account_M> AccountsCollection;
