@@ -132,8 +132,8 @@ public partial class DatabaseService : ObservableObject
                 command.Parameters.AddWithValue("@FirstName", account.FirstName);
                 command.Parameters.AddWithValue("@LastName", account.LastName);
                 command.Parameters.AddWithValue("@Username", account.Username);
-                command.Parameters.AddWithValue("@PasswordHash", "Password Has not set");
-                command.Parameters.AddWithValue("@Salt", "Salt not set");
+                command.Parameters.AddWithValue("@PasswordHash", account.PasswordHash);
+                command.Parameters.AddWithValue("@Salt", account.Salt);
                 command.Parameters.AddWithValue("@Email", account.Email);
                 command.Parameters.AddWithValue("@AccountType", account.AccountType);
 

@@ -17,11 +17,11 @@ public partial class Account_M : ObservableObject
     private string email;
 
     [ObservableProperty]
-    private string password;
+    private string passwordHash;
+
+    [ObservableProperty]
+    private string salt;
 
     [ObservableProperty]
     private string accountType;
-
-    [ObservableProperty]
-    private int id;
 }

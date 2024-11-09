@@ -58,35 +58,33 @@
                                     x:Name="FirstNameField"
                                     Grid.Column="0"
                                     Margin="0,0,5,10"
-                                    KeyDown="FirstNameField_KeyDown"
                                     Placeholder="First name" />
                                 <components:TextInputField
                                     x:Name="LastNameField"
                                     Grid.Column="1"
                                     Margin="5,0,0,10"
-                                    KeyDown="LastNameField_KeyDown"
                                     Placeholder="Last name" />
                             </Grid>
                             <components:TextInputField
                                 x:Name="EmailField"
                                 Margin="0,0,0,10"
-                                KeyDown="EmailField_KeyDown"
                                 Placeholder="Email" />
                             <components:TextInputField
                                 x:Name="UsernameField"
                                 Margin="0,0,0,10"
-                                KeyDown="UsernameField_KeyDown"
                                 Placeholder="Username" />
+
                             <components:PasswordInputField
                                 x:Name="PasswordField"
                                 Margin="0,0,0,10"
-                                KeyDown="PasswordField_KeyDown"
+                                LostFocus="PasswordField_LostFocus"
                                 Placeholder="Password" />
                             <components:PasswordInputField
                                 x:Name="ConfirmPasswordField"
                                 Margin="0,0,0,10"
-                                KeyDown="ConfirmPasswordField_KeyDown"
+                                LostFocus="ConfirmPasswordField_LostFocus"
                                 Placeholder="Confirm password" />
+
                             <components:Button
                                 x:Name="RegisterButton"
                                 Height="40"
@@ -94,7 +92,7 @@
                                 HorizontalAlignment="Stretch"
                                 ButtonHeight="Medium"
                                 ButtonStyle="Primary"
-                                ButtonText="Sign in"
+                                ButtonText="Submit"
                                 MouseDown="RegisterButton_MouseDown" />
                             <components:Dropdown
                                 x:Name="RegistrationTypeDropdown"

@@ -1,5 +1,8 @@
-﻿using BookNest.ViewModels;
+﻿using BookNest.Models;
+using BookNest.Services;
+using BookNest.ViewModels;
 using System.Runtime.InteropServices;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -7,7 +10,12 @@ namespace BookNest.Pages;
 
 public partial class RegistrationPage : Page
 {
+
     private readonly RegistrationPage_VM vm;
+    public string PasswordText { get; set; }
+    public string ConfirmPasswordText { get; set; }
+    public bool IsPasswordMatch { get; set; } = false;
+    public Account_M TempAccount { get; set; }
 
     public RegistrationPage(RegistrationPage_VM _vm)
     {
@@ -15,6 +23,8 @@ public partial class RegistrationPage : Page
         vm = _vm;
         DataContext = vm;
         CreateComboboxItems();
+
+        TempAccount = new();
 
     }
 
@@ -32,6 +42,86 @@ public partial class RegistrationPage : Page
         RegistrationTypeDropdown.DropdownCombobox.Items.Add(cbItem2);
         RegistrationTypeDropdown.DropdownCombobox.Items.Add(cbItem3);
     }
+
+    // ------------- form input event handlers
+
+    private void PasswordField_LostFocus(object sender, System.Windows.RoutedEventArgs e)
+    {
+        PasswordText = PasswordField.PasswordInputFieldTextBox.Password;
+
+        // check if p2 is null or empty
+        // if not null or empty then check match
+
+        if (!string.IsNullOrEmpty(ConfirmPasswordText))
+        {
+            CheckPasswordMatch();
+        }
+
+    }
+
+    private void ConfirmPasswordField_LostFocus(object sender, System.Windows.RoutedEventArgs e)
+    {
+        ConfirmPasswordText = ConfirmPasswordField.PasswordInputFieldTextBox.Password;
+
+        CheckPasswordMatch();
+    }
+
+    private void CheckPasswordMatch()
+    {
+        //if (string.IsNullOrEmpty(p1)) ;
+        IsPasswordMatch = PasswordText == ConfirmPasswordText ? true : false;
+        Console.WriteLine("IsPasswordMatch: " + IsPasswordMatch);
+    }
+
+    private void RegisterButton_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+
+        // populate tempAccount
+        TempAccount.FirstName = FirstNameField.TextInputFieldTextBox.Text;
+        TempAccount.LastName = LastNameField.TextInputFieldTextBox.Text;
+        TempAccount.Username = UsernameField.TextInputFieldTextBox.Text;
+        TempAccount.Email = EmailField.TextInputFieldTextBox.Text;
+
+        if (RegistrationTypeDropdown.DropdownCombobox.SelectedItem is ComboBoxItem selectedItem)
+        {
+            string selectedValue = selectedItem.Content.ToString();
+            TempAccount.AccountType = selectedValue;
+        }
+        // hash and salt generated in VM
+
+        // log temp account on console
+        Console.WriteLine(TempAccount.FirstName);
+        Console.WriteLine(TempAccount.LastName);
+        Console.WriteLine(TempAccount.Username);
+        Console.WriteLine(TempAccount.Email);
+        Console.WriteLine(TempAccount.PasswordHash);
+        Console.WriteLine(TempAccount.Salt);
+        Console.WriteLine(TempAccount.AccountType);
+        Console.WriteLine("---------------------------------------------");
+
+        // validate and submit
+        if (IsFormValid()) SubmitForm();
+    }
+
+    private bool IsFormValid()
+    {
+        if (IsPasswordMatch)
+        {
+            Console.WriteLine("Form validation passed.");
+            return true;
+        }
+
+        Console.WriteLine("Form validation failed.");
+        return false;
+    }
+
+    private void SubmitForm()
+    {
+        vm.RegisterAccount(TempAccount, PasswordText);
+        vm.SubmitForm();
+    }
+
+    // -------------- unused
 
     private void SubmitIfNotEmptyOrNull(string field)
     {
@@ -54,33 +144,4 @@ public partial class RegistrationPage : Page
         }
     }
 
-    private void RegisterButton_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-    {
-        SubmitForm();
-    }
-
-    private void SubmitForm()
-    {
-        vm.SubmitForm();
-    }
-
-    private void ConfirmPasswordField_KeyDown(object sender, KeyEventArgs e)
-    {
-
-    }
-
-    private void FirstNameField_KeyDown(object sender, KeyEventArgs e)
-    {
-
-    }
-
-    private void LastNameField_KeyDown(object sender, KeyEventArgs e)
-    {
-
-    }
-
-    private void EmailField_KeyDown(object sender, KeyEventArgs e)
-    {
-
-    }
 }
