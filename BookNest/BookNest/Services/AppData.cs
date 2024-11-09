@@ -18,41 +18,9 @@ public partial class AppData : ObservableObject
     [ObservableProperty]
     private Account_M currentAccount;
 
-    [ObservableProperty]
-    private string testString = "This is the test string";
-
-    [ObservableProperty]
-    private string welcomeTextLine1;
-
-    [ObservableProperty]
-    private string welcomeTextLine2;
-
-    // data collections
-    public ObservableCollection<Account_M> AccountsCollection;
-    public ObservableCollection<Book_M> BooksCollection;
-
     public AppData()
     {
-        AccountsCollection = new();
-
-        InitTempAccount();
-        ConstructWelcomeLine();
+        CurrentAccount = new();
     }
 
-    private void InitTempAccount()
-    {
-        AccountsCollection.Add(new Account_M
-        {
-            FirstName = "James",
-            LastName = "Elazegui,"
-        });
-
-        CurrentAccount = AccountsCollection[0];
-    }
-
-    private void ConstructWelcomeLine()
-    {
-        WelcomeTextLine1 = "Hi, " + CurrentAccount.FirstName;
-        WelcomeTextLine2 = "Let's get started!";
-    }
 }

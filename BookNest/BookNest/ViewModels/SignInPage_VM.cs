@@ -8,6 +8,8 @@ namespace BookNest.ViewModels;
 public partial class SignInPage_VM : ObservableObject
 {
     private readonly PageNavigationService ps;
+    private readonly SessionService ss;
+    private readonly AppData ad;
 
     [ObservableProperty]
     private bool isAdmin = true; // temporary override
@@ -24,9 +26,11 @@ public partial class SignInPage_VM : ObservableObject
     [ObservableProperty]
     private string switchTypeButtonText;
 
-    public SignInPage_VM(PageNavigationService _ps)
+    public SignInPage_VM(PageNavigationService _ps, SessionService _ss, AppData _ad)
     {
         ps = _ps;
+        ss = _ss;
+        ad = _ad;
         SetFormType();
     }
 
@@ -39,6 +43,8 @@ public partial class SignInPage_VM : ObservableObject
 
     public void SubmitForm()
     {
+        ad.CurrentAccount = ss.CreateTempAccount("TemporaryName");
+
         // input validation
         ps.SetCurrentPage("MainPage"); // bypass validation
     }
