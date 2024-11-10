@@ -23,6 +23,7 @@
             <TextBox
                 x:Name="TextInputFieldTextBox"
                 Style="{StaticResource TextBoxTextBox}"
+                Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 TextChanged="TextInputFieldTextBox_TextChanged" />
         </Grid>
     </Border>

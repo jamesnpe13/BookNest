@@ -19,6 +19,16 @@ namespace BookNest.Components
     public partial class TextInputField : UserControl
     {
 
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register("Text", typeof(string), typeof(TextInputField), new PropertyMetadata(null));
+
         public string Placeholder
         {
             get { return (string)GetValue(PlaceholderProperty); }

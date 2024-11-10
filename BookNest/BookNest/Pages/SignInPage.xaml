@@ -49,11 +49,14 @@
                                 FontSize="{StaticResource Large}"
                                 FontWeight="SemiBold"
                                 Foreground="{StaticResource White}" />
+
                             <components:TextInputField
                                 x:Name="UsernameField"
                                 Margin="0,0,0,10"
                                 KeyDown="UsernameField_KeyDown"
-                                Placeholder="Username" />
+                                Placeholder="Username"
+                                Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
                             <components:PasswordInputField
                                 x:Name="PasswordField"
                                 Margin="0,0,0,10"

@@ -11,6 +11,9 @@ namespace BookNest.Services;
 
 public partial class AppData : ObservableObject
 {
+    // connection string
+    public readonly string DB_STRING = @"Data Source=booknest.db";
+
     // Page entry point (Default page)
     public string DefaultPage { get => "SignInPage"; }
 

@@ -26,9 +26,11 @@ public partial class SignInPage : Page
     {
         if (e.Key == Key.Enter)
         {
+            Console.WriteLine("Enter is pressed");
             if (!string.IsNullOrEmpty(UsernameField.TextInputFieldTextBox.Text))
             {
                 SubmitForm();
+
             }
         }
     }

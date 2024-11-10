@@ -14,11 +14,13 @@ public partial class SessionService : ObservableObject
 {
     private readonly DatabaseService ds;
     private readonly PasswordManager pm;
+    private readonly AppData ad;
 
-    public SessionService(DatabaseService _ds, PasswordManager _pm)
+    public SessionService(DatabaseService _ds, PasswordManager _pm, AppData _ad)
     {
         ds = _ds;
         pm = _pm;
+        ad = _ad;
     }
 
     // create temp account
@@ -31,20 +33,6 @@ public partial class SessionService : ObservableObject
     }
 
     // Handle user sign in
-    public void HandleSignIn(string inputUsername, string inputPassword)
-    {
-        Console.WriteLine("Handling sign in: ");
-        Console.WriteLine("Input Username: ");
-        Console.WriteLine("Input Password: ");
 
-        // get username
-
-        // get password input
-
-        // get user from database
-
-        // verify password match
-    }
-
-    // sUer sign out
+    // User sign out
 }

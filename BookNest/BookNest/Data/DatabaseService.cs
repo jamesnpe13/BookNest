@@ -9,14 +9,14 @@ using static System.Net.Mime.MediaTypeNames;
 using System.Windows.Documents;
 using System.Xml;
 using BookNest.Models;
+using BookNest.Services;
 
 namespace BookNest.Data;
 
 public partial class DatabaseService : ObservableObject
 {
-    private static readonly object _lock = new object();
-
-    readonly string DB_STRING = @"Data Source=booknest.db";
+    private readonly AppData ad;
+    private readonly string DB_STRING;
 
     [ObservableProperty]
     private SQLiteConnection connection;
@@ -27,8 +27,10 @@ public partial class DatabaseService : ObservableObject
     [ObservableProperty]
     private string dbConnectionStatus;
 
-    public DatabaseService()
+    public DatabaseService(AppData _ad)
     {
+        ad = _ad;
+        DB_STRING = ad.DB_STRING;
         TableInit();
 
         //AddTestAccount();
@@ -150,19 +152,50 @@ public partial class DatabaseService : ObservableObject
     // Update account
 
     // Read account
-    public List<Account_M> GetAccount()
+    public Account_M GetAccount_single(string username, string accountType)
     {
-        List<Account_M> tempAccounts = new();
-
+        Account_M tempAccount = new();
         using (var connection = new SQLiteConnection(DB_STRING))
         {
             connection.Open();
-
-            string query = @"SELECT * FROM Accounts";
-
+            string query = @"SELECT * FROM Accounts
+                            WHERE Username = @Username
+                            ";
             using (var command = new SQLiteCommand(query, connection))
             {
+                command.Parameters.AddWithValue("@Username", username);
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
 
+                        tempAccount.FirstName = reader["FirstName"].ToString();
+                        tempAccount.LastName = reader["Lastname"].ToString();
+                        tempAccount.Username = reader["Username"].ToString();
+                        tempAccount.PasswordHash = reader["PasswordHash"].ToString();
+                        tempAccount.Salt = reader["Salt"].ToString();
+                        tempAccount.AccountType = reader["AccountType"].ToString();
+
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            Console.WriteLine(reader.GetName(i) + ": " + reader.GetValue(i));
+                        }
+                    }
+                }
+            }
+        }
+        return tempAccount;
+    }
+
+    public List<Account_M> GetAccount_list()
+    {
+        List<Account_M> tempAccounts = new();
+        using (var connection = new SQLiteConnection(DB_STRING))
+        {
+            connection.Open();
+            string query = @"SELECT * FROM Accounts";
+            using (var command = new SQLiteCommand(query, connection))
+            {
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -178,17 +211,13 @@ public partial class DatabaseService : ObservableObject
                                 Salt = reader["Salt"].ToString(),
                                 AccountType = reader["AccountType"].ToString(),
                             };
-
                             tempAccounts.Add(tempAccount);
-
                             Console.WriteLine($"{reader.GetName(i)}: {reader.GetValue(i)}");
-
                         }
                     }
                 }
             }
         }
-
         return tempAccounts;
     }
 
