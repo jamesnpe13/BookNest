@@ -115,6 +115,11 @@ public partial class DatabaseService : ObservableObject
         UpdateDbConnectionStatus();
     }
 
+    /***********************************
+     *      ACCOUNTS
+    ***********************************/
+
+    // Add account
     public void AddAccount(Account_M account)
     {
         using (var connection = new SQLiteConnection(DB_STRING))
@@ -142,9 +147,73 @@ public partial class DatabaseService : ObservableObject
         }
     }
 
-    public void RemoveItem(int id)
-    {
+    // Update account
 
+    // Read account
+    public List<Account_M> GetAccount()
+    {
+        List<Account_M> tempAccounts = new();
+
+        using (var connection = new SQLiteConnection(DB_STRING))
+        {
+            connection.Open();
+
+            string query = @"SELECT * FROM Accounts";
+
+            using (var command = new SQLiteCommand(query, connection))
+            {
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            Account_M tempAccount = new Account_M
+                            {
+                                FirstName = reader["FirstName"].ToString(),
+                                LastName = reader["Lastname"].ToString(),
+                                Username = reader["Username"].ToString(),
+                                PasswordHash = reader["PasswordHash"].ToString(),
+                                Salt = reader["Salt"].ToString(),
+                                AccountType = reader["AccountType"].ToString(),
+                            };
+
+                            tempAccounts.Add(tempAccount);
+
+                            Console.WriteLine($"{reader.GetName(i)}: {reader.GetValue(i)}");
+
+                        }
+                    }
+                }
+            }
+        }
+
+        return tempAccounts;
     }
+
+    // Delete account
+
+    /***********************************
+     *      BOOKS
+    ***********************************/
+
+    // Add book
+
+    // Update book
+
+    // Read book
+
+    // Delete book
+
+    /***********************************
+     *      lOAN TRANSACTIONS
+    ***********************************/
+
+    // Add loan transacton
+
+    // Read transaction
+
+    // Delete transaction
 
 }

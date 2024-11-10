@@ -31,6 +31,7 @@ public partial class MainWindow_VM : ObservableObject
         dbs = _dbs;
 
         ns.SetCurrentPage(ad.DefaultPage); // sets default page
+        dbs.GetAccount();
     }
 
     [RelayCommand]

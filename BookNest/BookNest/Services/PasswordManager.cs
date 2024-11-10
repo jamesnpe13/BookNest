@@ -10,9 +10,12 @@ namespace BookNest.Services;
 
 public partial class PasswordManager : ObservableObject
 {
+    public PasswordManager()
+    {
+    }
 
     // generate random salt
-    public static byte[] GenerateSalt(int size = 16)
+    public byte[] GenerateSalt(int size = 16)
     {
         var salt = new byte[size];
         RandomNumberGenerator.Fill(salt);
@@ -20,7 +23,7 @@ public partial class PasswordManager : ObservableObject
     }
 
     // hash the password with the salt
-    public static string HashPassword(string password, byte[] salt)
+    public string HashPassword(string password, byte[] salt)
     {
         using (var sha256 = SHA256.Create())
         {
@@ -38,11 +41,15 @@ public partial class PasswordManager : ObservableObject
     }
 
     // verify password
-    public static bool VerifyPassword(string passwordInput, byte[] storedSalt, string storedHash)
+    public bool VerifyPassword(string passwordInput, byte[] storedSalt, string storedHash)
     {
         string hashOfPasswordInput = HashPassword(passwordInput, storedSalt);
         return hashOfPasswordInput == storedHash;
     }
 
+    public void TestMessage()
+    {
+        Console.WriteLine("Test message");
+    }
 
 }

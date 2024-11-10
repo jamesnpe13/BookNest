@@ -9,11 +9,13 @@ public partial class RegistrationPage_VM : ObservableObject
 {
     private readonly PageNavigationService ns;
     private readonly DatabaseService dbs;
+    private readonly PasswordManager pm;
 
-    public RegistrationPage_VM(PageNavigationService _ns, DatabaseService _dbs)
+    public RegistrationPage_VM(PageNavigationService _ns, DatabaseService _dbs, PasswordManager _pm)
     {
         ns = _ns;
         dbs = _dbs;
+        pm = _pm;
     }
 
     public void SubmitForm()
@@ -23,8 +25,9 @@ public partial class RegistrationPage_VM : ObservableObject
 
     public void RegisterAccount(Account_M tempAccount, string password)
     {
-        byte[] salt = PasswordManager.GenerateSalt();
-        string hashedPassword = PasswordManager.HashPassword(password, salt);
+
+        byte[] salt = pm.GenerateSalt();
+        string hashedPassword = pm.HashPassword(password, salt);
         tempAccount.PasswordHash = hashedPassword;
         tempAccount.Salt = Convert.ToBase64String(salt);
 

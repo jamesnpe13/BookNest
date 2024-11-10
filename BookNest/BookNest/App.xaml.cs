@@ -40,6 +40,7 @@ public static class ServiceCollectionExtensions
     public static void ConfigureServices(this IServiceCollection services)
     {
         // services
+        services.AddSingleton<PasswordManager>();
         services.AddSingleton<AppData>();
         services.AddSingleton<PageNavigationService>();
         services.AddSingleton<SessionService>();

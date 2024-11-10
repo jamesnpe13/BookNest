@@ -45,7 +45,12 @@ public partial class SignInPage_VM : ObservableObject
     {
         ad.CurrentAccount = ss.CreateTempAccount("TemporaryName");
 
+        //ss.HandleSignIn(Username, Password) {
+
+        //};
+
         // input validation
         ps.SetCurrentPage("MainPage"); // bypass validation
     }
+
 }
