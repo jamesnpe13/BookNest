@@ -19,6 +19,32 @@ public partial class DatabaseService : ObservableObject
     [ObservableProperty]
     private string dbConnectionStatus = string.Empty;
 
+    public enum AccountFilterKey
+    {
+        ID,
+        FIRST_NAME,
+        LAST_NAME,
+        USERNAME,
+        EMAIL,
+        ACCOUNT_TYPE
+    }
+
+    public enum BookFilterKey
+    {
+        ID,
+        ISBN,
+        TITLE,
+        GENRE,
+        AUTHOR,
+        YEAR_OF_PUBLICATION,
+        PUBLISHER,
+        LIKES
+    }
+
+    public enum LoanTransactionFilterKey
+    {
+    }
+
     public DatabaseService(AppData _ad)
     {
         ad = _ad;
@@ -63,9 +89,11 @@ public partial class DatabaseService : ObservableObject
                 BookID    INTEGER NOT NULL UNIQUE,
                 ISBN  TEXT NOT NULL DEFAULT 'No ISBN' UNIQUE,
                 Title TEXT NOT NULL DEFAULT 'No Title',
+                Genre TEXT NOT NULL DEFAULT 'Unassigned',
                 Author    TEXT NOT NULL DEFAULT 'Author unknown',
                 YearOfPublication TEXT NOT NULL DEFAULT 'Year of publication unknown',
                 Publisher TEXT NOT NULL DEFAULT 'Publisher unknown',
+                Likes INTEGER NOT NULL DEFAULT 0,
                 PRIMARY KEY(BookID AUTOINCREMENT))
             ";
 
@@ -295,31 +323,99 @@ public partial class DatabaseService : ObservableObject
             }
         }
 
-        /***********************************
-         *      BOOKS
-        ***********************************/
-
-        // Add book
-
-        // Update book
-
-        // Read book
-
-        // Delete book
-
-        /***********************************
-         *      lOAN TRANSACTIONS
-        ***********************************/
-
-        // Add loan transacton
-
-        // Read transaction
-
-        // Delete transaction
-
     }
 
     /***********************************
-    *      ACCOUNTS
+    *      BOOKS
    ***********************************/
+
+    // Add book
+    public void AddBook(Book_M book)
+    {
+        using (var connection = new SQLiteConnection(DB_STRING))
+        {
+            connection.Open();
+
+            string addItemSql = @"
+            INSERT INTO Books (ISBN, Title, Genre, Author, YearOfPublication, Publisher, Likes)
+            VALUES (@ISBN, @Title, @Genre, @Author, @YearOfPublication, @Publisher, @Likes)
+            ";
+
+            using (var command = new SQLiteCommand(addItemSql, connection))
+            {
+                command.Parameters.AddWithValue("@ISBN", book.Isbn);
+                command.Parameters.AddWithValue("@Title", book.Title);
+                command.Parameters.AddWithValue("@Genre", book.Genre.ToString());
+                command.Parameters.AddWithValue("@Author", book.Author);
+                command.Parameters.AddWithValue("@YearOfPublication", book.YearOfPublication);
+                command.Parameters.AddWithValue("@Publisher", book.Publisher);
+                command.Parameters.AddWithValue("@Likes", book.Likes);
+
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+
+    // Update book
+    public void UpdateBook(int targetBookId, Book_M updateBook)
+    {
+
+    }
+
+    // Get book - single overload
+    public Book_M GetBook(BookFilterKey key, string value, bool returnSingle)
+    {
+        // parse string back to enum type
+        Book_M tempBook = new();
+        {
+            // filter by ID
+            if (key == BookFilterKey.ID)
+            {
+                using (var connection = new SQLiteConnection(DB_STRING))
+                {
+                    connection.Open();
+                    string query = @"SELECT * FROM Books
+                            WHERE BookID = @value
+                            ";
+                    using (var command = new SQLiteCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@value", value.ToString());
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var genreString = reader["Genre"].ToString() ?? BookGenre.Unassigned.ToString();
+
+                                tempBook.BookId = reader.GetInt32(reader.GetOrdinal("BookID"));
+                                tempBook.Isbn = reader["FirstName"].ToString() ?? string.Empty;
+                                tempBook.Title = reader["Title"].ToString() ?? string.Empty;
+                                tempBook.Author = reader["Author"].ToString() ?? string.Empty;
+                                tempBook.Genre = Enum.Parse<BookGenre>(genreString);
+                                tempBook.YearOfPublication = reader["YearOfPublication"].ToString() ?? string.Empty;
+                                tempBook.Publisher = reader["Publisher"].ToString() ?? string.Empty;
+                                tempBook.Likes = reader.GetInt32(reader.GetOrdinal("Likes"));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return tempBook;
+    }
+
+    // Get book - list overload
+
+    // Delete book
+
+    /***********************************
+    *      lOAN TRANSACTIONS
+    ***********************************/
+
+    // Add loan transacton
+
+    // Read transaction
+
+    // Delete transaction
+
 }

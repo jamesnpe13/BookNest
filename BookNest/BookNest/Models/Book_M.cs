@@ -3,8 +3,9 @@ using Microsoft.VisualBasic;
 
 namespace BookNest.Models;
 
-public enum Genre
+public enum BookGenre
 {
+    Unassigned,
     ScienceFiction,
     Fiction,
     NonFiction,
@@ -12,40 +13,30 @@ public enum Genre
 
 public partial class Book_M : ObservableObject
 {
+    [ObservableProperty]
+    private int? bookId;
 
     [ObservableProperty]
-    private string title;
+    private string isbn = string.Empty;
 
     [ObservableProperty]
-    private string description;
-
-    [ObservableProperty]    
-    private string publisher;
+    private string title = string.Empty;
 
     [ObservableProperty]
-    private Genre genre;
+    private string author = string.Empty;
 
     [ObservableProperty]
-    private DateAndTime pubishDate;
+    private BookGenre genre = BookGenre.Unassigned;
 
     [ObservableProperty]
-    private int likes;
+    private string yearOfPublication = string.Empty;
 
     [ObservableProperty]
-    private int id;
+    private string publisher = string.Empty;
+
+    [ObservableProperty]
+    private int likes = 0;
 
     // add more props if needed...
-
-    public Book_M()
-    {
-        GenerateId();
-    }
-
-    private void GenerateId()
-    {
-        Random random = new();
-        int randomNum = random.Next(10000000, 100000000);
-        this.Id = randomNum;
-    }
 
 }
