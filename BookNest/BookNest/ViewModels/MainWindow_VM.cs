@@ -1,4 +1,5 @@
 ﻿using BookNest.Data;
+using BookNest.Models;
 using BookNest.Pages;
 using BookNest.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -18,26 +19,44 @@ public partial class MainWindow_VM : ObservableObject
     private readonly IServiceProvider sp;
     private readonly PageNavigationService ns;
     private readonly AppData ad;
-    private readonly DatabaseService dbs;
+    private readonly DatabaseService ds;
 
     [ObservableProperty] private string targetPage;
     [ObservableProperty] private Page currentPage;
 
-    public MainWindow_VM(IServiceProvider _sp, PageNavigationService _ns, AppData _ad, DatabaseService _dbs)
+    public MainWindow_VM(IServiceProvider _sp, PageNavigationService _ns, AppData _ad, DatabaseService _ds)
     {
         sp = _sp;
         ns = _ns;
         ad = _ad;
-        dbs = _dbs;
+        ds = _ds;
 
         ns.SetCurrentPage(ad.DefaultPage); // sets default page
-        dbs.GetAccount_list();
+        ds.GetAccount_list();
         Console.WriteLine("USER ACCOUNT____________________________");
+        testUpdateAccount();
+
     }
 
     [RelayCommand]
     public void NavigateToPage(string targetPage)
     {
         ns.SetCurrentPage(targetPage);
+    }
+
+    public void testUpdateAccount()
+    {
+        Console.WriteLine("Updating account");
+        // get the account
+        Account_M tempAccount = ds.GetAccount_single("jamese", "Administrator");
+        string thisUsername = ds.GetAccount_single("jamese", "Administrator").Username;
+        string thisAccountType = ds.GetAccount_single("jamese", "Administrator").AccountType;
+
+        // modify fields
+        tempAccount.FirstName = "JamesModified";
+        tempAccount.LastName = "ElazeguiModified";
+
+        // update db
+        ds.UpdateAccount(thisUsername, thisAccountType, tempAccount);
     }
 }

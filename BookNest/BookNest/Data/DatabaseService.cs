@@ -1,15 +1,7 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
-using System.Windows.Documents;
-using System.Xml;
-using BookNest.Models;
+﻿using BookNest.Models;
 using BookNest.Services;
+using CommunityToolkit.Mvvm.ComponentModel;
+using System.Data.SQLite;
 
 namespace BookNest.Data;
 
@@ -150,6 +142,56 @@ public partial class DatabaseService : ObservableObject
     }
 
     // Update account
+    public void UpdateAccount(string targetUsername, string targetAccountType, Account_M updatedAccount)
+    {
+        using (var connection = new SQLiteConnection(DB_STRING))
+        {
+            connection.Open();
+
+            using (var transaction = connection.BeginTransaction())
+            {
+                try
+                {
+                    using (var command = new SQLiteCommand(connection))
+                    {
+                        command.CommandText = @"
+                        UPDATE Accounts
+                        SET FirstName = @FirstName,
+                            LastName = @LastName,
+                            Username = @Username,
+                            PasswordHash = @PasswordHash,
+                            Salt = @Salt,
+                            Email = @Email,
+                            AccountType = @AccountType
+                        WHERE Username = @targetUsername AND AccountType = @targetAccountType
+                        
+                        ";
+
+                        command.Parameters.AddWithValue("@FirstName", updatedAccount.FirstName);
+                        command.Parameters.AddWithValue("@LastName", updatedAccount.LastName);
+                        command.Parameters.AddWithValue("@Username", updatedAccount.Username);
+                        command.Parameters.AddWithValue("@PasswordHash", updatedAccount.PasswordHash);
+                        command.Parameters.AddWithValue("@Salt", updatedAccount.Salt);
+                        command.Parameters.AddWithValue("@Email", updatedAccount.Email);
+                        command.Parameters.AddWithValue("@AccountType", updatedAccount.AccountType);
+                        command.Parameters.AddWithValue("@targetUsername", targetUsername);
+                        command.Parameters.AddWithValue("@targetAccountType", targetAccountType);
+
+                        command.ExecuteNonQuery();
+                    }
+
+                    transaction.Commit();
+                    Console.WriteLine("Account update SUCCESS");
+                }
+                catch (Exception err)
+                {
+                    transaction.Rollback();
+                    Console.WriteLine("Account update FAILED");
+                    Console.WriteLine(err.Message);
+                }
+            }
+        }
+    }
 
     // Read account
     public Account_M GetAccount_single(string username, string accountType)
@@ -160,10 +202,13 @@ public partial class DatabaseService : ObservableObject
             connection.Open();
             string query = @"SELECT * FROM Accounts
                             WHERE Username = @Username
+                            AND AccountType = @AccountType
                             ";
             using (var command = new SQLiteCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Username", username);
+                command.Parameters.AddWithValue("@AccountType", accountType);
+
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -172,6 +217,7 @@ public partial class DatabaseService : ObservableObject
                         tempAccount.FirstName = reader["FirstName"].ToString();
                         tempAccount.LastName = reader["Lastname"].ToString();
                         tempAccount.Username = reader["Username"].ToString();
+                        tempAccount.Email = reader["Email"].ToString();
                         tempAccount.PasswordHash = reader["PasswordHash"].ToString();
                         tempAccount.Salt = reader["Salt"].ToString();
                         tempAccount.AccountType = reader["AccountType"].ToString();
