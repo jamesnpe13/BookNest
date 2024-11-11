@@ -40,11 +40,15 @@ public partial class SessionService : ObservableObject
             ad.CurrentAccount = thisAccount;
             Console.WriteLine(ad.CurrentAccount.FirstName + " " + ad.CurrentAccount.LastName);
             ns.SetCurrentPage("MainPage");
-
         }
     }
 
     // handle user sign out
+    public void HandleUserSignOut()
+    {
+        ad.CurrentAccount = null;
+        ns.SetCurrentPage("SignInPage");
+    }
 
     // handle user update account
     public void UpdateAccount(string targetUsername, string targetAccountType, Account_M updatedAccount)

@@ -58,49 +58,56 @@
         <!--  Main nav section  -->
         <Border Grid.Row="1" Padding="0,20,0,20">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical" >
                     <components:NavButton
                         x:Name="DashboardNavButton"
                         ButtonStyle="Transparent"
                         ButtonText="Dashboard"
                         IconSource="../assets/icons/Icon material-dashboard.png"
-                        MouseDown="DashboardNavButton_MouseDown" />
+                        MouseDown="DashboardNavButton_MouseDown"
+                        Visibility="{Binding TestVisibility}" />
                     <components:NavButton
                         x:Name="BooksNavButton"
                         ButtonStyle="Transparent"
                         ButtonText="Books"
                         IconSource="../assets/icons/Icon awesome-book-open.png"
-                        MouseDown="BooksNavButton_MouseDown" />
+                        MouseDown="BooksNavButton_MouseDown"
+                        Visibility="{Binding BooksNavButtonVisibility}" />
                     <components:NavButton
                         x:Name="BagNavButton"
                         ButtonStyle="Transparent"
                         ButtonText="My Bag"
                         IconSource="../assets/icons/Icon awesome-shopping-bag.png"
-                        MouseDown="BagNavButton_MouseDown" />
+                        MouseDown="BagNavButton_MouseDown"
+                        Visibility="{Binding BagNavButtonVisibility}" />
                     <components:NavButton
                         x:Name="WatchlistNavButton"
                         ButtonStyle="Transparent"
                         ButtonText="Watchlist"
                         IconSource="../assets/icons/Icon awesome-binoculars.png"
-                        MouseDown="WatchlistNavButton_MouseDown" />
+                        MouseDown="WatchlistNavButton_MouseDown"
+                        Visibility="{Binding WatchlistNavButtonVisibility}" />
                     <components:NavButton
                         x:Name="ReturnsNavButton"
                         ButtonStyle="Transparent"
                         ButtonText="Returns"
                         IconSource="../assets/icons/Icon material-assignment-return.png"
-                        MouseDown="ReturnsNavButton_MouseDown" />
+                        MouseDown="ReturnsNavButton_MouseDown"
+                        Visibility="{Binding ReturnsNavButtonVisibility}" />
                     <components:NavButton
                         x:Name="ReservedNavButton"
                         ButtonStyle="Transparent"
                         ButtonText="Reserved"
                         IconSource="../assets/icons/Icon metro-pin.png"
-                        MouseDown="ReservedNavButton_MouseDown" />
+                        MouseDown="ReservedNavButton_MouseDown"
+                        Visibility="{Binding ReservedNavButtonVisibility}" />
                     <components:NavButton
                         x:Name="PeopleNavButton"
                         ButtonStyle="Transparent"
                         ButtonText="People"
                         IconSource="../assets/icons/Icon material-people.png"
-                        MouseDown="PeopleNavButton_MouseDown" />
+                        MouseDown="PeopleNavButton_MouseDown"
+                        Visibility="{Binding PeopleNavButtonVisibility}" />
 
                 </StackPanel>
             </ScrollViewer>
@@ -114,7 +121,8 @@
                     ButtonStyle="Primary"
                     ButtonText="My Account"
                     IconSource="../assets/icons/Icon material-account-box.png"
-                    MouseDown="AccountNavButton_MouseDown">
+                    MouseDown="AccountNavButton_MouseDown"
+                    Visibility="{Binding AccountNavButtonVisibility}">
                     <UserControl.Effect>
                         <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
                     </UserControl.Effect>
@@ -125,7 +133,8 @@
                     ButtonStyle="Transparent"
                     ButtonText="Sign out"
                     IconSource="../assets/icons/Icon open-account-logout.png"
-                    MouseDown="SignOutNavButton_MouseDown" />
+                    MouseDown="SignOutNavButton_MouseDown"
+                    Visibility="{Binding SignOutNavButtonVisibility}" />
             </StackPanel>
         </Border>
     </Grid>
