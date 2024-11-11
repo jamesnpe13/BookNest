@@ -15,12 +15,14 @@ public partial class SessionService : ObservableObject
     private readonly DatabaseService ds;
     private readonly PasswordManager pm;
     private readonly AppData ad;
+    private readonly PageNavigationService ns;
 
-    public SessionService(DatabaseService _ds, PasswordManager _pm, AppData _ad)
+    public SessionService(DatabaseService _ds, PasswordManager _pm, AppData _ad, PageNavigationService _ns)
     {
         ds = _ds;
         pm = _pm;
         ad = _ad;
+        ns = _ns;
     }
 
     // Handle user sign in

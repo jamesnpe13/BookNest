@@ -38,19 +38,6 @@
             Grid.Row="1"
             Grid.ColumnSpan="2"
             Height="auto"
-            Background="{StaticResource Grey4}">
-
-            <Label
-                Margin="20,0,20,0"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
-                Content="{Binding DbConnectionStatus}"
-                FontSize="{StaticResource XXSmall}"
-                Foreground=" white">
-                <Label.DataContext>
-                    <database:DatabaseService />
-                </Label.DataContext>
-            </Label>
-        </StackPanel>
+            Background="{StaticResource Grey4}" />
     </Grid>
 </Page>

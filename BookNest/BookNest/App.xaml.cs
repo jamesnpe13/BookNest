@@ -52,6 +52,8 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<MainWindow>();
         services.AddSingleton<MainWindow_VM>();
 
+        services.AddTransient<SamplePage>();
+
         // pages
         services.AddTransient<MainPage>();
         services.AddTransient<MainPage_VM>();
