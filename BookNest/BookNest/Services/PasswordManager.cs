@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using BookNest.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,11 +42,19 @@ public partial class PasswordManager : ObservableObject
     }
 
     // verify password
-    public bool VerifyPassword(string passwordInput, byte[] storedSalt, string storedHash)
+    //public bool VerifyPassword(string passwordInput, byte[] storedSalt, string storedHash)
+    //{
+    //    Console.WriteLine("Verifying password");
+    //    string hashOfPasswordInput = HashPassword(passwordInput, storedSalt);
+    //    return hashOfPasswordInput == storedHash;
+    //}
+
+    // verify password (string)
+    public bool VerifyPassword(string passwordInput, Account_M targetAccount)
     {
         Console.WriteLine("Verifying password");
-        string hashOfPasswordInput = HashPassword(passwordInput, storedSalt);
-        return hashOfPasswordInput == storedHash;
+
+        return passwordInput == targetAccount.Password;
     }
 
 }

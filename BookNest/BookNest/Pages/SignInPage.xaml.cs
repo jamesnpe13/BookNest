@@ -12,7 +12,6 @@ public partial class SignInPage : Page
     private readonly SignInPage_VM vm;
     private readonly AppData ad;
     private readonly PageNavigationService pn;
-    public string Password { get; set; }
 
     public SignInPage(SignInPage_VM _vm, AppData _ad, PageNavigationService _pn)
     {
@@ -50,8 +49,7 @@ public partial class SignInPage : Page
 
     private void PasswordField_LostFocus(object sender, System.Windows.RoutedEventArgs e)
     {
-        Password = PasswordField.ActualPassword;
-        Console.WriteLine(Password);
+
     }
 
     private void SignInButton_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -61,8 +59,7 @@ public partial class SignInPage : Page
 
     private void SubmitForm()
     {
-
-        vm.SubmitForm(Password);
+        vm.SubmitForm(PasswordField.ActualPassword);
     }
 
     private void SwitchTypeButton_MouseDown(object sender, MouseButtonEventArgs e)
@@ -72,14 +69,14 @@ public partial class SignInPage : Page
         Console.WriteLine("IsAdmin: " + vm.IsAdmin);
     }
 
-    private void ResetPasswordButton_MouseDown(object sender, MouseButtonEventArgs e)
-    {
-
-    }
-
     private void CreateAccountButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
         pn.SetCurrentPage("RegistrationPage");
+    }
+
+    private void ResetPasswordButton_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+
     }
 
 }

@@ -1,4 +1,5 @@
-﻿using BookNest.Data;
+﻿using BookNest.Components;
+using BookNest.Data;
 using BookNest.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
@@ -21,9 +22,6 @@ public partial class SignInPage_VM : ObservableObject
     private string username;
 
     [ObservableProperty]
-    private string password;
-
-    [ObservableProperty]
     private string formLabelText;
 
     [ObservableProperty]
@@ -44,17 +42,22 @@ public partial class SignInPage_VM : ObservableObject
         // display appropriate form label amd switch type button
         FormLabelText = IsAdmin ? "Administrator Sign In" : "Member Sign In";
         SwitchTypeButtonText = IsAdmin ? "Sign in as member" : "Sign in as administrator";
+
     }
 
     public void SubmitForm(string password)
     {
+        Console.WriteLine(password);
 
         // if form validation success then proceed. Else show error and do not proceed.
 
         // handle sign in
-        if (ds.GetAccount_single(Username, IsAdmin ? "Administrator" : "Member").Username == Username)
+        if (ds.GetAccount_single(Username, IsAdmin ? "Administrator" : "Member").Username == Username && !string.IsNullOrEmpty(Username))
         {
             Console.WriteLine("Match found");
+            Console.WriteLine("Target Username: " + ds.GetAccount_single(Username, IsAdmin ? "Administrator" : "Member").Username);
+            Console.WriteLine("target Account type: " + ds.GetAccount_single(Username, IsAdmin ? "Administrator" : "Member").AccountType);
+            Console.WriteLine("Target Password: " + ds.GetAccount_single(Username, IsAdmin ? "Administrator" : "Member").Password);
             ss.HandleUserSignIn(Username, password, IsAdmin ? "Administrator" : "Member");
         }
         else

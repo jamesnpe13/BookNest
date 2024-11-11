@@ -222,6 +222,7 @@ public partial class DatabaseService : ObservableObject
                         tempAccount.LastName = reader["Lastname"].ToString();
                         tempAccount.Username = reader["Username"].ToString();
                         tempAccount.Email = reader["Email"].ToString();
+                        tempAccount.Password = reader["Password"].ToString();
                         tempAccount.PasswordHash = reader["PasswordHash"].ToString();
                         tempAccount.Salt = reader["Salt"].ToString();
                         tempAccount.AccountType = reader["AccountType"].ToString();

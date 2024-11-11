@@ -36,16 +36,12 @@ public partial class SessionService : ObservableObject
     public void HandleUserSignIn(string usernameInput, string passwordInput, string accountType)
     {
         // get user from db
+
         Account_M thisAccount = ds.GetAccount_single(usernameInput, accountType);
-
-        // get user password hash and salt
-        string thisPasswordHash = thisAccount.PasswordHash;
-        byte[] thisSalt = Encoding.UTF8.GetBytes(thisAccount.Salt);
-
-        Console.WriteLine("PW salt string: " + thisSalt);
+        Console.WriteLine("Account found name: " + thisAccount.FirstName + " " + thisAccount.LastName);
+        Console.WriteLine("Password verified: " + pm.VerifyPassword(passwordInput, thisAccount));
 
         // call password verify from password manager
-        Console.WriteLine("Password verified: " + pm.VerifyPassword(passwordInput, thisSalt, thisPasswordHash));
     }
 
     // handle user sign out
@@ -70,6 +66,8 @@ public partial class SessionService : ObservableObject
             tempAccount.LastName = updatedAccount.LastName;
         if (!string.IsNullOrEmpty(updatedAccount.Username) && updatedAccount.Username != targetAccount.Username)
             tempAccount.Username = updatedAccount.Username;
+        if (!string.IsNullOrEmpty(updatedAccount.Password) && updatedAccount.Password != targetAccount.Password)
+            tempAccount.Password = updatedAccount.Password;
         if (!string.IsNullOrEmpty(updatedAccount.PasswordHash) && updatedAccount.PasswordHash != targetAccount.PasswordHash)
             tempAccount.PasswordHash = updatedAccount.PasswordHash;
         if (!string.IsNullOrEmpty(updatedAccount.Salt) && updatedAccount.Salt != targetAccount.Salt)
