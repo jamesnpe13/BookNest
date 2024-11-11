@@ -19,11 +19,10 @@ public partial class AppData : ObservableObject
 
     // currently signed in user
     [ObservableProperty]
-    private Account_M currentAccount;
+    private Account_M? currentAccount = new();
 
     public AppData()
     {
-        CurrentAccount = new();
     }
 
 }

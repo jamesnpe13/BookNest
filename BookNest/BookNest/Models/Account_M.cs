@@ -5,26 +5,26 @@ namespace BookNest.Models;
 public partial class Account_M : ObservableObject
 {
     [ObservableProperty]
-    private string firstName;
+    private string firstName = string.Empty;
 
     [ObservableProperty]
-    private string lastName;
+    private string lastName = string.Empty;
 
     [ObservableProperty]
-    private string username;
+    private string username = string.Empty;
 
     [ObservableProperty]
-    private string password;
+    private string password = string.Empty;
 
     [ObservableProperty]
-    private string email;
+    private string email = string.Empty;
 
     [ObservableProperty]
-    private string passwordHash;
+    private string passwordHash = string.Empty;
 
     [ObservableProperty]
-    private string salt;
+    private string salt = string.Empty;
 
     [ObservableProperty]
-    private string accountType;
+    private string accountType = string.Empty;
 }

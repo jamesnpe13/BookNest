@@ -15,16 +15,16 @@ public partial class MainPage_VM : ObservableObject
     private readonly SessionService ss;
 
     [ObservableProperty]
-    private UserControl currentView;
+    private UserControl? currentView;
 
     [ObservableProperty]
-    private string welcomeTextLine1;
+    private string welcomeTextLine1 = string.Empty;
 
     [ObservableProperty]
-    private string welcomeTextLine2;
+    private string welcomeTextLine2 = string.Empty;
 
     [ObservableProperty]
-    private string accountType;
+    private string accountType = string.Empty;
 
     [ObservableProperty] private Visibility dashboardNavButtonVisibility;
     [ObservableProperty] private Visibility booksNavButtonVisibility;
@@ -60,7 +60,7 @@ public partial class MainPage_VM : ObservableObject
     public void NavbarInit()
     {
         // set welcome message
-        WelcomeTextLine1 = "Hi, " + ad.CurrentAccount.FirstName;
+        WelcomeTextLine1 = "Hi, " + ad.CurrentAccount.FirstName ?? "User";
         WelcomeTextLine2 = "Let's get started";
 
         // set account type display

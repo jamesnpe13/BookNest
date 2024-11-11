@@ -19,13 +19,13 @@ public partial class SignInPage_VM : ObservableObject
     private bool isAdmin = true; // temporary override
 
     [ObservableProperty]
-    private string username;
+    private string username = string.Empty;
 
     [ObservableProperty]
-    private string formLabelText;
+    private string formLabelText = string.Empty;
 
     [ObservableProperty]
-    private string switchTypeButtonText;
+    private string switchTypeButtonText = string.Empty;
 
     public SignInPage_VM(PageNavigationService _ps, SessionService _ss, AppData _ad, DatabaseService _ds)
     {
@@ -53,7 +53,7 @@ public partial class SignInPage_VM : ObservableObject
         if (ds.GetAccount(Username, IsAdmin ? "Administrator" : "Member", true).Username == Username && !string.IsNullOrEmpty(Username))
         {
             Console.WriteLine("Match found");
-            Console.WriteLine("Target Username: " + ds.GetAccount(Username, IsAdmin ? "Administrator" : "Member",  true).Username);
+            Console.WriteLine("Target Username: " + ds.GetAccount(Username, IsAdmin ? "Administrator" : "Member", true).Username);
             Console.WriteLine("target Account type: " + ds.GetAccount(Username, IsAdmin ? "Administrator" : "Member", true).AccountType);
             Console.WriteLine("Target Password: " + ds.GetAccount(Username, IsAdmin ? "Administrator" : "Member", true).Password);
 

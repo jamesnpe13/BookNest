@@ -8,24 +8,22 @@ namespace BookNest.Data;
 public partial class DatabaseService : ObservableObject
 {
     private readonly AppData ad;
-    private readonly string DB_STRING;
+    private readonly string DB_STRING = string.Empty;
 
     [ObservableProperty]
-    private SQLiteConnection connection;
+    private SQLiteConnection? connection;
 
     [ObservableProperty]
-    private SQLiteTransaction transaction;
+    private SQLiteTransaction? transaction;
 
     [ObservableProperty]
-    private string dbConnectionStatus;
+    private string dbConnectionStatus = string.Empty;
 
     public DatabaseService(AppData _ad)
     {
         ad = _ad;
         DB_STRING = ad.DB_STRING;
         TableInit();
-
-        //AddTestAccount();
     }
 
     void UpdateDbConnectionStatus()
@@ -207,14 +205,14 @@ public partial class DatabaseService : ObservableObject
                     {
                         while (reader.Read())
                         {
-                            tempAccount.FirstName = reader["FirstName"].ToString();
-                            tempAccount.LastName = reader["Lastname"].ToString();
-                            tempAccount.Username = reader["Username"].ToString();
-                            tempAccount.Email = reader["Email"].ToString();
-                            tempAccount.Password = reader["Password"].ToString();
-                            tempAccount.PasswordHash = reader["PasswordHash"].ToString();
-                            tempAccount.Salt = reader["Salt"].ToString();
-                            tempAccount.AccountType = reader["AccountType"].ToString();
+                            tempAccount.FirstName = reader["FirstName"].ToString() ?? string.Empty;
+                            tempAccount.LastName = reader["Lastname"].ToString() ?? string.Empty;
+                            tempAccount.Username = reader["Username"].ToString() ?? string.Empty;
+                            tempAccount.Email = reader["Email"].ToString() ?? string.Empty;
+                            tempAccount.Password = reader["Password"].ToString() ?? string.Empty;
+                            tempAccount.PasswordHash = reader["PasswordHash"].ToString() ?? string.Empty;
+                            tempAccount.Salt = reader["Salt"].ToString() ?? string.Empty;
+                            tempAccount.AccountType = reader["AccountType"].ToString() ?? string.Empty;
                         }
                     }
                 }
@@ -244,12 +242,12 @@ public partial class DatabaseService : ObservableObject
                             {
                                 Account_M tempAccount = new Account_M
                                 {
-                                    FirstName = reader["FirstName"].ToString(),
-                                    LastName = reader["Lastname"].ToString(),
-                                    Username = reader["Username"].ToString(),
-                                    PasswordHash = reader["PasswordHash"].ToString(),
-                                    Salt = reader["Salt"].ToString(),
-                                    AccountType = reader["AccountType"].ToString(),
+                                    FirstName = reader["FirstName"].ToString() ?? string.Empty,
+                                    LastName = reader["Lastname"].ToString() ?? string.Empty,
+                                    Username = reader["Username"].ToString() ?? string.Empty,
+                                    PasswordHash = reader["PasswordHash"].ToString() ?? string.Empty,
+                                    Salt = reader["Salt"].ToString() ?? string.Empty,
+                                    AccountType = reader["AccountType"].ToString() ?? string.Empty,
                                 };
                                 tempAccounts.Add(tempAccount);
                             }
@@ -320,4 +318,8 @@ public partial class DatabaseService : ObservableObject
         // Delete transaction
 
     }
+
+    /***********************************
+    *      ACCOUNTS
+   ***********************************/
 }
