@@ -17,20 +17,14 @@ public partial class Account_M : ObservableObject
     private string password;
 
     [ObservableProperty]
-    private string accountType;
+    private string email;
 
     [ObservableProperty]
-    private int id;
+    private string passwordHash;
 
-    public Account_M()
-    {
-        GenerateId();
-    }
+    [ObservableProperty]
+    private string salt;
 
-    private void GenerateId()
-    {
-        Random random = new();
-        int randomNum = random.Next(10000000, 100000000);
-        this.Id = randomNum;
-    }
+    [ObservableProperty]
+    private string accountType;
 }

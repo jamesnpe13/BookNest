@@ -8,9 +8,15 @@ namespace BookNest.Modules;
 
 public partial class SideNavModule : UserControl
 {
+    private readonly AppData ad;
+
     public SideNavModule()
     {
         InitializeComponent();
+
+        ad = new();
+
+        Console.WriteLine(ad.CurrentAccount.FirstName + " " + ad.CurrentAccount.LastName);
     }
 
     // apply logic here to check if user is
@@ -18,76 +24,54 @@ public partial class SideNavModule : UserControl
 
     private void DashboardNavButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        // check user type and add logic for routing
-        if (DataContext is MainPage_VM vm)
-        {           
-            vm.SetCurrentView("MemberDashboard");
-        }
+        SetCurrentView("MemberDashboard");
     }
 
     private void BooksNavButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        // check user type and add logic for routing
-        if (DataContext is MainPage_VM vm)
-        {
-            vm.SetCurrentView("MemberBooks");
-        }
+        SetCurrentView("MemberBooks");
     }
 
     private void BagNavButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        if (DataContext is MainPage_VM vm)
-        {
-            vm.SetCurrentView("MemberBag");
-        }
+        SetCurrentView("MemberBag");
     }
 
     private void WatchlistNavButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        if (DataContext is MainPage_VM vm)
-        {
-            vm.SetCurrentView("MemberWatchlist");
-        }
+        SetCurrentView("MemberWatchlist");
     }
 
     private void ReturnsNavButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        if (DataContext is MainPage_VM vm)
-        {
-            vm.SetCurrentView("AdminReturns");
-        }
+        SetCurrentView("AdminReturns");
     }
 
     private void ReservedNavButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        if (DataContext is MainPage_VM vm)
-        {
-            vm.SetCurrentView("AdminReserved");
-        }
+        SetCurrentView("AdminReserved");
     }
 
     private void PeopleNavButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        if (DataContext is MainPage_VM vm)
-        {
-            vm.SetCurrentView("AdminPeople");
-        }
+        SetCurrentView("AdminPeople");
     }
 
     private void AccountNavButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        // check user type and add logic for routing
-        if (DataContext is MainPage_VM vm)
-        {
-            vm.SetCurrentView("MemberAccount");
-        }
+        SetCurrentView("MemberAccount");
     }
 
     private void SignOutNavButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
+        SetCurrentView("SignOut");
+    }
+
+    private void SetCurrentView(string targetView)
+    {
         if (DataContext is MainPage_VM vm)
         {
-            vm.SetCurrentView("SignOut");
+            vm.SetCurrentView(targetView);
         }
     }
 }

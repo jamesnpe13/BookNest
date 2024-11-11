@@ -28,6 +28,7 @@ public partial class PageNavigationService : ObservableObject
     // Page router
     public void SetCurrentPage(string targetPage)
     {
+        if (targetPage == "SamplePage") CurrentPage = sp.GetRequiredService<SamplePage>();
         if (targetPage == "MainPage") CurrentPage = sp.GetRequiredService<MainPage>();
         if (targetPage == "SignInPage") CurrentPage = sp.GetRequiredService<SignInPage>();
         if (targetPage == "RegistrationPage") CurrentPage = sp.GetRequiredService<RegistrationPage>();

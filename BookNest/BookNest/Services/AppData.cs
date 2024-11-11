@@ -11,25 +11,19 @@ namespace BookNest.Services;
 
 public partial class AppData : ObservableObject
 {
+    // connection string
+    public readonly string DB_STRING = @"Data Source=booknest.db";
+
     // Page entry point (Default page)
-    public string DefaultPage { get => "RegistrationPage"; }
+    public string DefaultPage { get => "SignInPage"; }
 
     // currently signed in user
     [ObservableProperty]
     private Account_M currentAccount;
 
-    [ObservableProperty]
-    private string testString;
-
-    //[ObservableProperty]
-
-    // data collections
-    public ObservableCollection<Account_M> AccountsCollection;
-    public ObservableCollection<Book_M> BooksCollection;
-
     public AppData()
     {
-        AccountsCollection = new();
+        CurrentAccount = new();
     }
 
 }

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookNest", "BookNest\BookNest.csproj", "{133EF2FF-5840-4D02-AA54-10B568984B56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookNest", "BookNest\BookNest.csproj", "{133EF2FF-5840-4D02-AA54-10B568984B56}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoList", "..\..\ToDoList\ToDoList\ToDoList.csproj", "{9DD6B305-E79B-4E91-BB22-7ACE2566AB13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{133EF2FF-5840-4D02-AA54-10B568984B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{133EF2FF-5840-4D02-AA54-10B568984B56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{133EF2FF-5840-4D02-AA54-10B568984B56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DD6B305-E79B-4E91-BB22-7ACE2566AB13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DD6B305-E79B-4E91-BB22-7ACE2566AB13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DD6B305-E79B-4E91-BB22-7ACE2566AB13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DD6B305-E79B-4E91-BB22-7ACE2566AB13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

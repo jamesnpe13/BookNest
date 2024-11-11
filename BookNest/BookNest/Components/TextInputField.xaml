@@ -16,11 +16,14 @@
         <Grid>
             <Label
                 x:Name="PlaceholderLabel"
+                Margin="5,0,0,0"
                 Content="{Binding Placeholder, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                Opacity="0.7"
                 Style="{StaticResource PlaceholderLabel}" />
             <TextBox
                 x:Name="TextInputFieldTextBox"
                 Style="{StaticResource TextBoxTextBox}"
+                Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 TextChanged="TextInputFieldTextBox_TextChanged" />
         </Grid>
     </Border>

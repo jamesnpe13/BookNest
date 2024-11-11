@@ -10,7 +10,6 @@ public partial class TempPageNav : UserControl
 
     public TempPageNav()
     {
-
         InitializeComponent();
     }
 

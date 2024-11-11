@@ -7,11 +7,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Height="auto"
     VerticalAlignment="Center"
+    Cursor="Hand"
     mc:Ignorable="d">
 
     <Border>
         <TextBlock
             x:Name="ButtonTextBlock"
+            FontSize="{StaticResource XSmall}"
             Foreground="{Binding ButtonStyle, RelativeSource={RelativeSource AncestorType=UserControl}}"
             Text="{Binding ButtonText, RelativeSource={RelativeSource AncestorType=UserControl}}" />
     </Border>

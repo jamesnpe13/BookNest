@@ -49,7 +49,7 @@ public partial class DataCollections : ObservableObject
             FirstName = "James",
             LastName = "Elazegui",
             Username = "jamesnpe13",
-            Password = "password"
+            PasswordHash = "password"
         });
 
         // add a book to collection

@@ -43,7 +43,6 @@ public partial class Button : UserControl
     public Button()
     {
         InitializeComponent();
-        DataContext = this;
     }
 
     // *** Property changed callback function
@@ -73,6 +72,7 @@ public partial class Button : UserControl
     protected virtual void OnButtonHeightPropertyChanged(string newValue)
     {
         if (newValue == "Tall") this.Height = 50;
+        if (newValue == "Medium") this.Height = 40;
     }
 
     // *** Instance method
@@ -95,6 +95,10 @@ public partial class Button : UserControl
             case "Transparent":
                 UCLabel.Style = (Style)FindResource("ButtonLabelTransparent");
                 UCBorder.Style = (Style)FindResource("ButtonBorderTransparent");
+                break;
+            case "Neutral":
+                UCLabel.Style = (Style)FindResource("ButtonLabelNeutral");
+                UCBorder.Style = (Style)FindResource("ButtonBorderNeutral");
                 break;
             default:
                 UCLabel.Style = (Style)FindResource("ButtonLabelDefault");

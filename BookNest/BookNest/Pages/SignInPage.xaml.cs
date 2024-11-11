@@ -1,4 +1,5 @@
-﻿using BookNest.Services;
+﻿using BookNest.Components;
+using BookNest.Services;
 using BookNest.ViewModels;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Windows.Controls;
@@ -9,10 +10,15 @@ namespace BookNest.Pages;
 public partial class SignInPage : Page
 {
     private readonly SignInPage_VM vm;
-    public SignInPage(SignInPage_VM _vm)
+    private readonly AppData ad;
+    private readonly PageNavigationService pn;
+
+    public SignInPage(SignInPage_VM _vm, AppData _ad, PageNavigationService _pn)
     {
         InitializeComponent();
         vm = _vm;
+        ad = _ad;
+        pn = _pn;
         DataContext = vm;
         //ns = _ns;
     }
@@ -21,9 +27,11 @@ public partial class SignInPage : Page
     {
         if (e.Key == Key.Enter)
         {
+            Console.WriteLine("Enter is pressed");
             if (!string.IsNullOrEmpty(UsernameField.TextInputFieldTextBox.Text))
             {
                 SubmitForm();
+
             }
         }
     }
@@ -32,11 +40,16 @@ public partial class SignInPage : Page
     {
         if (e.Key == Key.Enter)
         {
-            if (!string.IsNullOrEmpty(PasswordField.PasswordInputFieldTextBox.Password))
+            if (!string.IsNullOrEmpty(PasswordField.PasswordInputFieldTextBox.Text))
             {
                 SubmitForm();
             }
         }
+    }
+
+    private void PasswordField_LostFocus(object sender, System.Windows.RoutedEventArgs e)
+    {
+
     }
 
     private void SignInButton_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -46,7 +59,24 @@ public partial class SignInPage : Page
 
     private void SubmitForm()
     {
-        vm.SubmitForm();
+        vm.SubmitForm(PasswordField.ActualPassword);
+    }
+
+    private void SwitchTypeButton_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        vm.IsAdmin = !vm.IsAdmin;
+        vm.SetFormType();
+        Console.WriteLine("IsAdmin: " + vm.IsAdmin);
+    }
+
+    private void CreateAccountButton_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        pn.SetCurrentPage("RegistrationPage");
+    }
+
+    private void ResetPasswordButton_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+
     }
 
 }

@@ -5,10 +5,11 @@ namespace BookNest.Pages;
 
 public partial class MainPage : Page
 {
-    public MainPage()
+    private readonly MainPage_VM vm;
+    public MainPage(MainPage_VM _vm)
     {
         InitializeComponent();
-        MainPage_VM vm = new();
+        vm = _vm;
         DataContext = vm;
     }
 }

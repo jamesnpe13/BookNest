@@ -1,4 +1,5 @@
-﻿using BookNest.Modules;
+﻿using BookNest.Data;
+using BookNest.Modules;
 using BookNest.Pages;
 using BookNest.Services;
 using BookNest.ViewModels;
@@ -39,12 +40,19 @@ public static class ServiceCollectionExtensions
     public static void ConfigureServices(this IServiceCollection services)
     {
         // services
+        services.AddSingleton<PasswordManager>();
         services.AddSingleton<AppData>();
         services.AddSingleton<PageNavigationService>();
+        services.AddSingleton<SessionService>();
+
+        // database
+        services.AddSingleton<DatabaseService>();
 
         // main window
         services.AddSingleton<MainWindow>();
         services.AddSingleton<MainWindow_VM>();
+
+        services.AddTransient<SamplePage>();
 
         // pages
         services.AddTransient<MainPage>();

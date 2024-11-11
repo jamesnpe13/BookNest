@@ -21,7 +21,6 @@ namespace BookNest.Components
         public TextButton()
         {
             InitializeComponent();
-            DataContext = this;
         }
 
         public string ButtonText
@@ -32,7 +31,7 @@ namespace BookNest.Components
 
         // Using a DependencyProperty as the backing store for ButtonText.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ButtonTextProperty =
-            DependencyProperty.Register("ButtonText", typeof(string), typeof(TextButton), new PropertyMetadata(null));
+            DependencyProperty.Register("ButtonText", typeof(string), typeof(TextButton), new PropertyMetadata("Not bound"));
 
         public string ButtonStyle
         {

@@ -10,66 +10,103 @@
     Background="{StaticResource Blue5}"
     mc:Ignorable="d">
 
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+    <ScrollViewer VerticalScrollBarVisibility="auto">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
 
-        <Border
-            Width="400"
-            Height="auto"
-            Padding="60,80,60,80"
-            Background="{StaticResource Blue2}"
-            CornerRadius="{StaticResource CornerRadius1}">
+            <Border
+                Width="400"
+                Height="auto"
+                Padding="60,80,60,60"
+                Background="{StaticResource Blue2}"
+                CornerRadius="{StaticResource CornerRadius2}">
 
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
-            </Border.Effect>
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
+                </Border.Effect>
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="150" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
 
-                <!--  Image section  -->
+                    <!--  Image section  -->
 
-                <Border Grid.Row="0" Margin="0,0,0,40">
-                    <!--  Image here  -->
-                    <Image Source="../assets/signin-graphic.png" />
-                </Border>
+                    <Border Grid.Row="0" Margin="0,0,0,40">
+                        <!--  Image here  -->
+                        <Image Source="../assets/signin-graphic.png" />
+                    </Border>
 
-                <!--  Form section  -->
-                <Border Grid.Row="1" Margin="0,0,0,40">
+                    <!--  Form section  -->
+                    <Border Grid.Row="1">
 
-                    <StackPanel Orientation="Vertical">
-                        <Label
-                            Margin="0,0,0,20"
-                            Content="Register [UserType]"
-                            FontSize="{StaticResource Large}"
-                            FontWeight="SemiBold"
-                            Foreground="{StaticResource White}" />
-                        <components:TextInputField
-                            x:Name="UsernameField"
-                            Margin="0,0,0,10"
-                            KeyDown="UsernameField_KeyDown"
-                            Placeholder="Username" />
-                        <components:PasswordInputField
-                            x:Name="PasswordField"
-                            Margin="0,0,0,20"
-                            KeyDown="PasswordField_KeyDown"
-                            Placeholder="Password" />
-                        <components:Button
-                            x:Name="RegisterButton"
-                            Height="40"
-                            HorizontalAlignment="Stretch"
-                            ButtonHeight="Tall"
-                            ButtonStyle="Primary"
-                            ButtonText="Sign in"
-                            MouseDown="RegisterButton_MouseDown" />
-                    </StackPanel>
-                </Border>
-                <!--  Button section  -->
-                <Border Grid.Row="2" />
-            </Grid>
-        </Border>
-    </Grid>
+                        <StackPanel Orientation="Vertical">
+                            <Label
+                                Margin="0,0,0,40"
+                                Content="Create an account"
+                                FontSize="{StaticResource Large}"
+                                FontWeight="SemiBold"
+                                Foreground="{StaticResource White}" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <components:TextInputField
+                                    x:Name="FirstNameField"
+                                    Grid.Column="0"
+                                    Margin="0,0,5,10"
+                                    Placeholder="First name" />
+                                <components:TextInputField
+                                    x:Name="LastNameField"
+                                    Grid.Column="1"
+                                    Margin="5,0,0,10"
+                                    Placeholder="Last name" />
+                            </Grid>
+                            <components:TextInputField
+                                x:Name="EmailField"
+                                Margin="0,0,0,10"
+                                Placeholder="Email" />
+                            <components:TextInputField
+                                x:Name="UsernameField"
+                                Margin="0,0,0,10"
+                                Placeholder="Username" />
+
+                            <components:PasswordInputField
+                                x:Name="PasswordField"
+                                Margin="0,0,0,10"
+                                LostFocus="PasswordField_LostFocus"
+                                Placeholder="Password" />
+                            <components:PasswordInputField
+                                x:Name="ConfirmPasswordField"
+                                Margin="0,0,0,10"
+                                LostFocus="ConfirmPasswordField_LostFocus"
+                                Placeholder="Confirm password" />
+
+                            <components:Dropdown
+                                x:Name="RegistrationTypeDropdown"
+                                Width="auto"
+                                Margin="0,0,0,10"
+                                HorizontalAlignment="Stretch"
+                                Placeholder="Account type" />
+
+                            <components:Button
+                                x:Name="RegisterButton"
+                                Height="40"
+                                HorizontalAlignment="Stretch"
+                                ButtonHeight="Medium"
+                                ButtonStyle="Primary"
+                                ButtonText="Submit"
+                                MouseDown="RegisterButton_MouseDown" />
+                        </StackPanel>
+                    </Border>
+                    <!--  Button section  -->
+                    <Border Grid.Row="2" />
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+
 </Page>
