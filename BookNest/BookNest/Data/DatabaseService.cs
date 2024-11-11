@@ -28,20 +28,6 @@ public partial class DatabaseService : ObservableObject
         //AddTestAccount();
     }
 
-    void AddTestAccount()
-    {
-        var TestAccount = new Account_M()
-        {
-            FirstName = "James",
-            LastName = "Elazegui",
-            Username = "jamesnpe13",
-            Email = "jameselazegui21@gmail.com",
-            AccountType = "Admin",
-        };
-
-        AddAccount(TestAccount);
-    }
-
     void UpdateDbConnectionStatus()
     {
         DbConnectionStatus = "Database connection status: " + System.Data.ConnectionState.Open;
@@ -266,27 +252,61 @@ public partial class DatabaseService : ObservableObject
     }
 
     // Delete account
+    public void DeleteAccount(string targetUsername, string targetAccountType)
+    {
+        using (var connection = new SQLiteConnection(DB_STRING))
+        {
+            connection.Open();
 
-    /***********************************
-     *      BOOKS
-    ***********************************/
+            using (var transaction = connection.BeginTransaction())
+            {
+                try
+                {
+                    using (var command = new SQLiteCommand(connection))
+                    {
+                        command.CommandText = @"
+                        DELETE FROM Accounts
+                        WHERE Username = @Username
+                        AND AccountType = @AccountType
+                        ";
 
-    // Add book
+                        command.Parameters.AddWithValue("@Username", targetUsername);
+                        command.Parameters.AddWithValue("@AccountType", targetAccountType);
 
-    // Update book
+                        command.ExecuteNonQuery();
+                    }
+                    transaction.Commit();
+                    Console.WriteLine("Account deletion SUCCESS");
+                }
+                catch (Exception err)
+                {
+                    Console.WriteLine("Account deletion SUCCESS");
+                    Console.WriteLine(err.Message);
+                }
+            }
+        }
 
-    // Read book
+        /***********************************
+         *      BOOKS
+        ***********************************/
 
-    // Delete book
+        // Add book
 
-    /***********************************
-     *      lOAN TRANSACTIONS
-    ***********************************/
+        // Update book
 
-    // Add loan transacton
+        // Read book
 
-    // Read transaction
+        // Delete book
 
-    // Delete transaction
+        /***********************************
+         *      lOAN TRANSACTIONS
+        ***********************************/
 
+        // Add loan transacton
+
+        // Read transaction
+
+        // Delete transaction
+
+    }
 }

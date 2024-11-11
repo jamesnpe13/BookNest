@@ -34,7 +34,6 @@ public partial class SignInPage_VM : ObservableObject
         ad = _ad;
         ds = _ds;
         SetFormType();
-
     }
 
     public void SetFormType()
