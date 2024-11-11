@@ -42,7 +42,6 @@ public partial class SignInPage_VM : ObservableObject
         // display appropriate form label amd switch type button
         FormLabelText = IsAdmin ? "Administrator Sign In" : "Member Sign In";
         SwitchTypeButtonText = IsAdmin ? "Sign in as member" : "Sign in as administrator";
-
     }
 
     public void SubmitForm(string password)
@@ -58,6 +57,7 @@ public partial class SignInPage_VM : ObservableObject
             Console.WriteLine("Target Username: " + ds.GetAccount_single(Username, IsAdmin ? "Administrator" : "Member").Username);
             Console.WriteLine("target Account type: " + ds.GetAccount_single(Username, IsAdmin ? "Administrator" : "Member").AccountType);
             Console.WriteLine("Target Password: " + ds.GetAccount_single(Username, IsAdmin ? "Administrator" : "Member").Password);
+
             ss.HandleUserSignIn(Username, password, IsAdmin ? "Administrator" : "Member");
         }
         else

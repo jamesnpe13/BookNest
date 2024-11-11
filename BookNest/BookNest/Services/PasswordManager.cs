@@ -52,8 +52,6 @@ public partial class PasswordManager : ObservableObject
     // verify password (string)
     public bool VerifyPassword(string passwordInput, Account_M targetAccount)
     {
-        Console.WriteLine("Verifying password");
-
         return passwordInput == targetAccount.Password;
     }
 

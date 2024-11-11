@@ -217,7 +217,6 @@ public partial class DatabaseService : ObservableObject
                 {
                     while (reader.Read())
                     {
-
                         tempAccount.FirstName = reader["FirstName"].ToString();
                         tempAccount.LastName = reader["Lastname"].ToString();
                         tempAccount.Username = reader["Username"].ToString();
@@ -226,7 +225,6 @@ public partial class DatabaseService : ObservableObject
                         tempAccount.PasswordHash = reader["PasswordHash"].ToString();
                         tempAccount.Salt = reader["Salt"].ToString();
                         tempAccount.AccountType = reader["AccountType"].ToString();
-
                     }
                 }
             }

@@ -23,15 +23,6 @@ public partial class SessionService : ObservableObject
         ad = _ad;
     }
 
-    // create temp account
-    public Account_M CreateTempAccount(string name)
-    {
-        return new Account_M()
-        {
-            FirstName = name
-        };
-    }
-
     // Handle user sign in
     public void HandleUserSignIn(string usernameInput, string passwordInput, string accountType)
     {
@@ -39,9 +30,16 @@ public partial class SessionService : ObservableObject
 
         Account_M thisAccount = ds.GetAccount_single(usernameInput, accountType);
         Console.WriteLine("Account found name: " + thisAccount.FirstName + " " + thisAccount.LastName);
-        Console.WriteLine("Password verified: " + pm.VerifyPassword(passwordInput, thisAccount));
+        //Console.WriteLine("Password verified: " + pm.VerifyPassword(passwordInput, thisAccount));
 
         // call password verify from password manager
+        if (pm.VerifyPassword(passwordInput, thisAccount))
+        {
+            ad.CurrentAccount = thisAccount;
+            Console.WriteLine(ad.CurrentAccount.FirstName + " " + ad.CurrentAccount.LastName);
+            ns.SetCurrentPage("MainPage");
+
+        }
     }
 
     // handle user sign out
