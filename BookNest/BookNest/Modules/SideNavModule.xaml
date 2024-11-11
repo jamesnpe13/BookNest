@@ -42,13 +42,18 @@
         <!--  Header section  -->
         <Border Grid.Row="0" Background="{StaticResource Blue5}">
             <Border.Effect>
-                <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
+                <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}"
+                                  Opacity="{StaticResource DropShadowOpacity}" />
             </Border.Effect>
+
             <StackPanel Orientation="Vertical">
                 <TextBlock
+                    Margin="0,0,0,5"
                     FontSize="{StaticResource XLarge}"
                     Foreground="{StaticResource White}"
-                    Text="{Binding WelcomeTextLine1}" />
+                    Text="{Binding WelcomeTextLine1}"
+                    TextWrapping="Wrap" />
+
                 <TextBlock
                     FontSize="{StaticResource Large}"
                     Foreground="{StaticResource White}"
@@ -126,7 +131,7 @@
                 </StackPanel>
             </ScrollViewer>
         </Border>
-        <!--  Footer section section  -->
+        <!--  Footer section   -->
         <Border Grid.Row="3" Padding="0">
             <StackPanel Orientation="Vertical">
                 <components:NavButton
@@ -138,7 +143,8 @@
                     MouseDown="AccountNavButton_MouseDown"
                     Visibility="{Binding AccountNavButtonVisibility}">
                     <UserControl.Effect>
-                        <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
+                        <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}"
+                                          Opacity="{StaticResource DropShadowOpacity}" />
                     </UserControl.Effect>
                 </components:NavButton>
                 <components:NavButton

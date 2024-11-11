@@ -30,7 +30,7 @@ public partial class SessionService : ObservableObject
     {
         // get user from db
 
-        Account_M thisAccount = ds.GetAccount_single(usernameInput, accountType);
+        Account_M thisAccount = ds.GetAccount(usernameInput, accountType, true);
         Console.WriteLine("Account found name: " + thisAccount.FirstName + " " + thisAccount.LastName);
         //Console.WriteLine("Password verified: " + pm.VerifyPassword(passwordInput, thisAccount));
 
@@ -56,12 +56,12 @@ public partial class SessionService : ObservableObject
         Console.WriteLine("Updating account");
 
         // get the account
-        Account_M targetAccount = ds.GetAccount_single(targetUsername, targetAccountType);
+        Account_M targetAccount = ds.GetAccount(targetUsername, targetAccountType, true);
         string thisUsername = targetAccount.Username;
         string thisAccountType = targetAccount.AccountType;
 
         // create temp account dupe for mod
-        Account_M tempAccount = ds.GetAccount_single(targetUsername, targetAccountType);
+        Account_M tempAccount = ds.GetAccount(targetUsername, targetAccountType, true);
 
         // modify fields - check if updated fields are empty or null or if value same as existing
         if (!string.IsNullOrEmpty(updatedAccount.FirstName) && updatedAccount.FirstName != targetAccount.FirstName)

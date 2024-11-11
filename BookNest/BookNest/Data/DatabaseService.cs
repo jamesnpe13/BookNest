@@ -184,33 +184,38 @@ public partial class DatabaseService : ObservableObject
     }
 
     // Read account
-    public Account_M GetAccount_single(string username, string accountType)
+    public Account_M GetAccount(string username, string accountType, bool returnSingle)
     {
+
         Account_M tempAccount = new();
-        using (var connection = new SQLiteConnection(DB_STRING))
+
+        if (returnSingle)
         {
-            connection.Open();
-            string query = @"SELECT * FROM Accounts
+            using (var connection = new SQLiteConnection(DB_STRING))
+            {
+                connection.Open();
+                string query = @"SELECT * FROM Accounts
                             WHERE Username = @Username
                             AND AccountType = @AccountType
                             ";
-            using (var command = new SQLiteCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@Username", username);
-                command.Parameters.AddWithValue("@AccountType", accountType);
-
-                using (var reader = command.ExecuteReader())
+                using (var command = new SQLiteCommand(query, connection))
                 {
-                    while (reader.Read())
+                    command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@AccountType", accountType);
+
+                    using (var reader = command.ExecuteReader())
                     {
-                        tempAccount.FirstName = reader["FirstName"].ToString();
-                        tempAccount.LastName = reader["Lastname"].ToString();
-                        tempAccount.Username = reader["Username"].ToString();
-                        tempAccount.Email = reader["Email"].ToString();
-                        tempAccount.Password = reader["Password"].ToString();
-                        tempAccount.PasswordHash = reader["PasswordHash"].ToString();
-                        tempAccount.Salt = reader["Salt"].ToString();
-                        tempAccount.AccountType = reader["AccountType"].ToString();
+                        while (reader.Read())
+                        {
+                            tempAccount.FirstName = reader["FirstName"].ToString();
+                            tempAccount.LastName = reader["Lastname"].ToString();
+                            tempAccount.Username = reader["Username"].ToString();
+                            tempAccount.Email = reader["Email"].ToString();
+                            tempAccount.Password = reader["Password"].ToString();
+                            tempAccount.PasswordHash = reader["PasswordHash"].ToString();
+                            tempAccount.Salt = reader["Salt"].ToString();
+                            tempAccount.AccountType = reader["AccountType"].ToString();
+                        }
                     }
                 }
             }
@@ -218,31 +223,36 @@ public partial class DatabaseService : ObservableObject
         return tempAccount;
     }
 
-    public List<Account_M> GetAccount_list()
+    public List<Account_M> GetAccount(bool returnSingle)
     {
         List<Account_M> tempAccounts = new();
-        using (var connection = new SQLiteConnection(DB_STRING))
+
+        if (!returnSingle)
         {
-            connection.Open();
-            string query = @"SELECT * FROM Accounts";
-            using (var command = new SQLiteCommand(query, connection))
+
+            using (var connection = new SQLiteConnection(DB_STRING))
             {
-                using (var reader = command.ExecuteReader())
+                connection.Open();
+                string query = @"SELECT * FROM Accounts";
+                using (var command = new SQLiteCommand(query, connection))
                 {
-                    while (reader.Read())
+                    using (var reader = command.ExecuteReader())
                     {
-                        for (int i = 0; i < reader.FieldCount; i++)
+                        while (reader.Read())
                         {
-                            Account_M tempAccount = new Account_M
+                            for (int i = 0; i < reader.FieldCount; i++)
                             {
-                                FirstName = reader["FirstName"].ToString(),
-                                LastName = reader["Lastname"].ToString(),
-                                Username = reader["Username"].ToString(),
-                                PasswordHash = reader["PasswordHash"].ToString(),
-                                Salt = reader["Salt"].ToString(),
-                                AccountType = reader["AccountType"].ToString(),
-                            };
-                            tempAccounts.Add(tempAccount);
+                                Account_M tempAccount = new Account_M
+                                {
+                                    FirstName = reader["FirstName"].ToString(),
+                                    LastName = reader["Lastname"].ToString(),
+                                    Username = reader["Username"].ToString(),
+                                    PasswordHash = reader["PasswordHash"].ToString(),
+                                    Salt = reader["Salt"].ToString(),
+                                    AccountType = reader["AccountType"].ToString(),
+                                };
+                                tempAccounts.Add(tempAccount);
+                            }
                         }
                     }
                 }
@@ -254,6 +264,7 @@ public partial class DatabaseService : ObservableObject
     // Delete account
     public void DeleteAccount(string targetUsername, string targetAccountType)
     {
+
         using (var connection = new SQLiteConnection(DB_STRING))
         {
             connection.Open();
