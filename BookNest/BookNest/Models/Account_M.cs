@@ -14,6 +14,9 @@ public partial class Account_M : ObservableObject
     private string username;
 
     [ObservableProperty]
+    private string password;
+
+    [ObservableProperty]
     private string email;
 
     [ObservableProperty]

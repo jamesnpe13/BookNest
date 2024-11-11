@@ -43,13 +43,9 @@ public partial class PasswordManager : ObservableObject
     // verify password
     public bool VerifyPassword(string passwordInput, byte[] storedSalt, string storedHash)
     {
+        Console.WriteLine("Verifying password");
         string hashOfPasswordInput = HashPassword(passwordInput, storedSalt);
         return hashOfPasswordInput == storedHash;
-    }
-
-    public void TestMessage()
-    {
-        Console.WriteLine("Test message");
     }
 
 }

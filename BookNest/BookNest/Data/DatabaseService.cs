@@ -62,6 +62,7 @@ public partial class DatabaseService : ObservableObject
                 FirstName TEXT NOT NULL,
                 LastName TEXT NOT NULL,
                 Username TEXT NOT NULL UNIQUE,
+                Password TEXT NOT NULL,
                 PasswordHash TEXT NOT NULL DEFAULT 'password hash not set',
                 Salt TEXT NOT NULL,
                 Email TEXT,
@@ -122,8 +123,8 @@ public partial class DatabaseService : ObservableObject
 
             string addItemSql =
                 @"
-                    INSERT INTO Accounts (FirstName, LastName, Username, PasswordHash, Salt, Email, AccountType) 
-                    VALUES (@FirstName, @LastName, @Username, @PasswordHash, @Salt, @Email, @AccountType)
+                    INSERT INTO Accounts (FirstName, LastName, Username, Password, PasswordHash, Salt, Email, AccountType) 
+                    VALUES (@FirstName, @LastName, @Username, @Password, @PasswordHash, @Salt, @Email, @AccountType)
                 ";
 
             using (var command = new SQLiteCommand(addItemSql, connection))
@@ -131,6 +132,7 @@ public partial class DatabaseService : ObservableObject
                 command.Parameters.AddWithValue("@FirstName", account.FirstName);
                 command.Parameters.AddWithValue("@LastName", account.LastName);
                 command.Parameters.AddWithValue("@Username", account.Username);
+                command.Parameters.AddWithValue("@Password", account.Password);
                 command.Parameters.AddWithValue("@PasswordHash", account.PasswordHash);
                 command.Parameters.AddWithValue("@Salt", account.Salt);
                 command.Parameters.AddWithValue("@Email", account.Email);
@@ -159,6 +161,7 @@ public partial class DatabaseService : ObservableObject
                         SET FirstName = @FirstName,
                             LastName = @LastName,
                             Username = @Username,
+                            Username = @Password,
                             PasswordHash = @PasswordHash,
                             Salt = @Salt,
                             Email = @Email,
@@ -170,6 +173,7 @@ public partial class DatabaseService : ObservableObject
                         command.Parameters.AddWithValue("@FirstName", updatedAccount.FirstName);
                         command.Parameters.AddWithValue("@LastName", updatedAccount.LastName);
                         command.Parameters.AddWithValue("@Username", updatedAccount.Username);
+                        command.Parameters.AddWithValue("@Password", updatedAccount.Password);
                         command.Parameters.AddWithValue("@PasswordHash", updatedAccount.PasswordHash);
                         command.Parameters.AddWithValue("@Salt", updatedAccount.Salt);
                         command.Parameters.AddWithValue("@Email", updatedAccount.Email);
@@ -222,10 +226,6 @@ public partial class DatabaseService : ObservableObject
                         tempAccount.Salt = reader["Salt"].ToString();
                         tempAccount.AccountType = reader["AccountType"].ToString();
 
-                        for (int i = 0; i < reader.FieldCount; i++)
-                        {
-                            Console.WriteLine(reader.GetName(i) + ": " + reader.GetValue(i));
-                        }
                     }
                 }
             }
@@ -258,7 +258,6 @@ public partial class DatabaseService : ObservableObject
                                 AccountType = reader["AccountType"].ToString(),
                             };
                             tempAccounts.Add(tempAccount);
-                            Console.WriteLine($"{reader.GetName(i)}: {reader.GetValue(i)}");
                         }
                     }
                 }

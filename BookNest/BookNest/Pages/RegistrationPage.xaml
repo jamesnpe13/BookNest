@@ -85,20 +85,21 @@
                                 LostFocus="ConfirmPasswordField_LostFocus"
                                 Placeholder="Confirm password" />
 
+                            <components:Dropdown
+                                x:Name="RegistrationTypeDropdown"
+                                Width="auto"
+                                Margin="0,0,0,10"
+                                HorizontalAlignment="Stretch"
+                                Placeholder="Account type" />
+
                             <components:Button
                                 x:Name="RegisterButton"
                                 Height="40"
-                                Margin="0,0,0,10"
                                 HorizontalAlignment="Stretch"
                                 ButtonHeight="Medium"
                                 ButtonStyle="Primary"
                                 ButtonText="Submit"
                                 MouseDown="RegisterButton_MouseDown" />
-                            <components:Dropdown
-                                x:Name="RegistrationTypeDropdown"
-                                Width="auto"
-                                HorizontalAlignment="Stretch"
-                                Placeholder="Account type" />
                         </StackPanel>
                     </Border>
                     <!--  Button section  -->

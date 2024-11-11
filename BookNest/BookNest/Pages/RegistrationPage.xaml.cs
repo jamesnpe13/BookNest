@@ -47,7 +47,7 @@ public partial class RegistrationPage : Page
 
     private void PasswordField_LostFocus(object sender, System.Windows.RoutedEventArgs e)
     {
-        PasswordText = PasswordField.PasswordInputFieldTextBox.Password;
+        PasswordText = PasswordField.ActualPassword;
 
         // check if p2 is null or empty
         // if not null or empty then check match
@@ -61,7 +61,7 @@ public partial class RegistrationPage : Page
 
     private void ConfirmPasswordField_LostFocus(object sender, System.Windows.RoutedEventArgs e)
     {
-        ConfirmPasswordText = ConfirmPasswordField.PasswordInputFieldTextBox.Password;
+        ConfirmPasswordText = ConfirmPasswordField.ActualPassword;
 
         CheckPasswordMatch();
     }
@@ -81,6 +81,7 @@ public partial class RegistrationPage : Page
         TempAccount.LastName = LastNameField.TextInputFieldTextBox.Text;
         TempAccount.Username = UsernameField.TextInputFieldTextBox.Text;
         TempAccount.Email = EmailField.TextInputFieldTextBox.Text;
+        TempAccount.Password = PasswordText;
 
         if (RegistrationTypeDropdown.DropdownCombobox.SelectedItem is ComboBoxItem selectedItem)
         {
@@ -93,6 +94,7 @@ public partial class RegistrationPage : Page
         Console.WriteLine(TempAccount.FirstName);
         Console.WriteLine(TempAccount.LastName);
         Console.WriteLine(TempAccount.Username);
+        Console.WriteLine(TempAccount.Password);
         Console.WriteLine(TempAccount.Email);
         Console.WriteLine(TempAccount.PasswordHash);
         Console.WriteLine(TempAccount.Salt);
@@ -119,29 +121,6 @@ public partial class RegistrationPage : Page
     {
         vm.RegisterAccount(TempAccount, PasswordText);
         vm.SubmitForm();
-    }
-
-    // -------------- unused
-
-    private void SubmitIfNotEmptyOrNull(string field)
-    {
-        if (!string.IsNullOrEmpty(field)) SubmitForm();
-    }
-
-    private void UsernameField_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-    {
-        if (e.Key == Key.Enter)
-        {
-            SubmitIfNotEmptyOrNull(UsernameField.TextInputFieldTextBox.Text);
-        }
-    }
-
-    private void PasswordField_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-    {
-        if (e.Key == Key.Enter)
-        {
-            SubmitIfNotEmptyOrNull(UsernameField.TextInputFieldTextBox.Text);
-        }
     }
 
 }

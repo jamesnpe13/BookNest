@@ -1,4 +1,5 @@
-﻿using BookNest.Services;
+﻿using BookNest.Components;
+using BookNest.Services;
 using BookNest.ViewModels;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Windows.Controls;
@@ -11,6 +12,7 @@ public partial class SignInPage : Page
     private readonly SignInPage_VM vm;
     private readonly AppData ad;
     private readonly PageNavigationService pn;
+    public string Password { get; set; }
 
     public SignInPage(SignInPage_VM _vm, AppData _ad, PageNavigationService _pn)
     {
@@ -39,11 +41,17 @@ public partial class SignInPage : Page
     {
         if (e.Key == Key.Enter)
         {
-            if (!string.IsNullOrEmpty(PasswordField.PasswordInputFieldTextBox.Password))
+            if (!string.IsNullOrEmpty(PasswordField.PasswordInputFieldTextBox.Text))
             {
                 SubmitForm();
             }
         }
+    }
+
+    private void PasswordField_LostFocus(object sender, System.Windows.RoutedEventArgs e)
+    {
+        Password = PasswordField.ActualPassword;
+        Console.WriteLine(Password);
     }
 
     private void SignInButton_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -53,7 +61,8 @@ public partial class SignInPage : Page
 
     private void SubmitForm()
     {
-        vm.SubmitForm();
+
+        vm.SubmitForm(Password);
     }
 
     private void SwitchTypeButton_MouseDown(object sender, MouseButtonEventArgs e)
@@ -72,4 +81,5 @@ public partial class SignInPage : Page
     {
         pn.SetCurrentPage("RegistrationPage");
     }
+
 }

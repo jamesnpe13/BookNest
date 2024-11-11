@@ -14,7 +14,7 @@
         <Setter Property="Foreground" Value="{StaticResource Grey3}" />
         <Setter Property="FontSize" Value="{StaticResource Small}" />
     </Style>
-    <Style x:Key="PasswordBoxTextBox" TargetType="PasswordBox">
+    <Style x:Key="PasswordBoxTextBox" TargetType="TextBox">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Height" Value="30" />
         <Setter Property="Padding" Value="10,0,10,0" />

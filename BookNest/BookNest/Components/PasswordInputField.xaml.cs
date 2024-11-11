@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace BookNest.Components;
 
 public partial class PasswordInputField : UserControl
 {
+
+    public string ActualPassword
+    {
+        get { return (string)GetValue(ActualPasswordProperty); }
+        set { SetValue(ActualPasswordProperty, value); }
+    }
+
+    // Using a DependencyProperty as the backing store for ActualPassword.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty ActualPasswordProperty =
+        DependencyProperty.Register("ActualPassword", typeof(string), typeof(PasswordInputField), new PropertyMetadata(string.Empty));
 
     public string Placeholder
     {
@@ -34,9 +32,27 @@ public partial class PasswordInputField : UserControl
         InitializeComponent();
     }
 
-    private void PasswordInputFieldTextBox_PasswordChanged(object sender, RoutedEventArgs e)
+    private void PasswordInputFieldTextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
-        if (string.IsNullOrEmpty(PasswordInputFieldTextBox.Password))
+        // password masking
+        int currentLength = PasswordInputFieldTextBox.Text.Length;
+
+        if (currentLength > ActualPassword.Length)
+        {
+            string newCharacters = PasswordInputFieldTextBox.Text.Substring(ActualPassword.Length);
+            ActualPassword += newCharacters;
+        }
+        else if (currentLength < ActualPassword.Length)
+        {
+            ActualPassword = ActualPassword.Substring(0, currentLength);
+        }
+
+        PasswordInputFieldTextBox.Text = new string('●', ActualPassword.Length);
+        PasswordInputFieldTextBox.CaretIndex = PasswordInputFieldTextBox.Text.Length;
+
+        // palceholder visibility
+
+        if (string.IsNullOrEmpty(PasswordInputFieldTextBox.Text))
         {
             PlaceholderLabel.Visibility = Visibility.Visible;
         }

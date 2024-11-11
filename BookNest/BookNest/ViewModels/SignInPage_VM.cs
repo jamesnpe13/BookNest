@@ -36,6 +36,7 @@ public partial class SignInPage_VM : ObservableObject
         ad = _ad;
         ds = _ds;
         SetFormType();
+
     }
 
     public void SetFormType()
@@ -45,19 +46,20 @@ public partial class SignInPage_VM : ObservableObject
         SwitchTypeButtonText = IsAdmin ? "Sign in as member" : "Sign in as administrator";
     }
 
-    public void SubmitForm()
+    public void SubmitForm(string password)
     {
+
         // if form validation success then proceed. Else show error and do not proceed.
 
         // handle sign in
         if (ds.GetAccount_single(Username, IsAdmin ? "Administrator" : "Member").Username == Username)
         {
             Console.WriteLine("Match found");
+            ss.HandleUserSignIn(Username, password, IsAdmin ? "Administrator" : "Member");
         }
         else
         {
             Console.WriteLine("Match not found");
-
         }
 
     }

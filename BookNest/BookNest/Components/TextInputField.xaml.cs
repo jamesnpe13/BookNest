@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace BookNest.Components
 {
     public partial class TextInputField : UserControl
     {
+
+        public bool IsPassword
+        {
+            get { return (bool)GetValue(IsPasswordProperty); }
+            set { SetValue(IsPasswordProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IsPassword.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsPasswordProperty =
+            DependencyProperty.Register("IsPassword", typeof(bool), typeof(TextInputField), new PropertyMetadata(false));
 
         public string Text
         {
