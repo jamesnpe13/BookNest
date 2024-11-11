@@ -23,6 +23,9 @@ public partial class MainPage_VM : ObservableObject
     [ObservableProperty]
     private string welcomeTextLine2;
 
+    [ObservableProperty]
+    private string accountType;
+
     [ObservableProperty] private Visibility dashboardNavButtonVisibility;
     [ObservableProperty] private Visibility booksNavButtonVisibility;
     [ObservableProperty] private Visibility bagNavButtonVisibility;
@@ -38,8 +41,7 @@ public partial class MainPage_VM : ObservableObject
         ad = _ad;
         ss = _ss;
 
-        ConstructWelcomeMessage();
-        NavBarStyleInit();
+        NavbarInit();
         SetCurrentView("MemberDashboard");
     }
 
@@ -54,15 +56,17 @@ public partial class MainPage_VM : ObservableObject
         if (targetView == "MemberAccount") CurrentView = new Member_Account_V();
     }
 
-    public void ConstructWelcomeMessage()
+    // navbar style (member or admin)
+    public void NavbarInit()
     {
+        // set welcome message
         WelcomeTextLine1 = "Hi, " + ad.CurrentAccount.FirstName;
         WelcomeTextLine2 = "Let's get started";
-    }
 
-    // navbar style (member or admin)
-    public void NavBarStyleInit()
-    {
+        // set account type display
+        AccountType = ad.CurrentAccount.AccountType;
+
+        // show view buttons
         if (ad.CurrentAccount.AccountType == "Member")
         {
             DashboardNavButtonVisibility = Visibility.Collapsed;

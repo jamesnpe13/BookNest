@@ -34,6 +34,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
@@ -55,10 +56,23 @@
             </StackPanel>
         </Border>
 
+        <Border
+            Grid.Row="1"
+            Padding="20,5,20,8"
+            HorizontalAlignment="Stretch"
+            Background="{StaticResource Blue4}">
+            <Label
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Content="{Binding AccountType}"
+                FontSize="{StaticResource XSmall}"
+                Foreground="{StaticResource LightBlue}" />
+        </Border>
+
         <!--  Main nav section  -->
-        <Border Grid.Row="1" Padding="0,20,0,20">
+        <Border Grid.Row="2" Padding="0,20,0,20">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <StackPanel Orientation="Vertical" >
+                <StackPanel Orientation="Vertical">
                     <components:NavButton
                         x:Name="DashboardNavButton"
                         ButtonStyle="Transparent"
@@ -113,7 +127,7 @@
             </ScrollViewer>
         </Border>
         <!--  Footer section section  -->
-        <Border Grid.Row="2" Padding="0">
+        <Border Grid.Row="3" Padding="0">
             <StackPanel Orientation="Vertical">
                 <components:NavButton
                     x:Name="AccountNavButton"
