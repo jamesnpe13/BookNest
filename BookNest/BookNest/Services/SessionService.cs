@@ -28,36 +28,60 @@ public partial class SessionService : ObservableObject
     // Handle user sign in
     public void HandleUserSignIn(string usernameInput, string passwordInput, string accountType)
     {
+
+        var thisAccount = new Account_M();
         // get user from db
 
-        Account_M thisAccount = ds.GetAccount_single(usernameInput, accountType);
-        Console.WriteLine("Account found name: " + thisAccount.FirstName + " " + thisAccount.LastName);
-        //Console.WriteLine("Password verified: " + pm.VerifyPassword(passwordInput, thisAccount));
+        try
+        {
+            Console.WriteLine(ds.GetAccount(usernameInput, accountType, true) == null);
+
+            if (ds.GetAccount(usernameInput, accountType, true) == null)
+                throw new Exception("Returned null");
+
+            thisAccount = ds.GetAccount(usernameInput, accountType, true);
+
+            Console.WriteLine("Account found: " + thisAccount.FirstName + " " + thisAccount.LastName);
+
+        }
+        catch (Exception err)
+        {
+            Console.WriteLine("Account not found");
+            Console.WriteLine(err.Message);
+
+            return;
+        }
 
         // call password verify from password manager
         if (pm.VerifyPassword(passwordInput, thisAccount))
         {
+            Console.WriteLine("Password verification SUCCESS");
             ad.CurrentAccount = thisAccount;
-            Console.WriteLine(ad.CurrentAccount.FirstName + " " + ad.CurrentAccount.LastName);
             ns.SetCurrentPage("MainPage");
 
+            return;
         }
+
+        Console.WriteLine("Password verification FAILED");
     }
 
     // handle user sign out
+    public void HandleUserSignOut()
+    {
+        ad.CurrentAccount = null;
+        ns.SetCurrentPage("SignInPage");
+    }
 
     // handle user update account
     public void UpdateAccount(string targetUsername, string targetAccountType, Account_M updatedAccount)
     {
-        Console.WriteLine("Updating account");
-
         // get the account
-        Account_M targetAccount = ds.GetAccount_single(targetUsername, targetAccountType);
+        Account_M targetAccount = ds.GetAccount(targetUsername, targetAccountType, true);
         string thisUsername = targetAccount.Username;
         string thisAccountType = targetAccount.AccountType;
 
         // create temp account dupe for mod
-        Account_M tempAccount = ds.GetAccount_single(targetUsername, targetAccountType);
+        Account_M tempAccount = ds.GetAccount(targetUsername, targetAccountType, true);
 
         // modify fields - check if updated fields are empty or null or if value same as existing
         if (!string.IsNullOrEmpty(updatedAccount.FirstName) && updatedAccount.FirstName != targetAccount.FirstName)

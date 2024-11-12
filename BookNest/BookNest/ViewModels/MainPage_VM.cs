@@ -1,7 +1,10 @@
-﻿using BookNest.Services;
+﻿using BookNest.Modules;
+using BookNest.Services;
 using BookNest.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Win32.SafeHandles;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace BookNest.ViewModels;
@@ -9,22 +12,37 @@ namespace BookNest.ViewModels;
 public partial class MainPage_VM : ObservableObject
 {
     private readonly AppData ad;
+    private readonly SessionService ss;
 
     [ObservableProperty]
-    private UserControl currentView;
+    private UserControl? currentView;
 
     [ObservableProperty]
-    private string welcomeTextLine1;
+    private string welcomeTextLine1 = string.Empty;
 
     [ObservableProperty]
-    private string welcomeTextLine2;
+    private string welcomeTextLine2 = string.Empty;
 
-    public MainPage_VM(AppData _ad)
+    [ObservableProperty]
+    private string accountType = string.Empty;
+
+    [ObservableProperty] private Visibility dashboardNavButtonVisibility;
+    [ObservableProperty] private Visibility booksNavButtonVisibility;
+    [ObservableProperty] private Visibility bagNavButtonVisibility;
+    [ObservableProperty] private Visibility watchlistNavButtonVisibility;
+    [ObservableProperty] private Visibility returnsNavButtonVisibility;
+    [ObservableProperty] private Visibility reservedNavButtonVisibility;
+    [ObservableProperty] private Visibility peopleNavButtonVisibility;
+    [ObservableProperty] private Visibility accountNavButtonVisibility;
+    [ObservableProperty] private Visibility signOutNavButtonVisibility;
+
+    public MainPage_VM(AppData _ad, SessionService _ss)
     {
         ad = _ad;
-        // default 
+        ss = _ss;
+
+        NavbarInit();
         SetCurrentView("MemberDashboard");
-        ConstructWelcomeMessage();
     }
 
     // view router
@@ -38,9 +56,45 @@ public partial class MainPage_VM : ObservableObject
         if (targetView == "MemberAccount") CurrentView = new Member_Account_V();
     }
 
-    public void ConstructWelcomeMessage()
+    // navbar style (member or admin)
+    public void NavbarInit()
     {
-        WelcomeTextLine1 = "Hi, " + ad.CurrentAccount.FirstName;
+        // set welcome message
+        WelcomeTextLine1 = "Hi, " + ad.CurrentAccount.FirstName ?? "User";
         WelcomeTextLine2 = "Let's get started";
+
+        // set account type display
+        AccountType = ad.CurrentAccount.AccountType;
+
+        // show view buttons
+        if (ad.CurrentAccount.AccountType == "Member")
+        {
+            DashboardNavButtonVisibility = Visibility.Collapsed;
+            BooksNavButtonVisibility = Visibility.Visible;
+            BagNavButtonVisibility = Visibility.Visible;
+            WatchlistNavButtonVisibility = Visibility.Visible;
+            ReturnsNavButtonVisibility = Visibility.Collapsed;
+            ReservedNavButtonVisibility = Visibility.Collapsed;
+            PeopleNavButtonVisibility = Visibility.Collapsed;
+            AccountNavButtonVisibility = Visibility.Visible;
+            SignOutNavButtonVisibility = Visibility.Visible;
+        }
+        else if (ad.CurrentAccount.AccountType == "Administrator")
+        {
+            DashboardNavButtonVisibility = Visibility.Visible;
+            BooksNavButtonVisibility = Visibility.Visible;
+            BagNavButtonVisibility = Visibility.Collapsed;
+            WatchlistNavButtonVisibility = Visibility.Collapsed;
+            ReturnsNavButtonVisibility = Visibility.Visible;
+            ReservedNavButtonVisibility = Visibility.Visible;
+            PeopleNavButtonVisibility = Visibility.Visible;
+            AccountNavButtonVisibility = Visibility.Visible;
+            SignOutNavButtonVisibility = Visibility.Visible;
+        }
+    }
+
+    public void HandleUserSignOut()
+    {
+        ss.HandleUserSignOut();
     }
 }

@@ -1,22 +1,18 @@
 ﻿using BookNest.Services;
 using BookNest.ViewModels;
-using CommunityToolkit.Mvvm.Messaging;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows;
 
 namespace BookNest.Modules;
 
 public partial class SideNavModule : UserControl
 {
-    private readonly AppData ad;
 
     public SideNavModule()
     {
         InitializeComponent();
 
-        ad = new();
-
-        Console.WriteLine(ad.CurrentAccount.FirstName + " " + ad.CurrentAccount.LastName);
     }
 
     // apply logic here to check if user is
@@ -64,7 +60,8 @@ public partial class SideNavModule : UserControl
 
     private void SignOutNavButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        SetCurrentView("SignOut");
+        //SetCurrentView("SignOut");
+        HandleUserSignOut();
     }
 
     private void SetCurrentView(string targetView)
@@ -72,6 +69,14 @@ public partial class SideNavModule : UserControl
         if (DataContext is MainPage_VM vm)
         {
             vm.SetCurrentView(targetView);
+        }
+    }
+
+    private void HandleUserSignOut()
+    {
+        if (DataContext is MainPage_VM vm)
+        {
+            vm.HandleUserSignOut();
         }
     }
 }

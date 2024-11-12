@@ -19,13 +19,13 @@ public partial class SignInPage_VM : ObservableObject
     private bool isAdmin = true; // temporary override
 
     [ObservableProperty]
-    private string username;
+    private string username = string.Empty;
 
     [ObservableProperty]
-    private string formLabelText;
+    private string formLabelText = string.Empty;
 
     [ObservableProperty]
-    private string switchTypeButtonText;
+    private string switchTypeButtonText = string.Empty;
 
     public SignInPage_VM(PageNavigationService _ps, SessionService _ss, AppData _ad, DatabaseService _ds)
     {
@@ -45,24 +45,7 @@ public partial class SignInPage_VM : ObservableObject
 
     public void SubmitForm(string password)
     {
-        Console.WriteLine(password);
-
-        // if form validation success then proceed. Else show error and do not proceed.
-
-        // handle sign in
-        if (ds.GetAccount_single(Username, IsAdmin ? "Administrator" : "Member").Username == Username && !string.IsNullOrEmpty(Username))
-        {
-            Console.WriteLine("Match found");
-            Console.WriteLine("Target Username: " + ds.GetAccount_single(Username, IsAdmin ? "Administrator" : "Member").Username);
-            Console.WriteLine("target Account type: " + ds.GetAccount_single(Username, IsAdmin ? "Administrator" : "Member").AccountType);
-            Console.WriteLine("Target Password: " + ds.GetAccount_single(Username, IsAdmin ? "Administrator" : "Member").Password);
-
-            ss.HandleUserSignIn(Username, password, IsAdmin ? "Administrator" : "Member");
-        }
-        else
-        {
-            Console.WriteLine("Match not found");
-        }
+        ss.HandleUserSignIn(Username, password, IsAdmin ? "Administrator" : "Member");
 
     }
 

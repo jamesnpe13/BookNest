@@ -1,4 +1,5 @@
 ﻿using BookNest.Data;
+using BookNest.Models;
 using BookNest.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -14,8 +15,11 @@ public partial class MainWindow_VM : ObservableObject
     private readonly DatabaseService ds;
     private readonly SessionService ss;
 
-    [ObservableProperty] private string targetPage;
-    [ObservableProperty] private Page currentPage;
+    [ObservableProperty]
+    private string? targetPage;
+
+    [ObservableProperty]
+    private Page? currentPage;
 
     public MainWindow_VM(IServiceProvider _sp, PageNavigationService _ns, AppData _ad, DatabaseService _ds, SessionService _ss)
     {
