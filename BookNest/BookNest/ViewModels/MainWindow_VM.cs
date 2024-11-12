@@ -30,8 +30,6 @@ public partial class MainWindow_VM : ObservableObject
         ss = _ss;
 
         ns.SetCurrentPage(ad.DefaultPage); // sets default page
-
-        ds.DeleteBook("1");
     }
 
     [RelayCommand]
