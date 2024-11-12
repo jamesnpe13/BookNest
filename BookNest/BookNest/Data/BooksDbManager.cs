@@ -1,20 +1,14 @@
 ﻿using BookNest.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookNest.Data;
 
 partial class DatabaseService : ObservableObject
 {
-    /***********************************
-   *      BOOKS
-  ***********************************/
+    //************************************
+    //          HANDLE BOOK QUERIES
+    //************************************
 
     // Add book
     public void AddBook(Book_M book)
@@ -45,9 +39,55 @@ partial class DatabaseService : ObservableObject
     }
 
     // Update book
-    public void UpdateBook(int targetBookId, Book_M updateBook)
+    public void UpdateBook(string targetBookId, Book_M updatedBook)
     {
+        using (var connection = new SQLiteConnection(DB_STRING))
+        {
+            connection.Open();
 
+            using (var transaction = connection.BeginTransaction())
+            {
+                try
+                {
+                    using (var command = new SQLiteCommand(connection))
+                    {
+                        command.CommandText = @"
+                        UPDATE Books
+                        SET ISBN = @ISBN,
+                            Title = @Title,
+                            Genre = @Genre,
+                            Author = @Author,
+                            Status = @Status,
+                            YearOfPublication = @YearOfPublication,
+                            Publisher = @Publisher,
+                            Likes = @Likes
+                        WHERE BookID = @targetBookID
+                        ";
+
+                        command.Parameters.AddWithValue("@targetBookID", targetBookId);
+                        command.Parameters.AddWithValue("@ISBN", updatedBook.Isbn);
+                        command.Parameters.AddWithValue("@Title", updatedBook.Title);
+                        command.Parameters.AddWithValue("@Genre", updatedBook.Genre.ToString());
+                        command.Parameters.AddWithValue("@Author", updatedBook.Author);
+                        command.Parameters.AddWithValue("@Status", updatedBook.Status.ToString());
+                        command.Parameters.AddWithValue("@YearOfPublication", updatedBook.YearOfPublication);
+                        command.Parameters.AddWithValue("@Publisher", updatedBook.Publisher);
+                        command.Parameters.AddWithValue("@Likes", updatedBook.Likes);
+
+                        command.ExecuteNonQuery();
+                    }
+
+                    transaction.Commit();
+                    Console.WriteLine("Book update SUCCESS");
+                }
+                catch (Exception err)
+                {
+                    transaction.Rollback();
+                    Console.WriteLine("Book update FAILED");
+                    Console.WriteLine(err.Message);
+                }
+            }
+        }
     }
 
     // Get book - single overload
@@ -88,16 +128,16 @@ partial class DatabaseService : ObservableObject
                                     tempBook.Publisher = reader["Publisher"].ToString() ?? string.Empty;
                                     tempBook.Likes = reader.GetInt32(reader.GetOrdinal("Likes"));
 
-                                    Console.WriteLine("Match found for " + key + " = " + value);
-                                    Console.WriteLine("BookID: " + tempBook.BookId);
-                                    Console.WriteLine("ISBN " + tempBook.Isbn);
-                                    Console.WriteLine("Title: " + tempBook.Title);
-                                    Console.WriteLine("Author: " + tempBook.Author);
-                                    Console.WriteLine("Genre: " + tempBook.Genre);
-                                    Console.WriteLine("Status: " + tempBook.Status);
-                                    Console.WriteLine("YearOfPublication: " + tempBook.YearOfPublication);
-                                    Console.WriteLine("Publisher: " + tempBook.Publisher);
-                                    Console.WriteLine("Likes: " + tempBook.Likes);
+                                    //Console.WriteLine("Match found for " + key + " = " + value);
+                                    //Console.WriteLine("BookID: " + tempBook.BookId);
+                                    //Console.WriteLine("ISBN " + tempBook.Isbn);
+                                    //Console.WriteLine("Title: " + tempBook.Title);
+                                    //Console.WriteLine("Author: " + tempBook.Author);
+                                    //Console.WriteLine("Genre: " + tempBook.Genre);
+                                    //Console.WriteLine("Status: " + tempBook.Status);
+                                    //Console.WriteLine("YearOfPublication: " + tempBook.YearOfPublication);
+                                    //Console.WriteLine("Publisher: " + tempBook.Publisher);
+                                    //Console.WriteLine("Likes: " + tempBook.Likes);
                                 }
                             }
                         }
@@ -211,19 +251,19 @@ partial class DatabaseService : ObservableObject
                             tempBook.Publisher = reader["Publisher"].ToString() ?? string.Empty;
                             tempBook.Likes = reader.GetInt32(reader.GetOrdinal("Likes"));
 
-                            tempBookList.Add(tempBook);
                         }
 
-                        Console.WriteLine("Match found for " + key + (!string.IsNullOrEmpty(value) ? (" = " + value) : ""));
-                        Console.WriteLine("BookID: " + tempBook.BookId);
-                        Console.WriteLine("ISBN " + tempBook.Isbn);
-                        Console.WriteLine("Title: " + tempBook.Title);
-                        Console.WriteLine("Author: " + tempBook.Author);
-                        Console.WriteLine("Genre: " + tempBook.Genre);
-                        Console.WriteLine("Status: " + tempBook.Status);
-                        Console.WriteLine("YearOfPublication: " + tempBook.YearOfPublication);
-                        Console.WriteLine("Publisher: " + tempBook.Publisher);
-                        Console.WriteLine("Likes: " + tempBook.Likes);
+                        tempBookList.Add(tempBook);
+                        //Console.WriteLine("Match found for " + key + (!string.IsNullOrEmpty(value) ? (" = " + value) : ""));
+                        //Console.WriteLine("BookID: " + tempBook.BookId);
+                        //Console.WriteLine("ISBN " + tempBook.Isbn);
+                        //Console.WriteLine("Title: " + tempBook.Title);
+                        //Console.WriteLine("Author: " + tempBook.Author);
+                        //Console.WriteLine("Genre: " + tempBook.Genre);
+                        //Console.WriteLine("Status: " + tempBook.Status);
+                        //Console.WriteLine("YearOfPublication: " + tempBook.YearOfPublication);
+                        //Console.WriteLine("Publisher: " + tempBook.Publisher);
+                        //Console.WriteLine("Likes: " + tempBook.Likes);
 
                     }
                 }

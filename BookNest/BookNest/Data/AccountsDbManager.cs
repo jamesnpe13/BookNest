@@ -12,9 +12,9 @@ namespace BookNest.Data;
 partial class DatabaseService : ObservableObject
 {
 
-    /***********************************
-     *      ACCOUNTS
-    ***********************************/
+    //************************************
+    //          HANDLE ACCOUNT QUERIES
+    //************************************
 
     // Add account
     public void AddAccount(Account_M account)

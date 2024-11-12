@@ -9,9 +9,9 @@ namespace BookNest.Data;
 
 partial class DatabaseService : ObservableObject
 {
-    /***********************************
-   *      lOAN TRANSACTIONS
-   ***********************************/
+    //************************************
+    //          HANDLE LOAN TRANSACTION QUERIES
+    //************************************
 
     // Add loan transacton
 

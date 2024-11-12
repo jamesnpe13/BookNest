@@ -10,6 +10,10 @@ namespace BookNest.Data;
 
 partial class DatabaseService : ObservableObject
 {
+    //************************************
+    //          HANDLE DB AND TABLE INIT
+    //************************************
+
     // initialize tables
     void TableInit()
     {

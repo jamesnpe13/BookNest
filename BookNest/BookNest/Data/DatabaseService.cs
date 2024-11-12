@@ -6,7 +6,11 @@ namespace BookNest.Data;
 
 public partial class DatabaseService : ObservableObject
 {
+    //************************************
+
     // THIS DB SERVICE CLASS IS SPLIT INTO MULTIPLE PARTIAL FILES UNDER 'Data' directory
+
+    //************************************
 
     private readonly AppData ad;
     private readonly string DB_STRING = string.Empty;
@@ -26,5 +30,4 @@ public partial class DatabaseService : ObservableObject
         DB_STRING = ad.DB_STRING;
         TableInit();
     }
-
 }
