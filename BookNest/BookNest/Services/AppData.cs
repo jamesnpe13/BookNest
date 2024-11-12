@@ -23,6 +23,7 @@ public partial class AppData : ObservableObject
 
     public AppData()
     {
+
     }
 
 }

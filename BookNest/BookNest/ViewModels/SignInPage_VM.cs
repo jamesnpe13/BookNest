@@ -34,6 +34,9 @@ public partial class SignInPage_VM : ObservableObject
         ad = _ad;
         ds = _ds;
         SetFormType();
+
+        // temp auto sign in
+
     }
 
     public void SetFormType()

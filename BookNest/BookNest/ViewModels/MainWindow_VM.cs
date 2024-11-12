@@ -30,6 +30,13 @@ public partial class MainWindow_VM : ObservableObject
         ss = _ss;
 
         ns.SetCurrentPage(ad.DefaultPage); // sets default page
+
+        // admin and member switching for testing
+        int tempUser = 2;
+
+        if (tempUser == 1) ss.HandleUserSignIn("admin", "123", "Administrator");
+        if (tempUser == 2) ss.HandleUserSignIn("member", "123", "Member");
+
     }
 
     [RelayCommand]
