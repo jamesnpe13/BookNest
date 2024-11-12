@@ -31,14 +31,13 @@ public partial class SessionService : ObservableObject
         // get user from db
 
         Account_M thisAccount = ds.GetAccount(usernameInput, accountType, true);
-        Console.WriteLine("Account found name: " + thisAccount.FirstName + " " + thisAccount.LastName);
+        Console.WriteLine("Account found: " + thisAccount.FirstName + " " + thisAccount.LastName);
         //Console.WriteLine("Password verified: " + pm.VerifyPassword(passwordInput, thisAccount));
 
         // call password verify from password manager
         if (pm.VerifyPassword(passwordInput, thisAccount))
         {
             ad.CurrentAccount = thisAccount;
-            Console.WriteLine(ad.CurrentAccount.FirstName + " " + ad.CurrentAccount.LastName);
             ns.SetCurrentPage("MainPage");
         }
     }
@@ -53,8 +52,6 @@ public partial class SessionService : ObservableObject
     // handle user update account
     public void UpdateAccount(string targetUsername, string targetAccountType, Account_M updatedAccount)
     {
-        Console.WriteLine("Updating account");
-
         // get the account
         Account_M targetAccount = ds.GetAccount(targetUsername, targetAccountType, true);
         string thisUsername = targetAccount.Username;
