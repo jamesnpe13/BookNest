@@ -45,17 +45,7 @@ public partial class SignInPage_VM : ObservableObject
 
     public void SubmitForm(string password)
     {
-        // if form validation success then proceed. Else show error and do not proceed.
-
-        // handle sign in
-        if (ds.GetAccount(Username, IsAdmin ? "Administrator" : "Member", true).Username == Username && !string.IsNullOrEmpty(Username))
-        {
-            ss.HandleUserSignIn(Username, password, IsAdmin ? "Administrator" : "Member");
-        }
-        else
-        {
-            Console.WriteLine("Match not found");
-        }
+        ss.HandleUserSignIn(Username, password, IsAdmin ? "Administrator" : "Member");
 
     }
 

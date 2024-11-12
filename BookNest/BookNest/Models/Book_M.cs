@@ -11,6 +11,12 @@ public enum BookGenre
     NonFiction,
 }
 
+public enum BookStatus
+{
+    Available,
+    Unavailable,
+}
+
 public partial class Book_M : ObservableObject
 {
     [ObservableProperty]
@@ -21,6 +27,9 @@ public partial class Book_M : ObservableObject
 
     [ObservableProperty]
     private string title = string.Empty;
+
+    [ObservableProperty]
+    private BookStatus status = BookStatus.Available;
 
     [ObservableProperty]
     private string author = string.Empty;

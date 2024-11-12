@@ -28,18 +28,41 @@ public partial class SessionService : ObservableObject
     // Handle user sign in
     public void HandleUserSignIn(string usernameInput, string passwordInput, string accountType)
     {
+
+        var thisAccount = new Account_M();
         // get user from db
 
-        Account_M thisAccount = ds.GetAccount(usernameInput, accountType, true);
-        Console.WriteLine("Account found: " + thisAccount.FirstName + " " + thisAccount.LastName);
-        //Console.WriteLine("Password verified: " + pm.VerifyPassword(passwordInput, thisAccount));
+        try
+        {
+            Console.WriteLine(ds.GetAccount(usernameInput, accountType, true) == null);
+
+            if (ds.GetAccount(usernameInput, accountType, true) == null)
+                throw new Exception("Returned null");
+
+            thisAccount = ds.GetAccount(usernameInput, accountType, true);
+
+            Console.WriteLine("Account found: " + thisAccount.FirstName + " " + thisAccount.LastName);
+
+        }
+        catch (Exception err)
+        {
+            Console.WriteLine("Account not found");
+            Console.WriteLine(err.Message);
+
+            return;
+        }
 
         // call password verify from password manager
         if (pm.VerifyPassword(passwordInput, thisAccount))
         {
+            Console.WriteLine("Password verification SUCCESS");
             ad.CurrentAccount = thisAccount;
             ns.SetCurrentPage("MainPage");
+
+            return;
         }
+
+        Console.WriteLine("Password verification FAILED");
     }
 
     // handle user sign out

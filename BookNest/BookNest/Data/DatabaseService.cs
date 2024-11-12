@@ -2,8 +2,39 @@
 using BookNest.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Data.SQLite;
+using System.Security.Policy;
+using System.Windows.Controls.Primitives;
+using System.Windows.Shapes;
 
 namespace BookNest.Data;
+
+public enum AccountFilterKey
+{
+    ID,
+    FIRST_NAME,
+    LAST_NAME,
+    USERNAME,
+    EMAIL,
+    ACCOUNT_TYPE
+}
+
+public enum BookFilterKey
+{
+    ALL,
+    ID,
+    ISBN,
+    TITLE,
+    GENRE,
+    AUTHOR,
+    YEAR_OF_PUBLICATION,
+    PUBLISHER,
+    STATUS,
+    LIKES
+}
+
+public enum LoanTransactionFilterKey
+{
+}
 
 public partial class DatabaseService : ObservableObject
 {
@@ -18,32 +49,6 @@ public partial class DatabaseService : ObservableObject
 
     [ObservableProperty]
     private string dbConnectionStatus = string.Empty;
-
-    public enum AccountFilterKey
-    {
-        ID,
-        FIRST_NAME,
-        LAST_NAME,
-        USERNAME,
-        EMAIL,
-        ACCOUNT_TYPE
-    }
-
-    public enum BookFilterKey
-    {
-        ID,
-        ISBN,
-        TITLE,
-        GENRE,
-        AUTHOR,
-        YEAR_OF_PUBLICATION,
-        PUBLISHER,
-        LIKES
-    }
-
-    public enum LoanTransactionFilterKey
-    {
-    }
 
     public DatabaseService(AppData _ad)
     {
@@ -93,6 +98,7 @@ public partial class DatabaseService : ObservableObject
                 Author    TEXT NOT NULL DEFAULT 'Author unknown',
                 YearOfPublication TEXT NOT NULL DEFAULT 'Year of publication unknown',
                 Publisher TEXT NOT NULL DEFAULT 'Publisher unknown',
+                Status TEXT NOT NULL DEFAULT 'Available',
                 Likes INTEGER NOT NULL DEFAULT 0,
                 PRIMARY KEY(BookID AUTOINCREMENT))
             ";
@@ -231,8 +237,11 @@ public partial class DatabaseService : ObservableObject
 
                     using (var reader = command.ExecuteReader())
                     {
+                        if (reader.StepCount == 0) return null;
+
                         while (reader.Read())
                         {
+
                             tempAccount.FirstName = reader["FirstName"].ToString() ?? string.Empty;
                             tempAccount.LastName = reader["Lastname"].ToString() ?? string.Empty;
                             tempAccount.Username = reader["Username"].ToString() ?? string.Empty;
@@ -337,8 +346,8 @@ public partial class DatabaseService : ObservableObject
             connection.Open();
 
             string addItemSql = @"
-            INSERT INTO Books (ISBN, Title, Genre, Author, YearOfPublication, Publisher, Likes)
-            VALUES (@ISBN, @Title, @Genre, @Author, @YearOfPublication, @Publisher, @Likes)
+            INSERT INTO Books (ISBN, Title, Genre, Author, YearOfPublication, Publisher, Likes, Status)
+            VALUES (@ISBN, @Title, @Genre, @Author, @YearOfPublication, @Publisher, @Likes, @Status)
             ";
 
             using (var command = new SQLiteCommand(addItemSql, connection))
@@ -347,6 +356,7 @@ public partial class DatabaseService : ObservableObject
                 command.Parameters.AddWithValue("@Title", book.Title);
                 command.Parameters.AddWithValue("@Genre", book.Genre.ToString());
                 command.Parameters.AddWithValue("@Author", book.Author);
+                command.Parameters.AddWithValue("@Status", book.Status.ToString());
                 command.Parameters.AddWithValue("@YearOfPublication", book.YearOfPublication);
                 command.Parameters.AddWithValue("@Publisher", book.Publisher);
                 command.Parameters.AddWithValue("@Likes", book.Likes);
@@ -365,56 +375,187 @@ public partial class DatabaseService : ObservableObject
     // Get book - single overload
     public Book_M GetBook(BookFilterKey key, string value, bool returnSingle)
     {
-        // parse string back to enum type
         Book_M tempBook = new();
         {
-            // filter by ID
-            if (key == BookFilterKey.ID)
+            if (returnSingle)
             {
-                using (var connection = new SQLiteConnection(DB_STRING))
+                // filter by ID
+                if (key == BookFilterKey.ID)
                 {
-                    connection.Open();
-                    string query = @"SELECT * FROM Books
+                    using (var connection = new SQLiteConnection(DB_STRING))
+                    {
+                        connection.Open();
+                        string query = @"
+                            SELECT * FROM Books
                             WHERE BookID = @bookId
                             ";
-                    using (var command = new SQLiteCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@bookId", value);
-
-                        using (var reader = command.ExecuteReader())
+                        using (var command = new SQLiteCommand(query, connection))
                         {
-                            while (reader.Read())
+                            command.Parameters.AddWithValue("@bookId", value);
+
+                            using (var reader = command.ExecuteReader())
                             {
-                                var genreString = reader["Genre"].ToString() ?? BookGenre.Unassigned.ToString();
+                                while (reader.Read())
+                                {
+                                    var genreString = reader["Genre"].ToString() ?? BookGenre.Unassigned.ToString();
+                                    var statusString = reader["Status"].ToString() ?? BookStatus.Available.ToString();
 
-                                tempBook.BookId = reader.GetInt32(reader.GetOrdinal("BookID"));
-                                tempBook.Isbn = reader["ISBN"].ToString() ?? string.Empty;
-                                tempBook.Title = reader["Title"].ToString() ?? string.Empty;
-                                tempBook.Author = reader["Author"].ToString() ?? string.Empty;
-                                tempBook.Genre = Enum.Parse<BookGenre>(genreString);
-                                tempBook.YearOfPublication = reader["YearOfPublication"].ToString() ?? string.Empty;
-                                tempBook.Publisher = reader["Publisher"].ToString() ?? string.Empty;
-                                tempBook.Likes = reader.GetInt32(reader.GetOrdinal("Likes"));
+                                    tempBook.BookId = reader.GetInt32(reader.GetOrdinal("BookID"));
+                                    tempBook.Isbn = reader["ISBN"].ToString() ?? string.Empty;
+                                    tempBook.Title = reader["Title"].ToString() ?? string.Empty;
+                                    tempBook.Author = reader["Author"].ToString() ?? string.Empty;
+                                    tempBook.Genre = Enum.Parse<BookGenre>(genreString);
+                                    tempBook.Status = Enum.Parse<BookStatus>(statusString);
+                                    tempBook.YearOfPublication = reader["YearOfPublication"].ToString() ?? string.Empty;
+                                    tempBook.Publisher = reader["Publisher"].ToString() ?? string.Empty;
+                                    tempBook.Likes = reader.GetInt32(reader.GetOrdinal("Likes"));
 
-                                Console.WriteLine("Match found for " + key + " = " + value);
-                                Console.WriteLine("BookID: " + tempBook.BookId);
-                                Console.WriteLine("ISBN " + tempBook.Isbn);
-                                Console.WriteLine("Title: " + tempBook.Title);
-                                Console.WriteLine("Author: " + tempBook.Author);
-                                Console.WriteLine("Genre: " + tempBook.Genre);
-                                Console.WriteLine("YearOfPublication: " + tempBook.YearOfPublication);
-                                Console.WriteLine("Publisher: " + tempBook.Publisher);
-                                Console.WriteLine("Likes: " + tempBook.Likes);
+                                    Console.WriteLine("Match found for " + key + " = " + value);
+                                    Console.WriteLine("BookID: " + tempBook.BookId);
+                                    Console.WriteLine("ISBN " + tempBook.Isbn);
+                                    Console.WriteLine("Title: " + tempBook.Title);
+                                    Console.WriteLine("Author: " + tempBook.Author);
+                                    Console.WriteLine("Genre: " + tempBook.Genre);
+                                    Console.WriteLine("Status: " + tempBook.Status);
+                                    Console.WriteLine("YearOfPublication: " + tempBook.YearOfPublication);
+                                    Console.WriteLine("Publisher: " + tempBook.Publisher);
+                                    Console.WriteLine("Likes: " + tempBook.Likes);
+                                }
                             }
                         }
                     }
                 }
+
             }
         }
         return tempBook;
     }
 
     // Get book - list overload
+    public List<Book_M> GetBook(BookFilterKey key = BookFilterKey.ALL, string? value = null)
+    {
+        List<Book_M> tempBookList = new();
+
+        using (var connection = new SQLiteConnection(DB_STRING))
+        {
+            connection.Open();
+            string query = string.Empty;
+
+            switch (key)
+            {
+                case BookFilterKey.ALL:
+                    query = @"
+                                SELECT * FROM Books
+                                ";
+                    break;
+                case BookFilterKey.ID:
+                    query = @"
+                                SELECT * FROM Books
+                                WHERE BookId = @value
+                                ";
+                    break;
+                case BookFilterKey.ISBN:
+                    query = @"
+                                SELECT * FROM Books
+                                WHERE ISBN = @value
+                                ";
+                    break;
+                case BookFilterKey.TITLE:
+                    query = @"
+                                SELECT * FROM Books
+                                WHERE Title = @value
+                                ";
+                    break;
+                case BookFilterKey.GENRE:
+                    query = @"
+                                SELECT * FROM Books
+                                WHERE Genre = @value
+                                ";
+                    break;
+                case BookFilterKey.AUTHOR:
+                    query = @"
+                                SELECT * FROM Books
+                                WHERE Author = @value
+                                ";
+                    break;
+                case BookFilterKey.YEAR_OF_PUBLICATION:
+                    query = @"
+                                SELECT * FROM Books
+                                WHERE YearOfPublication = @value
+                                ";
+                    break;
+                case BookFilterKey.PUBLISHER:
+                    query = @"
+                                SELECT * FROM Books
+                                WHERE Publisher = @value
+                                ";
+                    break;
+                case BookFilterKey.STATUS:
+                    query = @"
+                                SELECT * FROM Books
+                                WHERE Status = @value
+                                ";
+                    break;
+                case BookFilterKey.LIKES:
+                    query = @"
+                                SELECT * FROM Books
+                                WHERE Likes = @value
+                                ";
+                    break;
+            }
+
+            using (var command = new SQLiteCommand(query, connection))
+            {
+                // changes sql query string based on filter key and value sent as argument
+
+                // pass value from argument to query param
+                command.Parameters.AddWithValue("@value", value);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Book_M tempBook = new();
+
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+
+                            var genreString = reader["Genre"].ToString() ?? BookGenre.Unassigned.ToString();
+                            var statusString = reader["Status"].ToString() ?? BookStatus.Available.ToString();
+
+                            tempBook.BookId = reader.GetInt32(reader.GetOrdinal("BookID"));
+                            tempBook.Isbn = reader["ISBN"].ToString() ?? string.Empty;
+                            tempBook.Title = reader["Title"].ToString() ?? string.Empty;
+                            tempBook.Author = reader["Author"].ToString() ?? string.Empty;
+                            tempBook.Genre = Enum.Parse<BookGenre>(genreString);
+                            tempBook.Status = Enum.Parse<BookStatus>(statusString);
+                            tempBook.YearOfPublication = reader["YearOfPublication"].ToString() ?? string.Empty;
+                            tempBook.Publisher = reader["Publisher"].ToString() ?? string.Empty;
+                            tempBook.Likes = reader.GetInt32(reader.GetOrdinal("Likes"));
+
+                            tempBookList.Add(tempBook);
+                        }
+
+                        Console.WriteLine("Match found for " + key + (!string.IsNullOrEmpty(value) ? (" = " + value) : ""));
+                        Console.WriteLine("BookID: " + tempBook.BookId);
+                        Console.WriteLine("ISBN " + tempBook.Isbn);
+                        Console.WriteLine("Title: " + tempBook.Title);
+                        Console.WriteLine("Author: " + tempBook.Author);
+                        Console.WriteLine("Genre: " + tempBook.Genre);
+                        Console.WriteLine("Status: " + tempBook.Status);
+                        Console.WriteLine("YearOfPublication: " + tempBook.YearOfPublication);
+                        Console.WriteLine("Publisher: " + tempBook.Publisher);
+                        Console.WriteLine("Likes: " + tempBook.Likes);
+
+                    }
+                }
+
+            }
+
+        }
+
+        return tempBookList;
+    }
 
     // Delete book
 

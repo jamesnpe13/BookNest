@@ -30,9 +30,6 @@ public partial class MainWindow_VM : ObservableObject
         ss = _ss;
 
         ns.SetCurrentPage(ad.DefaultPage); // sets default page
-
-        //TestNewBook();
-        //TestGetBook();
     }
 
     [RelayCommand]
@@ -41,43 +38,4 @@ public partial class MainWindow_VM : ObservableObject
         ns.SetCurrentPage(targetPage);
     }
 
-    public void TestNewBook()
-    {
-        try
-        {
-            Book_M tempBook = new()
-            {
-                Isbn = "asd123",
-                Title = "This is a Test Book",
-                Genre = BookGenre.NonFiction,
-                Author = "James Elazegui",
-                YearOfPublication = "2024",
-                Publisher = "Yoobee College",
-                Likes = 150,
-            };
-            ds.AddBook(tempBook);
-
-            Console.WriteLine("'TestNewBook' SUCCESS");
-        }
-        catch (Exception err)
-        {
-            Console.WriteLine("Cannot execute 'TestNewBook'");
-            Console.WriteLine(err.Message);
-        }
-
-    }
-
-    public void TestGetBook()
-    {
-        try
-        {
-            var thisBook = new Book_M();
-            thisBook = ds.GetBook(DatabaseService.BookFilterKey.ID, "1", true);
-        }
-        catch (Exception err)
-        {
-            Console.WriteLine("FAILED to get book");
-            Console.WriteLine(err.Message);
-        }
-    }
 }
