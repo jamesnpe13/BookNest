@@ -40,13 +40,17 @@ public partial class MainPage_VM : ObservableObject
         ss = _ss;
 
         NavbarInit();
-        SetCurrentView("MemberDashboard");
+
+        // default view
+        SetCurrentView(ad.CurrentAccount.AccountType == "Administrator" ? "AdminDashboard" : "MemberDashboard");
+
     }
 
     // view router
     [RelayCommand]
     public void SetCurrentView(string targetView)
     {
+        if (targetView == "AdminDashboard") CurrentView = new Admin_Dashboard_V();
         if (targetView == "MemberDashboard") CurrentView = new Member_Dashboard_V();
         if (targetView == "MemberBag") CurrentView = new Member_Bag_V();
         if (targetView == "MemberBooks") CurrentView = new Member_Books_V();

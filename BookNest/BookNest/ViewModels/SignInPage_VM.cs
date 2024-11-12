@@ -33,9 +33,13 @@ public partial class SignInPage_VM : ObservableObject
         ss = _ss;
         ad = _ad;
         ds = _ds;
+        Console.WriteLine("di loaded");
         SetFormType();
 
         // temp auto sign in
+
+        ss.HandleUserSignIn("admin", "123", "Administrator");
+        Console.WriteLine("signin handled");
 
     }
 
