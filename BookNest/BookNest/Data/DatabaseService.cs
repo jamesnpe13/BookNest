@@ -375,11 +375,11 @@ public partial class DatabaseService : ObservableObject
                 {
                     connection.Open();
                     string query = @"SELECT * FROM Books
-                            WHERE BookID = @value
+                            WHERE BookID = @bookId
                             ";
                     using (var command = new SQLiteCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@value", value.ToString());
+                        command.Parameters.AddWithValue("@bookId", value);
 
                         using (var reader = command.ExecuteReader())
                         {
@@ -388,13 +388,23 @@ public partial class DatabaseService : ObservableObject
                                 var genreString = reader["Genre"].ToString() ?? BookGenre.Unassigned.ToString();
 
                                 tempBook.BookId = reader.GetInt32(reader.GetOrdinal("BookID"));
-                                tempBook.Isbn = reader["FirstName"].ToString() ?? string.Empty;
+                                tempBook.Isbn = reader["ISBN"].ToString() ?? string.Empty;
                                 tempBook.Title = reader["Title"].ToString() ?? string.Empty;
                                 tempBook.Author = reader["Author"].ToString() ?? string.Empty;
                                 tempBook.Genre = Enum.Parse<BookGenre>(genreString);
                                 tempBook.YearOfPublication = reader["YearOfPublication"].ToString() ?? string.Empty;
                                 tempBook.Publisher = reader["Publisher"].ToString() ?? string.Empty;
                                 tempBook.Likes = reader.GetInt32(reader.GetOrdinal("Likes"));
+
+                                Console.WriteLine("Match found for " + key + " = " + value);
+                                Console.WriteLine("BookID: " + tempBook.BookId);
+                                Console.WriteLine("ISBN " + tempBook.Isbn);
+                                Console.WriteLine("Title: " + tempBook.Title);
+                                Console.WriteLine("Author: " + tempBook.Author);
+                                Console.WriteLine("Genre: " + tempBook.Genre);
+                                Console.WriteLine("YearOfPublication: " + tempBook.YearOfPublication);
+                                Console.WriteLine("Publisher: " + tempBook.Publisher);
+                                Console.WriteLine("Likes: " + tempBook.Likes);
                             }
                         }
                     }

@@ -88,18 +88,6 @@ public partial class RegistrationPage : Page
             string selectedValue = selectedItem.Content.ToString();
             TempAccount.AccountType = selectedValue;
         }
-        // hash and salt generated in VM
-
-        // log temp account on console
-        Console.WriteLine(TempAccount.FirstName);
-        Console.WriteLine(TempAccount.LastName);
-        Console.WriteLine(TempAccount.Username);
-        Console.WriteLine(TempAccount.Password);
-        Console.WriteLine(TempAccount.Email);
-        Console.WriteLine(TempAccount.PasswordHash);
-        Console.WriteLine(TempAccount.Salt);
-        Console.WriteLine(TempAccount.AccountType);
-        Console.WriteLine("---------------------------------------------");
 
         // validate and submit
         if (IsFormValid()) SubmitForm();

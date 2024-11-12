@@ -31,8 +31,8 @@ public partial class MainWindow_VM : ObservableObject
 
         ns.SetCurrentPage(ad.DefaultPage); // sets default page
 
-        TestNewBook();
-        TestGetBook();
+        //TestNewBook();
+        //TestGetBook();
     }
 
     [RelayCommand]
@@ -72,12 +72,7 @@ public partial class MainWindow_VM : ObservableObject
         try
         {
             var thisBook = new Book_M();
-            thisBook = ds.GetBook(DatabaseService.BookFilterKey.ID, "0", true);
-
-            Console.WriteLine(thisBook.Title);
-            Console.WriteLine(thisBook.Author);
-            Console.WriteLine(thisBook.Genre);
-            Console.WriteLine(thisBook.Likes);
+            thisBook = ds.GetBook(DatabaseService.BookFilterKey.ID, "1", true);
         }
         catch (Exception err)
         {
