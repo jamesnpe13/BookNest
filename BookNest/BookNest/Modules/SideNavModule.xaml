@@ -42,8 +42,7 @@
         <!--  Header section  -->
         <Border Grid.Row="0" Background="{StaticResource Blue5}">
             <Border.Effect>
-                <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}"
-                                  Opacity="{StaticResource DropShadowOpacity}" />
+                <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
             </Border.Effect>
 
             <StackPanel Orientation="Vertical">
@@ -84,7 +83,7 @@
                         ButtonText="Dashboard"
                         IconSource="../assets/icons/Icon material-dashboard.png"
                         MouseDown="DashboardNavButton_MouseDown"
-                        Visibility="{Binding TestVisibility}" />
+                        Visibility="{Binding DashboardNavButtonVisibility}" />
                     <components:NavButton
                         x:Name="BooksNavButton"
                         ButtonStyle="Transparent"
@@ -131,7 +130,7 @@
                 </StackPanel>
             </ScrollViewer>
         </Border>
-        <!--  Footer section   -->
+        <!--  Footer section  -->
         <Border Grid.Row="3" Padding="0">
             <StackPanel Orientation="Vertical">
                 <components:NavButton
@@ -143,8 +142,7 @@
                     MouseDown="AccountNavButton_MouseDown"
                     Visibility="{Binding AccountNavButtonVisibility}">
                     <UserControl.Effect>
-                        <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}"
-                                          Opacity="{StaticResource DropShadowOpacity}" />
+                        <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
                     </UserControl.Effect>
                 </components:NavButton>
                 <components:NavButton

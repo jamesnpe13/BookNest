@@ -1,9 +1,7 @@
-﻿using BookNest.Modules;
-using BookNest.Services;
+﻿using BookNest.Services;
 using BookNest.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Win32.SafeHandles;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -26,15 +24,15 @@ public partial class MainPage_VM : ObservableObject
     [ObservableProperty]
     private string accountType = string.Empty;
 
-    [ObservableProperty] private Visibility dashboardNavButtonVisibility;
-    [ObservableProperty] private Visibility booksNavButtonVisibility;
-    [ObservableProperty] private Visibility bagNavButtonVisibility;
-    [ObservableProperty] private Visibility watchlistNavButtonVisibility;
-    [ObservableProperty] private Visibility returnsNavButtonVisibility;
-    [ObservableProperty] private Visibility reservedNavButtonVisibility;
-    [ObservableProperty] private Visibility peopleNavButtonVisibility;
-    [ObservableProperty] private Visibility accountNavButtonVisibility;
-    [ObservableProperty] private Visibility signOutNavButtonVisibility;
+    [ObservableProperty] private Visibility dashboardNavButtonVisibility = Visibility.Collapsed;
+    [ObservableProperty] private Visibility booksNavButtonVisibility = Visibility.Collapsed;
+    [ObservableProperty] private Visibility bagNavButtonVisibility = Visibility.Collapsed;
+    [ObservableProperty] private Visibility watchlistNavButtonVisibility = Visibility.Collapsed;
+    [ObservableProperty] private Visibility returnsNavButtonVisibility = Visibility.Collapsed;
+    [ObservableProperty] private Visibility reservedNavButtonVisibility = Visibility.Collapsed;
+    [ObservableProperty] private Visibility peopleNavButtonVisibility = Visibility.Collapsed;
+    [ObservableProperty] private Visibility accountNavButtonVisibility = Visibility.Collapsed;
+    [ObservableProperty] private Visibility signOutNavButtonVisibility = Visibility.Collapsed;
 
     public MainPage_VM(AppData _ad, SessionService _ss)
     {
@@ -79,7 +77,7 @@ public partial class MainPage_VM : ObservableObject
             AccountNavButtonVisibility = Visibility.Visible;
             SignOutNavButtonVisibility = Visibility.Visible;
         }
-        else if (ad.CurrentAccount.AccountType == "Administrator")
+        if (ad.CurrentAccount.AccountType == "Administrator")
         {
             DashboardNavButtonVisibility = Visibility.Visible;
             BooksNavButtonVisibility = Visibility.Visible;
@@ -93,8 +91,6 @@ public partial class MainPage_VM : ObservableObject
         }
     }
 
-    public void HandleUserSignOut()
-    {
-        ss.HandleUserSignOut();
-    }
+    public void HandleUserSignOut() => ss.HandleUserSignOut();
+
 }
