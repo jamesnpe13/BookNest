@@ -210,7 +210,7 @@ partial class DatabaseService : ObservableObject
                 }
                 catch (Exception err)
                 {
-                    Console.WriteLine("Account deletion SUCCESS");
+                    Console.WriteLine("Account deletion FAILED");
                     Console.WriteLine(err.Message);
                 }
             }

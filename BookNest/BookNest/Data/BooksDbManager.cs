@@ -276,4 +276,36 @@ partial class DatabaseService : ObservableObject
     }
 
     // Delete book
+    public void DeleteBook(string targetId)
+    {
+        using (var connection = new SQLiteConnection(DB_STRING))
+        {
+            connection.Open();
+
+            using (var transaction = connection.BeginTransaction())
+            {
+                try
+                {
+                    using (var command = new SQLiteCommand(connection))
+                    {
+                        command.CommandText = @"
+                        DELETE FROM Books
+                        WHERE BookID = @targetID
+                        ";
+
+                        command.Parameters.AddWithValue("@targetID", targetId);
+
+                        command.ExecuteNonQuery();
+                    }
+                    transaction.Commit();
+                    Console.WriteLine("Book deletion SUCCESS");
+                }
+                catch (Exception err)
+                {
+                    Console.WriteLine("Book deletion FAILED");
+                    Console.WriteLine(err.Message);
+                }
+            }
+        }
+    }
 }
