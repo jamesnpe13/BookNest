@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:services="clr-namespace:BookNest.Services"
+    xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
     Width="250"
     Height="auto"
     VerticalAlignment="Stretch"
@@ -37,12 +38,26 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
+        <!--  Logo container  -->
+        <Border
+            Grid.Row="0"
+            Padding="20,15,20,15"
+            HorizontalAlignment="Left">
+
+            <svgc:SvgViewbox
+                Width="auto"
+                Height="auto"
+                MaxHeight="10"
+                Opacity="0.5"
+                Source="/assets/booknest-logo-white.svg" />
+        </Border>
         <!--  Header section  -->
-        <Border Grid.Row="0" Background="{StaticResource Blue5}">
+        <Border Grid.Row="1" Background="{StaticResource Blue5}">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
             </Border.Effect>
@@ -63,7 +78,7 @@
         </Border>
 
         <Border
-            Grid.Row="1"
+            Grid.Row="2"
             Padding="20,5,20,8"
             HorizontalAlignment="Stretch"
             Background="{StaticResource Blue4}">
@@ -76,7 +91,7 @@
         </Border>
 
         <!--  Main nav section  -->
-        <Border Grid.Row="2" Padding="0,20,0,20">
+        <Border Grid.Row="3" Padding="0,20,0,20">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel Orientation="Vertical">
                     <components:NavButton
@@ -133,7 +148,7 @@
             </ScrollViewer>
         </Border>
         <!--  Footer section  -->
-        <Border Grid.Row="3" Padding="0">
+        <Border Grid.Row="4" Padding="0">
             <StackPanel Orientation="Vertical">
                 <components:NavButton
                     x:Name="AccountNavButton"
