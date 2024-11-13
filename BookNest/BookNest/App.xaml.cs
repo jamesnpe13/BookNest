@@ -68,12 +68,18 @@ public static class ServiceCollectionExtensions
         // page views
         services.AddTransient<Admin_Dashboard_V>();
         services.AddTransient<Member_Dashboard_V>();
+
+        services.AddTransient<Admin_Account_V>();
         services.AddTransient<Member_Account_V>();
-        services.AddTransient<Member_Bag_V>();
+
+        services.AddTransient<Admin_Books_V>();
         services.AddTransient<Member_Books_V>();
+
+        services.AddTransient<Admin_People_V>();
+        services.AddTransient<Admin_Reserved_V>();
+        services.AddTransient<Admin_Returns_V>();
+
+        services.AddTransient<Member_Bag_V>();
         services.AddTransient<Member_Watchlist_V>();
-
-        // user controls / modules / components
-
     }
 }

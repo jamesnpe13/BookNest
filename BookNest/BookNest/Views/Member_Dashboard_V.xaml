@@ -9,15 +9,19 @@
     xmlns:modules="clr-namespace:BookNest.Modules"
     mc:Ignorable="d">
 
-    <StackPanel
-        Grid.Column="1"
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Top">
+    <Grid>
+        <Label Content="Member dashboard" Foreground="White" />
 
-        <!--  Header bar  -->
-        <modules:HeaderBarModule />
+        <StackPanel
+            Grid.Column="1"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top">
 
-        <!--  Main section  -->
-        <Grid />
-    </StackPanel>
+            <!--  Header bar  -->
+            <modules:HeaderBarModule />
+
+            <!--  Main section  -->
+            <Grid />
+        </StackPanel>
+    </Grid>
 </UserControl>

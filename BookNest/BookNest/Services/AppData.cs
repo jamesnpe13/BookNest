@@ -1,4 +1,5 @@
 ﻿using BookNest.Models;
+using BookNest.ViewModels;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,9 @@ public partial class AppData : ObservableObject
 
     // Page entry point (Default page)
     public string DefaultPage { get => "SignInPage"; }
+
+    // Main page - default view for both admin and member
+    public PageView DefaultView { get => PageView.Dashboard; }
 
     // currently signed in user
     [ObservableProperty]

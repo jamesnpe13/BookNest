@@ -19,7 +19,6 @@ public enum PageView
     People,
     Account,
     SignOut,
-
 }
 
 public partial class MainPage_VM : ObservableObject
@@ -56,28 +55,36 @@ public partial class MainPage_VM : ObservableObject
         ss = _ss;
         sp = _sp;
 
-        NavbarInit();
-
-        // default view
-        SetCurrentView(PageView.Dashboard);
-
+        NavbarInit(); // initialize data on side navbar
+        SetCurrentView(ad.DefaultView); // set default page view
     }
 
     // view router
     [RelayCommand]
     public void SetCurrentView(PageView targetView)
     {
+        // (Shared buttons) dynamic views - checks current user's account type then display's correct view
         if (targetView == PageView.Dashboard)
         {
             CurrentView = ad.CurrentAccount.AccountType == "Administrator" ? sp.GetRequiredService<Admin_Dashboard_V>() : sp.GetRequiredService<Member_Dashboard_V>();
         }
+        if (targetView == PageView.Account)
+        {
+            CurrentView = ad.CurrentAccount.AccountType == "Administrator" ? sp.GetRequiredService<Admin_Account_V>() : sp.GetRequiredService<Member_Account_V>();
+        }
+        if (targetView == PageView.Books)
+        {
+            CurrentView = ad.CurrentAccount.AccountType == "Administrator" ? sp.GetRequiredService<Admin_Books_V>() : sp.GetRequiredService<Member_Books_V>();
+        }
+
+        // admin specific views
+        if (targetView == PageView.People) CurrentView = sp.GetRequiredService<Admin_People_V>();
+        if (targetView == PageView.Reserved) CurrentView = sp.GetRequiredService<Admin_Reserved_V>();
+        if (targetView == PageView.Returns) CurrentView = sp.GetRequiredService<Admin_Returns_V>();
+
+        // member specific views
         if (targetView == PageView.Bag) CurrentView = sp.GetRequiredService<Member_Bag_V>();
-        if (targetView == PageView.Books) CurrentView = sp.GetRequiredService<Member_Books_V>();
         if (targetView == PageView.Watchlist) CurrentView = sp.GetRequiredService<Member_Watchlist_V>();
-        if (targetView == PageView.Account) CurrentView = sp.GetRequiredService<Member_Account_V>();
-        //if (targetView == PageView.Reserved) // reserved view
-        //if (targetView == PageView.Returns) // returns view 
-        //if (targetView == PageView.Account) // sign out view
     }
 
     // navbar style (member or admin)
