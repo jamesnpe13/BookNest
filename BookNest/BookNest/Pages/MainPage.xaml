@@ -18,26 +18,25 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="20" />
+            <!--<RowDefinition Height="20" />-->
         </Grid.RowDefinitions>
 
         <!--  Side Nav  -->
         <modules:SideNavModule Grid.Column="0" />
 
         <!--  Main section  -->
-        <StackPanel
-            Grid.Column="1"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top">
 
-            <ContentControl Content="{Binding CurrentView}" />
+        <ContentControl Grid.Column="1" Content="{Binding CurrentView}" />
 
-        </StackPanel>
-
-        <StackPanel
+        <!--  Info bar  -->
+        <!--<Border
             Grid.Row="1"
             Grid.ColumnSpan="2"
             Height="auto"
-            Background="{StaticResource Grey4}" />
+            Background="{StaticResource Grey4}"
+            BorderBrush="{StaticResource Black}"
+            BorderThickness="2">
+            <StackPanel />
+        </Border>-->
     </Grid>
 </Page>

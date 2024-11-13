@@ -1,12 +1,11 @@
 ﻿using BookNest.Data;
-using BookNest.Modules;
 using BookNest.Pages;
 using BookNest.Services;
 using BookNest.ViewModels;
+using BookNest.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Navigation;
 
 namespace BookNest;
 
@@ -16,7 +15,6 @@ public partial class App : Application
     [DllImport("kernel32.dll", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     static extern bool AllocConsole();
-    
 
     public App()
     {
@@ -65,7 +63,24 @@ public static class ServiceCollectionExtensions
         services.AddTransient<RegistrationPage>();
         services.AddTransient<RegistrationPage_VM>();
 
-        // user controls / modules / components
+        // page views
+        services.AddTransient<Admin_Dashboard_V>();
+        services.AddTransient<Member_Dashboard_V>();
 
+        services.AddTransient<Admin_Account_V>();
+        services.AddTransient<Member_Account_V>();
+
+        services.AddTransient<Admin_Books_V>();
+        services.AddTransient<Member_Books_V>();
+
+        services.AddTransient<Admin_People_V>();
+        services.AddTransient<Admin_Reserved_V>();
+        services.AddTransient<Admin_Returns_V>();
+
+        services.AddTransient<Member_Bag_V>();
+        services.AddTransient<Member_Watchlist_V>();
+
+        services.AddTransient<Book_Details_V>();
+        services.AddTransient<Book_AddUpdate_V>();
     }
 }

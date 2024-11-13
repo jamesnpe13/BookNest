@@ -20,51 +20,51 @@ public partial class SideNavModule : UserControl
 
     private void DashboardNavButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        SetCurrentView("MemberDashboard");
+        SetCurrentView(PageView.Dashboard);
     }
 
     private void BooksNavButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        SetCurrentView("MemberBooks");
+        SetCurrentView(PageView.Books);
     }
 
     private void BagNavButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        SetCurrentView("MemberBag");
+        SetCurrentView(PageView.Bag);
     }
 
     private void WatchlistNavButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        SetCurrentView("MemberWatchlist");
+        SetCurrentView(PageView.Watchlist);
     }
 
     private void ReturnsNavButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        SetCurrentView("AdminReturns");
+        SetCurrentView(PageView.Returns);
     }
 
     private void ReservedNavButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        SetCurrentView("AdminReserved");
+        SetCurrentView(PageView.Reserved);
     }
 
     private void PeopleNavButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        SetCurrentView("AdminPeople");
+        SetCurrentView(PageView.People);
     }
 
     private void AccountNavButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        SetCurrentView("MemberAccount");
+        SetCurrentView(PageView.Account);
     }
 
     private void SignOutNavButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        //SetCurrentView("SignOut");
+        //SetCurrentView(PageView.SignOut);
         HandleUserSignOut();
     }
 
-    private void SetCurrentView(string targetView)
+    private void SetCurrentView(PageView targetView)
     {
         if (DataContext is MainPage_VM vm)
         {

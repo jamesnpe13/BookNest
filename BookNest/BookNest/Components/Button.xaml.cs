@@ -100,6 +100,10 @@ public partial class Button : UserControl
                 UCLabel.Style = (Style)FindResource("ButtonLabelNeutral");
                 UCBorder.Style = (Style)FindResource("ButtonBorderNeutral");
                 break;
+            case "Outline":
+                UCLabel.Style = (Style)FindResource("ButtonLabelOutline");
+                UCBorder.Style = (Style)FindResource("ButtonBorderOutline");
+                break;
             default:
                 UCLabel.Style = (Style)FindResource("ButtonLabelDefault");
                 UCBorder.Style = (Style)FindResource("ButtonBorderDefault");

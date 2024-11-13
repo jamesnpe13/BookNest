@@ -68,7 +68,7 @@ public partial class SessionService : ObservableObject
     // handle user sign out
     public void HandleUserSignOut()
     {
-        ad.CurrentAccount = null;
+        ad.CurrentAccount = new();
         ns.SetCurrentPage("SignInPage");
     }
 
@@ -86,18 +86,25 @@ public partial class SessionService : ObservableObject
         // modify fields - check if updated fields are empty or null or if value same as existing
         if (!string.IsNullOrEmpty(updatedAccount.FirstName) && updatedAccount.FirstName != targetAccount.FirstName)
             tempAccount.FirstName = updatedAccount.FirstName;
+
         if (!string.IsNullOrEmpty(updatedAccount.LastName) && updatedAccount.LastName != targetAccount.LastName)
             tempAccount.LastName = updatedAccount.LastName;
+
         if (!string.IsNullOrEmpty(updatedAccount.Username) && updatedAccount.Username != targetAccount.Username)
             tempAccount.Username = updatedAccount.Username;
+
         if (!string.IsNullOrEmpty(updatedAccount.Password) && updatedAccount.Password != targetAccount.Password)
             tempAccount.Password = updatedAccount.Password;
+
         if (!string.IsNullOrEmpty(updatedAccount.PasswordHash) && updatedAccount.PasswordHash != targetAccount.PasswordHash)
             tempAccount.PasswordHash = updatedAccount.PasswordHash;
+
         if (!string.IsNullOrEmpty(updatedAccount.Salt) && updatedAccount.Salt != targetAccount.Salt)
             tempAccount.Salt = updatedAccount.Salt;
+
         if (!string.IsNullOrEmpty(updatedAccount.Email) && updatedAccount.Email != targetAccount.Email)
             tempAccount.Email = updatedAccount.Email;
+
         if (!string.IsNullOrEmpty(updatedAccount.AccountType) && updatedAccount.AccountType != targetAccount.AccountType)
             tempAccount.AccountType = updatedAccount.AccountType;
 

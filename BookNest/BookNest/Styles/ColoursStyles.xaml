@@ -1,12 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!--  Accents  -->
-    <SolidColorBrush x:Key="PrimaryA" Color="#FF4B923A" />
-    <SolidColorBrush x:Key="Primary" Color="#FF33BC69" />
-    <SolidColorBrush x:Key="Primary2" Color="#FF54A142" />
-    <SolidColorBrush x:Key="Secondary" Color="#DA0463" />
+    <!--<SolidColorBrush x:Key="Primary" Color="#FF4B923A" />-->
+    <!--<SolidColorBrush x:Key="Primary" Color="#FF33BC69" />-->
+    <SolidColorBrush x:Key="Primary" Color="#FF54A142" />
+    <SolidColorBrush x:Key="Secondary" Color="#FFE26B17" />
     <SolidColorBrush x:Key="LightBlue" Color="#DBEDF3" />
-    <SolidColorBrush x:Key="Destructive" Color="#DB5656" />
+    <SolidColorBrush x:Key="Destructive" Color="#FFAB3E3E" />
 
     <!--  Blue tones  -->
     <SolidColorBrush x:Key="Blue1" Color="#3C4661" />

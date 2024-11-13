@@ -12,15 +12,17 @@ public partial class RegistrationPage : Page
 {
 
     private readonly RegistrationPage_VM vm;
+    private readonly PageNavigationService ns;
     public string PasswordText { get; set; }
     public string ConfirmPasswordText { get; set; }
     public bool IsPasswordMatch { get; set; } = false;
     public Account_M TempAccount { get; set; }
 
-    public RegistrationPage(RegistrationPage_VM _vm)
+    public RegistrationPage(RegistrationPage_VM _vm, PageNavigationService _ns)
     {
         InitializeComponent();
         vm = _vm;
+        ns = _ns;
         DataContext = vm;
         CreateComboboxItems();
 
@@ -111,4 +113,8 @@ public partial class RegistrationPage : Page
         vm.SubmitForm();
     }
 
+    private void CancelButton_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        ns.SetCurrentPage("SignInPage");
+    }
 }

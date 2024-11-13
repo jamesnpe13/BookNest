@@ -7,10 +7,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:services="clr-namespace:BookNest.Services"
+    xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
     Width="250"
     Height="auto"
     VerticalAlignment="Stretch"
     Background="{StaticResource Black}"
+    BorderBrush="{StaticResource Black}"
+    BorderThickness="2"
     mc:Ignorable="d">
 
     <UserControl.Effect>
@@ -35,15 +38,31 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
+        <!--  Logo container  -->
+        <Border
+            Grid.Row="0"
+            Height="{StaticResource UtilityBarHeight}"
+            Padding="20,0,20,0"
+            HorizontalAlignment="Stretch"
+            Background="{StaticResource Blue5}">
+
+            <svgc:SvgViewbox
+                Width="auto"
+                Height="auto"
+                MaxHeight="12"
+                HorizontalAlignment="Center"
+                Opacity="0.5"
+                Source="/assets/booknest-logo-white.svg" />
+        </Border>
         <!--  Header section  -->
-        <Border Grid.Row="0" Background="{StaticResource Blue5}">
+        <Border Grid.Row="1" Background="{StaticResource Blue5}">
             <Border.Effect>
-                <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}"
-                                  Opacity="{StaticResource DropShadowOpacity}" />
+                <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
             </Border.Effect>
 
             <StackPanel Orientation="Vertical">
@@ -62,7 +81,7 @@
         </Border>
 
         <Border
-            Grid.Row="1"
+            Grid.Row="2"
             Padding="20,5,20,8"
             HorizontalAlignment="Stretch"
             Background="{StaticResource Blue4}">
@@ -75,8 +94,8 @@
         </Border>
 
         <!--  Main nav section  -->
-        <Border Grid.Row="2" Padding="0,20,0,20">
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Border Grid.Row="3" Padding="0,20,0,20">
+            <ScrollViewer FocusVisualStyle="{x:Null}" VerticalScrollBarVisibility="Auto">
                 <StackPanel Orientation="Vertical">
                     <components:NavButton
                         x:Name="DashboardNavButton"
@@ -84,7 +103,7 @@
                         ButtonText="Dashboard"
                         IconSource="../assets/icons/Icon material-dashboard.png"
                         MouseDown="DashboardNavButton_MouseDown"
-                        Visibility="{Binding TestVisibility}" />
+                        Visibility="{Binding DashboardNavButtonVisibility}" />
                     <components:NavButton
                         x:Name="BooksNavButton"
                         ButtonStyle="Transparent"
@@ -131,25 +150,24 @@
                 </StackPanel>
             </ScrollViewer>
         </Border>
-        <!--  Footer section   -->
-        <Border Grid.Row="3" Padding="0">
+        <!--  Footer section  -->
+        <Border Grid.Row="4" Padding="0">
             <StackPanel Orientation="Vertical">
                 <components:NavButton
                     x:Name="AccountNavButton"
-                    Height="60"
+                    Height="50"
                     ButtonStyle="Primary"
                     ButtonText="My Account"
                     IconSource="../assets/icons/Icon material-account-box.png"
                     MouseDown="AccountNavButton_MouseDown"
                     Visibility="{Binding AccountNavButtonVisibility}">
                     <UserControl.Effect>
-                        <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}"
-                                          Opacity="{StaticResource DropShadowOpacity}" />
+                        <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
                     </UserControl.Effect>
                 </components:NavButton>
                 <components:NavButton
                     x:Name="SignOutNavButton"
-                    Height="60"
+                    Height="50"
                     ButtonStyle="Transparent"
                     ButtonText="Sign out"
                     IconSource="../assets/icons/Icon open-account-logout.png"

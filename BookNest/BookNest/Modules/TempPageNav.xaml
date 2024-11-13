@@ -30,7 +30,6 @@
             <Label
                 Margin="0,0,50,0"
                 Content="Temporary page navigation:"
-                Cursor="Arrow"
                 Foreground="#FF6A3F0B" />
 
             <Label
@@ -45,6 +44,7 @@
                 x:Name="MainPageButton"
                 Content="[Main page]"
                 MouseDown="MainPageButton_MouseDown" />
+
         </StackPanel>
 
     </Grid>

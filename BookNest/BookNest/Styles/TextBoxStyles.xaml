@@ -2,12 +2,14 @@
 
     <Style x:Key="TextBoxBorder" TargetType="Border">
         <Setter Property="Background" Value="{StaticResource White}" />
+        <Setter Property="BorderBrush" Value="{StaticResource Grey2}" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="{StaticResource CornerRadius1}" />
     </Style>
     <Style x:Key="TextBoxTextBox" TargetType="TextBox">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Height" Value="30" />
-        <Setter Property="Padding" Value="10,0,10,0" />
+        <Setter Property="Padding" Value="10,0,10,3" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
@@ -17,7 +19,7 @@
     <Style x:Key="PasswordBoxTextBox" TargetType="TextBox">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Height" Value="30" />
-        <Setter Property="Padding" Value="10,0,10,0" />
+        <Setter Property="Padding" Value="10,0,10,3" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
@@ -27,7 +29,7 @@
     <Style x:Key="PlaceholderLabel" TargetType="Label">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Height" Value="30" />
-        <Setter Property="Padding" Value="10,0,10,0" />
+        <Setter Property="Padding" Value="10,0,10,3" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />

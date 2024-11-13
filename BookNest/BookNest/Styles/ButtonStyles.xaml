@@ -3,6 +3,7 @@
     <!--  Default  -->
     <Style x:Key="ButtonLabelDefault" TargetType="Label">
         <Setter Property="Content" Value="Greyed-out" />
+        <Setter Property="Margin" Value="0,0,0,3" />
         <Setter Property="Foreground" Value="{StaticResource Grey2}" />
     </Style>
     <Style x:Key="ButtonBorderDefault" TargetType="Border">
@@ -13,16 +14,20 @@
     <!--  Neutral  -->
     <Style x:Key="ButtonLabelNeutral" TargetType="Label">
         <Setter Property="Content" Value="Neutralt" />
+        <Setter Property="Margin" Value="0,0,0,3" />
         <Setter Property="Foreground" Value="{StaticResource Blue3}" />
     </Style>
     <Style x:Key="ButtonBorderNeutral" TargetType="Border">
         <Setter Property="Background" Value="#FFE1E1E1" />
         <Setter Property="CornerRadius" Value="{StaticResource CornerRadius1}" />
+        <Setter Property="BorderBrush" Value="{StaticResource Grey1}" />
+        <Setter Property="BorderThickness" Value="2" />
     </Style>
 
     <!--  Primary  -->
     <Style x:Key="ButtonLabelPrimary" TargetType="Label">
         <Setter Property="Content" Value="Primary" />
+        <Setter Property="Margin" Value="0,0,0,3" />
         <Setter Property="Foreground" Value="{StaticResource White}" />
     </Style>
     <Style x:Key="ButtonBorderPrimary" TargetType="Border">
@@ -33,16 +38,18 @@
     <!--  Secondary  -->
     <Style x:Key="ButtonLabelSecondary" TargetType="Label">
         <Setter Property="Content" Value="Secondary" />
+        <Setter Property="Margin" Value="0,0,0,3" />
         <Setter Property="Foreground" Value="{StaticResource White}" />
     </Style>
     <Style x:Key="ButtonBorderSecondary" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource Blue2}" />
+        <Setter Property="Background" Value="{StaticResource Secondary}" />
         <Setter Property="CornerRadius" Value="{StaticResource CornerRadius1}" />
     </Style>
 
     <!--  Destructive  -->
     <Style x:Key="ButtonLabelDestructive" TargetType="Label">
         <Setter Property="Content" Value="Destructive" />
+        <Setter Property="Margin" Value="0,0,0,3" />
         <Setter Property="Foreground" Value="{StaticResource White}" />
     </Style>
     <Style x:Key="ButtonBorderDestructive" TargetType="Border">
@@ -50,13 +57,27 @@
         <Setter Property="CornerRadius" Value="{StaticResource CornerRadius1}" />
     </Style>
 
-    <!--  Destructive  -->
+    <!--  Transparent  -->
     <Style x:Key="ButtonLabelTransparent" TargetType="Label">
+        <Setter Property="Margin" Value="0,0,0,3" />
         <Setter Property="Content" Value="Transparent" />
         <Setter Property="Foreground" Value="{StaticResource White}" />
     </Style>
     <Style x:Key="ButtonBorderTransparent" TargetType="Border">
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="CornerRadius" Value="{StaticResource CornerRadius1}" />
+    </Style>
+
+    <!--  Outline  -->
+    <Style x:Key="ButtonLabelOutline" TargetType="Label">
+        <Setter Property="Margin" Value="0,0,0,3" />
+        <Setter Property="Content" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource White}" />
+    </Style>
+    <Style x:Key="ButtonBorderOutline" TargetType="Border">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{StaticResource White}" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="{StaticResource CornerRadius1}" />
     </Style>
 
