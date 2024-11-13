@@ -1,28 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using BookNest.ViewModels;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace BookNest.Views
+namespace BookNest.Views;
+
+public partial class Admin_Dashboard_V : UserControl
 {
-    /// <summary>
-    /// Interaction logic for Admin_Dashboard_V.xaml
-    /// </summary>
-    public partial class Admin_Dashboard_V : UserControl
+    public Admin_Dashboard_V()
     {
-        public Admin_Dashboard_V()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
+
+    private void ManageBooksButton_MouseDown() => SwitchView(PageView.Books);
+    private void ManageReturnsButton_MouseDown() => SwitchView(PageView.Returns);
+    private void ManageAccountsButton_MouseDown() => SwitchView(PageView.Account);
+    private void QuickAddBookButton_MouseDown()
+    {
+        //
+    }
+
+    private void SwitchView(PageView targetView)
+    {
+        if (DataContext is MainPage_VM vm) vm.SetCurrentView(targetView);
     }
 }

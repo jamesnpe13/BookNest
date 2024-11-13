@@ -21,7 +21,6 @@
     mc:Ignorable="d">
 
     <Grid>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
@@ -35,7 +34,8 @@
             DataContext="{Binding PageNavigationService}"
             NavigationUIVisibility="Hidden" />
 
-        <modules:TempPageNav Grid.Row="1" />
+        <!--  Development page navigator  -->
+        <modules:TempPageNav Grid.Row="1" Visibility="Visible" />
     </Grid>
 
 </Window>

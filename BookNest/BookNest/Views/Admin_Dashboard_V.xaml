@@ -50,17 +50,31 @@
                 Margin="0,0,0,40"
                 HorizontalAlignment="Center"
                 Orientation="Horizontal">
-                <components:TextButton Padding="20,0,20,0" ButtonText="Manage books" />
-                <components:TextButton Padding="20,0,20,0" ButtonText="Managed returns" />
-                <components:TextButton Padding="20,0,20,0" ButtonText="Manage accounts" />
+                <components:TextButton
+                    x:Name="ManageBooksButton"
+                    Padding="20,0,20,0"
+                    ButtonText="Manage books"
+                    MouseDown="ManageBooksButton_MouseDown" />
+                <components:TextButton
+                    x:Name="ManageReturnsButton"
+                    Padding="20,0,20,0"
+                    ButtonText="Managed returns"
+                    MouseDown="ManageReturnsButton_MouseDown" />
+                <components:TextButton
+                    x:Name="ManageAccountsButton"
+                    Padding="20,0,20,0"
+                    ButtonText="Manage accounts"
+                    MouseDown="ManageAccountsButton_MouseDown" />
 
             </StackPanel>
 
             <!--  Quick add button  -->
             <components:Button
+                x:Name="QuickAddBookButton"
                 ButtonHeight="Medium"
                 ButtonStyle="Neutral"
-                ButtonText="Quick add book" />
+                ButtonText="Quick add book"
+                MouseDown="QuickAddBookButton_MouseDown" />
         </StackPanel>
     </Grid>
 </UserControl>
