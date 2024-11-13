@@ -25,19 +25,22 @@
         <modules:SideNavModule Grid.Column="0" />
 
         <!--  Main section  -->
-        <StackPanel
+        <ScrollViewer
             Grid.Column="1"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top">
+            HorizontalScrollBarVisibility="Auto"
+            VerticalScrollBarVisibility="Auto">
 
             <ContentControl Content="{Binding CurrentView}" />
+        </ScrollViewer>
 
-        </StackPanel>
-
-        <StackPanel
+        <Border
             Grid.Row="1"
             Grid.ColumnSpan="2"
             Height="auto"
-            Background="{StaticResource Grey4}" />
+            Background="{StaticResource Grey4}"
+            BorderBrush="{StaticResource Black}"
+            BorderThickness="2">
+            <StackPanel />
+        </Border>
     </Grid>
 </Page>

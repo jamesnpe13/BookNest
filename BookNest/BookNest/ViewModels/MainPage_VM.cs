@@ -2,15 +2,31 @@
 using BookNest.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace BookNest.ViewModels;
 
+public enum PageView
+{
+    Dashboard,
+    Bag,
+    Books,
+    Watchlist,
+    Returns,
+    Reserved,
+    People,
+    Account,
+    SignOut,
+
+}
+
 public partial class MainPage_VM : ObservableObject
 {
     private readonly AppData ad;
     private readonly SessionService ss;
+    private readonly IServiceProvider sp;
 
     [ObservableProperty]
     private UserControl? currentView;
@@ -34,28 +50,34 @@ public partial class MainPage_VM : ObservableObject
     [ObservableProperty] private Visibility accountNavButtonVisibility = Visibility.Collapsed;
     [ObservableProperty] private Visibility signOutNavButtonVisibility = Visibility.Collapsed;
 
-    public MainPage_VM(AppData _ad, SessionService _ss)
+    public MainPage_VM(AppData _ad, SessionService _ss, IServiceProvider _sp)
     {
         ad = _ad;
         ss = _ss;
+        sp = _sp;
 
         NavbarInit();
 
         // default view
-        SetCurrentView(ad.CurrentAccount.AccountType == "Administrator" ? "AdminDashboard" : "MemberDashboard");
+        SetCurrentView(PageView.Dashboard);
 
     }
 
     // view router
     [RelayCommand]
-    public void SetCurrentView(string targetView)
+    public void SetCurrentView(PageView targetView)
     {
-        if (targetView == "AdminDashboard") CurrentView = new Admin_Dashboard_V();
-        if (targetView == "MemberDashboard") CurrentView = new Member_Dashboard_V();
-        if (targetView == "MemberBag") CurrentView = new Member_Bag_V();
-        if (targetView == "MemberBooks") CurrentView = new Member_Books_V();
-        if (targetView == "MemberWatchlist") CurrentView = new Member_Watchlist_V();
-        if (targetView == "MemberAccount") CurrentView = new Member_Account_V();
+        if (targetView == PageView.Dashboard)
+        {
+            CurrentView = ad.CurrentAccount.AccountType == "Administrator" ? sp.GetRequiredService<Admin_Dashboard_V>() : sp.GetRequiredService<Member_Dashboard_V>();
+        }
+        if (targetView == PageView.Bag) CurrentView = sp.GetRequiredService<Member_Bag_V>();
+        if (targetView == PageView.Books) CurrentView = sp.GetRequiredService<Member_Books_V>();
+        if (targetView == PageView.Watchlist) CurrentView = sp.GetRequiredService<Member_Watchlist_V>();
+        if (targetView == PageView.Account) CurrentView = sp.GetRequiredService<Member_Account_V>();
+        //if (targetView == PageView.Reserved) // reserved view
+        //if (targetView == PageView.Returns) // returns view 
+        //if (targetView == PageView.Account) // sign out view
     }
 
     // navbar style (member or admin)
@@ -71,7 +93,7 @@ public partial class MainPage_VM : ObservableObject
         // show view buttons
         if (ad.CurrentAccount.AccountType == "Member")
         {
-            DashboardNavButtonVisibility = Visibility.Collapsed;
+            DashboardNavButtonVisibility = Visibility.Visible;
             BooksNavButtonVisibility = Visibility.Visible;
             BagNavButtonVisibility = Visibility.Visible;
             WatchlistNavButtonVisibility = Visibility.Visible;

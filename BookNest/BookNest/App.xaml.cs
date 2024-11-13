@@ -3,6 +3,7 @@ using BookNest.Modules;
 using BookNest.Pages;
 using BookNest.Services;
 using BookNest.ViewModels;
+using BookNest.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System.Runtime.InteropServices;
 using System.Windows;
@@ -16,7 +17,6 @@ public partial class App : Application
     [DllImport("kernel32.dll", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     static extern bool AllocConsole();
-    
 
     public App()
     {
@@ -64,6 +64,14 @@ public static class ServiceCollectionExtensions
 
         services.AddTransient<RegistrationPage>();
         services.AddTransient<RegistrationPage_VM>();
+
+        // page views
+        services.AddTransient<Admin_Dashboard_V>();
+        services.AddTransient<Member_Dashboard_V>();
+        services.AddTransient<Member_Account_V>();
+        services.AddTransient<Member_Bag_V>();
+        services.AddTransient<Member_Books_V>();
+        services.AddTransient<Member_Watchlist_V>();
 
         // user controls / modules / components
 

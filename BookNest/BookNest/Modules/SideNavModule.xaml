@@ -11,6 +11,8 @@
     Height="auto"
     VerticalAlignment="Stretch"
     Background="{StaticResource Black}"
+    BorderBrush="{StaticResource Black}"
+    BorderThickness="2"
     mc:Ignorable="d">
 
     <UserControl.Effect>

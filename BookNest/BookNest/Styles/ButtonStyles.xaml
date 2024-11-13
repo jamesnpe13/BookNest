@@ -18,6 +18,8 @@
     <Style x:Key="ButtonBorderNeutral" TargetType="Border">
         <Setter Property="Background" Value="#FFE1E1E1" />
         <Setter Property="CornerRadius" Value="{StaticResource CornerRadius1}" />
+        <Setter Property="BorderBrush" Value="{StaticResource Grey1}" />
+        <Setter Property="BorderThickness" Value="2" />
     </Style>
 
     <!--  Primary  -->
@@ -36,7 +38,7 @@
         <Setter Property="Foreground" Value="{StaticResource White}" />
     </Style>
     <Style x:Key="ButtonBorderSecondary" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource Blue2}" />
+        <Setter Property="Background" Value="{StaticResource Secondary}" />
         <Setter Property="CornerRadius" Value="{StaticResource CornerRadius1}" />
     </Style>
 
