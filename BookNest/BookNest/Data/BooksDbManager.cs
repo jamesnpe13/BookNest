@@ -225,7 +225,7 @@ partial class DatabaseService : ObservableObject
                     query = @"
                                 SELECT * FROM Books
                                 WHERE Title
-                                LIKE '%@value%'
+                                LIKE @value
                                 ";
                     break;
             }
@@ -235,7 +235,15 @@ partial class DatabaseService : ObservableObject
                 // changes sql query string based on filter key and value sent as argument
 
                 // pass value from argument to query param
-                command.Parameters.AddWithValue("@value", value);
+                if (key == BookFilterKey.SEARCH)
+                {
+                    command.Parameters.AddWithValue("@value", "%" + value + "%");
+
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("@value", value);
+                }
 
                 using (var reader = command.ExecuteReader())
                 {
