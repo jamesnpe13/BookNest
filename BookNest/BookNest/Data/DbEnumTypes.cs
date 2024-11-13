@@ -20,7 +20,8 @@ public enum BookFilterKey
     YEAR_OF_PUBLICATION,
     PUBLISHER,
     STATUS,
-    LIKES
+    LIKES,
+    SEARCH
 }
 
 public enum LoanTransactionFilterKey

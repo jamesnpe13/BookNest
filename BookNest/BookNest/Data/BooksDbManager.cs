@@ -1,6 +1,7 @@
 ﻿using BookNest.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Data.SQLite;
+using System.Diagnostics.Eventing.Reader;
 
 namespace BookNest.Data;
 
@@ -218,6 +219,13 @@ partial class DatabaseService : ObservableObject
                     query = @"
                                 SELECT * FROM Books
                                 WHERE Likes = @value
+                                ";
+                    break;
+                case BookFilterKey.SEARCH:
+                    query = @"
+                                SELECT * FROM Books
+                                WHERE Title
+                                LIKE '%@value%'
                                 ";
                     break;
             }
