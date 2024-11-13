@@ -1,5 +1,4 @@
 ﻿using BookNest.Data;
-using BookNest.Modules;
 using BookNest.Pages;
 using BookNest.Services;
 using BookNest.ViewModels;
@@ -7,7 +6,6 @@ using BookNest.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Navigation;
 
 namespace BookNest;
 

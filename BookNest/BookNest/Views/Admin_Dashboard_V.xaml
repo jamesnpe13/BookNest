@@ -55,17 +55,17 @@
                     <components:TextButton
                         x:Name="ManageBooksButton"
                         Padding="20,0,20,0"
-                        ButtonText="Manage books"
+                        ButtonText="Books"
                         MouseDown="ManageBooksButton_MouseDown" />
                     <components:TextButton
                         x:Name="ManageReturnsButton"
                         Padding="20,0,20,0"
-                        ButtonText="Managed returns"
+                        ButtonText="Returns"
                         MouseDown="ManageReturnsButton_MouseDown" />
                     <components:TextButton
                         x:Name="ManageAccountsButton"
                         Padding="20,0,20,0"
-                        ButtonText="Manage accounts"
+                        ButtonText="Accounts"
                         MouseDown="ManageAccountsButton_MouseDown" />
 
                 </StackPanel>

@@ -19,6 +19,9 @@
     <!--  Title bar  -->
     <System:String x:Key="AppTitle">BookNest</System:String>
 
+    <!--  Utility bar height  -->
+    <System:Double x:Key="UtilityBarHeight">50</System:Double>
+
     <!--  User controls  -->
     <CornerRadius x:Key="CornerRadius1">4</CornerRadius>
     <CornerRadius x:Key="CornerRadius2">8</CornerRadius>

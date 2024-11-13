@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:BookNest.Modules"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Height="auto"
+    Height="{StaticResource UtilityBarHeight}"
     MinWidth="800"
     Padding="40,10,40,10"
     Background="{StaticResource Blue4}"
@@ -40,7 +40,7 @@
                     Width="250"
                     Margin="0,0,10,0"
                     Placeholder="Enter keyword" />
-                <components:Button ButtonStyle="Primary" ButtonText="Search" />
+                <components:Button ButtonStyle="Outline" ButtonText="Search" />
             </StackPanel>
         </Border>
     </Grid>

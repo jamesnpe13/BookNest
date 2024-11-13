@@ -46,13 +46,16 @@
         <!--  Logo container  -->
         <Border
             Grid.Row="0"
-            Padding="20,15,20,15"
-            HorizontalAlignment="Left">
+            Height="{StaticResource UtilityBarHeight}"
+            Padding="20,0,20,0"
+            HorizontalAlignment="Stretch"
+            Background="{StaticResource Blue5}">
 
             <svgc:SvgViewbox
                 Width="auto"
                 Height="auto"
-                MaxHeight="10"
+                MaxHeight="12"
+                HorizontalAlignment="Center"
                 Opacity="0.5"
                 Source="/assets/booknest-logo-white.svg" />
         </Border>

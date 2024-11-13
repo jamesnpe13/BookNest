@@ -13,6 +13,7 @@
     <None Remove="assets\admin-dashboard-graphic-orange.svg" />
     <None Remove="assets\admin-dashboard-graphic-white.svg" />
     <None Remove="assets\booknest-logo-white.svg" />
+    <None Remove="assets\icons\back-icon.svg" />
     <None Remove="assets\icons\Icon awesome-binoculars.png" />
     <None Remove="assets\icons\Icon awesome-book-open.png" />
     <None Remove="assets\icons\Icon awesome-shopping-bag.png" />
@@ -43,6 +44,7 @@
     <Resource Include="assets\booknest-logo-white.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="assets\icons\back-icon.svg" />
     <Resource Include="assets\icons\Icon awesome-binoculars.png" />
     <Resource Include="assets\icons\Icon awesome-book-open.png" />
     <Resource Include="assets\icons\Icon awesome-shopping-bag.png" />
