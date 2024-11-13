@@ -228,7 +228,7 @@ partial class DatabaseService : ObservableObject
                                 OR ISBN Like @value
                                 OR Genre Like @value
                                 OR Author Like @value
-                                OR Year_Of_Publication Like @value
+                                OR YearOfPublication Like @value
                                 OR Publisher Like @value
                                  ";
                     break;
