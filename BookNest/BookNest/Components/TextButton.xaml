@@ -14,7 +14,7 @@
         <TextBlock
             x:Name="ButtonTextBlock"
             FontSize="{StaticResource Small}"
-            FontWeight="Normal"
+            FontWeight="Medium"
             Foreground="{Binding ButtonStyle, RelativeSource={RelativeSource AncestorType=UserControl}}"
             Text="{Binding ButtonText, RelativeSource={RelativeSource AncestorType=UserControl}}" />
     </Border>

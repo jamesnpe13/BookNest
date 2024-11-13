@@ -10,6 +10,13 @@
         <Setter Property="Background" Value="Black" />
     </Style>
 
+    <!--  Scroll viewer  -->
+    <Style TargetType="ScrollViewer">
+        <Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+    </Style>
+
     <!--  Window dimensions  -->
     <System:Double x:Key="WindowDimensionsY">700</System:Double>
     <System:Double x:Key="WindowDimensionsX">1300</System:Double>

@@ -31,7 +31,7 @@
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
-                    <!--  View Title  -->
+                    <!--  View Title bar  -->
                     <Border
                         Grid.Row="0"
                         Grid.Column="0"
@@ -51,9 +51,13 @@
                         Grid.Column="0"
                         Height="{StaticResource UtilityBarHeight}"
                         VerticalAlignment="Center">
-                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                            <components:TextButton ButtonStyle="Destructive" ButtonText="Cancel" />
 
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                            <components:TextButton
+                                x:Name="CancelButtonUtility"
+                                ButtonStyle="Destructive"
+                                ButtonText="Cancel"
+                                MouseDown="CancelButtonUtility_MouseDown" />
                         </StackPanel>
                     </Border>
 
@@ -63,7 +67,7 @@
                         Grid.Column="1"
                         Height="{StaticResource UtilityBarHeight}">
                         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                            <components:Dropdown Placeholder="Category" />
+                            <components:Dropdown Placeholder="Category" Visibility="Collapsed" />
                         </StackPanel>
                     </Border>
                 </Grid>
@@ -73,10 +77,146 @@
         <ScrollViewer
             Grid.Row="1"
             Padding="40"
+            HorizontalAlignment="Center"
             HorizontalScrollBarVisibility="auto"
             VerticalScrollBarVisibility="auto">
 
-            <components:TextInputField Placeholder="Title" />
+            <Border Width="500">
+                <StackPanel Orientation="Vertical">
+
+                    <!--  Preview window  -->
+                    <Border
+                        Margin="0,0,0,20"
+                        Padding="40,20"
+                        BorderBrush="{StaticResource Blue5}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource CornerRadius2}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*" />
+                                <ColumnDefinition Width="50*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="50*" />
+                                <RowDefinition Height="50*" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Margin="0,0,0,20"
+                                FontSize="{StaticResource XLarge}"
+                                FontWeight="Medium"
+                                Foreground="{StaticResource Blue5}"
+                                Text="Untitled Book"
+                                TextWrapping="Wrap" />
+
+                            <TextBlock
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                FontSize="{StaticResource Normal}"
+                                Foreground="{StaticResource Grey3}"
+                                Text="By Author"
+                                TextWrapping="Wrap" />
+                            <TextBlock
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                FontSize="{StaticResource Normal}"
+                                Foreground="{StaticResource Grey3}"
+                                Text="Genre"
+                                TextWrapping="Wrap" />
+                            <TextBlock
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                FontSize="{StaticResource Normal}"
+                                Foreground="{StaticResource Grey3}"
+                                Text="2024"
+                                TextWrapping="Wrap" />
+                            <TextBlock
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                FontSize="{StaticResource Normal}"
+                                Foreground="{StaticResource Grey3}"
+                                Text="ISBN"
+                                TextWrapping="Wrap" />
+                        </Grid>
+                    </Border>
+
+                    <!--  Form  -->
+                    <Label
+                        Margin="0,0,0,20"
+                        Content="Enter book details"
+                        FontSize="{StaticResource Large}" />
+
+                    <components:TextInputField Margin="0,0,0,20" Placeholder="Title" />
+
+                    <Grid Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <components:TextInputField
+                            Grid.Column="0"
+                            Margin="0,0,10,0"
+                            Placeholder="ISBN" />
+                        <components:Dropdown
+                            Grid.Column="1"
+                            Width="auto"
+                            Margin="10,0,0,0"
+                            HorizontalAlignment="Stretch"
+                            Placeholder="Genre" />
+                    </Grid>
+
+                    <Grid Margin="0,0,0,40">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <components:TextInputField
+                            Grid.Column="0"
+                            Margin="0,0,10,0"
+                            Placeholder="Publisher" />
+                        <components:TextInputField
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
+                            Placeholder="Year of publication" />
+                    </Grid>
+
+                    <Grid Margin="0,0,0,20">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <components:Button
+                            x:Name="CancelButton"
+                            Grid.Column="0"
+                            Margin="0,0,10,0"
+                            HorizontalAlignment="Stretch"
+                            ButtonHeight="Medium"
+                            ButtonStyle="Destructive"
+                            ButtonText="Cancel"
+                            MouseDown="CancelButton_MouseDown" />
+                        <components:Button
+                            x:Name="SaveButton"
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
+                            HorizontalAlignment="Stretch"
+                            ButtonHeight="Medium"
+                            ButtonStyle="Primary"
+                            ButtonText="Save"
+                            MouseDown="SaveButton_MouseDown" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+
         </ScrollViewer>
 
     </Grid>

@@ -11,7 +11,7 @@
     Background="{StaticResource Blue4}"
     mc:Ignorable="d">
     <Grid>
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer>
 
             <StackPanel
                 Width="400"
@@ -43,7 +43,7 @@
                         Placeholder="Enter keyword" />
                     <components:Button
                         Grid.Column="1"
-                        ButtonStyle="Primary"
+                        ButtonStyle="Outline"
                         ButtonText="Search" />
                 </Grid>
 
@@ -74,7 +74,7 @@
                 <components:Button
                     x:Name="QuickAddBookButton"
                     ButtonHeight="Medium"
-                    ButtonStyle="Neutral"
+                    ButtonStyle="Primary"
                     ButtonText="Quick add book"
                     MouseDown="QuickAddBookButton_MouseDown" />
             </StackPanel>

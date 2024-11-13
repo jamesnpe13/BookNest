@@ -95,7 +95,7 @@
 
         <!--  Main nav section  -->
         <Border Grid.Row="3" Padding="0,20,0,20">
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ScrollViewer FocusVisualStyle="{x:Null}" VerticalScrollBarVisibility="Auto">
                 <StackPanel Orientation="Vertical">
                     <components:NavButton
                         x:Name="DashboardNavButton"
@@ -155,7 +155,7 @@
             <StackPanel Orientation="Vertical">
                 <components:NavButton
                     x:Name="AccountNavButton"
-                    Height="60"
+                    Height="50"
                     ButtonStyle="Primary"
                     ButtonText="My Account"
                     IconSource="../assets/icons/Icon material-account-box.png"
@@ -167,7 +167,7 @@
                 </components:NavButton>
                 <components:NavButton
                     x:Name="SignOutNavButton"
-                    Height="60"
+                    Height="50"
                     ButtonStyle="Transparent"
                     ButtonText="Sign out"
                     IconSource="../assets/icons/Icon open-account-logout.png"
