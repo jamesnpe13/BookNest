@@ -14,7 +14,6 @@ public partial class MainWindow_VM : ObservableObject
     private readonly AppData ad;
     private readonly DatabaseService ds;
     private readonly SessionService ss;
-    private readonly BookFilterService bfs;
 
     [ObservableProperty]
     private string? targetPage;
@@ -22,14 +21,13 @@ public partial class MainWindow_VM : ObservableObject
     [ObservableProperty]
     private Page? currentPage;
 
-    public MainWindow_VM(IServiceProvider _sp, PageNavigationService _ns, AppData _ad, DatabaseService _ds, SessionService _ss, BookFilterService _bfs)
+    public MainWindow_VM(IServiceProvider _sp, PageNavigationService _ns, AppData _ad, DatabaseService _ds, SessionService _ss)
     {
         sp = _sp;
         ns = _ns;
         ad = _ad;
         ds = _ds;
         ss = _ss;
-        bfs = _bfs;
 
         ns.SetCurrentPage(ad.DefaultPage); // sets default page
 
@@ -38,6 +36,15 @@ public partial class MainWindow_VM : ObservableObject
 
         //if (tempUser == 1) ss.HandleUserSignIn("admin", "123", "Administrator");
         //if (tempUser == 2) ss.HandleUserSignIn("member", "123", "Member");
+
+        var tempList = ds.GetBook(BookFilterKey.SEARCH, "Harry");
+
+        Console.WriteLine("Searching keyword");
+
+        foreach (var book in tempList)
+        {
+            Console.WriteLine(book.Title + " - " + book.Author);
+        }
 
     }
 

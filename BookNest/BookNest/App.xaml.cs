@@ -43,7 +43,6 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<AppData>();
         services.AddSingleton<PageNavigationService>();
         services.AddSingleton<SessionService>();
-        services.AddSingleton<BookFilterService>();
 
         // database
         services.AddSingleton<DatabaseService>();

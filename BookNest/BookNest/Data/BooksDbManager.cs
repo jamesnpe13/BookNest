@@ -1,6 +1,7 @@
 ﻿using BookNest.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Data.SQLite;
+using System.Diagnostics.Eventing.Reader;
 
 namespace BookNest.Data;
 
@@ -220,6 +221,17 @@ partial class DatabaseService : ObservableObject
                                 WHERE Likes = @value
                                 ";
                     break;
+                case BookFilterKey.SEARCH:
+                    query = @"
+                                SELECT * FROM Books
+                                WHERE Title LIKE @value
+                                OR ISBN Like @value
+                                OR Genre Like @value
+                                OR Author Like @value
+                                OR YearOfPublication Like @value
+                                OR Publisher Like @value
+                                 ";
+                    break;
             }
 
             using (var command = new SQLiteCommand(query, connection))
@@ -227,7 +239,15 @@ partial class DatabaseService : ObservableObject
                 // changes sql query string based on filter key and value sent as argument
 
                 // pass value from argument to query param
-                command.Parameters.AddWithValue("@value", value);
+                if (key == BookFilterKey.SEARCH)
+                {
+                    command.Parameters.AddWithValue("@value", "%" + value + "%");
+
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("@value", value);
+                }
 
                 using (var reader = command.ExecuteReader())
                 {
