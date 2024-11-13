@@ -81,5 +81,8 @@ public static class ServiceCollectionExtensions
 
         services.AddTransient<Member_Bag_V>();
         services.AddTransient<Member_Watchlist_V>();
+
+        services.AddTransient<Book_Details_V>();
+        services.AddTransient<Book_AddUpdate_V>();
     }
 }

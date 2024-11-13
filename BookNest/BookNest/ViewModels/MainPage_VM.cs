@@ -19,8 +19,15 @@ public enum PageView
     People,
     Account,
     SignOut,
+    BookSingleDetail,
+    BookAdd,
+    BookUpdate
 }
 
+public enum BookView
+{
+
+}
 public partial class MainPage_VM : ObservableObject
 {
     private readonly AppData ad;
@@ -31,6 +38,9 @@ public partial class MainPage_VM : ObservableObject
     private UserControl? currentView;
 
     [ObservableProperty]
+    private UserControl? currentBookView;
+
+    [ObservableProperty]
     private string welcomeTextLine1 = string.Empty;
 
     [ObservableProperty]
@@ -38,6 +48,9 @@ public partial class MainPage_VM : ObservableObject
 
     [ObservableProperty]
     private string accountType = string.Empty;
+
+    [ObservableProperty]
+    private UserControl? lastView;
 
     [ObservableProperty] private Visibility dashboardNavButtonVisibility = Visibility.Collapsed;
     [ObservableProperty] private Visibility booksNavButtonVisibility = Visibility.Collapsed;
@@ -61,31 +74,6 @@ public partial class MainPage_VM : ObservableObject
 
     // view router
     [RelayCommand]
-    public void SetCurrentView(PageView targetView)
-    {
-        // (Shared buttons) dynamic views - checks current user's account type then display's correct view
-        if (targetView == PageView.Dashboard)
-        {
-            CurrentView = ad.CurrentAccount.AccountType == "Administrator" ? sp.GetRequiredService<Admin_Dashboard_V>() : sp.GetRequiredService<Member_Dashboard_V>();
-        }
-        if (targetView == PageView.Account)
-        {
-            CurrentView = ad.CurrentAccount.AccountType == "Administrator" ? sp.GetRequiredService<Admin_Account_V>() : sp.GetRequiredService<Member_Account_V>();
-        }
-        if (targetView == PageView.Books)
-        {
-            CurrentView = ad.CurrentAccount.AccountType == "Administrator" ? sp.GetRequiredService<Admin_Books_V>() : sp.GetRequiredService<Member_Books_V>();
-        }
-
-        // admin specific views
-        if (targetView == PageView.People) CurrentView = sp.GetRequiredService<Admin_People_V>();
-        if (targetView == PageView.Reserved) CurrentView = sp.GetRequiredService<Admin_Reserved_V>();
-        if (targetView == PageView.Returns) CurrentView = sp.GetRequiredService<Admin_Returns_V>();
-
-        // member specific views
-        if (targetView == PageView.Bag) CurrentView = sp.GetRequiredService<Member_Bag_V>();
-        if (targetView == PageView.Watchlist) CurrentView = sp.GetRequiredService<Member_Watchlist_V>();
-    }
 
     // navbar style (member or admin)
     public void NavbarInit()
@@ -122,6 +110,40 @@ public partial class MainPage_VM : ObservableObject
             AccountNavButtonVisibility = Visibility.Visible;
             SignOutNavButtonVisibility = Visibility.Visible;
         }
+    }
+
+    // setting page views
+    public void SetCurrentView(PageView targetView)
+    {
+        // (Shared buttons) dynamic views - checks current user's account type then display's correct view
+        if (targetView == PageView.Dashboard)
+        {
+            CurrentView = ad.CurrentAccount.AccountType == "Administrator" ? sp.GetRequiredService<Admin_Dashboard_V>() : sp.GetRequiredService<Member_Dashboard_V>();
+        }
+        if (targetView == PageView.Account)
+        {
+            CurrentView = ad.CurrentAccount.AccountType == "Administrator" ? sp.GetRequiredService<Admin_Account_V>() : sp.GetRequiredService<Member_Account_V>();
+        }
+        if (targetView == PageView.Books)
+        {
+            CurrentView = ad.CurrentAccount.AccountType == "Administrator" ? sp.GetRequiredService<Admin_Books_V>() : sp.GetRequiredService<Member_Books_V>();
+        }
+
+        // admin specific views
+        if (targetView == PageView.People) CurrentView = sp.GetRequiredService<Admin_People_V>();
+        if (targetView == PageView.Reserved) CurrentView = sp.GetRequiredService<Admin_Reserved_V>();
+        if (targetView == PageView.Returns) CurrentView = sp.GetRequiredService<Admin_Returns_V>();
+
+        // member specific views
+        if (targetView == PageView.Bag) CurrentView = sp.GetRequiredService<Member_Bag_V>();
+        if (targetView == PageView.Watchlist) CurrentView = sp.GetRequiredService<Member_Watchlist_V>();
+
+        // Book - Single views
+        if (targetView == PageView.BookSingleDetail) CurrentView = sp.GetRequiredService<Book_Details_V>();
+        if (targetView == PageView.BookAdd) CurrentView = sp.GetRequiredService<Book_AddUpdate_V>();
+        if (targetView == PageView.BookUpdate) CurrentView = sp.GetRequiredService<Book_AddUpdate_V>();
+
+        Console.WriteLine("Current Page: " + CurrentView);
     }
 
     public void HandleUserSignOut() => ss.HandleUserSignOut();

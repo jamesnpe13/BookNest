@@ -25,13 +25,8 @@
         <modules:SideNavModule Grid.Column="0" />
 
         <!--  Main section  -->
-        <ScrollViewer
-            Grid.Column="1"
-            HorizontalScrollBarVisibility="Auto"
-            VerticalScrollBarVisibility="Auto">
 
-            <ContentControl Content="{Binding CurrentView}" />
-        </ScrollViewer>
+        <ContentControl Grid.Column="1" Content="{Binding CurrentView}" />
 
         <!--  Info bar  -->
         <!--<Border

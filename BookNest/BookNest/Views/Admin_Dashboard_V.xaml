@@ -11,70 +11,73 @@
     Background="{StaticResource Blue4}"
     mc:Ignorable="d">
     <Grid>
-        <StackPanel
-            Width="400"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Orientation="Vertical">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
 
-            <!--  graphic  -->
-            <svgc:SvgViewbox Margin="0,0,0,40" Source="/assets/admin-dashboard-graphic-white.svg" />
-
-            <TextBlock
-                Margin="0,0,0,40"
-                FontSize="{StaticResource XLarge}"
-                Foreground="{StaticResource White}"
-                Text="Add, remove, and update books from the catalogue."
-                TextAlignment="Center"
-                TextWrapping="Wrap" />
-
-            <!--  Search bar  -->
-            <Grid Margin="0,0,0,40">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="auto" />
-                </Grid.ColumnDefinitions>
-                <components:TextInputField
-                    Grid.Column="0"
-                    Margin="0,0,10,0"
-                    HorizontalAlignment="Stretch"
-                    Placeholder="Enter keyword" />
-                <components:Button
-                    Grid.Column="1"
-                    ButtonStyle="Primary"
-                    ButtonText="Search" />
-            </Grid>
-
-            <!--  Quick access buttons  -->
             <StackPanel
-                Margin="0,0,0,40"
+                Width="400"
                 HorizontalAlignment="Center"
-                Orientation="Horizontal">
-                <components:TextButton
-                    x:Name="ManageBooksButton"
-                    Padding="20,0,20,0"
-                    ButtonText="Manage books"
-                    MouseDown="ManageBooksButton_MouseDown" />
-                <components:TextButton
-                    x:Name="ManageReturnsButton"
-                    Padding="20,0,20,0"
-                    ButtonText="Managed returns"
-                    MouseDown="ManageReturnsButton_MouseDown" />
-                <components:TextButton
-                    x:Name="ManageAccountsButton"
-                    Padding="20,0,20,0"
-                    ButtonText="Manage accounts"
-                    MouseDown="ManageAccountsButton_MouseDown" />
+                VerticalAlignment="Center"
+                Orientation="Vertical">
 
+                <!--  graphic  -->
+                <svgc:SvgViewbox Margin="0,0,0,40" Source="/assets/admin-dashboard-graphic-white.svg" />
+
+                <TextBlock
+                    Margin="0,0,0,40"
+                    FontSize="{StaticResource XLarge}"
+                    Foreground="{StaticResource White}"
+                    Text="Add, remove, and update books from the catalogue."
+                    TextAlignment="Center"
+                    TextWrapping="Wrap" />
+
+                <!--  Search bar  -->
+                <Grid Margin="0,0,0,40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <components:TextInputField
+                        Grid.Column="0"
+                        Margin="0,0,10,0"
+                        HorizontalAlignment="Stretch"
+                        Placeholder="Enter keyword" />
+                    <components:Button
+                        Grid.Column="1"
+                        ButtonStyle="Primary"
+                        ButtonText="Search" />
+                </Grid>
+
+                <!--  Quick access buttons  -->
+                <StackPanel
+                    Margin="0,0,0,40"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                    <components:TextButton
+                        x:Name="ManageBooksButton"
+                        Padding="20,0,20,0"
+                        ButtonText="Manage books"
+                        MouseDown="ManageBooksButton_MouseDown" />
+                    <components:TextButton
+                        x:Name="ManageReturnsButton"
+                        Padding="20,0,20,0"
+                        ButtonText="Managed returns"
+                        MouseDown="ManageReturnsButton_MouseDown" />
+                    <components:TextButton
+                        x:Name="ManageAccountsButton"
+                        Padding="20,0,20,0"
+                        ButtonText="Manage accounts"
+                        MouseDown="ManageAccountsButton_MouseDown" />
+
+                </StackPanel>
+
+                <!--  Quick add button  -->
+                <components:Button
+                    x:Name="QuickAddBookButton"
+                    ButtonHeight="Medium"
+                    ButtonStyle="Neutral"
+                    ButtonText="Quick add book"
+                    MouseDown="QuickAddBookButton_MouseDown" />
             </StackPanel>
-
-            <!--  Quick add button  -->
-            <components:Button
-                x:Name="QuickAddBookButton"
-                ButtonHeight="Medium"
-                ButtonStyle="Neutral"
-                ButtonText="Quick add book"
-                MouseDown="QuickAddBookButton_MouseDown" />
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>
