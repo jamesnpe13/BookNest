@@ -224,9 +224,13 @@ partial class DatabaseService : ObservableObject
                 case BookFilterKey.SEARCH:
                     query = @"
                                 SELECT * FROM Books
-                                WHERE Title
-                                LIKE @value
-                                ";
+                                WHERE Title LIKE @value
+                                OR ISBN Like @value
+                                OR Genre Like @value
+                                OR Author Like @value
+                                OR Year_Of_Publication Like @value
+                                OR Publisher Like @value
+                                 ";
                     break;
             }
 
