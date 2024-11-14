@@ -114,4 +114,29 @@ public partial class RegistrationPage : Page
     {
         ns.SetCurrentPage("SignInPage");
     }
+
+    private void ValidateFields()
+    {
+        if (string.IsNullOrWhiteSpace(FirstNameField.Text))
+            throw new Exception("First name is required.");
+
+        if (string.IsNullOrWhiteSpace(LastNameField.Text))
+            throw new Exception("Last name is required.");
+
+        if (string.IsNullOrWhiteSpace(EmailField.Text))
+            throw new Exception("Email is required.");
+
+        if (string.IsNullOrWhiteSpace(UsernameField.Text))
+            throw new Exception("Username is required.");
+
+        if (string.IsNullOrWhiteSpace(PasswordField.ActualPassword))
+            throw new Exception("Password is required.");
+
+        if (PasswordField.PasswordInputFieldTextBox != ConfirmPasswordField.PasswordInputFieldTextBox)
+            throw new Exception("Passwords do not match.");
+
+        if (RegistrationTypeDropdown.DropdownCombobox == null)
+            throw new Exception("Account type is required.");
+    }
+
 }
