@@ -46,7 +46,7 @@
                     VerticalAlignment="Center"
                     FontSize="{StaticResource Small}"
                     Foreground="{StaticResource Blue2}"
-                    Text="Toast notification"
+                    Text="{Binding Message, RelativeSource={RelativeSource AncestorType=UserControl}}"
                     TextWrapping="Wrap" />
             </Grid>
         </Border>
