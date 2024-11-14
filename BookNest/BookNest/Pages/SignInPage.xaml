@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:BookNest.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
     xmlns:viewmodels="clr-namespace:BookNest.ViewModels"
     Title="SignInPage"
     Background="{StaticResource Blue5}"
@@ -36,7 +37,7 @@
 
                     <Border Grid.Row="0" Margin="0,0,0,40">
                         <!--  Image here  -->
-                        <Image Source="../assets/signin-graphic.png" />
+                        <svgc:SvgViewbox Source="/assets/signin2-graphic.svg" />
                     </Border>
 
                     <!--  Form section  -->

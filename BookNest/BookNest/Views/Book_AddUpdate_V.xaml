@@ -109,9 +109,9 @@
                                 Grid.ColumnSpan="2"
                                 Margin="0,0,0,20"
                                 FontSize="{StaticResource XLarge}"
-                                FontWeight="Medium"
-                                Foreground="{StaticResource Blue5}"
-                                Text="Untitled Book"
+                                FontWeight="SemiBold"
+                                Foreground="{StaticResource Blue1}"
+                                Text="{Binding BookTitle, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                 TextWrapping="Wrap" />
 
                             <TextBlock
@@ -119,28 +119,28 @@
                                 Grid.Column="0"
                                 FontSize="{StaticResource Normal}"
                                 Foreground="{StaticResource Grey3}"
-                                Text="By Author"
+                                Text="{Binding BookAuthor}"
                                 TextWrapping="Wrap" />
                             <TextBlock
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 FontSize="{StaticResource Normal}"
                                 Foreground="{StaticResource Grey3}"
-                                Text="Genre"
+                                Text="{Binding BookGenre}"
                                 TextWrapping="Wrap" />
                             <TextBlock
                                 Grid.Row="2"
                                 Grid.Column="0"
                                 FontSize="{StaticResource Normal}"
                                 Foreground="{StaticResource Grey3}"
-                                Text="2024"
+                                Text="{Binding BookYearOfPublication}"
                                 TextWrapping="Wrap" />
                             <TextBlock
                                 Grid.Row="2"
                                 Grid.Column="1"
                                 FontSize="{StaticResource Normal}"
                                 Foreground="{StaticResource Grey3}"
-                                Text="ISBN"
+                                Text="{Binding BookISBN}"
                                 TextWrapping="Wrap" />
                         </Grid>
                     </Border>
@@ -151,7 +151,15 @@
                         Content="Enter book details"
                         FontSize="{StaticResource Large}" />
 
-                    <components:TextInputField Margin="0,0,0,20" Placeholder="Title" />
+                    <components:TextInputField
+                        Margin="0,0,0,20"
+                        Placeholder="Title"
+                        Text="{Binding BookTitle, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <components:TextInputField
+                        Margin="0,0,0,20"
+                        Placeholder="Author"
+                        Text="{Binding BookAuthor, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
 
                     <Grid Margin="0,0,0,20">
                         <Grid.ColumnDefinitions>
@@ -162,12 +170,15 @@
                         <components:TextInputField
                             Grid.Column="0"
                             Margin="0,0,10,0"
-                            Placeholder="ISBN" />
+                            Placeholder="ISBN"
+                            Text="{Binding BookISBN, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
                         <components:Dropdown
+                            x:Name="GenreDropdown"
                             Grid.Column="1"
                             Width="auto"
                             Margin="10,0,0,0"
                             HorizontalAlignment="Stretch"
+                            LostFocus="GenreDropdown_LostFocus"
                             Placeholder="Genre" />
                     </Grid>
 
@@ -181,11 +192,13 @@
                         <components:TextInputField
                             Grid.Column="0"
                             Margin="0,0,10,0"
-                            Placeholder="Publisher" />
+                            Placeholder="Publisher"
+                            Text="{Binding BookPublisher, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
                         <components:TextInputField
                             Grid.Column="1"
                             Margin="10,0,0,0"
-                            Placeholder="Year of publication" />
+                            Placeholder="Year of publication"
+                            Text="{Binding BookYearOfPublication, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
                     </Grid>
 
                     <Grid Margin="0,0,0,20">

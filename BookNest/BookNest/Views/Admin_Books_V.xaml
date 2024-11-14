@@ -64,9 +64,11 @@
                         Height="{StaticResource UtilityBarHeight}">
                         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                             <components:Button
+                                x:Name="AddBookButton"
                                 Margin="0,0,20,0"
                                 ButtonStyle="Primary"
-                                ButtonText="Add book" />
+                                ButtonText="Add book"
+                                MouseDown="AddBookButton_MouseDown" />
                             <components:Dropdown Placeholder="Category" />
                         </StackPanel>
                     </Border>

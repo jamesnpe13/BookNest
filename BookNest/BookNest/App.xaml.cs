@@ -51,11 +51,9 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<MainWindow>();
         services.AddSingleton<MainWindow_VM>();
 
-        services.AddTransient<SamplePage>();
-
         // pages
         services.AddTransient<MainPage>();
-        services.AddTransient<MainPage_VM>();
+        services.AddSingleton<MainPage_VM>();
 
         services.AddTransient<SignInPage>();
         services.AddTransient<SignInPage_VM>();
@@ -82,5 +80,6 @@ public static class ServiceCollectionExtensions
 
         services.AddTransient<Book_Details_V>();
         services.AddTransient<Book_AddUpdate_V>();
+        services.AddTransient<Books_AddUpdate_VM>();
     }
 }

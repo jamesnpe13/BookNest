@@ -1,5 +1,4 @@
 ﻿using BookNest.Data;
-using BookNest.Models;
 using BookNest.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -30,12 +29,6 @@ public partial class MainWindow_VM : ObservableObject
         ss = _ss;
 
         ns.SetCurrentPage(ad.DefaultPage); // sets default page
-
-        // admin and member switching for testing
-        //int tempUser = 1;
-
-        //if (tempUser == 1) ss.HandleUserSignIn("admin", "123", "Administrator");
-        //if (tempUser == 2) ss.HandleUserSignIn("member", "123", "Member");
 
         var tempList = ds.GetBook(BookFilterKey.SEARCH, "Harry");
 

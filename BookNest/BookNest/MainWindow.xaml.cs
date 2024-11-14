@@ -20,6 +20,9 @@ public partial class MainWindow : Window
 
     private void MainWin_Loaded(object sender, RoutedEventArgs e)
     {
+        Console.WriteLine("Main window loaded");
+
+        Console.WriteLine("Auto signin user on window load (MainWindow.xaml.cs)");
         ss.HandleUserSignIn("admin", "123", "Administrator");
     }
 }
