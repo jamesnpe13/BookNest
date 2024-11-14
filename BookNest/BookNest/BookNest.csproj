@@ -8,61 +8,67 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="assets\admin-dashboard-graphic-green.svg" />
-    <None Remove="assets\admin-dashboard-graphic-orange.svg" />
-    <None Remove="assets\admin-dashboard-graphic-white.svg" />
-    <None Remove="assets\booknest-logo-white.svg" />
-    <None Remove="assets\icons\back-icon.svg" />
-    <None Remove="assets\icons\Icon awesome-binoculars.png" />
-    <None Remove="assets\icons\Icon awesome-book-open.png" />
-    <None Remove="assets\icons\Icon awesome-shopping-bag.png" />
-    <None Remove="assets\icons\Icon awesome-thumbs-up.png" />
-    <None Remove="assets\icons\Icon material-account-box.png" />
-    <None Remove="assets\icons\Icon material-assignment-return.png" />
-    <None Remove="assets\icons\Icon material-dashboard.png" />
-    <None Remove="assets\icons\Icon material-people.png" />
-    <None Remove="assets\icons\Icon metro-pin.png" />
-    <None Remove="assets\icons\Icon open-account-logout.png" />
-    <None Remove="assets\signin-graphic.png" />
-    <None Remove="favicon.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="assets\admin-dashboard-graphic-green.svg" />
+		<None Remove="assets\admin-dashboard-graphic-orange.svg" />
+		<None Remove="assets\admin-dashboard-graphic-white.svg" />
+		<None Remove="assets\booknest-logo-white.svg" />
+		<None Remove="assets\icons\back-icon.svg" />
+		<None Remove="assets\icons\Icon awesome-binoculars.png" />
+		<None Remove="assets\icons\Icon awesome-book-open.png" />
+		<None Remove="assets\icons\Icon awesome-shopping-bag.png" />
+		<None Remove="assets\icons\Icon awesome-thumbs-up.png" />
+		<None Remove="assets\icons\Icon material-account-box.png" />
+		<None Remove="assets\icons\Icon material-assignment-return.png" />
+		<None Remove="assets\icons\Icon material-dashboard.png" />
+		<None Remove="assets\icons\Icon material-people.png" />
+		<None Remove="assets\icons\Icon metro-pin.png" />
+		<None Remove="assets\icons\Icon open-account-logout.png" />
+		<None Remove="assets\signin-graphic.svg" />
+		<None Remove="assets\signin2-graphic.svg" />
+		<None Remove="favicon.png" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0-preview1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0-rc.2.24473.5" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0-rc.2.24473.5" />
-    <PackageReference Include="SharpVectors" Version="1.8.4.2" />
-    <PackageReference Include="SharpVectors.Wpf" Version="1.8.4.2" />
-    <PackageReference Include="System.Data.SQLite" Version="1.0.119" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0-preview1" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0-rc.2.24473.5" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0-rc.2.24473.5" />
+		<PackageReference Include="SharpVectors" Version="1.8.4.2" />
+		<PackageReference Include="SharpVectors.Wpf" Version="1.8.4.2" />
+		<PackageReference Include="System.Data.SQLite" Version="1.0.119" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="assets\admin-dashboard-graphic-green.svg" />
-    <Resource Include="assets\admin-dashboard-graphic-orange.svg" />
-    <Resource Include="assets\admin-dashboard-graphic-white.svg" />
-    <Resource Include="assets\booknest-logo-white.svg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets\icons\back-icon.svg" />
-    <Resource Include="assets\icons\Icon awesome-binoculars.png" />
-    <Resource Include="assets\icons\Icon awesome-book-open.png" />
-    <Resource Include="assets\icons\Icon awesome-shopping-bag.png" />
-    <Resource Include="assets\icons\Icon awesome-thumbs-up.png" />
-    <Resource Include="assets\icons\Icon material-account-box.png" />
-    <Resource Include="assets\icons\Icon material-assignment-return.png" />
-    <Resource Include="assets\icons\Icon material-dashboard.png" />
-    <Resource Include="assets\icons\Icon material-people.png" />
-    <Resource Include="assets\icons\Icon metro-pin.png" />
-    <Resource Include="assets\icons\Icon open-account-logout.png" />
-    <Resource Include="assets\signin-graphic.png" />
-    <Resource Include="favicon.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<Resource Include="assets\admin-dashboard-graphic-green.svg" />
+		<Resource Include="assets\admin-dashboard-graphic-orange.svg" />
+		<Resource Include="assets\admin-dashboard-graphic-white.svg" />
+		<Resource Include="assets\booknest-logo-white.svg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="assets\icons\back-icon.svg" />
+		<Resource Include="assets\icons\Icon awesome-binoculars.png" />
+		<Resource Include="assets\icons\Icon awesome-book-open.png" />
+		<Resource Include="assets\icons\Icon awesome-shopping-bag.png" />
+		<Resource Include="assets\icons\Icon awesome-thumbs-up.png" />
+		<Resource Include="assets\icons\Icon material-account-box.png" />
+		<Resource Include="assets\icons\Icon material-assignment-return.png" />
+		<Resource Include="assets\icons\Icon material-dashboard.png" />
+		<Resource Include="assets\icons\Icon material-people.png" />
+		<Resource Include="assets\icons\Icon metro-pin.png" />
+		<Resource Include="assets\icons\Icon open-account-logout.png" />
+		<Resource Include="assets\signin-graphic.svg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="assets\signin2-graphic.svg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="favicon.png" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Components\PasswordInputField.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Components\PasswordInputField.xaml.cs">
+			<SubType>Code</SubType>
+		</Compile>
+	</ItemGroup>
 
 </Project>

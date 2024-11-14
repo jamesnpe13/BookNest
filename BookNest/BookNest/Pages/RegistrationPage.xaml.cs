@@ -1,8 +1,6 @@
 ﻿using BookNest.Models;
 using BookNest.Services;
 using BookNest.ViewModels;
-using System.Runtime.InteropServices;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -10,7 +8,6 @@ namespace BookNest.Pages;
 
 public partial class RegistrationPage : Page
 {
-
     private readonly RegistrationPage_VM vm;
     private readonly PageNavigationService ns;
     public string PasswordText { get; set; }
