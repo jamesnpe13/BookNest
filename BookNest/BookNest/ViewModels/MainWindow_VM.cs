@@ -36,6 +36,15 @@ public partial class MainWindow_VM : ObservableObject
         //if (tempUser == 1) ss.HandleUserSignIn("admin", "123", "Administrator");
         //if (tempUser == 2) ss.HandleUserSignIn("member", "123", "Member");
 
+        var tempList = ds.GetBook(BookFilterKey.SEARCH, "Harry");
+
+        Console.WriteLine("Searching keyword");
+
+        foreach (var book in tempList)
+        {
+            Console.WriteLine(book.Title + " - " + book.Author);
+        }
+
     }
 
     [RelayCommand]

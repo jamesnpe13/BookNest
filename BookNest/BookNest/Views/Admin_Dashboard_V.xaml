@@ -12,7 +12,6 @@
     mc:Ignorable="d">
     <Grid>
         <ScrollViewer>
-
             <StackPanel
                 Width="400"
                 HorizontalAlignment="Center"

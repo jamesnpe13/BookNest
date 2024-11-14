@@ -6,15 +6,47 @@ namespace BookNest.Models;
 public enum BookGenre
 {
     Unassigned,
+    Adventure,
+    Fantasy,
     ScienceFiction,
-    Fiction,
-    NonFiction,
+    Dystopian,
+    Mystery,
+    Thriller,
+    Horror,
+    Romance,
+    HistoricalFiction,
+    ContemporaryFiction,
+    LiteraryFiction,
+    BiographyAutobiography,
+    Memoir,
+    SelfHelp,
+    TrueCrime,
+    History,
+    Science,
+    Travel,
+    Philosophy,
+    Psychology,
+    ReligionSpirituality,
+    HealthAndWellness,
+    Essays,
+    Politics,
+    Business,
+    Poetry,
+    YoungAdult,
+    ChildrensLiterature,
+    Western,
+    Gothic
 }
 
 public enum BookStatus
 {
     Available,
     Unavailable,
+    CheckedOut,
+    OnHold,
+    Overdue,
+    Lost,
+    Reserved
 }
 
 public partial class Book_M : ObservableObject

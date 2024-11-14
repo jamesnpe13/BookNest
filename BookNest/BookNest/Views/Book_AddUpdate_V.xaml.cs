@@ -1,28 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using BookNest.Models;
+using BookNest.ViewModels;
+using System.Text.RegularExpressions;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace BookNest.Views
 {
-    /// <summary>
-    /// Interaction logic for Book_AddUpdate_V.xaml
-    /// </summary>
     public partial class Book_AddUpdate_V : UserControl
     {
-        public Book_AddUpdate_V()
+        private readonly Books_AddUpdate_VM booksAddUpdateVM;
+
+        public Book_AddUpdate_V(Books_AddUpdate_VM _booksAddUpdateVM)
         {
             InitializeComponent();
+            booksAddUpdateVM = _booksAddUpdateVM;
+            DataContext = booksAddUpdateVM;
+            CreateComboboxItems();
+        }
+
+        private void CreateComboboxItems()
+        {
+            var genreList = Enum.GetValues(typeof(BookGenre));
+
+            foreach (var genre in genreList)
+            {
+                ComboBoxItem tempCBItem = new() { Content = genre.ToString() };
+                GenreDropdown.DropdownCombobox.Items.Add(tempCBItem);
+            }
         }
 
         private void SaveButton_MouseDown(object sender, MouseButtonEventArgs e)
@@ -38,6 +42,23 @@ namespace BookNest.Views
         private void CancelButtonUtility_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void submitForm()
+        {
+
+        }
+
+        private void GenreDropdown_LostFocus(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (DataContext is Books_AddUpdate_VM vm)
+            {
+                if (GenreDropdown.DropdownCombobox.SelectedItem is ComboBoxItem selectedItem)
+                {
+                    string selectedValue = selectedItem.Content.ToString();
+                    vm.BookGenre = selectedValue;
+                }
+            }
         }
     }
 }
