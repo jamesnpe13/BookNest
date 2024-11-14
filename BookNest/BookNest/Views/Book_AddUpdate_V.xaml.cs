@@ -31,17 +31,26 @@ namespace BookNest.Views
 
         private void SaveButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            if (DataContext is Books_AddUpdate_VM vm)
+            {
+                vm.SubmitForm();
+            }
         }
 
         private void CancelButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            if (DataContext is Books_AddUpdate_VM vm)
+            {
+                vm.MainPageVM.NavigateBack();
+            }
         }
 
         private void CancelButtonUtility_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            if (DataContext is Books_AddUpdate_VM vm)
+            {
+                vm.MainPageVM.NavigateBack();
+            }
         }
 
         private void submitForm()

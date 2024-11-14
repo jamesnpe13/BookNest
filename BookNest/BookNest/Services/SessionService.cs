@@ -69,6 +69,8 @@ public partial class SessionService : ObservableObject
     public void HandleUserSignOut()
     {
         ad.CurrentAccount = new();
+        Console.WriteLine("signing out");
+        Console.WriteLine("Current account: " + ad.CurrentAccount.Username);
         ns.SetCurrentPage("SignInPage");
     }
 

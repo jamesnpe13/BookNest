@@ -24,5 +24,10 @@ namespace BookNest.Views
         {
             InitializeComponent();
         }
+
+        private void AddBookButton_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using BookNest.Models;
+﻿using BookNest.Data;
+using BookNest.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,6 +9,7 @@ public partial class Books_AddUpdate_VM : ObservableObject
 {
     [ObservableProperty]
     private MainPage_VM mainPageVM;
+    private DatabaseService ds;
 
     [ObservableProperty] private string bookTitle = string.Empty;
     [ObservableProperty] private string bookAuthor = string.Empty;
@@ -16,9 +18,10 @@ public partial class Books_AddUpdate_VM : ObservableObject
     [ObservableProperty] private string bookPublisher = string.Empty;
     [ObservableProperty] private string bookYearOfPublication = string.Empty;
 
-    public Books_AddUpdate_VM(IServiceProvider _sp)
+    public Books_AddUpdate_VM(IServiceProvider _sp, MainPage_VM _mainPageVM, DatabaseService _ds)
     {
-        mainPageVM = _sp.GetRequiredService<MainPage_VM>();
+        mainPageVM = _mainPageVM;
+        ds = _ds;
     }
 
     // displays default text if textboxes are null or empty
@@ -41,6 +44,21 @@ public partial class Books_AddUpdate_VM : ObservableObject
     partial void OnBookYearOfPublicationChanged(string? oldValue, string newValue)
     {
         if (string.IsNullOrEmpty(newValue)) BookYearOfPublication = "Publication year";
+    }
+
+    public void SubmitForm()
+    {
+        Book_M tempBook = new()
+        {
+            Title = BookTitle,
+            Author = BookAuthor,
+            Isbn = BookISBN,
+            Genre = Enum.Parse<BookGenre>(BookGenre),
+            Publisher = BookPublisher,
+            YearOfPublication = BookYearOfPublication
+        };
+
+        ds.AddBook(tempBook);
     }
 
 }

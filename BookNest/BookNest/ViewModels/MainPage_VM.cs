@@ -3,6 +3,8 @@ using BookNest.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -35,10 +37,7 @@ public partial class MainPage_VM : ObservableObject
     private readonly IServiceProvider sp;
 
     [ObservableProperty]
-    private UserControl? currentView;
-
-    [ObservableProperty]
-    private UserControl? currentBookView;
+    private UserControl currentView;
 
     [ObservableProperty]
     private string welcomeTextLine1 = string.Empty;
@@ -143,9 +142,23 @@ public partial class MainPage_VM : ObservableObject
         if (targetView == PageView.BookAdd) CurrentView = sp.GetRequiredService<Book_AddUpdate_V>();
         if (targetView == PageView.BookUpdate) CurrentView = sp.GetRequiredService<Book_AddUpdate_V>();
 
-        Console.WriteLine("Current Page: " + CurrentView);
     }
 
-    public void HandleUserSignOut() => ss.HandleUserSignOut();
+    // set last page view
+    partial void OnCurrentViewChanged(UserControl? oldValue, UserControl? newValue)
+    {
+        LastView = oldValue;
+    }
 
+    public void NavigateBack()
+    {
+        Console.WriteLine("Navigating back to: ");
+        CurrentView = LastView;
+    }
+
+    public void HandleUserSignOut()
+    {
+        SetCurrentView(PageView.Dashboard);
+        ss.HandleUserSignOut();
+    }
 }

@@ -30,12 +30,6 @@ public partial class MainWindow_VM : ObservableObject
 
         ns.SetCurrentPage(ad.DefaultPage); // sets default page
 
-        // admin and member switching for testing
-        //int tempUser = 1;
-
-        //if (tempUser == 1) ss.HandleUserSignIn("admin", "123", "Administrator");
-        //if (tempUser == 2) ss.HandleUserSignIn("member", "123", "Member");
-
         var tempList = ds.GetBook(BookFilterKey.SEARCH, "Harry");
 
         Console.WriteLine("Searching keyword");
