@@ -8,6 +8,11 @@
     <SolidColorBrush x:Key="LightBlue" Color="#DBEDF3" />
     <SolidColorBrush x:Key="Destructive" Color="#FFAB3E3E" />
 
+    <SolidColorBrush x:Key="Error" Color="#FFAB3E3E" />
+    <SolidColorBrush x:Key="Success" Color="#FF54A142" />
+    <SolidColorBrush x:Key="Default" Color="#FF4491E0" />
+    <SolidColorBrush x:Key="Warning" Color="#FFFFBB0B" />
+
     <!--  Blue tones  -->
     <SolidColorBrush x:Key="Blue1" Color="#3C4661" />
     <SolidColorBrush x:Key="Blue2" Color="#2B3349" />
