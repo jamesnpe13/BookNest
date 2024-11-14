@@ -82,5 +82,6 @@ public static class ServiceCollectionExtensions
 
         services.AddTransient<Book_Details_V>();
         services.AddTransient<Book_AddUpdate_V>();
+        services.AddTransient<Books_AddUpdate_VM>();
     }
 }
