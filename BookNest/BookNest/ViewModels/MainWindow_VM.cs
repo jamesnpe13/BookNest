@@ -8,11 +8,9 @@ namespace BookNest.ViewModels;
 
 public partial class MainWindow_VM : ObservableObject
 {
-    private readonly IServiceProvider sp;
+
     private readonly PageNavigationService ns;
     private readonly AppData ad;
-    private readonly DatabaseService ds;
-    private readonly SessionService ss;
 
     [ObservableProperty]
     private string? targetPage;
@@ -20,24 +18,12 @@ public partial class MainWindow_VM : ObservableObject
     [ObservableProperty]
     private Page? currentPage;
 
-    public MainWindow_VM(IServiceProvider _sp, PageNavigationService _ns, AppData _ad, DatabaseService _ds, SessionService _ss)
+    public MainWindow_VM(PageNavigationService _ns, AppData _ad)
     {
-        sp = _sp;
         ns = _ns;
         ad = _ad;
-        ds = _ds;
-        ss = _ss;
 
         ns.SetCurrentPage(ad.DefaultPage); // sets default page
-
-        var tempList = ds.GetBook(BookFilterKey.SEARCH, "Harry");
-
-        Console.WriteLine("Searching keyword");
-
-        foreach (var book in tempList)
-        {
-            Console.WriteLine(book.Title + " - " + book.Author);
-        }
 
     }
 
@@ -47,5 +33,4 @@ public partial class MainWindow_VM : ObservableObject
         ns.SetCurrentPage(targetPage);
 
     }
-
 }

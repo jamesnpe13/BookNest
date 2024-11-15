@@ -85,6 +85,11 @@
                                 HorizontalAlignment="Left"
                                 ButtonText="Create an account"
                                 MouseDown="CreateAccountButton_MouseDown" />
+                            <components:Button
+                                x:Name="AddNotifButton"
+                                ButtonStyle="Secondary"
+                                ButtonText="Add notif"
+                                MouseDown="AddNotifButton_MouseDown" />
                         </StackPanel>
                     </Border>
                     <Border Grid.Row="2">

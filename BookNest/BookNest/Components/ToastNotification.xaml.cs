@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using BookNest.Services;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
 
 namespace BookNest.Components;
 public enum NotificationToastStyle
@@ -36,6 +38,9 @@ public partial class ToastNotification : UserControl
     public ToastNotification()
     {
         InitializeComponent();
+
+        FadeIn();
+        FadeOut();
     }
 
     // *** Property changed callback function
@@ -69,4 +74,24 @@ public partial class ToastNotification : UserControl
                 break;
         }
     }
+
+    private void FadeIn()
+    {
+        var fadeInStoryboard = (Storyboard)Resources["FadeInStoryboard"];
+        fadeInStoryboard.Begin(this);
+    }
+
+    async private void FadeOut()
+    {
+        Console.WriteLine("before fade");
+        await Task.Delay(NotificationService.Instance.NotificationDuration - 500);
+
+        Application.Current.Dispatcher.Invoke(() =>
+        {
+            Console.WriteLine("before fade");
+            var fadeOutStoryboard = (Storyboard)Resources["FadeOutStoryboard"];
+            fadeOutStoryboard.Begin(this);
+        });
+    }
+
 }

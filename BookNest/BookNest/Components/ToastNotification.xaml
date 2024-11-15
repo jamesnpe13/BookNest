@@ -20,11 +20,30 @@
         <Style x:Key="DefaultToastStyle" TargetType="Grid">
             <Setter Property="Background" Value="{StaticResource Default}" />
         </Style>
+
+        <Storyboard x:Key="FadeInStoryboard">
+            <DoubleAnimation
+                AutoReverse="False"
+                Storyboard.TargetProperty="(UIElement.Opacity)"
+                From="0"
+                To="1"
+                Duration="0:0:0.5" />
+        </Storyboard>
+
+        <Storyboard x:Key="FadeOutStoryboard">
+            <DoubleAnimation
+                AutoReverse="False"
+                Storyboard.TargetProperty="(UIElement.Opacity)"
+                From="1"
+                To="0"
+                Duration="0:0:0.5" />
+        </Storyboard>
     </UserControl.Resources>
     <Grid>
         <Border
             Width="300"
-            Height="60"
+            Height="auto"
+            MinHeight="40"
             Background="{StaticResource White}"
             BorderBrush="{StaticResource Grey3}"
             BorderThickness="1"
@@ -41,11 +60,11 @@
                 <TextBlock
                     Grid.Column="1"
                     Margin="0,0,0,3"
-                    Padding="20"
+                    Padding="20,10"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
                     FontSize="{StaticResource Small}"
-                    Foreground="{StaticResource Blue2}"
+                    Foreground="{StaticResource Grey3}"
                     Text="{Binding Message, RelativeSource={RelativeSource AncestorType=UserControl}}"
                     TextWrapping="Wrap" />
             </Grid>

@@ -15,8 +15,8 @@
                 <DataTemplate>
                     <components:ToastNotification
                         Margin="0,10"
-                        Message="{Binding NotificationMessage}"
-                        ToastStyle="{Binding NotificationType}" />
+                        Message="{Binding Message}"
+                        ToastStyle="{Binding Type}" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

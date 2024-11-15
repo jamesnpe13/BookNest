@@ -79,4 +79,8 @@ public partial class SignInPage : Page
 
     }
 
+    private void AddNotifButton_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        NotificationService.Instance.AddNotificationItem(NotificationToastStyle.Success, "Great! The notification service is now working.");
+    }
 }
