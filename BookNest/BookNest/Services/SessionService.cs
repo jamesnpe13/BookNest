@@ -34,44 +34,45 @@ public partial class SessionService : ObservableObject
 
         try
         {
-            Console.WriteLine(ds.GetAccount(usernameInput, accountType, true) == null);
-
             if (ds.GetAccount(usernameInput, accountType, true) == null)
-                throw new Exception("Returned null");
+            {
+                throw new Exception("Username does not exist in the database.");
+            }
 
             thisAccount = ds.GetAccount(usernameInput, accountType, true);
 
-            Console.WriteLine("Account found: " + thisAccount.FirstName + " " + thisAccount.LastName);
+            // call password verify from password manager
+            if (pm.VerifyPassword(passwordInput, thisAccount))
+            {
+                ad.CurrentAccount = thisAccount;
+
+                ns.SetCurrentPage("MainPage");
+                Console.WriteLine(ad.CurrentAccount.Username);
+
+                NotificationService.Instance.AddNotificationItem(Components.NotificationToastStyle.Success, "Sign in successful.");
+            }
+            else
+            {
+                throw new Exception("Invalid password. Try again.");
+            }
 
         }
         catch (Exception err)
         {
-            Console.WriteLine("Account not found");
-            Console.WriteLine(err.Message);
-
-            return;
+            throw new Exception(err.Message);
         }
 
-        // call password verify from password manager
-        if (pm.VerifyPassword(passwordInput, thisAccount))
-        {
-            Console.WriteLine("Password verification SUCCESS");
-            ad.CurrentAccount = thisAccount;
-            ns.SetCurrentPage("MainPage");
-
-            return;
-        }
-
-        Console.WriteLine("Password verification FAILED");
     }
 
     // handle user sign out
     public void HandleUserSignOut()
     {
         ad.CurrentAccount = new();
-        Console.WriteLine("signing out");
-        Console.WriteLine("Current account: " + ad.CurrentAccount.Username);
+        Console.WriteLine(ad.CurrentAccount.Username);
+
         ns.SetCurrentPage("SignInPage");
+
+        NotificationService.Instance.AddNotificationItem(Components.NotificationToastStyle.Default, "You have been signed out. See you soon!");
     }
 
     // handle user update account

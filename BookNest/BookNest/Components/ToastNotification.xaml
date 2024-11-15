@@ -8,16 +8,16 @@
     mc:Ignorable="d">
 
     <UserControl.Resources>
-        <Style x:Key="WarningToastStyle" TargetType="Grid">
+        <Style x:Key="WarningToastStyle" TargetType="Border">
             <Setter Property="Background" Value="{StaticResource Warning}" />
         </Style>
-        <Style x:Key="SuccessToastStyle" TargetType="Grid">
+        <Style x:Key="SuccessToastStyle" TargetType="Border">
             <Setter Property="Background" Value="{StaticResource Success}" />
         </Style>
-        <Style x:Key="ErrorToastStyle" TargetType="Grid">
+        <Style x:Key="ErrorToastStyle" TargetType="Border">
             <Setter Property="Background" Value="{StaticResource Error}" />
         </Style>
-        <Style x:Key="DefaultToastStyle" TargetType="Grid">
+        <Style x:Key="DefaultToastStyle" TargetType="Border">
             <Setter Property="Background" Value="{StaticResource Default}" />
         </Style>
         <Style x:Key="WarningToastStyleBorder" TargetType="Border">
@@ -51,25 +51,30 @@
                 Duration="0:0:0.5" />
         </Storyboard>
     </UserControl.Resources>
+
+    <UserControl.Effect>
+        <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
+    </UserControl.Effect>
+
     <Grid>
         <Border
             x:Name="NotifBorder"
-            Width="300"
+            Width="350"
             Height="auto"
-            MinHeight="40"
+            MinHeight="60"
             Background="{StaticResource White}"
-            BorderThickness="1.5"
-            CornerRadius="{StaticResource CornerRadius1}">
+            BorderThickness="1.5">
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="15" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Grid x:Name="AccentBar" />
+                <Border x:Name="AccentBar" />
 
                 <TextBlock
+                    x:Name="NotifText"
                     Grid.Column="1"
                     Margin="0,0,0,3"
                     Padding="20,10"

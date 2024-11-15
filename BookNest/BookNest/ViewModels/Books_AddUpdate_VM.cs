@@ -1,5 +1,6 @@
 ﻿using BookNest.Data;
 using BookNest.Models;
+using BookNest.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -64,11 +65,17 @@ public partial class Books_AddUpdate_VM : ObservableObject
 
             Console.WriteLine("Successfully added book entry");
 
+            // if success
+            NotificationService.Instance.AddNotificationItem(Components.NotificationToastStyle.Success, "Book added to database");
+
             MainPageVM.NavigateBack();
         }
         catch (Exception err)
         {
             Console.WriteLine("Failed to add book: " + err.Message);
+
+            // to use notif service insert function call inside a try catch block and display err.message
+            NotificationService.Instance.AddNotificationItem(Components.NotificationToastStyle.Error, err.Message);
         }
     }
 

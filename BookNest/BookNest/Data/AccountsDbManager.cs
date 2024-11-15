@@ -1,5 +1,7 @@
 ﻿using BookNest.Models;
+using BookNest.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Extensions.Hosting.Internal;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -19,29 +21,39 @@ partial class DatabaseService : ObservableObject
     // Add account
     public void AddAccount(Account_M account)
     {
-        using (var connection = new SQLiteConnection(DB_STRING))
+        try
         {
-            connection.Open();
 
-            string addItemSql =
-                @"
+            using (var connection = new SQLiteConnection(DB_STRING))
+            {
+                connection.Open();
+
+                string addItemSql =
+                    @"
                     INSERT INTO Accounts (FirstName, LastName, Username, Password, PasswordHash, Salt, Email, AccountType) 
                     VALUES (@FirstName, @LastName, @Username, @Password, @PasswordHash, @Salt, @Email, @AccountType)
                 ";
 
-            using (var command = new SQLiteCommand(addItemSql, connection))
-            {
-                command.Parameters.AddWithValue("@FirstName", account.FirstName);
-                command.Parameters.AddWithValue("@LastName", account.LastName);
-                command.Parameters.AddWithValue("@Username", account.Username);
-                command.Parameters.AddWithValue("@Password", account.Password);
-                command.Parameters.AddWithValue("@PasswordHash", account.PasswordHash);
-                command.Parameters.AddWithValue("@Salt", account.Salt);
-                command.Parameters.AddWithValue("@Email", account.Email);
-                command.Parameters.AddWithValue("@AccountType", account.AccountType);
+                using (var command = new SQLiteCommand(addItemSql, connection))
+                {
+                    command.Parameters.AddWithValue("@FirstName", account.FirstName);
+                    command.Parameters.AddWithValue("@LastName", account.LastName);
+                    command.Parameters.AddWithValue("@Username", account.Username);
+                    command.Parameters.AddWithValue("@Password", account.Password);
+                    command.Parameters.AddWithValue("@PasswordHash", account.PasswordHash);
+                    command.Parameters.AddWithValue("@Salt", account.Salt);
+                    command.Parameters.AddWithValue("@Email", account.Email);
+                    command.Parameters.AddWithValue("@AccountType", account.AccountType);
 
-                command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
+                    NotificationService.Instance.AddNotificationItem(Components.NotificationToastStyle.Success, $"{account.AccountType} account successfully created.");
+                }
             }
+        }
+        catch (Exception err)
+        {
+            if (err.Message == "constraint failed\r\nUNIQUE constraint failed: Accounts.Username")
+                throw new Exception("Username already exists.");
         }
     }
 

@@ -76,26 +76,6 @@ public partial class SignInPage : Page
 
     private void ResetPasswordButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-
-    }
-
-    private void AddNotifButton_MouseDown(object sender, MouseButtonEventArgs e)
-    {
-        NotificationService.Instance.AddNotificationItem(NotificationToastStyle.Success, "Great! The notification service is now working.");
-    }
-
-    private void AddNotifButton2_MouseDown(object sender, MouseButtonEventArgs e)
-    {
-        NotificationService.Instance.AddNotificationItem(NotificationToastStyle.Warning, "Great! The notification service is now working.");
-    }
-
-    private void AddNotifButton3_MouseDown(object sender, MouseButtonEventArgs e)
-    {
-        NotificationService.Instance.AddNotificationItem(NotificationToastStyle.Default, "Great! The notification service is now working.");
-    }
-
-    private void AddNotifButton4_MouseDown(object sender, MouseButtonEventArgs e)
-    {
-        NotificationService.Instance.AddNotificationItem(NotificationToastStyle.Error, "Great! The notification service is now working.");
+        // no functionality available yet
     }
 }

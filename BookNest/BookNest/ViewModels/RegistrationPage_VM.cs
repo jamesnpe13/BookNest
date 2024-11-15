@@ -20,19 +20,22 @@ public partial class RegistrationPage_VM : ObservableObject
         ss = _ss;
     }
 
-    public void SubmitForm()
-    {
-
-    }
-
     public void RegisterAccount(Account_M tempAccount, string password = "")
     {
-        byte[] salt = pm.GenerateSalt();
-        string hashedPassword = pm.HashPassword(password, salt);
-        tempAccount.PasswordHash = hashedPassword;
-        tempAccount.Salt = Convert.ToBase64String(salt);
+        //byte[] salt = pm.GenerateSalt();
+        //string hashedPassword = pm.HashPassword(password, salt);
+        //tempAccount.PasswordHash = hashedPassword;
+        //tempAccount.Salt = Convert.ToBase64String(salt);
 
-        dbs.AddAccount(tempAccount);
+        try
+        {
+            dbs.AddAccount(tempAccount);
+        }
+        catch (Exception err)
+        {
+            throw new Exception(err.Message);
+        }
+
         ns.SetCurrentPage("SignInPage");
     }
 }
