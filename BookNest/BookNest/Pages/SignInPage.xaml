@@ -85,11 +85,30 @@
                                 HorizontalAlignment="Left"
                                 ButtonText="Create an account"
                                 MouseDown="CreateAccountButton_MouseDown" />
-                            <components:Button
-                                x:Name="AddNotifButton"
-                                ButtonStyle="Secondary"
-                                ButtonText="Add notif"
-                                MouseDown="AddNotifButton_MouseDown" />
+                            <StackPanel Orientation="Horizontal">
+                                <components:Button
+                                    x:Name="AddNotifButton"
+                                    ButtonStyle="Neutral"
+                                    ButtonText="Success"
+                                    MouseDown="AddNotifButton_MouseDown" />
+                                <components:Button
+                                    x:Name="AddNotifButton2"
+                                    ButtonStyle="Neutral"
+                                    ButtonText="Warning"
+                                    MouseDown="AddNotifButton2_MouseDown" />
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
+                                <components:Button
+                                    x:Name="AddNotifButton3"
+                                    ButtonStyle="Neutral"
+                                    ButtonText="Default"
+                                    MouseDown="AddNotifButton3_MouseDown" />
+                                <components:Button
+                                    x:Name="AddNotifButton4"
+                                    ButtonStyle="Neutral"
+                                    ButtonText="Error"
+                                    MouseDown="AddNotifButton4_MouseDown" />
+                            </StackPanel>
                         </StackPanel>
                     </Border>
                     <Border Grid.Row="2">

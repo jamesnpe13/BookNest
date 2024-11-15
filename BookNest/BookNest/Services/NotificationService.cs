@@ -1,8 +1,6 @@
 ﻿using BookNest.Components;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Data.Entity.Core.Objects;
 using System.Windows;
 
 namespace BookNest.Services;
@@ -19,56 +17,21 @@ public partial class NotificationService : ObservableObject
     public NotificationService()
     {
         NotificationList = new();
-        NotificationList.CollectionChanged += OnCollectionChanged;
-
-        Console.WriteLine("NOTIF SERVICE");
-    }
-
-    // Trigger on notification item add
-    public void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-    {
-        Console.WriteLine("Collection change");
-
-        if (e.Action == NotifyCollectionChangedAction.Add)
-        {
-            foreach (var newItem in e.NewItems)
-            {
-                DissolveItem();
-            }
-        }
+        //NotificationList.CollectionChanged += OnCollectionChanged;
     }
 
     // async add item
     async public void AddNotificationItem(NotificationToastStyle notificationType, string message)
     {
+
+        NotificationList.Add(new NotificationItem(notificationType, message));
+
+        await Task.Delay(NotificationDuration);
+
         Application.Current.Dispatcher.Invoke(() =>
         {
-            NotificationList.Add(new NotificationItem(notificationType, message));
-            Console.WriteLine("NOTIF added");
-
+            NotificationList.Remove(NotificationList[0]);
         });
-    }
-
-    // async remove item after given duration
-    async public void DissolveItem()
-    {
-        while (NotificationList.Count() > 0)
-        {
-            await Task.Delay(NotificationDuration);
-
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                NotificationList.Remove(NotificationList[0]);
-                Console.WriteLine("NOTIF Removed");
-            });
-
-        }
-    }
-
-    public void TestMessage()
-    {
-        Console.WriteLine("TEST MESSAGE");
-
     }
 }
 

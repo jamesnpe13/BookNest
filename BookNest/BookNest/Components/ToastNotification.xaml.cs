@@ -62,15 +62,19 @@ public partial class ToastNotification : UserControl
         {
             case NotificationToastStyle.Warning:
                 AccentBar.Style = (Style)FindResource("WarningToastStyle");
+                NotifBorder.Style = (Style)FindResource("WarningToastStyleBorder");
                 break;
             case NotificationToastStyle.Success:
                 AccentBar.Style = (Style)FindResource("SuccessToastStyle");
+                NotifBorder.Style = (Style)FindResource("SuccessToastStyleBorder");
                 break;
             case NotificationToastStyle.Error:
                 AccentBar.Style = (Style)FindResource("ErrorToastStyle");
+                NotifBorder.Style = (Style)FindResource("ErrorToastStyleBorder");
                 break;
             case NotificationToastStyle.Default:
                 AccentBar.Style = (Style)FindResource("DefaultToastStyle");
+                NotifBorder.Style = (Style)FindResource("DefaultToastStyleBorder");
                 break;
         }
     }

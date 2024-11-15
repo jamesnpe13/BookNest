@@ -20,6 +20,18 @@
         <Style x:Key="DefaultToastStyle" TargetType="Grid">
             <Setter Property="Background" Value="{StaticResource Default}" />
         </Style>
+        <Style x:Key="WarningToastStyleBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="{StaticResource Warning}" />
+        </Style>
+        <Style x:Key="SuccessToastStyleBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="{StaticResource Success}" />
+        </Style>
+        <Style x:Key="ErrorToastStyleBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="{StaticResource Error}" />
+        </Style>
+        <Style x:Key="DefaultToastStyleBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="{StaticResource Default}" />
+        </Style>
 
         <Storyboard x:Key="FadeInStoryboard">
             <DoubleAnimation
@@ -41,12 +53,12 @@
     </UserControl.Resources>
     <Grid>
         <Border
+            x:Name="NotifBorder"
             Width="300"
             Height="auto"
             MinHeight="40"
             Background="{StaticResource White}"
-            BorderBrush="{StaticResource Grey3}"
-            BorderThickness="1"
+            BorderThickness="1.5"
             CornerRadius="{StaticResource CornerRadius1}">
 
             <Grid>
