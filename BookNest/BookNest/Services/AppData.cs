@@ -12,6 +12,9 @@ namespace BookNest.Services;
 
 public partial class AppData : ObservableObject
 {
+    //private static AppData _instance;
+    //public static AppData Instance => _instance ??= new AppData();
+
     // connection string
     public readonly string DB_STRING = @"Data Source=booknest.db";
 

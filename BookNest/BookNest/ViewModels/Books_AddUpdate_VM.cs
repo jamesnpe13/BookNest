@@ -1,5 +1,6 @@
 ﻿using BookNest.Data;
 using BookNest.Models;
+using BookNest.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,7 +21,7 @@ public partial class Books_AddUpdate_VM : ObservableObject
 
     public Books_AddUpdate_VM(IServiceProvider _sp, MainPage_VM _mainPageVM, DatabaseService _ds)
     {
-        mainPageVM = _mainPageVM;
+        MainPageVM = _mainPageVM;
         ds = _ds;
     }
 
@@ -48,17 +49,34 @@ public partial class Books_AddUpdate_VM : ObservableObject
 
     public void SubmitForm()
     {
-        Book_M tempBook = new()
+        try
         {
-            Title = BookTitle,
-            Author = BookAuthor,
-            Isbn = BookISBN,
-            Genre = Enum.Parse<BookGenre>(BookGenre),
-            Publisher = BookPublisher,
-            YearOfPublication = BookYearOfPublication
-        };
+            Book_M tempBook = new()
+            {
+                Title = BookTitle,
+                Author = BookAuthor,
+                Isbn = BookISBN,
+                Genre = Enum.Parse<BookGenre>(BookGenre),
+                Publisher = BookPublisher,
+                YearOfPublication = BookYearOfPublication
+            };
 
-        ds.AddBook(tempBook);
+            ds.AddBook(tempBook);
+
+            Console.WriteLine("Successfully added book entry");
+
+            // if success
+            NotificationService.Instance.AddNotificationItem(Components.NotificationToastStyle.Success, "Book added to database");
+
+            MainPageVM.NavigateBack();
+        }
+        catch (Exception err)
+        {
+            Console.WriteLine("Failed to add book: " + err.Message);
+
+            // to use notif service insert function call inside a try catch block and display err.message
+            NotificationService.Instance.AddNotificationItem(Components.NotificationToastStyle.Error, err.Message);
+        }
     }
 
 }

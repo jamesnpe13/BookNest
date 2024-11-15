@@ -3,6 +3,7 @@ using BookNest.Data;
 using BookNest.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
+using System.CodeDom;
 using System.Data.Entity;
 using System.Runtime.CompilerServices;
 
@@ -46,7 +47,17 @@ public partial class SignInPage_VM : ObservableObject
 
     public void SubmitForm(string password)
     {
-        ss.HandleUserSignIn(Username, password, IsAdmin ? "Administrator" : "Member");
+        try
+        {
+            if (string.IsNullOrEmpty(username)) throw new Exception("Please enter a username.");
+            if (string.IsNullOrEmpty(password)) throw new Exception("Please enter a password.");
+
+            ss.HandleUserSignIn(Username, password, IsAdmin ? "Administrator" : "Member");
+        }
+        catch (Exception err)
+        {
+            NotificationService.Instance.AddNotificationItem(NotificationToastStyle.Error, err.Message);
+        }
 
     }
 

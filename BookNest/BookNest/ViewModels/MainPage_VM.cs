@@ -1,4 +1,5 @@
-﻿using BookNest.Services;
+﻿using BookNest.Models;
+using BookNest.Services;
 using BookNest.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -68,18 +69,13 @@ public partial class MainPage_VM : ObservableObject
         sp = _sp;
 
         NavbarInit(); // initialize data on side navbar
+        InitPageData();
         SetCurrentView(ad.DefaultView); // set default page view
     }
-
-    // view router
-    [RelayCommand]
 
     // navbar style (member or admin)
     public void NavbarInit()
     {
-        // set welcome message
-        WelcomeTextLine1 = "Hi, " + ad.CurrentAccount.FirstName ?? "User";
-        WelcomeTextLine2 = "Let's get started";
 
         // set account type display
         AccountType = ad.CurrentAccount.AccountType;
@@ -109,6 +105,13 @@ public partial class MainPage_VM : ObservableObject
             AccountNavButtonVisibility = Visibility.Visible;
             SignOutNavButtonVisibility = Visibility.Visible;
         }
+    }
+
+    public void InitPageData()
+    {
+        // set welcome message
+        WelcomeTextLine1 = "Hi, " + ad.CurrentAccount.FirstName ?? "User";
+        WelcomeTextLine2 = "Let's get started";
     }
 
     // setting page views

@@ -45,7 +45,7 @@
                             Foreground="{StaticResource Blue1}" />
                     </Border>
 
-                    <!--  Cance/back button  -->
+                    <!--  Cancel/back button  -->
                     <Border
                         Grid.Row="1"
                         Grid.Column="0"
@@ -226,7 +226,9 @@
                             ButtonStyle="Primary"
                             ButtonText="Save"
                             MouseDown="SaveButton_MouseDown" />
+
                     </Grid>
+
                 </StackPanel>
             </Border>
 

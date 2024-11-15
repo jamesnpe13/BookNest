@@ -1,0 +1,90 @@
+﻿<UserControl
+    x:Class="BookNest.Components.ToastNotification"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BookNest.Components"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style x:Key="WarningToastStyle" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource Warning}" />
+        </Style>
+        <Style x:Key="SuccessToastStyle" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource Success}" />
+        </Style>
+        <Style x:Key="ErrorToastStyle" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource Error}" />
+        </Style>
+        <Style x:Key="DefaultToastStyle" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource Default}" />
+        </Style>
+        <Style x:Key="WarningToastStyleBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="{StaticResource Warning}" />
+        </Style>
+        <Style x:Key="SuccessToastStyleBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="{StaticResource Success}" />
+        </Style>
+        <Style x:Key="ErrorToastStyleBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="{StaticResource Error}" />
+        </Style>
+        <Style x:Key="DefaultToastStyleBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="{StaticResource Default}" />
+        </Style>
+
+        <Storyboard x:Key="FadeInStoryboard">
+            <DoubleAnimation
+                AutoReverse="False"
+                Storyboard.TargetProperty="(UIElement.Opacity)"
+                From="0"
+                To="1"
+                Duration="0:0:0.5" />
+        </Storyboard>
+
+        <Storyboard x:Key="FadeOutStoryboard">
+            <DoubleAnimation
+                AutoReverse="False"
+                Storyboard.TargetProperty="(UIElement.Opacity)"
+                From="1"
+                To="0"
+                Duration="0:0:0.5" />
+        </Storyboard>
+    </UserControl.Resources>
+
+    <UserControl.Effect>
+        <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
+    </UserControl.Effect>
+
+    <Grid>
+        <Border
+            x:Name="NotifBorder"
+            Width="350"
+            Height="auto"
+            MinHeight="60"
+            Background="{StaticResource White}"
+            BorderThickness="1.5">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border x:Name="AccentBar" />
+
+                <TextBlock
+                    x:Name="NotifText"
+                    Grid.Column="1"
+                    Margin="0,0,0,3"
+                    Padding="20,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    FontSize="{StaticResource Small}"
+                    Foreground="{StaticResource Grey3}"
+                    Text="{Binding Message, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    TextWrapping="Wrap" />
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

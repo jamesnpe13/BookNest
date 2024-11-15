@@ -76,7 +76,6 @@ public partial class SignInPage : Page
 
     private void ResetPasswordButton_MouseDown(object sender, MouseButtonEventArgs e)
     {
-
+        // no functionality available yet
     }
-
 }

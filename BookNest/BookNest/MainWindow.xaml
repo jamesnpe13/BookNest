@@ -21,21 +21,27 @@
     mc:Ignorable="d">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
 
-        <Frame
-            x:Name="MainFrame"
-            Grid.Row="0"
-            Content="{Binding CurrentPage}"
-            DataContext="{Binding PageNavigationService}"
-            NavigationUIVisibility="Hidden" />
+            <Frame
+                x:Name="MainFrame"
+                Grid.Row="0"
+                Content="{Binding CurrentPage}"
+                DataContext="{Binding PageNavigationService}"
+                NavigationUIVisibility="Hidden" />
 
-        <!--  Development page navigator  -->
-        <modules:TempPageNav Grid.Row="1" Visibility="Visible" />
+            <!--  Development page navigator  -->
+            <modules:TempPageNav Grid.Row="1" Visibility="Visible" />
+        </Grid>
+
+        <!--  notification overlay  -->
+
+        <modules:ToastNotificationContainer />
     </Grid>
 
 </Window>

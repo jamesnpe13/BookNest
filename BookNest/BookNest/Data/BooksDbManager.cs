@@ -14,28 +14,43 @@ partial class DatabaseService : ObservableObject
     // Add book
     public void AddBook(Book_M book)
     {
-        using (var connection = new SQLiteConnection(DB_STRING))
+        try
         {
-            connection.Open();
+            using (var connection = new SQLiteConnection(DB_STRING))
+            {
+                connection.Open();
 
-            string addItemSql = @"
+                string addItemSql = @"
             INSERT INTO Books (ISBN, Title, Genre, Author, YearOfPublication, Publisher, Likes, Status)
             VALUES (@ISBN, @Title, @Genre, @Author, @YearOfPublication, @Publisher, @Likes, @Status)
             ";
 
-            using (var command = new SQLiteCommand(addItemSql, connection))
-            {
-                command.Parameters.AddWithValue("@ISBN", book.Isbn);
-                command.Parameters.AddWithValue("@Title", book.Title);
-                command.Parameters.AddWithValue("@Genre", book.Genre.ToString());
-                command.Parameters.AddWithValue("@Author", book.Author);
-                command.Parameters.AddWithValue("@Status", book.Status.ToString());
-                command.Parameters.AddWithValue("@YearOfPublication", book.YearOfPublication);
-                command.Parameters.AddWithValue("@Publisher", book.Publisher);
-                command.Parameters.AddWithValue("@Likes", book.Likes);
+                using (var command = new SQLiteCommand(addItemSql, connection))
+                {
+                    command.Parameters.AddWithValue("@ISBN", book.Isbn);
+                    command.Parameters.AddWithValue("@Title", book.Title);
+                    command.Parameters.AddWithValue("@Genre", book.Genre.ToString());
+                    command.Parameters.AddWithValue("@Author", book.Author);
+                    command.Parameters.AddWithValue("@Status", book.Status.ToString());
+                    command.Parameters.AddWithValue("@YearOfPublication", book.YearOfPublication);
+                    command.Parameters.AddWithValue("@Publisher", book.Publisher);
+                    command.Parameters.AddWithValue("@Likes", book.Likes);
 
-                command.ExecuteNonQuery();
+                    if (string.IsNullOrEmpty(book.Isbn)) throw new Exception("Required fields are empty.");
+                    if (string.IsNullOrEmpty(book.Title)) throw new Exception("Required fields are empty.");
+                    if (string.IsNullOrEmpty(book.Genre.ToString())) throw new Exception("Required fields are empty.");
+                    if (string.IsNullOrEmpty(book.Author)) throw new Exception("Required fields are empty.");
+                    if (string.IsNullOrEmpty(book.Status.ToString())) throw new Exception("Required fields are empty.");
+                    if (string.IsNullOrEmpty(book.YearOfPublication)) throw new Exception("Required fields are empty.");
+                    if (string.IsNullOrEmpty(book.Publisher)) throw new Exception("Required fields are empty.");
+
+                    command.ExecuteNonQuery();
+                }
             }
+        }
+        catch (Exception err)
+        {
+            throw new Exception(err.Message);
         }
     }
 
