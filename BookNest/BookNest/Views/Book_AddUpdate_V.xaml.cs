@@ -1,5 +1,7 @@
 ﻿using BookNest.Models;
+using BookNest.Services;
 using BookNest.ViewModels;
+using Microsoft.Extensions.Hosting.Internal;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -42,6 +44,9 @@ namespace BookNest.Views
             if (DataContext is Books_AddUpdate_VM vm)
             {
                 vm.MainPageVM.NavigateBack();
+
+                //vm.MainPageVM.SetCurrentView(PageView.Dashboard);
+
             }
         }
 
@@ -50,13 +55,16 @@ namespace BookNest.Views
             if (DataContext is Books_AddUpdate_VM vm)
             {
                 vm.MainPageVM.NavigateBack();
+
+                //vm.MainPageVM.SetCurrentView(PageView.Dashboard);
+
             }
         }
 
-        private void submitForm()
-        {
+        //private void submitForm()
+        //{
 
-        }
+        //}
 
         private void GenreDropdown_LostFocus(object sender, System.Windows.RoutedEventArgs e)
         {

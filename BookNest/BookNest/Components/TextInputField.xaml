@@ -13,7 +13,7 @@
         <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
     </UserControl.Effect>
 
-    <Border Style="{StaticResource TextBoxBorder}">
+    <Border x:Name="TextInputBorder" Style="{StaticResource TextBoxBorder}">
         <Grid>
             <Label
                 x:Name="PlaceholderLabel"

@@ -40,7 +40,7 @@ public partial class SignInPage : Page
     {
         if (e.Key == Key.Enter)
         {
-            if (!string.IsNullOrEmpty(PasswordField.PasswordInputFieldTextBox.Text))
+            if (!string.IsNullOrEmpty(PasswordField.TextInputFieldTextBox.Text))
             {
                 SubmitForm();
             }

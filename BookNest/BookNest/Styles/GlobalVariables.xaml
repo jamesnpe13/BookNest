@@ -33,6 +33,7 @@
     <CornerRadius x:Key="CornerRadius1">4</CornerRadius>
     <CornerRadius x:Key="CornerRadius2">8</CornerRadius>
     <System:Double x:Key="Controlheight">30</System:Double>
+    <System:Double x:Key="Controlheight2">40</System:Double>
     <System:Double x:Key="DropShadowOpacity">0.25</System:Double>
     <System:Double x:Key="DropShadowBlur">10</System:Double>
 
