@@ -6,6 +6,15 @@ namespace BookNest.Components;
 
 public partial class PasswordInputField : UserControl
 {
+    public FieldStyle FieldStyle
+    {
+        get { return (FieldStyle)GetValue(FieldStyleProperty); }
+        set { SetValue(FieldStyleProperty, value); }
+    }
+
+    // Using a DependencyProperty as the backing store for FieldStyle.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty FieldStyleProperty =
+        DependencyProperty.Register("FieldStyle", typeof(FieldStyle), typeof(PasswordInputField), new PropertyMetadata(FieldStyle.Light, OnFieldStylePropertyChanged));
 
     public string ActualPassword
     {
@@ -32,14 +41,35 @@ public partial class PasswordInputField : UserControl
         InitializeComponent();
     }
 
+    private static void OnFieldStylePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        PasswordInputField x = d as PasswordInputField;
+        if (x != null)
+        {
+            FieldStyle newValue = (FieldStyle)e.NewValue;
+
+            x.OnFieldStylePropertyChanged(newValue);
+        }
+    }
+
+    protected virtual void OnFieldStylePropertyChanged(FieldStyle newValue)
+    {
+        if (newValue == FieldStyle.Dark)
+        {
+            TextInputFieldTextBox.Style = (Style)FindResource("TextBoxTextBox_Dark");
+            TextInputBorder.Style = (Style)FindResource("TextBoxBorder_Dark");
+            PlaceholderLabel.Style = (Style)FindResource("PlaceholderLabel_Dark");
+        }
+    }
+
     private void PasswordInputFieldTextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
         // password masking
-        int currentLength = PasswordInputFieldTextBox.Text.Length;
+        int currentLength = TextInputFieldTextBox.Text.Length;
 
         if (currentLength > ActualPassword.Length)
         {
-            string newCharacters = PasswordInputFieldTextBox.Text.Substring(ActualPassword.Length);
+            string newCharacters = TextInputFieldTextBox.Text.Substring(ActualPassword.Length);
             ActualPassword += newCharacters;
         }
         else if (currentLength < ActualPassword.Length)
@@ -47,12 +77,12 @@ public partial class PasswordInputField : UserControl
             ActualPassword = ActualPassword.Substring(0, currentLength);
         }
 
-        PasswordInputFieldTextBox.Text = new string('●', ActualPassword.Length);
-        PasswordInputFieldTextBox.CaretIndex = PasswordInputFieldTextBox.Text.Length;
+        TextInputFieldTextBox.Text = new string('●', ActualPassword.Length);
+        TextInputFieldTextBox.CaretIndex = TextInputFieldTextBox.Text.Length;
 
         // palceholder visibility
 
-        if (string.IsNullOrEmpty(PasswordInputFieldTextBox.Text))
+        if (string.IsNullOrEmpty(TextInputFieldTextBox.Text))
         {
             PlaceholderLabel.Visibility = Visibility.Visible;
         }

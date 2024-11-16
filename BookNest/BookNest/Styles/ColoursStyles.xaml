@@ -4,8 +4,8 @@
     <!--<SolidColorBrush x:Key="Primary" Color="#FF4B923A" />-->
     <!--<SolidColorBrush x:Key="Primary" Color="#FF33BC69" />-->
     <SolidColorBrush x:Key="Primary" Color="#FF54A142" />
-    <SolidColorBrush x:Key="Secondary" Color="#FFE26B17" />
-    <SolidColorBrush x:Key="LightBlue" Color="#DBEDF3" />
+    <SolidColorBrush x:Key="Secondary" Color="#FF4F9FFF" />
+    <SolidColorBrush x:Key="LightBlue" Color="#FFCECECE" />
     <SolidColorBrush x:Key="Destructive" Color="#FFAB3E3E" />
 
     <SolidColorBrush x:Key="Error" Color="#FFAB3E3E" />

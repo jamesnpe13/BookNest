@@ -60,29 +60,35 @@
                                     x:Name="FirstNameField"
                                     Grid.Column="0"
                                     Margin="0,0,5,10"
+                                    FieldStyle="Dark"
                                     Placeholder="First name" />
                                 <components:TextInputField
                                     x:Name="LastNameField"
                                     Grid.Column="1"
                                     Margin="5,0,0,10"
+                                    FieldStyle="Dark"
                                     Placeholder="Last name" />
                             </Grid>
                             <components:TextInputField
                                 x:Name="EmailField"
                                 Margin="0,0,0,10"
+                                FieldStyle="Dark"
                                 Placeholder="Email" />
                             <components:TextInputField
                                 x:Name="UsernameField"
                                 Margin="0,0,0,10"
+                                FieldStyle="Dark"
                                 Placeholder="Username" />
 
                             <components:PasswordInputField
                                 x:Name="PasswordField"
                                 Margin="0,0,0,10"
+                                FieldStyle="Dark"
                                 Placeholder="Password" />
                             <components:PasswordInputField
                                 x:Name="ConfirmPasswordField"
                                 Margin="0,0,0,10"
+                                FieldStyle="Dark"
                                 Placeholder="Confirm password" />
 
                             <components:Dropdown

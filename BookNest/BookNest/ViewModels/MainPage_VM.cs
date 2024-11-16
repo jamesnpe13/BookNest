@@ -1,11 +1,7 @@
-﻿using BookNest.Models;
-using BookNest.Services;
+﻿using BookNest.Services;
 using BookNest.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -13,6 +9,7 @@ namespace BookNest.ViewModels;
 
 public enum PageView
 {
+
     Dashboard,
     Bag,
     Books,
@@ -27,12 +24,9 @@ public enum PageView
     BookUpdate
 }
 
-public enum BookView
-{
-
-}
 public partial class MainPage_VM : ObservableObject
 {
+
     private readonly AppData ad;
     private readonly SessionService ss;
     private readonly IServiceProvider sp;
@@ -161,7 +155,32 @@ public partial class MainPage_VM : ObservableObject
 
     public void HandleUserSignOut()
     {
-        SetCurrentView(PageView.Dashboard);
+
         ss.HandleUserSignOut();
+        ResetInstance();
+    }
+
+    public void ResetInstance()
+    {
+
+        CurrentView = null;
+
+        WelcomeTextLine1 = string.Empty;
+
+        WelcomeTextLine2 = string.Empty;
+
+        AccountType = string.Empty;
+
+        LastView = null;
+
+        DashboardNavButtonVisibility = Visibility.Collapsed;
+        BooksNavButtonVisibility = Visibility.Collapsed;
+        BagNavButtonVisibility = Visibility.Collapsed;
+        WatchlistNavButtonVisibility = Visibility.Collapsed;
+        ReturnsNavButtonVisibility = Visibility.Collapsed;
+        ReservedNavButtonVisibility = Visibility.Collapsed;
+        PeopleNavButtonVisibility = Visibility.Collapsed;
+        AccountNavButtonVisibility = Visibility.Collapsed;
+        SignOutNavButtonVisibility = Visibility.Collapsed;
     }
 }

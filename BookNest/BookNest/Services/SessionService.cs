@@ -12,6 +12,7 @@ namespace BookNest.Services;
 
 public partial class SessionService : ObservableObject
 {
+  
     private readonly DatabaseService ds;
     private readonly PasswordManager pm;
     private readonly AppData ad;

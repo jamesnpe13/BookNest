@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:modules="clr-namespace:BookNest.Modules"
     xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
-    Background="{StaticResource White}"
+    Background="{StaticResource Blue4}"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
@@ -42,7 +42,7 @@
                         <Label
                             Content="Add a new book"
                             FontSize="{StaticResource XLarge}"
-                            Foreground="{StaticResource Blue1}" />
+                            Foreground="{StaticResource White}" />
                     </Border>
 
                     <!--  Cancel/back button  -->
@@ -55,7 +55,6 @@
                         <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                             <components:TextButton
                                 x:Name="CancelButtonUtility"
-                                ButtonStyle="Destructive"
                                 ButtonText="Cancel"
                                 MouseDown="CancelButtonUtility_MouseDown" />
                         </StackPanel>
@@ -77,20 +76,25 @@
         <ScrollViewer
             Grid.Row="1"
             Padding="40"
-            HorizontalAlignment="Center"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
             HorizontalScrollBarVisibility="auto"
             VerticalScrollBarVisibility="auto">
 
-            <Border Width="500">
-                <StackPanel Orientation="Vertical">
+            <ScrollViewer.Effect>
+                <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
+            </ScrollViewer.Effect>
 
+            <Border
+                Height="auto"
+                MaxWidth="800"
+                Padding="40"
+                Background="{StaticResource Blue2}"
+                CornerRadius="{StaticResource CornerRadius2}">
+
+                <StackPanel Orientation="Vertical">
                     <!--  Preview window  -->
-                    <Border
-                        Margin="0,0,0,20"
-                        Padding="40,20"
-                        BorderBrush="{StaticResource Blue5}"
-                        BorderThickness="1"
-                        CornerRadius="{StaticResource CornerRadius2}">
+                    <Border Margin="0,0,0,40">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50*" />
@@ -110,7 +114,7 @@
                                 Margin="0,0,0,20"
                                 FontSize="{StaticResource XLarge}"
                                 FontWeight="SemiBold"
-                                Foreground="{StaticResource Blue1}"
+                                Foreground="{StaticResource White}"
                                 Text="{Binding BookTitle, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                 TextWrapping="Wrap" />
 
@@ -118,46 +122,55 @@
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 FontSize="{StaticResource Normal}"
-                                Foreground="{StaticResource Grey3}"
+                                Foreground="{StaticResource LightBlue}"
                                 Text="{Binding BookAuthor}"
                                 TextWrapping="Wrap" />
                             <TextBlock
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 FontSize="{StaticResource Normal}"
-                                Foreground="{StaticResource Grey3}"
+                                Foreground="{StaticResource LightBlue}"
                                 Text="{Binding BookGenre}"
                                 TextWrapping="Wrap" />
                             <TextBlock
                                 Grid.Row="2"
                                 Grid.Column="0"
                                 FontSize="{StaticResource Normal}"
-                                Foreground="{StaticResource Grey3}"
+                                Foreground="{StaticResource LightBlue}"
                                 Text="{Binding BookYearOfPublication}"
                                 TextWrapping="Wrap" />
                             <TextBlock
                                 Grid.Row="2"
                                 Grid.Column="1"
                                 FontSize="{StaticResource Normal}"
-                                Foreground="{StaticResource Grey3}"
+                                Foreground="{StaticResource LightBlue}"
                                 Text="{Binding BookISBN}"
                                 TextWrapping="Wrap" />
                         </Grid>
                     </Border>
 
+                    <Separator
+                        Margin="0,0,0,20"
+                        BorderBrush="{StaticResource Blue1}"
+                        BorderThickness="2" />
+
                     <!--  Form  -->
                     <Label
                         Margin="0,0,0,20"
                         Content="Enter book details"
-                        FontSize="{StaticResource Large}" />
+                        FontSize="{StaticResource Large}"
+                        FontWeight="SemiBold"
+                        Foreground="{StaticResource White}" />
 
                     <components:TextInputField
                         Margin="0,0,0,20"
+                        FieldStyle="Dark"
                         Placeholder="Title"
                         Text="{Binding BookTitle, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
 
                     <components:TextInputField
                         Margin="0,0,0,20"
+                        FieldStyle="Dark"
                         Placeholder="Author"
                         Text="{Binding BookAuthor, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -170,6 +183,7 @@
                         <components:TextInputField
                             Grid.Column="0"
                             Margin="0,0,10,0"
+                            FieldStyle="Dark"
                             Placeholder="ISBN"
                             Text="{Binding BookISBN, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
                         <components:Dropdown
@@ -192,11 +206,13 @@
                         <components:TextInputField
                             Grid.Column="0"
                             Margin="0,0,10,0"
+                            FieldStyle="Dark"
                             Placeholder="Publisher"
                             Text="{Binding BookPublisher, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
                         <components:TextInputField
                             Grid.Column="1"
                             Margin="10,0,0,0"
+                            FieldStyle="Dark"
                             Placeholder="Year of publication"
                             Text="{Binding BookYearOfPublication, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
                     </Grid>

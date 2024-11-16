@@ -68,7 +68,7 @@ public partial class Books_AddUpdate_VM : ObservableObject
             // if success
             NotificationService.Instance.AddNotificationItem(Components.NotificationToastStyle.Success, "Book added to database");
 
-            MainPageVM.NavigateBack();
+            MainPageVM.SetCurrentView(PageView.Dashboard);
         }
         catch (Exception err)
         {
