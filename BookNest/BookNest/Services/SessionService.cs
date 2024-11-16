@@ -12,11 +12,13 @@ namespace BookNest.Services;
 
 public partial class SessionService : ObservableObject
 {
-  
+
     private readonly DatabaseService ds;
     private readonly PasswordManager pm;
     private readonly AppData ad;
     private readonly PageNavigationService ns;
+
+    public static event Action UserSignedIn;
 
     public SessionService(DatabaseService _ds, PasswordManager _pm, AppData _ad, PageNavigationService _ns)
     {
@@ -24,6 +26,11 @@ public partial class SessionService : ObservableObject
         pm = _pm;
         ad = _ad;
         ns = _ns;
+    }
+
+    public static void RaiseUserSignedIn()
+    {
+        UserSignedIn?.Invoke();
     }
 
     // Handle user sign in
@@ -48,8 +55,10 @@ public partial class SessionService : ObservableObject
                 ad.CurrentAccount = thisAccount;
 
                 ns.SetCurrentPage("MainPage");
-                Console.WriteLine(ad.CurrentAccount.Username);
 
+                RaiseUserSignedIn();
+
+                Console.WriteLine(ad.CurrentAccount.Username);
                 NotificationService.Instance.AddNotificationItem(Components.NotificationToastStyle.Success, "Sign in successful.");
             }
             else

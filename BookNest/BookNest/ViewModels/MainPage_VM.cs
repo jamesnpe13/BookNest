@@ -62,9 +62,8 @@ public partial class MainPage_VM : ObservableObject
         ss = _ss;
         sp = _sp;
 
-        NavbarInit(); // initialize data on side navbar
-        InitPageData();
-        SetCurrentView(ad.DefaultView); // set default page view
+        SessionService.UserSignedIn += ResetInstance;
+        ResetInstance();
     }
 
     // navbar style (member or admin)
@@ -157,7 +156,6 @@ public partial class MainPage_VM : ObservableObject
     {
 
         ss.HandleUserSignOut();
-        ResetInstance();
     }
 
     public void ResetInstance()
@@ -182,5 +180,11 @@ public partial class MainPage_VM : ObservableObject
         PeopleNavButtonVisibility = Visibility.Collapsed;
         AccountNavButtonVisibility = Visibility.Collapsed;
         SignOutNavButtonVisibility = Visibility.Collapsed;
+
+        NavbarInit(); // initialize data on side navbar
+        InitPageData();
+        SetCurrentView(ad.DefaultView); // set default page view
+
+        Console.WriteLine("Instance reset.");
     }
 }
