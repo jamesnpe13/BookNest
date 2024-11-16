@@ -56,10 +56,12 @@ public partial class SessionService : ObservableObject
 
                 ns.SetCurrentPage("MainPage");
 
+
                 RaiseUserSignedIn();
 
                 Console.WriteLine(ad.CurrentAccount.Username);
-                NotificationService.Instance.AddNotificationItem(Components.NotificationToastStyle.Success, "Sign in successful.");
+                NotificationService.Instance.AddNotificationItem(Components.NotificationToastStyle.Success, $"Sign in successful. Welcome, {ad.CurrentAccount.FirstName} {ad.CurrentAccount.LastName}.");
+
             }
             else
             {

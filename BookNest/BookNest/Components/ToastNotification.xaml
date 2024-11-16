@@ -39,7 +39,7 @@
                 Storyboard.TargetProperty="(UIElement.Opacity)"
                 From="0"
                 To="1"
-                Duration="0:0:0.5" />
+                Duration="0:0:0.4" />
         </Storyboard>
 
         <Storyboard x:Key="FadeOutStoryboard">

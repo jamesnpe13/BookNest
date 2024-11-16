@@ -55,7 +55,7 @@ public static class ServiceCollectionExtensions
 
         // pages
         services.AddTransient<MainPage>();
-        services.AddSingleton<MainPage_VM>();
+        services.AddTransient<MainPage_VM>();
 
         services.AddTransient<SignInPage>();
         services.AddTransient<SignInPage_VM>();
