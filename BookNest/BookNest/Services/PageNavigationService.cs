@@ -1,4 +1,5 @@
 ﻿using BookNest.Pages;
+using BookNest.ViewModels;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows.Controls;
@@ -12,11 +13,18 @@ public partial class PageNavigationService : ObservableObject
     [ObservableProperty]
     private Page currentPage;
 
+    public static event Action PageNavigated;
+
     public PageNavigationService(IServiceProvider _sp)
     {
         sp = _sp;
 
         //SetCurrentPage("SignInPage"); // sets default page
+    }
+
+    public static void RaisePageNavigated()
+    {
+        PageNavigated?.Invoke();
     }
 
     // Page router
@@ -28,6 +36,8 @@ public partial class PageNavigationService : ObservableObject
             if (targetPage == "MainPage") CurrentPage = sp.GetRequiredService<MainPage>();
             if (targetPage == "SignInPage") CurrentPage = sp.GetRequiredService<SignInPage>();
             if (targetPage == "RegistrationPage") CurrentPage = sp.GetRequiredService<RegistrationPage>();
+
+            RaisePageNavigated();
         }
         catch (Exception err)
         {

@@ -18,7 +18,7 @@ public partial class SessionService : ObservableObject
     private readonly AppData ad;
     private readonly PageNavigationService ns;
 
-    public static event Action UserSignedIn;
+    public static event Action UserSignedInOut;
 
     public SessionService(DatabaseService _ds, PasswordManager _pm, AppData _ad, PageNavigationService _ns)
     {
@@ -28,9 +28,9 @@ public partial class SessionService : ObservableObject
         ns = _ns;
     }
 
-    public static void RaiseUserSignedIn()
+    public static void RaiseUserSignedInOut()
     {
-        UserSignedIn?.Invoke();
+        UserSignedInOut?.Invoke();
     }
 
     // Handle user sign in
@@ -56,8 +56,7 @@ public partial class SessionService : ObservableObject
 
                 ns.SetCurrentPage("MainPage");
 
-
-                RaiseUserSignedIn();
+                RaiseUserSignedInOut();
 
                 Console.WriteLine(ad.CurrentAccount.Username);
                 NotificationService.Instance.AddNotificationItem(Components.NotificationToastStyle.Success, $"Sign in successful. Welcome, {ad.CurrentAccount.FirstName} {ad.CurrentAccount.LastName}.");
@@ -83,6 +82,7 @@ public partial class SessionService : ObservableObject
         Console.WriteLine(ad.CurrentAccount.Username);
 
         ns.SetCurrentPage("SignInPage");
+        RaiseUserSignedInOut();
 
         NotificationService.Instance.AddNotificationItem(Components.NotificationToastStyle.Default, "You have been signed out. See you soon!");
     }

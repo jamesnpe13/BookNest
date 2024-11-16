@@ -62,7 +62,7 @@ public partial class MainPage_VM : ObservableObject
         ss = _ss;
         sp = _sp;
 
-        SessionService.UserSignedIn += ResetInstance;
+        SessionService.UserSignedInOut += ResetInstance;
         ResetInstance();
     }
 
