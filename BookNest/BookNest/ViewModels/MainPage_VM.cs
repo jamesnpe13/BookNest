@@ -94,6 +94,8 @@ public partial class MainPage_VM : ObservableObject
         ResetInstance();
     }
 
+    
+
     public void FilterListByGenre(BookGenre value)
     {
         var filteredList = BookList.Where(book => book.Genre == value);
