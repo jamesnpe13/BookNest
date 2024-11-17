@@ -39,7 +39,7 @@
                         VerticalAlignment="Center">
 
                         <Label
-                            Content="All Books"
+                            Content="{Binding CurrentPageTitle}"
                             FontSize="{StaticResource XLarge}"
                             Foreground="{StaticResource White}" />
                     </Border>
@@ -72,11 +72,16 @@
                             Orientation="Horizontal">
 
                             <components:Button
-                                Margin="0,0,20,0"
+                                x:Name="AddBookButtonUtility"
+                                Margin="0,0,0,0"
                                 ButtonStyle="Primary"
-                                ButtonText="Add Book" />
+                                ButtonText="Add Book"
+                                MouseDown="AddBookButtonUtility_MouseDown" />
 
-                            <components:Dropdown x:Name="GenreDropdown" Placeholder="Genre" />
+                            <components:Dropdown
+                                x:Name="GenreDropdown"
+                                Placeholder="Genre"
+                                Visibility="Collapsed" />
                         </StackPanel>
                     </Border>
                 </Grid>
@@ -87,7 +92,7 @@
         <ScrollViewer
             x:Name="ListContainer"
             Grid.Row="1"
-            Padding="40"
+            Padding="40,0,40,40"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             HorizontalScrollBarVisibility="auto"
@@ -99,7 +104,121 @@
 
             <StackPanel Orientation="Vertical">
                 <!--  list container  -->
-                <ItemsControl ItemsSource="{Binding BookList}">
+                <Border
+                    Height="{StaticResource Controlheight2}"
+                    Margin="0,0,0,5"
+                    CornerRadius="{StaticResource CornerRadius1}">
+                    <!--  Column Headers  -->
+                    <Grid ShowGridLines="False">
+                        <Grid.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontWeight" Value="SemiBold" />
+                                <Setter Property="FontSize" Value="{StaticResource Small}" />
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="180" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="140" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Grid.Column="0"
+                            Margin="0,0,0,3"
+                            Padding="20,0,20,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource White}"
+                            Text="Title"
+                            TextTrimming="CharacterEllipsis"
+                            TextWrapping="NoWrap" />
+
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="0,0,0,3"
+                            Padding="20,0,20,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource White}"
+                            Text="Author"
+                            TextTrimming="CharacterEllipsis"
+                            TextWrapping="NoWrap" />
+
+                        <TextBlock
+                            Grid.Column="2"
+                            Margin="0,0,0,3"
+                            Padding="20,0,20,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource White}"
+                            Text="Year"
+                            TextTrimming="CharacterEllipsis"
+                            TextWrapping="NoWrap" />
+
+                        <TextBlock
+                            Grid.Column="3"
+                            Margin="0,0,0,3"
+                            Padding="20,0,20,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource White}"
+                            Text="Publisher"
+                            TextTrimming="CharacterEllipsis"
+                            TextWrapping="NoWrap" />
+
+                        <TextBlock
+                            Grid.Column="4"
+                            Margin="0,0,0,3"
+                            Padding="20,0,20,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource White}"
+                            Text="Genre"
+                            TextTrimming="CharacterEllipsis"
+                            TextWrapping="NoWrap" />
+
+                        <TextBlock
+                            Grid.Column="5"
+                            Margin="0,0,0,3"
+                            Padding="20,0,20,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource White}"
+                            Text="ISBN"
+                            TextTrimming="CharacterEllipsis"
+                            TextWrapping="NoWrap" />
+
+                        <TextBlock
+                            Grid.Column="6"
+                            Margin="0,0,0,3"
+                            Padding="20,0,20,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource White}"
+                            Text="Likes"
+                            TextTrimming="CharacterEllipsis"
+                            TextWrapping="NoWrap" />
+
+                        <StackPanel Grid.Column="7" Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,0,0,3"
+                                Padding="0,0,20,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource White}"
+                                Text="Status"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="NoWrap" />
+                        </StackPanel>
+
+                    </Grid>
+                </Border>
+                <ItemsControl ItemsSource="{Binding BookList, UpdateSourceTrigger=PropertyChanged}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <components:BookListItem
