@@ -49,21 +49,6 @@
                     Margin="0,0,0,40"
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
-                    <components:TextButton
-                        x:Name="AllBooksButton"
-                        Padding="20,0,20,0"
-                        ButtonText="All books"
-                        MouseDown="ManageBooksButton_MouseDown" />
-                    <components:TextButton
-                        x:Name="CategoryButton"
-                        Padding="20,0,20,0"
-                        ButtonText="Categories"
-                        MouseDown="ManageReturnsButton_MouseDown" />
-                    <components:TextButton
-                        x:Name="SuggestedButton"
-                        Padding="20,0,20,0"
-                        ButtonText="Suggested"
-                        MouseDown="ManageAccountsButton_MouseDown" />
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

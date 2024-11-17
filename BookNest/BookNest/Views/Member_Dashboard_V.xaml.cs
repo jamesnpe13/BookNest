@@ -24,5 +24,6 @@ namespace BookNest.Views
         {
             InitializeComponent();
         }
+
     }
 }
