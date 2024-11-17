@@ -1,33 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using BookNest.Models;
+using BookNest.ViewModels;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace BookNest.Views
+namespace BookNest.Views;
+
+public partial class Admin_Books_V : UserControl
 {
-    /// <summary>
-    /// Interaction logic for Admin_Books_V.xaml
-    /// </summary>
-    public partial class Admin_Books_V : UserControl
+    private readonly MainPage_VM vm;
+
+    public Admin_Books_V(MainPage_VM _vm)
     {
-        public Admin_Books_V()
+        vm = _vm;
+        InitializeComponent();
+        CreateComboboxItems();
+        DataContext = vm;
+    }
+
+    private void backButtonUtility_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        if (DataContext is MainPage_VM vm)
         {
-            InitializeComponent();
+            vm.NavigateBack();
         }
+    }
 
-        private void AddBookButton_MouseDown(object sender, MouseButtonEventArgs e)
+    private void CreateComboboxItems()
+    {
+        GenreDropdown.DropdownCombobox.Items.Add(new ComboBoxItem() { Content = "All" }); // add ALL BOOKS category
+
+        var genreList = Enum.GetValues(typeof(BookGenre));
+
+        foreach (var genre in genreList)
         {
-
+            ComboBoxItem tempCBItem = new() { Content = genre.ToString() };
+            GenreDropdown.DropdownCombobox.Items.Add(tempCBItem);
         }
     }
 }

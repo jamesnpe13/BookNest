@@ -7,16 +7,16 @@
     xmlns:local="clr-namespace:BookNest.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:modules="clr-namespace:BookNest.Modules"
-    Background="{StaticResource White}"
+    Background="{StaticResource Blue4}"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+
         <!--  Utility bar  -->
         <StackPanel Grid.Row="0" Orientation="Vertical">
-
             <modules:HeaderBarModule Visibility="Visible" />
 
             <Border Padding="40,10,40,10">
@@ -30,7 +30,7 @@
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
-                    <!--  View Title  -->
+                    <!--  View Title bar  -->
                     <Border
                         Grid.Row="0"
                         Grid.Column="0"
@@ -39,21 +39,24 @@
                         VerticalAlignment="Center">
 
                         <Label
-                            Content="[List parameters here]"
+                            Content="All Books"
                             FontSize="{StaticResource XLarge}"
-                            Foreground="{StaticResource Blue1}" />
+                            Foreground="{StaticResource White}" />
                     </Border>
 
-                    <!--  Cance/back button  -->
+                    <!--  Cancel/back button  -->
                     <Border
                         Grid.Row="1"
                         Grid.Column="0"
                         Height="{StaticResource UtilityBarHeight}"
-                        VerticalAlignment="Center"
-                        Visibility="Collapsed">
-                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                            <components:TextButton ButtonStyle="Destructive" ButtonText="Cancel" />
+                        VerticalAlignment="Center">
 
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+
+                            <components:TextButton
+                                x:Name="backButtonUtility"
+                                ButtonText="Back"
+                                MouseDown="backButtonUtility_MouseDown" />
                         </StackPanel>
                     </Border>
 
@@ -62,28 +65,56 @@
                         Grid.Row="0"
                         Grid.Column="1"
                         Height="{StaticResource UtilityBarHeight}">
-                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+
+                        <StackPanel
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+
                             <components:Button
-                                x:Name="AddBookButton"
                                 Margin="0,0,20,0"
                                 ButtonStyle="Primary"
-                                ButtonText="Add book"
-                                MouseDown="AddBookButton_MouseDown" />
-                            <components:Dropdown Placeholder="Category" />
+                                ButtonText="Add Book" />
+
+                            <components:Dropdown x:Name="GenreDropdown" Placeholder="Genre" />
                         </StackPanel>
                     </Border>
                 </Grid>
             </Border>
         </StackPanel>
+
         <!--  Main Section  -->
         <ScrollViewer
+            x:Name="ListContainer"
             Grid.Row="1"
             Padding="40"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
             HorizontalScrollBarVisibility="auto"
             VerticalScrollBarVisibility="auto">
 
-            <components:TextInputField Placeholder="Title" />
-        </ScrollViewer>
+            <ScrollViewer.Effect>
+                <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
+            </ScrollViewer.Effect>
 
+            <StackPanel Orientation="Vertical">
+                <!--  list container  -->
+                <ItemsControl ItemsSource="{Binding BookList}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <components:BookListItem
+                                Title="{Binding Title}"
+                                Author="{Binding Author}"
+                                Genre="{Binding Genre}"
+                                ISBN="{Binding Isbn}"
+                                Likes="{Binding Likes}"
+                                Publisher="{Binding Publisher}"
+                                Status="{Binding Status}"
+                                YearOfPublication="{Binding YearOfPublication}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

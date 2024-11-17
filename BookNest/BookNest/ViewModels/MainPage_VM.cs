@@ -1,7 +1,10 @@
-﻿using BookNest.Services;
+﻿using BookNest.Data;
+using BookNest.Models;
+using BookNest.Services;
 using BookNest.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -30,6 +33,7 @@ public partial class MainPage_VM : ObservableObject
     private readonly AppData ad;
     private readonly SessionService ss;
     private readonly IServiceProvider sp;
+    private readonly DatabaseService ds;
 
     [ObservableProperty]
     private UserControl currentView;
@@ -56,11 +60,19 @@ public partial class MainPage_VM : ObservableObject
     [ObservableProperty] private Visibility accountNavButtonVisibility = Visibility.Collapsed;
     [ObservableProperty] private Visibility signOutNavButtonVisibility = Visibility.Collapsed;
 
-    public MainPage_VM(AppData _ad, SessionService _ss, IServiceProvider _sp)
+    public ObservableCollection<Book_M> BookList { get; set; }
+
+    [ObservableProperty]
+    private string sampleText = "Sample text";
+
+    public MainPage_VM(AppData _ad, SessionService _ss, IServiceProvider _sp, DatabaseService _ds)
     {
         ad = _ad;
         ss = _ss;
         sp = _sp;
+        ds = _ds;
+        BookList = new();
+        BookList = ds.GetBook(BookFilterKey.ALL);
 
         SessionService.UserSignedInOut += ResetInstance;
         ResetInstance();

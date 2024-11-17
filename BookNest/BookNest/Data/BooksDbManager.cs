@@ -1,5 +1,6 @@
 ﻿using BookNest.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Data.SQLite;
 using System.Diagnostics.Eventing.Reader;
 
@@ -166,9 +167,9 @@ partial class DatabaseService : ObservableObject
     }
 
     // Get book - list overload
-    public List<Book_M> GetBook(BookFilterKey key = BookFilterKey.ALL, string? value = null)
+    public ObservableCollection<Book_M> GetBook(BookFilterKey key = BookFilterKey.ALL, string? value = null)
     {
-        List<Book_M> tempBookList = new();
+        ObservableCollection<Book_M> tempBookList = new();
 
         using (var connection = new SQLiteConnection(DB_STRING))
         {
