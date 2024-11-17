@@ -35,4 +35,15 @@ public partial class Admin_Books_V : UserControl
             GenreDropdown.DropdownCombobox.Items.Add(tempCBItem);
         }
     }
+
+    private void AddBookButtonUtility_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        if (DataContext is MainPage_VM vm)
+        {
+            vm.SetCurrentView(PageView.BookAdd);
+        }
+    }
+
+
+
 }

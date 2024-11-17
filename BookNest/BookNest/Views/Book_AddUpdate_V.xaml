@@ -75,7 +75,7 @@
         <!--  Main Section  -->
         <ScrollViewer
             Grid.Row="1"
-            Padding="40"
+            Padding="40,0,40,40"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Top"
             HorizontalScrollBarVisibility="auto"

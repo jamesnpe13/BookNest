@@ -23,9 +23,11 @@
         <Border>
             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                 <components:TextButton
+                    x:Name="AllBooksButton"
                     Margin="0,0,20,0"
                     ButtonStyle="White"
-                    ButtonText="All Books" />
+                    ButtonText="All Books"
+                    MouseDown="AllBooksButton_MouseDown" />
                 <components:TextButton
                     Margin="0,0,20,0"
                     ButtonStyle="White"

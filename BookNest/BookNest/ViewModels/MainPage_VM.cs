@@ -50,6 +50,12 @@ public partial class MainPage_VM : ObservableObject
     [ObservableProperty]
     private UserControl? lastView;
 
+    [ObservableProperty]
+    private string currentPageTitle = "All books";
+
+    [ObservableProperty]
+    private BookGenre? selectedGenre = null;
+
     private ObservableCollection<Book_M> bookList;
 
     public ObservableCollection<Book_M> BookList
@@ -88,15 +94,23 @@ public partial class MainPage_VM : ObservableObject
         ResetInstance();
     }
 
-    public void UpdateBookList(BookFilterKey filterKey, string value)
+    public void FilterListByGenre(BookGenre value)
     {
-        Console.WriteLine(filterKey.ToString() + ": " + value);
-        BookList = ds.GetBook(filterKey, value);
+        var filteredList = BookList.Where(book => book.Genre == value);
 
-        foreach (var item in BookList)
+        BookList.Clear();
+
+        foreach (var item in filteredList)
         {
-            Console.WriteLine(item.Title);
+            BookList.Add(item);
         }
+    }
+
+    public void UpdateBookList(BookFilterKey filterKey, string? value = null)
+    {
+        BookList = ds.GetBook(filterKey, value);
+        CurrentPageTitle = value == null ? "All books" : $"'Search: {value}'";
+
     }
 
     // navbar style (member or admin)
@@ -203,6 +217,8 @@ public partial class MainPage_VM : ObservableObject
         AccountType = string.Empty;
 
         LastView = null;
+
+        CurrentPageTitle = "All books";
 
         DashboardNavButtonVisibility = Visibility.Collapsed;
         BooksNavButtonVisibility = Visibility.Collapsed;
