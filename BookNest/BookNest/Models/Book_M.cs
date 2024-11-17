@@ -35,7 +35,10 @@ public enum BookGenre
     YoungAdult,
     ChildrensLiterature,
     Western,
-    Gothic
+    Gothic,
+    Unknown,
+    Fiction,
+    NonFiction
 }
 
 public enum BookStatus
@@ -78,6 +81,13 @@ public partial class Book_M : ObservableObject
     [ObservableProperty]
     private int likes = 0;
 
+    
+
     // add more props if needed...
 
 }
+
+
+
+
+
