@@ -18,7 +18,7 @@
             <Border
                 Width="400"
                 Height="auto"
-                Padding="60,80,60,60"
+                Padding="40"
                 Background="{StaticResource Blue2}"
                 CornerRadius="{StaticResource CornerRadius2}">
 
@@ -37,7 +37,18 @@
 
                     <Border Grid.Row="0" Margin="0,0,0,40">
                         <!--  Image here  -->
-                        <svgc:SvgViewbox Source="/assets/signin2-graphic.svg" />
+                        <StackPanel Orientation="Vertical">
+                            <svgc:SvgViewbox
+                                Width="auto"
+                                Height="auto"
+                                MaxHeight="12"
+                                Margin="0,0,0,40"
+                                HorizontalAlignment="Center"
+                                Opacity="0.5"
+                                Source="/assets/booknest-logo-white.svg" />
+
+                            <svgc:SvgViewbox Source="/assets/signin2-graphic.svg" />
+                        </StackPanel>
                     </Border>
 
                     <!--  Form section  -->

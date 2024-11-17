@@ -67,7 +67,7 @@
                             Background="{StaticResource Blue5}"
                             BorderBrush="{StaticResource Blue1}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{StaticResource CornerRadius1}"
+                            CornerRadius="{StaticResource CornerRadius2}"
                             SnapsToDevicePixels="true">
                             <Border
                                 x:Name="splitBorder"
@@ -76,6 +76,7 @@
                                 HorizontalAlignment="Right"
                                 BorderBrush="Transparent"
                                 BorderThickness="1"
+                                CornerRadius="{StaticResource CornerRadius2}"
                                 SnapsToDevicePixels="true">
                                 <Path
                                     x:Name="arrow"

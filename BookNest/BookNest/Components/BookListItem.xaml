@@ -1,0 +1,136 @@
+﻿<UserControl
+    x:Class="BookNest.Components.BookListItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BookNest.Components"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Border
+        Height="{StaticResource Controlheight2}"
+        Margin="0,0,0,5"
+        Background="{StaticResource Blue5}"
+        BorderBrush="{StaticResource Blue1}"
+        BorderThickness="1"
+        CornerRadius="{StaticResource CornerRadius1}">
+
+        <Grid ShowGridLines="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="180" />
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="140" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Grid.Column="0"
+                Margin="0,0,0,3"
+                Padding="20,0,20,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                FontSize="{StaticResource XSmall}"
+                Foreground="{StaticResource White}"
+                Text="{Binding Title, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                TextTrimming="CharacterEllipsis"
+                TextWrapping="NoWrap" />
+
+            <TextBlock
+                Grid.Column="1"
+                Margin="0,0,0,3"
+                Padding="20,0,20,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                FontSize="{StaticResource XSmall}"
+                Foreground="{StaticResource White}"
+                Text="{Binding Author, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                TextTrimming="CharacterEllipsis"
+                TextWrapping="NoWrap" />
+
+            <TextBlock
+                Grid.Column="2"
+                Margin="0,0,0,3"
+                Padding="20,0,20,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                FontSize="{StaticResource XSmall}"
+                Foreground="{StaticResource White}"
+                Text="{Binding YearOfPublication, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                TextTrimming="CharacterEllipsis"
+                TextWrapping="NoWrap" />
+
+            <TextBlock
+                Grid.Column="3"
+                Margin="0,0,0,3"
+                Padding="20,0,20,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                FontSize="{StaticResource XSmall}"
+                Foreground="{StaticResource White}"
+                Text="{Binding Publisher, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                TextTrimming="CharacterEllipsis"
+                TextWrapping="NoWrap" />
+
+            <TextBlock
+                Grid.Column="4"
+                Margin="0,0,0,3"
+                Padding="20,0,20,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                FontSize="{StaticResource XSmall}"
+                Foreground="{StaticResource White}"
+                Text="{Binding Genre, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                TextTrimming="CharacterEllipsis"
+                TextWrapping="NoWrap" />
+
+            <TextBlock
+                Grid.Column="5"
+                Margin="0,0,0,3"
+                Padding="20,0,20,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                FontSize="{StaticResource XSmall}"
+                Foreground="{StaticResource White}"
+                Text="{Binding ISBN, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                TextTrimming="CharacterEllipsis"
+                TextWrapping="NoWrap" />
+
+            <TextBlock
+                Grid.Column="6"
+                Margin="0,0,0,3"
+                Padding="20,0,20,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                FontSize="{StaticResource XSmall}"
+                Foreground="{StaticResource White}"
+                Text="{Binding Likes, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                TextTrimming="CharacterEllipsis"
+                TextWrapping="NoWrap" />
+
+            <StackPanel Grid.Column="7" Orientation="Horizontal">
+                <!--<Border
+                    Width="8"
+                    Height="20"
+                    Margin="0,0,20,0"
+                    HorizontalAlignment="Center"
+                    Background="{StaticResource Success}"
+                    CornerRadius="4" />-->
+                <TextBlock
+                    Margin="0,0,0,3"
+                    Padding="0,0,20,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontSize="{StaticResource XSmall}"
+                    Foreground="{StaticResource White}"
+                    Text="{Binding Status, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    TextTrimming="CharacterEllipsis"
+                    TextWrapping="NoWrap" />
+            </StackPanel>
+
+        </Grid>
+    </Border>
+</UserControl>
