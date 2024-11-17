@@ -29,18 +29,28 @@
                 <components:TextButton
                     Margin="0,0,20,0"
                     ButtonStyle="White"
-                    ButtonText="Categories" />
-                <components:TextButton ButtonStyle="White" ButtonText="Suggested" />
+                    ButtonText="Categories"
+                    Visibility="Collapsed" />
+                <components:TextButton
+                    ButtonStyle="White"
+                    ButtonText="Suggested"
+                    Visibility="Collapsed" />
             </StackPanel>
         </Border>
         <Border>
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                 <components:TextInputField
+                    x:Name="SearchField"
                     Width="250"
                     Margin="0,0,10,0"
                     FieldStyle="Dark"
+                    KeyDown="SearchField_KeyDown"
                     Placeholder="Enter keyword" />
-                <components:Button ButtonStyle="Outline" ButtonText="Search" />
+                <components:Button
+                    x:Name="SearchButton"
+                    ButtonStyle="Outline"
+                    ButtonText="Search"
+                    MouseDown="SearchButton_MouseDown" />
             </StackPanel>
         </Border>
     </Grid>

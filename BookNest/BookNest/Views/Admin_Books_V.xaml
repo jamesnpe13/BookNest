@@ -99,7 +99,7 @@
 
             <StackPanel Orientation="Vertical">
                 <!--  list container  -->
-                <ItemsControl ItemsSource="{Binding BookList}">
+                <ItemsControl ItemsSource="{Binding BookList, UpdateSourceTrigger=PropertyChanged}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <components:BookListItem

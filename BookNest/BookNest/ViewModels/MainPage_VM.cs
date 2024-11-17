@@ -50,6 +50,21 @@ public partial class MainPage_VM : ObservableObject
     [ObservableProperty]
     private UserControl? lastView;
 
+    private ObservableCollection<Book_M> bookList;
+
+    public ObservableCollection<Book_M> BookList
+    {
+        get => bookList;
+        set
+        {
+            if (bookList != value)
+            {
+                bookList = value;
+                OnPropertyChanged(nameof(BookList));
+            }
+        }
+    }
+
     [ObservableProperty] private Visibility dashboardNavButtonVisibility = Visibility.Collapsed;
     [ObservableProperty] private Visibility booksNavButtonVisibility = Visibility.Collapsed;
     [ObservableProperty] private Visibility bagNavButtonVisibility = Visibility.Collapsed;
@@ -59,11 +74,6 @@ public partial class MainPage_VM : ObservableObject
     [ObservableProperty] private Visibility peopleNavButtonVisibility = Visibility.Collapsed;
     [ObservableProperty] private Visibility accountNavButtonVisibility = Visibility.Collapsed;
     [ObservableProperty] private Visibility signOutNavButtonVisibility = Visibility.Collapsed;
-
-    public ObservableCollection<Book_M> BookList { get; set; }
-
-    [ObservableProperty]
-    private string sampleText = "Sample text";
 
     public MainPage_VM(AppData _ad, SessionService _ss, IServiceProvider _sp, DatabaseService _ds)
     {
@@ -76,6 +86,17 @@ public partial class MainPage_VM : ObservableObject
 
         SessionService.UserSignedInOut += ResetInstance;
         ResetInstance();
+    }
+
+    public void UpdateBookList(BookFilterKey filterKey, string value)
+    {
+        Console.WriteLine(filterKey.ToString() + ": " + value);
+        BookList = ds.GetBook(filterKey, value);
+
+        foreach (var item in BookList)
+        {
+            Console.WriteLine(item.Title);
+        }
     }
 
     // navbar style (member or admin)
