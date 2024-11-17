@@ -11,10 +11,10 @@ public partial class Admin_Dashboard_V : UserControl
         InitializeComponent();
     }
 
-    private void ManageBooksButton_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) => SetCurrentView(PageView.Books);
-    private void ManageReturnsButton_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) => SetCurrentView(PageView.Returns);
-    private void ManageAccountsButton_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) => SetCurrentView(PageView.Account);
-    private void QuickAddBookButton_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) => SetCurrentView(PageView.BookAdd);
+    private void ManageBooksButton_MouseDown(object sender, MouseButtonEventArgs e) => SetCurrentView(PageView.Books);
+    private void ManageReturnsButton_MouseDown(object sender, MouseButtonEventArgs e) => SetCurrentView(PageView.Returns);
+    private void ManageAccountsButton_MouseDown(object sender, MouseButtonEventArgs e) => SetCurrentView(PageView.Account);
+    private void QuickAddBookButton_MouseDown(object sender, MouseButtonEventArgs e) => SetCurrentView(PageView.BookAdd);
 
     private void SetCurrentView(PageView targetView)
     {
@@ -41,6 +41,7 @@ public partial class Admin_Dashboard_V : UserControl
             if (DataContext is MainPage_VM vm)
             {
                 vm.UpdateBookList(BookFilterKey.SEARCH, DashboardSearchField.Text);
+                DashboardSearchField.Text = string.Empty;
                 vm.SetCurrentView(PageView.Books);
             }
         }
