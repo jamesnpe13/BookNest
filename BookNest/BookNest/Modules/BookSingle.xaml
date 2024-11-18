@@ -121,13 +121,24 @@
                                 Text="Book details" />
 
                             <components:Button
+                                x:Name="DeleteButton"
+                                HorizontalAlignment="Right"
+                                ButtonStyle="Destructive"
+                                ButtonText="Delete"
+                                DockPanel.Dock="Right"
+                                MouseDown="DeleteButton_MouseDown" />
+
+                            <components:Button
                                 x:Name="EditButton"
                                 Width="80"
+                                Margin="0,0,10,0"
                                 HorizontalAlignment="Right"
-                                ButtonStyle="Secondary"
+                                ButtonStyle="Neutral"
                                 ButtonText="Edit"
+                                DockPanel.Dock="Right"
                                 MouseDown="EditButton_MouseDown"
                                 Style="{StaticResource EditButton}" />
+
                         </DockPanel>
                     </StackPanel>
                 </Border>
@@ -147,6 +158,7 @@
                                 FontSize="{StaticResource Normal}"
                                 Foreground="{StaticResource Grey1}" />
                             <components:TextInputField
+                                x:Name="TitleField"
                                 Height="{StaticResource Controlheight2}"
                                 FieldStyle="Dark"
                                 Placeholder="Title"
@@ -160,6 +172,7 @@
                                 FontSize="{StaticResource Normal}"
                                 Foreground="{StaticResource Grey1}" />
                             <components:TextInputField
+                                x:Name="AuthorField"
                                 Height="{StaticResource Controlheight2}"
                                 FieldStyle="Dark"
                                 Placeholder="Author"
@@ -183,6 +196,7 @@
                                         FontSize="{StaticResource Normal}"
                                         Foreground="{StaticResource Grey1}" />
                                     <components:TextInputField
+                                        x:Name="PublisherField"
                                         Width="auto"
                                         Height="{StaticResource Controlheight2}"
                                         HorizontalAlignment="Stretch"
@@ -201,6 +215,7 @@
                                         FontSize="{StaticResource Normal}"
                                         Foreground="{StaticResource Grey1}" />
                                     <components:TextInputField
+                                        x:Name="YearOfPublicationField"
                                         Width="auto"
                                         Height="{StaticResource Controlheight2}"
                                         HorizontalAlignment="Stretch"
@@ -229,6 +244,7 @@
                                         FontSize="{StaticResource Normal}"
                                         Foreground="{StaticResource Grey1}" />
                                     <components:TextInputField
+                                        x:Name="IsbnField"
                                         Width="auto"
                                         Height="{StaticResource Controlheight2}"
                                         HorizontalAlignment="Stretch"
@@ -319,12 +335,14 @@
                             ButtonText="Cancel"
                             MouseDown="Button_MouseDown" />
                         <components:Button
+                            x:Name="ConfirmButton"
                             Grid.Column="1"
                             Margin="10,0,0,0"
                             HorizontalAlignment="Stretch"
                             ButtonHeight="Medium"
                             ButtonStyle="Primary"
-                            ButtonText="Confirm" />
+                            ButtonText="Confirm"
+                            MouseDown="ConfirmButton_MouseDown" />
                     </Grid>
                 </Border>
 
