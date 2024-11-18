@@ -2,26 +2,55 @@
     x:Class="BookNest.Views.Member_Dashboard_V"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:Services="clr-namespace:BookNest.Services"
+    xmlns:components="clr-namespace:BookNest.Components"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:BookNest.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:modules="clr-namespace:BookNest.Modules"
+    xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+    Background="{StaticResource Blue4}"
     mc:Ignorable="d">
-
     <Grid>
-        <Label Content="Member dashboard" Foreground="White" />
+        <ScrollViewer>
+            <StackPanel
+                Width="400"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Vertical">
 
-        <StackPanel
-            Grid.Column="1"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top">
+                <!--  graphic  -->
+                <svgc:SvgViewbox Margin="0,0,0,40" Source="/assets/Member-Dashboard-graphic-picture.svg" />
 
-            <!--  Header bar  -->
-            <modules:HeaderBarModule />
-
-            <!--  Main section  -->
-            <Grid />
-        </StackPanel>
+                <TextBlock
+                    Margin="0,0,0,40"
+                    FontSize="{StaticResource XLarge}"
+                    Foreground="{StaticResource White}"
+                    Text="Your Next book awaits"
+                    TextAlignment="Center"
+                    TextWrapping="Wrap" />
+                <!--  Search bar  -->
+                <Grid Margin="0,0,0,40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <components:TextInputField
+                        Grid.Column="0"
+                        Margin="0,0,10,0"
+                        HorizontalAlignment="Stretch"
+                        Placeholder="Enter keyword" />
+                    <components:Button
+                        Grid.Column="1"
+                        ButtonStyle="Outline"
+                        ButtonText="Search" />
+                </Grid>
+                <!--  Quick access buttons  -->
+                <StackPanel
+                    Margin="0,0,0,40"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>
