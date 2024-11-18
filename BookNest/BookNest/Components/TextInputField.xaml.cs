@@ -14,6 +14,16 @@ namespace BookNest.Components
     public partial class TextInputField : UserControl
     {
 
+        public bool IsReadOnly
+        {
+            get { return (bool)GetValue(IsReadOnlyProperty); }
+            set { SetValue(IsReadOnlyProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IsReadOnly.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsReadOnlyProperty =
+            DependencyProperty.Register("IsReadOnly", typeof(bool), typeof(TextInputField), new PropertyMetadata(false));
+
         public FieldStyle FieldStyle
         {
             get { return (FieldStyle)GetValue(FieldStyleProperty); }

@@ -34,6 +34,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 FontSize="{StaticResource XSmall}"
+                FontWeight="SemiBold"
                 Foreground="{StaticResource White}"
                 Text="{Binding Title, RelativeSource={RelativeSource AncestorType=UserControl}}"
                 TextTrimming="CharacterEllipsis"

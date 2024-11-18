@@ -1,26 +1,14 @@
 ﻿using BookNest.Models;
-using BookNest.ViewModels;
 using System.Windows.Controls;
-using System.Windows.Input;
 
-namespace BookNest.Views;
+namespace BookNest.Modules;
 
-public partial class Admin_Books_V : UserControl
+public partial class BookSingle : UserControl
 {
-
-    public Admin_Books_V()
+    public BookSingle()
     {
-
         InitializeComponent();
         CreateComboboxItems();
-    }
-
-    private void backButtonUtility_MouseDown(object sender, MouseButtonEventArgs e)
-    {
-        if (DataContext is MainPage_VM vm)
-        {
-            vm.NavigateBack();
-        }
     }
 
     private void CreateComboboxItems()
@@ -35,13 +23,4 @@ public partial class Admin_Books_V : UserControl
             GenreDropdown.DropdownCombobox.Items.Add(tempCBItem);
         }
     }
-
-    private void AddBookButtonUtility_MouseDown(object sender, MouseButtonEventArgs e)
-    {
-        if (DataContext is MainPage_VM vm)
-        {
-            vm.SetCurrentView(PageView.BookAdd);
-        }
-    }
-
 }
