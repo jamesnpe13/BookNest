@@ -23,6 +23,7 @@
                 Style="{StaticResource PlaceholderLabel}" />
             <TextBox
                 x:Name="TextInputFieldTextBox"
+                IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType=UserControl}}"
                 Style="{StaticResource TextBoxTextBox}"
                 Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 TextChanged="TextInputFieldTextBox_TextChanged" />

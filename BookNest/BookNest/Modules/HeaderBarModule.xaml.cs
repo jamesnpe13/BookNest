@@ -31,6 +31,7 @@ public partial class HeaderBarModule : UserControl
             if (DataContext is MainPage_VM vm)
             {
                 vm.UpdateBookList(BookFilterKey.SEARCH, SearchField.Text);
+                SearchField.Text = string.Empty;
             }
         }
 

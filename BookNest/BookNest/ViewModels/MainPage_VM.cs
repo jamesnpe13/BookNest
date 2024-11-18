@@ -4,7 +4,9 @@ using BookNest.Services;
 using BookNest.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
+using SharpVectors.Dom;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -36,6 +38,12 @@ public partial class MainPage_VM : ObservableObject
     private readonly DatabaseService ds;
 
     [ObservableProperty]
+    private bool isEditing = false;
+
+    [ObservableProperty]
+    private Book_M? currentBook;
+
+    [ObservableProperty]
     private UserControl currentView;
 
     [ObservableProperty]
@@ -56,6 +64,9 @@ public partial class MainPage_VM : ObservableObject
     [ObservableProperty]
     private BookGenre? selectedGenre = null;
 
+    [ObservableProperty]
+    private Visibility isNoResultsMessageVisible = Visibility.Collapsed;
+
     private ObservableCollection<Book_M> bookList;
 
     public ObservableCollection<Book_M> BookList
@@ -67,6 +78,7 @@ public partial class MainPage_VM : ObservableObject
             {
                 bookList = value;
                 OnPropertyChanged(nameof(BookList));
+
             }
         }
     }
@@ -91,10 +103,30 @@ public partial class MainPage_VM : ObservableObject
         BookList = ds.GetBook(BookFilterKey.ALL);
 
         SessionService.UserSignedInOut += ResetInstance;
+        //BookList.CollectionChanged += BookList_CollectionChanged;
         ResetInstance();
+        UpdateIsNoResultsVisible();
     }
 
-    
+    //private void BookList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    //{
+    //    NotificationService.Instance.AddNotificationItem(Components.NotificationToastStyle.Default, "Changing");
+
+    //    if (e.Action == NotifyCollectionChangedAction.Replace || e.Action == NotifyCollectionChangedAction.Add || e.Action == NotifyCollectionChangedAction.Reset || e.Action == NotifyCollectionChangedAction.Remove)
+    //    {
+    //        IsNoResultsMessageVisible = BookList.Count() == 0 ? Visibility.Visible : Visibility.Collapsed;
+    //    }
+    //}
+
+    public void SetCurrentBook(int bookId)
+    {
+        CurrentBook = ds.GetBook(BookFilterKey.ID, bookId.ToString())[0];
+    }
+
+    public void UpdateIsNoResultsVisible()
+    {
+        IsNoResultsMessageVisible = BookList.Count() == 0 ? Visibility.Visible : Visibility.Collapsed;
+    }
 
     public void FilterListByGenre(BookGenre value)
     {
@@ -112,7 +144,7 @@ public partial class MainPage_VM : ObservableObject
     {
         BookList = ds.GetBook(filterKey, value);
         CurrentPageTitle = value == null ? "All books" : $"'Search: {value}'";
-
+        UpdateIsNoResultsVisible();
     }
 
     // navbar style (member or admin)

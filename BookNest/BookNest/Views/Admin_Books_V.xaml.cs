@@ -44,6 +44,4 @@ public partial class Admin_Books_V : UserControl
         }
     }
 
-
-
 }

@@ -13,7 +13,8 @@
         Background="{StaticResource Blue5}"
         BorderBrush="{StaticResource Blue1}"
         BorderThickness="1"
-        CornerRadius="{StaticResource CornerRadius1}">
+        CornerRadius="{StaticResource CornerRadius1}"
+        MouseDown="Item_MouseDown">
 
         <Grid ShowGridLines="False">
             <Grid.ColumnDefinitions>
@@ -34,6 +35,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 FontSize="{StaticResource XSmall}"
+                FontWeight="SemiBold"
                 Foreground="{StaticResource White}"
                 Text="{Binding Title, RelativeSource={RelativeSource AncestorType=UserControl}}"
                 TextTrimming="CharacterEllipsis"

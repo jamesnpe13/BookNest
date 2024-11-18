@@ -18,7 +18,7 @@ namespace BookNest.Components
         public Dropdown()
         {
             InitializeComponent();
-            DataContext = this;
+            //DataContext = this;
         }
     }
 }

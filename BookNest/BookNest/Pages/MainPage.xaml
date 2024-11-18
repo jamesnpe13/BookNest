@@ -26,7 +26,7 @@
 
         <!--  Main section  -->
 
-        <ContentControl Grid.Column="1" Content="{Binding CurrentView}" />
+        <ContentControl Grid.Column="1" Content="{Binding CurrentView, UpdateSourceTrigger=PropertyChanged}" />
 
         <!--  Info bar  -->
         <!--<Border
