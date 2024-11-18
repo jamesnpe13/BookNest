@@ -68,34 +68,40 @@
                                 <components:TextInputField
                                     x:Name="FirstNameField"
                                     Grid.Column="0"
+                                    Height="{StaticResource Controlheight2}"
                                     Margin="0,0,5,10"
                                     FieldStyle="Dark"
                                     Placeholder="First name" />
                                 <components:TextInputField
                                     x:Name="LastNameField"
                                     Grid.Column="1"
+                                    Height="{StaticResource Controlheight2}"
                                     Margin="5,0,0,10"
                                     FieldStyle="Dark"
                                     Placeholder="Last name" />
                             </Grid>
                             <components:TextInputField
                                 x:Name="EmailField"
+                                Height="{StaticResource Controlheight2}"
                                 Margin="0,0,0,10"
                                 FieldStyle="Dark"
                                 Placeholder="Email" />
                             <components:TextInputField
                                 x:Name="UsernameField"
+                                Height="{StaticResource Controlheight2}"
                                 Margin="0,0,0,10"
                                 FieldStyle="Dark"
                                 Placeholder="Username" />
 
                             <components:PasswordInputField
                                 x:Name="PasswordField"
+                                Height="{StaticResource Controlheight2}"
                                 Margin="0,0,0,10"
                                 FieldStyle="Dark"
                                 Placeholder="Password" />
                             <components:PasswordInputField
                                 x:Name="ConfirmPasswordField"
+                                Height="{StaticResource Controlheight2}"
                                 Margin="0,0,0,10"
                                 FieldStyle="Dark"
                                 Placeholder="Confirm password" />
@@ -103,6 +109,7 @@
                             <components:Dropdown
                                 x:Name="RegistrationTypeDropdown"
                                 Width="auto"
+                                Height="{StaticResource Controlheight2}"
                                 Margin="0,0,0,10"
                                 HorizontalAlignment="Stretch"
                                 Placeholder="Account type" />

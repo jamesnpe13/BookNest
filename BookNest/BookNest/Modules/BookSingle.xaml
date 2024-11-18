@@ -8,6 +8,64 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <!--  data trigger for edit buttons  -->
+        <Style x:Key="EditButton" TargetType="components:Button">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsEditing, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                    <Setter Property="Visibility" Value="Hidden" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsEditing, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="FooterButtonContainer" TargetType="Border">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsEditing, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsEditing, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                    <Setter Property="Visibility" Value="Hidden" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="InputField" TargetType="components:TextInputField">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsEditing, UpdateSourceTrigger=Default}" Value="True">
+                    <Setter Property="IsReadOnly" Value="False" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsEditing, UpdateSourceTrigger=Default}" Value="False">
+                    <Setter Property="IsReadOnly" Value="True" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="PlaceholderText" TargetType="components:TextInputField">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsEditing, UpdateSourceTrigger=Default}" Value="True">
+                    <Setter Property="Visibility" Value="Hidden" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsEditing, UpdateSourceTrigger=Default}" Value="False">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="DropdownFieldVisibility" TargetType="components:Dropdown">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsEditing, UpdateSourceTrigger=Default}" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsEditing, UpdateSourceTrigger=Default}" Value="False">
+                    <Setter Property="Visibility" Value="Hidden" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
         <!--  backdrop  -->
         <Border Background="{StaticResource Black}" Opacity="0.8" />
@@ -62,7 +120,8 @@
                                 Width="80"
                                 HorizontalAlignment="Right"
                                 ButtonStyle="Secondary"
-                                ButtonText="Edit" />
+                                ButtonText="Edit"
+                                Style="{StaticResource EditButton}" />
                         </DockPanel>
                     </StackPanel>
                 </Border>
@@ -84,7 +143,7 @@
                             <components:TextInputField
                                 Height="{StaticResource Controlheight2}"
                                 FieldStyle="Dark"
-                                IsReadOnly="False" />
+                                Style="{StaticResource InputField}" />
                         </StackPanel>
 
                         <StackPanel Orientation="Vertical">
@@ -92,7 +151,10 @@
                                 Content="Author"
                                 FontSize="{StaticResource Normal}"
                                 Foreground="{StaticResource Grey1}" />
-                            <components:TextInputField Height="{StaticResource Controlheight2}" FieldStyle="Dark" />
+                            <components:TextInputField
+                                Height="{StaticResource Controlheight2}"
+                                FieldStyle="Dark"
+                                Style="{StaticResource InputField}" />
                         </StackPanel>
 
                         <StackPanel>
@@ -114,7 +176,8 @@
                                         Width="auto"
                                         Height="{StaticResource Controlheight2}"
                                         HorizontalAlignment="Stretch"
-                                        FieldStyle="Dark" />
+                                        FieldStyle="Dark"
+                                        Style="{StaticResource InputField}" />
                                 </StackPanel>
 
                                 <StackPanel
@@ -129,7 +192,8 @@
                                         Width="auto"
                                         Height="{StaticResource Controlheight2}"
                                         HorizontalAlignment="Stretch"
-                                        FieldStyle="Dark" />
+                                        FieldStyle="Dark"
+                                        Style="{StaticResource InputField}" />
                                 </StackPanel>
                             </Grid>
                         </StackPanel>
@@ -154,7 +218,8 @@
                                         Width="auto"
                                         Height="{StaticResource Controlheight2}"
                                         HorizontalAlignment="Stretch"
-                                        FieldStyle="Dark" />
+                                        FieldStyle="Dark"
+                                        Style="{StaticResource InputField}" />
                                 </StackPanel>
 
                                 <StackPanel
@@ -165,13 +230,23 @@
                                         Content="Genre"
                                         FontSize="{StaticResource Normal}"
                                         Foreground="{StaticResource Grey1}" />
-                                    <components:Dropdown
-                                        x:Name="GenreDropdown"
-                                        Width="auto"
-                                        Height="{StaticResource Controlheight2}"
-                                        HorizontalAlignment="Stretch"
-                                        Placeholder="Genre"
-                                        Visibility="Visible" />
+                                    <Grid>
+                                        <components:TextInputField
+                                            Width="auto"
+                                            Height="{StaticResource Controlheight2}"
+                                            HorizontalAlignment="Stretch"
+                                            FieldStyle="Dark"
+                                            IsReadOnly="True"
+                                            Style="{StaticResource PlaceholderText}" />
+
+                                        <components:Dropdown
+                                            x:Name="GenreDropdown"
+                                            Width="auto"
+                                            Height="{StaticResource Controlheight2}"
+                                            HorizontalAlignment="Stretch"
+                                            Placeholder="Genre"
+                                            Style="{StaticResource DropdownFieldVisibility}" />
+                                    </Grid>
                                 </StackPanel>
 
                                 <Grid Grid.Column="2" Margin="10,0,0,0">
@@ -207,7 +282,10 @@
                 </Border>
 
                 <!--  Footer  -->
-                <Border Grid.Row="2" Padding="40">
+                <Border
+                    Grid.Row="2"
+                    Padding="40"
+                    Style="{StaticResource FooterButtonContainer}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />

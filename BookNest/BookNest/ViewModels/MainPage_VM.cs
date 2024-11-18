@@ -38,6 +38,12 @@ public partial class MainPage_VM : ObservableObject
     private readonly DatabaseService ds;
 
     [ObservableProperty]
+    private bool isEditing = true;
+
+    [ObservableProperty]
+    private Book_M? currentBook;
+
+    [ObservableProperty]
     private UserControl currentView;
 
     [ObservableProperty]
