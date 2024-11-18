@@ -1,4 +1,8 @@
-﻿using System;
+﻿using BookNest.Pages;
+using BookNest.Services;
+using BookNest.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,10 +21,23 @@ namespace BookNest.Components;
 
 public partial class BookListItem : UserControl
 {
+    private readonly MainPage_VM vm;
+
     public BookListItem()
     {
         InitializeComponent();
+        vm = ((App)Application.Current).ServiceProvider.GetRequiredService<MainPage_VM>();
     }
+
+    public int BookID
+    {
+        get { return (int)GetValue(BookIDProperty); }
+        set { SetValue(BookIDProperty, value); }
+    }
+
+    // Using a DependencyProperty as the backing store for BookID.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty BookIDProperty =
+        DependencyProperty.Register("BookID", typeof(int), typeof(BookListItem), new PropertyMetadata(null));
 
     public string Title
     {
@@ -102,4 +119,8 @@ public partial class BookListItem : UserControl
     public static readonly DependencyProperty LikesProperty =
         DependencyProperty.Register("Likes", typeof(string), typeof(BookListItem), new PropertyMetadata(string.Empty));
 
+    private void Item_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        vm.SetCurrentBook(BookID);
+    }
 }

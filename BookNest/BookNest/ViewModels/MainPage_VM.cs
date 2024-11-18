@@ -38,7 +38,7 @@ public partial class MainPage_VM : ObservableObject
     private readonly DatabaseService ds;
 
     [ObservableProperty]
-    private bool isEditing = true;
+    private bool isEditing = false;
 
     [ObservableProperty]
     private Book_M? currentBook;
@@ -117,6 +117,11 @@ public partial class MainPage_VM : ObservableObject
     //        IsNoResultsMessageVisible = BookList.Count() == 0 ? Visibility.Visible : Visibility.Collapsed;
     //    }
     //}
+
+    public void SetCurrentBook(int bookId)
+    {
+        CurrentBook = ds.GetBook(BookFilterKey.ID, bookId.ToString())[0];
+    }
 
     public void UpdateIsNoResultsVisible()
     {

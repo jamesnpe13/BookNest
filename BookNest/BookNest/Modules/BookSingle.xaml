@@ -64,6 +64,7 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+
     </UserControl.Resources>
 
     <Grid>
@@ -91,11 +92,11 @@
                 <Border
                     Grid.Row="0"
                     Padding="40,40,40,40"
-                    Background="{StaticResource Grey4}">
+                    Background="#FF292B36">
 
-                    <Border.Effect>
+                    <!--<Border.Effect>
                         <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
-                    </Border.Effect>
+                    </Border.Effect>-->
 
                     <StackPanel>
                         <!--  Cancel/back button  -->
@@ -106,7 +107,10 @@
                             VerticalAlignment="Center">
 
                             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                                <components:TextButton x:Name="backButtonUtility" ButtonText="Back" />
+                                <components:TextButton
+                                    x:Name="backButtonUtility"
+                                    ButtonText="Back"
+                                    MouseDown="backButtonUtility_MouseDown" />
                             </StackPanel>
                         </DockPanel>
 
@@ -117,10 +121,12 @@
                                 Text="Book details" />
 
                             <components:Button
+                                x:Name="EditButton"
                                 Width="80"
                                 HorizontalAlignment="Right"
                                 ButtonStyle="Secondary"
                                 ButtonText="Edit"
+                                MouseDown="EditButton_MouseDown"
                                 Style="{StaticResource EditButton}" />
                         </DockPanel>
                     </StackPanel>
@@ -143,7 +149,9 @@
                             <components:TextInputField
                                 Height="{StaticResource Controlheight2}"
                                 FieldStyle="Dark"
-                                Style="{StaticResource InputField}" />
+                                Placeholder="Title"
+                                Style="{StaticResource InputField}"
+                                Text="{Binding CurrentBook.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
 
                         <StackPanel Orientation="Vertical">
@@ -154,7 +162,9 @@
                             <components:TextInputField
                                 Height="{StaticResource Controlheight2}"
                                 FieldStyle="Dark"
-                                Style="{StaticResource InputField}" />
+                                Placeholder="Author"
+                                Style="{StaticResource InputField}"
+                                Text="{Binding CurrentBook.Author, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
 
                         <StackPanel>
@@ -177,7 +187,9 @@
                                         Height="{StaticResource Controlheight2}"
                                         HorizontalAlignment="Stretch"
                                         FieldStyle="Dark"
-                                        Style="{StaticResource InputField}" />
+                                        Placeholder="Publisher"
+                                        Style="{StaticResource InputField}"
+                                        Text="{Binding CurrentBook.Publisher, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                 </StackPanel>
 
                                 <StackPanel
@@ -193,7 +205,9 @@
                                         Height="{StaticResource Controlheight2}"
                                         HorizontalAlignment="Stretch"
                                         FieldStyle="Dark"
-                                        Style="{StaticResource InputField}" />
+                                        Placeholder="Year of publication"
+                                        Style="{StaticResource InputField}"
+                                        Text="{Binding CurrentBook.YearOfPublication, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                 </StackPanel>
                             </Grid>
                         </StackPanel>
@@ -219,7 +233,9 @@
                                         Height="{StaticResource Controlheight2}"
                                         HorizontalAlignment="Stretch"
                                         FieldStyle="Dark"
-                                        Style="{StaticResource InputField}" />
+                                        Placeholder="ISBN"
+                                        Style="{StaticResource InputField}"
+                                        Text="{Binding CurrentBook.Isbn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                 </StackPanel>
 
                                 <StackPanel
@@ -237,7 +253,8 @@
                                             HorizontalAlignment="Stretch"
                                             FieldStyle="Dark"
                                             IsReadOnly="True"
-                                            Style="{StaticResource PlaceholderText}" />
+                                            Style="{StaticResource PlaceholderText}"
+                                            Text="{Binding CurrentBook.Genre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                                         <components:Dropdown
                                             x:Name="GenreDropdown"
@@ -285,6 +302,7 @@
                 <Border
                     Grid.Row="2"
                     Padding="40"
+                    Background="#FF292B36"
                     Style="{StaticResource FooterButtonContainer}">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -298,7 +316,8 @@
                             HorizontalAlignment="Stretch"
                             ButtonHeight="Medium"
                             ButtonStyle="Destructive"
-                            ButtonText="Cancel" />
+                            ButtonText="Cancel"
+                            MouseDown="Button_MouseDown" />
                         <components:Button
                             Grid.Column="1"
                             Margin="10,0,0,0"

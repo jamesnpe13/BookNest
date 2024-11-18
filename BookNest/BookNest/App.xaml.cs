@@ -16,6 +16,7 @@ public partial class App : Application
     [DllImport("kernel32.dll", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     static extern bool AllocConsole();
+    public IServiceProvider ServiceProvider { get; private set; }
 
     public App()
     {
@@ -26,10 +27,10 @@ public partial class App : Application
         ServiceCollection serviceCollection = new();
         serviceCollection.ConfigureServices();
 
-        ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
+        ServiceProvider = serviceCollection.BuildServiceProvider();
 
         // instantiate MainWindow
-        var mainWindow = serviceProvider.GetRequiredService<MainWindow>();
+        var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
         mainWindow.Show();
     }
 

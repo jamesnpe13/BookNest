@@ -10,6 +10,18 @@
     Background="{StaticResource Blue4}"
     mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <Style x:Key="BookSingleVisibility" TargetType="modules:BookSingle">
+            <Setter Property="Visibility" Value="Visible" />
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentBook, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -235,6 +247,7 @@
                                 <components:BookListItem
                                     Title="{Binding Title}"
                                     Author="{Binding Author}"
+                                    BookID="{Binding BookId}"
                                     Genre="{Binding Genre}"
                                     ISBN="{Binding Isbn}"
                                     Likes="{Binding Likes}"
@@ -248,6 +261,6 @@
             </ScrollViewer>
         </Grid>
 
-        <modules:BookSingle />
+        <modules:BookSingle Style="{StaticResource BookSingleVisibility}" />
     </Grid>
 </UserControl>

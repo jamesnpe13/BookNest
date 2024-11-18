@@ -13,7 +13,8 @@
         Background="{StaticResource Blue5}"
         BorderBrush="{StaticResource Blue1}"
         BorderThickness="1"
-        CornerRadius="{StaticResource CornerRadius1}">
+        CornerRadius="{StaticResource CornerRadius1}"
+        MouseDown="Item_MouseDown">
 
         <Grid ShowGridLines="False">
             <Grid.ColumnDefinitions>
