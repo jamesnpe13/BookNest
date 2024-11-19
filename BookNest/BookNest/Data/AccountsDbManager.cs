@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.Hosting.Internal;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
@@ -154,9 +155,9 @@ partial class DatabaseService : ObservableObject
         return tempAccount;
     }
 
-    public List<Account_M> GetAccount(bool returnSingle)
+    public ObservableCollection<Account_M> GetAccount(bool returnSingle)
     {
-        List<Account_M> tempAccounts = new();
+        ObservableCollection<Account_M> tempAccounts = new();
 
         if (!returnSingle)
         {
