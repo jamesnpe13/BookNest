@@ -126,7 +126,6 @@
                                 ButtonStyle="Destructive"
                                 ButtonText="Delete"
                                 DockPanel.Dock="Right"
-                                MouseDown="DeleteButton_MouseDown"
                                 Visibility="Collapsed" />
 
                             <components:Button
@@ -137,7 +136,6 @@
                                 ButtonStyle="Neutral"
                                 ButtonText="Edit"
                                 DockPanel.Dock="Right"
-                                MouseDown="EditButton_MouseDown"
                                 Style="{StaticResource EditButton}"
                                 Visibility="Collapsed" />
 

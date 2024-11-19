@@ -111,13 +111,24 @@
                         IconSource="../assets/icons/Icon awesome-book-open.png"
                         MouseDown="BooksNavButton_MouseDown"
                         Visibility="{Binding BooksNavButtonVisibility}" />
-                    <components:NavButton
-                        x:Name="BagNavButton"
-                        ButtonStyle="Transparent"
-                        ButtonText="My Bag"
-                        IconSource="../assets/icons/Icon awesome-shopping-bag.png"
-                        MouseDown="BagNavButton_MouseDown"
-                        Visibility="{Binding BagNavButtonVisibility}" />
+                    <DockPanel
+                        HorizontalAlignment="Stretch"
+                        Cursor="Hand"
+                        MouseDown="BagNavButton_MouseDown">
+                        <components:NavButton
+                            x:Name="BagNavButton"
+                            ButtonStyle="Transparent"
+                            ButtonText="My Bag"
+                            IconSource="../assets/icons/Icon awesome-shopping-bag.png"
+                            Visibility="{Binding BagNavButtonVisibility}" />
+
+                        <Label
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Content="{Binding BookBagCount, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                            Foreground="{StaticResource Secondary}" />
+
+                    </DockPanel>
                     <components:NavButton
                         x:Name="WatchlistNavButton"
                         ButtonStyle="Transparent"

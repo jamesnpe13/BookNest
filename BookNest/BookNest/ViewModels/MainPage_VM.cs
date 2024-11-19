@@ -30,7 +30,20 @@ public enum PageView
 
 public partial class MainPage_VM : ObservableObject
 {
-
+    ObservableCollection<int?> bookBag;
+    public ObservableCollection<int?> BookBag
+    {
+        get => bookBag;
+        set
+        {
+            if (bookBag != value)
+            {
+                bookBag = value;
+                OnPropertyChanged(nameof(BookBag));
+            }
+        }
+    }
+    [ObservableProperty] int bookBagCount = 0;
     private readonly AppData ad;
     private readonly SessionService ss;
     private readonly IServiceProvider sp;
@@ -74,12 +87,20 @@ public partial class MainPage_VM : ObservableObject
         ss = _ss;
         sp = _sp;
         ds = _ds;
-        BookList = new();
-        BookList = ds.GetBook(BookFilterKey.ALL);
 
-        SessionService.UserSignedInOut += ResetInstance;
+        BookList = new();
+        BookBag = new();
         ResetInstance();
         UpdateIsNoResultsVisible();
+        BookList = ds.GetBook(BookFilterKey.ALL);
+        SessionService.UserSignedInOut += ResetInstance;
+
+        BookBag.CollectionChanged += BookBagCollectionChanged;
+    }
+
+    public void BookBagCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    {
+        BookBagCount = BookBag.Count();
     }
 
     public void SetCurrentBook(int bookId) => CurrentBook = ds.GetBook(BookFilterKey.ID, bookId.ToString())[0];
