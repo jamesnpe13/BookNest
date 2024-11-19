@@ -1,28 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BookNest.Data;
+using BookNest.Models;
+using BookNest.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace BookNest.Views
+namespace BookNest.Views;
+
+public partial class Member_Bag_V : UserControl
 {
-    /// <summary>
-    /// Interaction logic for Member_Bag_V.xaml
-    /// </summary>
-    public partial class Member_Bag_V : UserControl
+    private readonly MainPage_VM vm;
+    private readonly DatabaseService ds;
+
+    public Member_Bag_V()
     {
-        public Member_Bag_V()
+        InitializeComponent();
+        CreateComboboxItems();
+
+        vm = ((App)Application.Current).ServiceProvider.GetRequiredService<MainPage_VM>();
+        ds = ((App)Application.Current).ServiceProvider.GetRequiredService<DatabaseService>();
+
+        vm.BookList.Clear();
+        foreach (var item in vm.BookBag)
         {
-            InitializeComponent();
+            vm.BookList.Add(ds.GetBook(BookFilterKey.ID, item.ToString())[0]);
         }
+    }
+
+    private void backButtonUtility_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        vm.NavigateBack();
+    }
+
+    private void CreateComboboxItems()
+    {
+        GenreDropdown.DropdownCombobox.Items.Add(new ComboBoxItem() { Content = "All" }); // add ALL BOOKS category
+
+        var genreList = Enum.GetValues(typeof(BookGenre));
+
+        foreach (var genre in genreList)
+        {
+            ComboBoxItem tempCBItem = new() { Content = genre.ToString() };
+            GenreDropdown.DropdownCombobox.Items.Add(tempCBItem);
+        }
+    }
+
+    private void AddBookButtonUtility_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        vm.SetCurrentView(PageView.BookAdd);
     }
 }

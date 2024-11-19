@@ -217,6 +217,7 @@ public partial class MainPage_VM : ObservableObject
         AccountType = string.Empty;
         LastView = null;
         CurrentPageTitle = "All books";
+        IsNoResultsMessageVisible = Visibility.Collapsed;
         DashboardNavButtonVisibility = Visibility.Collapsed;
         BooksNavButtonVisibility = Visibility.Collapsed;
         BagNavButtonVisibility = Visibility.Collapsed;
