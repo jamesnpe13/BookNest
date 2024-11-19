@@ -91,4 +91,9 @@ public partial class BookSingleMember : UserControl
 
         }
     }
+
+    private void DynamicButton_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+
+    }
 }

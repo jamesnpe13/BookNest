@@ -3,15 +3,20 @@ using BookNest.ViewModels;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BookNest.Modules;
 
 public partial class SideNavModule : UserControl
 {
+    private readonly SessionService ss;
+    private readonly MainPage_VM vm;
 
     public SideNavModule()
     {
         InitializeComponent();
+        ss = ((App)Application.Current).ServiceProvider.GetRequiredService<SessionService>();
+        vm = ((App)Application.Current).ServiceProvider.GetRequiredService<MainPage_VM>();
 
     }
 
@@ -66,18 +71,11 @@ public partial class SideNavModule : UserControl
 
     private void SetCurrentView(PageView targetView)
     {
-        if (DataContext is MainPage_VM vm)
-        {
-            vm.SetCurrentView(targetView);
-        }
+        vm.SetCurrentView(targetView);
     }
 
     private void HandleUserSignOut()
     {
-        if (DataContext is MainPage_VM vm)
-        {
-            vm.HandleUserSignOut();
-        }
-        
+        ss.HandleUserSignOut();
     }
 }
