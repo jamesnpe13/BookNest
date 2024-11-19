@@ -127,7 +127,7 @@
                                 ButtonText="Delete"
                                 DockPanel.Dock="Right"
                                 Visibility="Collapsed" />
-
+                    
                             <components:Button
                                 x:Name="EditButton"
                                 Width="80"

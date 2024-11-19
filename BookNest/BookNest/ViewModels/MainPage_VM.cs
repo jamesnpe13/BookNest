@@ -49,7 +49,7 @@ public partial class MainPage_VM : ObservableObject
     private readonly IServiceProvider sp;
     private readonly DatabaseService ds;
     [ObservableProperty] private bool isEditing = false;
-    [ObservableProperty] private Book_M? currentBook;
+    [ObservableProperty] private Book_M currentBook = new();
     [ObservableProperty] private UserControl currentView;
     [ObservableProperty] private string welcomeTextLine1 = string.Empty;
     [ObservableProperty] private string welcomeTextLine2 = string.Empty;
@@ -88,13 +88,13 @@ public partial class MainPage_VM : ObservableObject
         sp = _sp;
         ds = _ds;
 
+        CurrentBook = new();
         BookList = new();
         BookBag = new();
         ResetInstance();
         UpdateIsNoResultsVisible();
         BookList = ds.GetBook(BookFilterKey.ALL);
         SessionService.UserSignedInOut += ResetInstance;
-
         BookBag.CollectionChanged += BookBagCollectionChanged;
     }
 
