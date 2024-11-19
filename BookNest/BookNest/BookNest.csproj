@@ -73,6 +73,15 @@
 		<Compile Update="Components\PasswordInputField.xaml.cs">
 			<SubType>Code</SubType>
 		</Compile>
+		<Compile Update="Modules\BookSingleMember.xaml.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="booknest.db">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>

@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="BookNest.Modules.BookSingle"
+    x:Class="BookNest.Modules.BookSingleMember"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:components="clr-namespace:BookNest.Components"
@@ -126,7 +126,8 @@
                                 ButtonStyle="Destructive"
                                 ButtonText="Delete"
                                 DockPanel.Dock="Right"
-                                MouseDown="DeleteButton_MouseDown" />
+                                MouseDown="DeleteButton_MouseDown"
+                                Visibility="Collapsed" />
 
                             <components:Button
                                 x:Name="EditButton"
@@ -137,7 +138,8 @@
                                 ButtonText="Edit"
                                 DockPanel.Dock="Right"
                                 MouseDown="EditButton_MouseDown"
-                                Style="{StaticResource EditButton}" />
+                                Style="{StaticResource EditButton}"
+                                Visibility="Collapsed" />
 
                         </DockPanel>
                     </StackPanel>
@@ -281,6 +283,7 @@
                                             Style="{StaticResource DropdownFieldVisibility}" />
                                     </Grid>
                                 </StackPanel>
+
                                 <Grid Grid.Column="2" Margin="10,0,0,0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto" />
@@ -302,7 +305,18 @@
                                         Placeholder="Status"
                                         Style="{StaticResource InputField}"
                                         Text="{Binding CurrentBook.Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                                    <!--<Viewbox Height="20">
+                                            <CheckBox
+                                                VerticalAlignment="Center"
+                                                Content="Available"
+                                                FocusVisualStyle="{x:Null}"
+                                                FontSize="{StaticResource Small}"
+                                                Foreground="{StaticResource Secondary}" />
+                                        </Viewbox>-->
+
                                 </Grid>
+
                             </Grid>
                         </StackPanel>
 
@@ -313,8 +327,7 @@
                 <Border
                     Grid.Row="2"
                     Padding="40"
-                    Background="#FF292B36"
-                    Style="{StaticResource FooterButtonContainer}">
+                    Background="#FF292B36">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -322,22 +335,24 @@
                         </Grid.ColumnDefinitions>
 
                         <components:Button
+                            x:Name="BackButtonMain"
                             Grid.Column="0"
-                            Margin="0,0,10,0"
+                            Margin="10,0,0,0"
                             HorizontalAlignment="Stretch"
                             ButtonHeight="Medium"
-                            ButtonStyle="Destructive"
-                            ButtonText="Cancel"
-                            MouseDown="Button_MouseDown" />
+                            ButtonStyle="Neutral"
+                            ButtonText="Back"
+                            MouseDown="backButtonUtility_MouseDown" />
+
                         <components:Button
-                            x:Name="ConfirmButton"
+                            x:Name="DynamicButton"
                             Grid.Column="1"
                             Margin="10,0,0,0"
                             HorizontalAlignment="Stretch"
                             ButtonHeight="Medium"
                             ButtonStyle="Primary"
-                            ButtonText="Confirm"
-                            MouseDown="ConfirmButton_MouseDown" />
+                            ButtonText="Add to bag"
+                            MouseDown="DynamicButton_MouseDown" />
                     </Grid>
                 </Border>
 

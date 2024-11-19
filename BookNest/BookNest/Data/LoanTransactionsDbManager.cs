@@ -13,7 +13,7 @@ partial class DatabaseService : ObservableObject
     //          HANDLE LOAN TRANSACTION QUERIES
     //************************************
 
-    // Add loan transacton
+    // create loan transacton
 
     // Read transaction
 

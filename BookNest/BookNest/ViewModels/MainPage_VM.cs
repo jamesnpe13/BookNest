@@ -248,6 +248,8 @@ public partial class MainPage_VM : ObservableObject
 
         WelcomeTextLine2 = string.Empty;
 
+        CurrentBook = null;
+
         AccountType = string.Empty;
 
         LastView = null;

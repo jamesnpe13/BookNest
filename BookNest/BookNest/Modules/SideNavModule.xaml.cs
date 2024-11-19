@@ -78,5 +78,6 @@ public partial class SideNavModule : UserControl
         {
             vm.HandleUserSignOut();
         }
+        
     }
 }
