@@ -123,9 +123,11 @@
                             IconSource="../assets/icons/Icon awesome-shopping-bag.png" />
 
                         <Label
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
+                            Padding="0,0,40,0"
+                            HorizontalAlignment="Right"
+                            VerticalContentAlignment="Center"
                             Content="{Binding BookBagCount, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                            DockPanel.Dock="Right"
                             Foreground="{StaticResource Secondary}" />
 
                     </DockPanel>

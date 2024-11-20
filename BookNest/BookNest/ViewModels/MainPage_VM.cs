@@ -108,6 +108,7 @@ public partial class MainPage_VM : ObservableObject
         {
             BookList = TempBookList;
         }
+        UpdateIsNoResultsVisible();
     }
 
     public void BookBagCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -212,7 +213,18 @@ public partial class MainPage_VM : ObservableObject
     }
 
     // set last page view
-    partial void OnCurrentViewChanged(UserControl? oldValue, UserControl? newValue) => LastView = oldValue;
+    partial void OnCurrentViewChanged(UserControl? oldValue, UserControl? newValue)
+    {
+        LastView = oldValue;
+
+        if (currentView != null)
+        {
+            if (currentView.GetType() == typeof(Member_Bag_V))
+            {
+                currentPageTitle = "My Book Bag";
+            }
+        }
+    }
 
     public void NavigateBack()
     {
