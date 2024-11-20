@@ -117,7 +117,7 @@ public partial class MainPage_VM : ObservableObject
 
         foreach (var item in tempList)
         {
-            Console.WriteLine($"Transaction ID: {item.LoanTransactionId} | Loaned by: {item.AccountId} | Loan date: {item.LoanDate} | Due date: {item.DueDate} | Days remaining: {item.GetRemainingDays()} | {item.IsOverdue}");
+            Console.WriteLine($"Transaction ID: {item.LoanTransactionId} | Loaned by: {ds.GetAccount(AccountFilterKey.ID, item.AccountId.ToString())[0].Username} | Loan date: {item.LoanDate} | Due date: {item.DueDate} | Days remaining: {item.GetRemainingDays()} | {item.IsOverdue}");
         }
     }
 

@@ -5,8 +5,10 @@ using Microsoft.Extensions.Hosting.Internal;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Data.SQLite;
 using System.Linq;
+using System.Printing;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -154,43 +156,88 @@ partial class DatabaseService : ObservableObject
         return tempAccount;
     }
 
-    public ObservableCollection<Account_M> GetAccount(bool returnSingle)
+    public ObservableCollection<Account_M> GetAccount(AccountFilterKey key = AccountFilterKey.ALL, string? value = null)
     {
-        ObservableCollection<Account_M> tempAccounts = new();
+        ObservableCollection<Account_M> tempAccountList = new();
 
-        if (!returnSingle)
+        using (var connection = new SQLiteConnection(DB_STRING))
         {
+            connection.Open();
+            string query = string.Empty;
 
-            using (var connection = new SQLiteConnection(DB_STRING))
+            switch (key)
             {
-                connection.Open();
-                string query = @"SELECT * FROM Accounts";
-                using (var command = new SQLiteCommand(query, connection))
+                case AccountFilterKey.ALL:
+                    query = @"
+                    SELECT * FROM Accounts
+                    ";
+                    break;
+                case AccountFilterKey.ID:
+                    query = @"
+                    SELECT * FROM Accounts
+                    WHERE UserID = @value
+                    ";
+                    break;
+                case AccountFilterKey.FIRST_NAME:
+                    query = @"
+                    SELECT * FROM Accounts
+                    WHERE FirstName = @value
+                    ";
+                    break;
+                case AccountFilterKey.LAST_NAME:
+                    query = @"
+                    SELECT * FROM Accounts
+                    WHERE LastName = @value
+                    ";
+                    break;
+                case AccountFilterKey.USERNAME:
+                    query = @"
+                    SELECT * FROM Accounts
+                    WHERE Username = @value
+                    ";
+                    break;
+                case AccountFilterKey.EMAIL:
+                    query = @"
+                    SELECT * FROM Accounts
+                    WHERE Email = @value
+                    ";
+                    break;
+                case AccountFilterKey.ACCOUNT_TYPE:
+                    query = @"
+                    SELECT * FROM Accounts
+                    WHERE AccountType = @value
+                    ";
+                    break;
+            }
+
+            using (var command = new SQLiteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@value", value);
+
+                using (var reader = command.ExecuteReader())
                 {
-                    using (var reader = command.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        Account_M tempAccount = new();
+
+                        for (int i = 0; i < reader.FieldCount; i++)
                         {
-                            for (int i = 0; i < reader.FieldCount; i++)
-                            {
-                                Account_M tempAccount = new Account_M
-                                {
-                                    AccountId = reader.GetInt32(reader.GetOrdinal("UserID")),
-                                    Password = reader["Password"].ToString() ?? string.Empty,
-                                    Email = reader["Email"].ToString() ?? string.Empty,
-                                    FirstName = reader["FirstName"].ToString() ?? string.Empty,
-                                    LastName = reader["Lastname"].ToString() ?? string.Empty,
-                                    Username = reader["Username"].ToString() ?? string.Empty,
-                                    AccountType = reader["AccountType"].ToString() ?? string.Empty,
-                                };
-                                tempAccounts.Add(tempAccount);
-                            }
-                        }
+                            tempAccount.AccountId = reader.GetInt32(reader.GetOrdinal("UserID"));
+                            tempAccount.FirstName = reader["FirstName"].ToString();
+                            tempAccount.LastName = reader["LastName"].ToString();
+                            tempAccount.Username = reader["Username"].ToString();
+                            tempAccount.Email = reader["Email"].ToString();
+                            tempAccount.AccountType = reader["AccountType"].ToString();
+
+                            tempAccountList.Add(tempAccount);
+                        };
                     }
                 }
             }
+
         }
-        return tempAccounts;
+
+        return tempAccountList;
     }
 
     // Delete account

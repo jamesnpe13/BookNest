@@ -1,6 +1,7 @@
 ﻿
 public enum AccountFilterKey
 {
+    ALL,
     ID,
     FIRST_NAME,
     LAST_NAME,
