@@ -163,12 +163,14 @@
                         Foreground="{StaticResource White}" />
 
                     <components:TextInputField
+                        Height="{StaticResource Controlheight2}"
                         Margin="0,0,0,20"
                         FieldStyle="Dark"
                         Placeholder="Title"
                         Text="{Binding BookTitle, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
 
                     <components:TextInputField
+                        Height="{StaticResource Controlheight2}"
                         Margin="0,0,0,20"
                         FieldStyle="Dark"
                         Placeholder="Author"
@@ -182,6 +184,7 @@
 
                         <components:TextInputField
                             Grid.Column="0"
+                            Height="{StaticResource Controlheight2}"
                             Margin="0,0,10,0"
                             FieldStyle="Dark"
                             Placeholder="ISBN"
@@ -190,6 +193,7 @@
                             x:Name="GenreDropdown"
                             Grid.Column="1"
                             Width="auto"
+                            Height="{StaticResource Controlheight2}"
                             Margin="10,0,0,0"
                             HorizontalAlignment="Stretch"
                             LostFocus="GenreDropdown_LostFocus"
@@ -205,12 +209,14 @@
 
                         <components:TextInputField
                             Grid.Column="0"
+                            Height="{StaticResource Controlheight2}"
                             Margin="0,0,10,0"
                             FieldStyle="Dark"
                             Placeholder="Publisher"
                             Text="{Binding BookPublisher, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
                         <components:TextInputField
                             Grid.Column="1"
+                            Height="{StaticResource Controlheight2}"
                             Margin="10,0,0,0"
                             FieldStyle="Dark"
                             Placeholder="Year of publication"

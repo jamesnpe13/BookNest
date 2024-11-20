@@ -1,4 +1,7 @@
-﻿using BookNest.ViewModels;
+﻿using BookNest.Data;
+using BookNest.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -6,10 +9,12 @@ namespace BookNest.Views
 {
     public partial class Member_Dashboard_V : UserControl
     {
+        private readonly DatabaseService ds;
 
         public Member_Dashboard_V()
         {
             InitializeComponent();
+            ds = ((App)Application.Current).ServiceProvider.GetRequiredService<DatabaseService>();
         }
 
         private void SetCurrentView(PageView targetView)
@@ -36,9 +41,12 @@ namespace BookNest.Views
             {
                 if (DataContext is MainPage_VM vm)
                 {
-                    vm.UpdateBookList(BookFilterKey.SEARCH, DashboardSearchField.Text);
-                    DashboardSearchField.Text = string.Empty;
                     vm.SetCurrentView(PageView.Books);
+                    vm.TempBookList = new();
+                    vm.TempBookList = ds.GetBook(BookFilterKey.SEARCH, DashboardSearchField.Text);
+                    //vm.UpdateBookList(BookFilterKey.SEARCH, DashboardSearchField.Text);
+                    vm.RefreshBookList();
+                    DashboardSearchField.Text = string.Empty;
                 }
             }
         }
