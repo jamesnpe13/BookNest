@@ -52,13 +52,13 @@ public partial class MainPage_VM : ObservableObject
     private readonly DatabaseService ds;
 
     [ObservableProperty] private bool isEditing = false;
-    [ObservableProperty] private Book_M currentBook = new();
-    [ObservableProperty] private UserControl currentView;
     [ObservableProperty] private string welcomeTextLine1 = string.Empty;
     [ObservableProperty] private string welcomeTextLine2 = string.Empty;
     [ObservableProperty] private string accountType = string.Empty;
-    [ObservableProperty] private UserControl? lastView;
     [ObservableProperty] private string currentPageTitle = "All books";
+    [ObservableProperty] private Book_M currentBook = new();
+    [ObservableProperty] private UserControl currentView;
+    [ObservableProperty] private UserControl? lastView;
     [ObservableProperty] private BookGenre? selectedGenre = null;
     [ObservableProperty] private Visibility isNoResultsMessageVisible = Visibility.Collapsed;
     [ObservableProperty] private Visibility dashboardNavButtonVisibility = Visibility.Collapsed;
@@ -70,6 +70,7 @@ public partial class MainPage_VM : ObservableObject
     [ObservableProperty] private Visibility peopleNavButtonVisibility = Visibility.Collapsed;
     [ObservableProperty] private Visibility accountNavButtonVisibility = Visibility.Collapsed;
     [ObservableProperty] private Visibility signOutNavButtonVisibility = Visibility.Collapsed;
+    public ObservableCollection<Book_M> TempBookList;
     private ObservableCollection<Book_M> bookList;
     public ObservableCollection<Book_M> BookList
     {
@@ -83,7 +84,6 @@ public partial class MainPage_VM : ObservableObject
             }
         }
     }
-    public ObservableCollection<Book_M> TempBookList;
 
     public MainPage_VM(AppData _ad, SessionService _ss, IServiceProvider _sp, DatabaseService _ds)
     {
@@ -100,25 +100,6 @@ public partial class MainPage_VM : ObservableObject
         BookList = ds.GetBook(BookFilterKey.ALL);
         SessionService.UserSignedInOut += ResetInstance;
         BookBag.CollectionChanged += BookBagCollectionChanged;
-
-        TestLoanTransaction();
-
-    }
-
-    public void TestLoanTransaction()
-    {
-        LoanTransaction_M tempLT = new();
-        tempLT.AccountId = ad.CurrentAccount.AccountId;
-        tempLT.BookId = 9;
-        tempLT.Status = LoanStatus.OnLoan;
-        ds.AddLoanTransaction(tempLT);
-
-        ObservableCollection<LoanTransaction_M> tempList = ds.GetLoanTransaction(LoanTransactionFilterKey.ALL);
-
-        foreach (var item in tempList)
-        {
-            Console.WriteLine($"Transaction ID: {item.LoanTransactionId} | Loaned by: {ds.GetAccount(AccountFilterKey.ID, item.AccountId.ToString())[0].Username} | Loan date: {item.LoanDate} | Due date: {item.DueDate} | Days remaining: {item.GetRemainingDays()} | {item.IsOverdue}");
-        }
     }
 
     public void RefreshBookList()

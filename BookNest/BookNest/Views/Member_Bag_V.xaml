@@ -27,6 +27,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
             <!--  Utility bar  -->
@@ -104,7 +105,6 @@
             </StackPanel>
 
             <!--  Main Section  -->
-
             <ScrollViewer
                 x:Name="ListContainer"
                 Grid.Row="1"
@@ -272,6 +272,38 @@
                     </ItemsControl>
                 </StackPanel>
             </ScrollViewer>
+
+            <!--  Footer buttons  -->
+            <DockPanel Grid.Row="2" Background="{StaticResource Blue5}">
+
+                <components:Button
+                    Margin="40,10"
+                    ButtonHeight="Medium"
+                    ButtonStyle="Destructive"
+                    ButtonText="Remove all" />
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontSize="{StaticResource Normal}"
+                        Foreground="{StaticResource White}"
+                        Text="Checking out " />
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontSize="{StaticResource Normal}"
+                        Foreground="{StaticResource White}"
+                        Text="{Binding BookBagCount}" />
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontSize="{StaticResource Normal}"
+                        Foreground="{StaticResource White}"
+                        Text=" Books" />
+                    <components:Button
+                        Margin="40,10"
+                        ButtonHeight="Medium"
+                        ButtonStyle="Primary"
+                        ButtonText="Checkout books" />
+                </StackPanel>
+            </DockPanel>
         </Grid>
 
         <modules:BookSingleMember
