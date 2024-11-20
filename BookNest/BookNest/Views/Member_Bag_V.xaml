@@ -20,6 +20,15 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="CheckoutBarVisibility" TargetType="DockPanel">
+            <Setter Property="Visibility" Value="Collapsed" />
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding FooterVisibility, UpdateSourceTrigger=PropertyChanged}" Value="true">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
 
     <Grid>
@@ -274,9 +283,13 @@
             </ScrollViewer>
 
             <!--  Footer buttons  -->
-            <DockPanel Grid.Row="2" Background="{StaticResource Blue5}">
+            <DockPanel
+                Grid.Row="2"
+                Background="{StaticResource Blue5}"
+                Style="{StaticResource CheckoutBarVisibility}">
 
                 <components:Button
+                    x:Name="RemoveAllButton"
                     Margin="40,10"
                     ButtonHeight="Medium"
                     ButtonStyle="Destructive"
@@ -298,17 +311,16 @@
                         Foreground="{StaticResource White}"
                         Text=" Books" />
                     <components:Button
+                        x:Name="CheckoutButton"
                         Margin="40,10"
                         ButtonHeight="Medium"
                         ButtonStyle="Primary"
-                        ButtonText="Checkout books" />
+                        ButtonText="Checkout books"
+                        MouseDown="CheckoutButton_MouseDown" />
                 </StackPanel>
             </DockPanel>
         </Grid>
 
-        <modules:BookSingleMember
-            Height="684"
-            VerticalAlignment="Bottom"
-            Style="{StaticResource BookSingleVisibility}" />
+        <modules:BookSingleMember Style="{StaticResource BookSingleVisibility}" />
     </Grid>
 </UserControl>

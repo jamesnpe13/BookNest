@@ -39,7 +39,6 @@ partial class DatabaseService : ObservableObject
                     // exception handling here...
 
                     command.ExecuteNonQuery();
-                    NotificationService.Instance.AddNotificationItem(NotificationToastStyle.Success, "Entry created");
                 }
             }
         }

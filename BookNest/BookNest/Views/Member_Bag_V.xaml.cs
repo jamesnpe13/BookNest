@@ -57,4 +57,16 @@ public partial class Member_Bag_V : UserControl
     {
         vm.SetCurrentView(PageView.BookAdd);
     }
+
+    private void CheckoutButton_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        vm.CheckoutBooks();
+    }
+
+    //private void RemoveAllButton_MouseDown(object sender, MouseButtonEventArgs e)
+    //{
+    //    vm.BookBag.Clear();
+    //    vm.RefreshBookList();
+
+    //}
 }

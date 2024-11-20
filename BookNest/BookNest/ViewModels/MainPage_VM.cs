@@ -61,6 +61,7 @@ public partial class MainPage_VM : ObservableObject
     [ObservableProperty] private UserControl? lastView;
     [ObservableProperty] private BookGenre? selectedGenre = null;
     [ObservableProperty] private Visibility isNoResultsMessageVisible = Visibility.Collapsed;
+    [ObservableProperty] private bool footerVisibility = false;
     [ObservableProperty] private Visibility dashboardNavButtonVisibility = Visibility.Collapsed;
     [ObservableProperty] private Visibility booksNavButtonVisibility = Visibility.Collapsed;
     [ObservableProperty] private Visibility bagNavButtonVisibility = Visibility.Collapsed;
@@ -93,6 +94,7 @@ public partial class MainPage_VM : ObservableObject
         ds = _ds;
 
         CurrentBook = new();
+        TempBookList = new();
         BookList = new();
         BookBag = new();
         ResetInstance();
@@ -100,6 +102,35 @@ public partial class MainPage_VM : ObservableObject
         BookList = ds.GetBook(BookFilterKey.ALL);
         SessionService.UserSignedInOut += ResetInstance;
         BookBag.CollectionChanged += BookBagCollectionChanged;
+    }
+
+    public void CheckoutBooks()
+    {
+        foreach (var item in this.BookBag)
+        {
+            // create loan stransaction entry
+            LoanTransaction_M tempLoanTransaction = new();
+            var userId = ad.CurrentAccount.AccountId;
+            var bookId = item;
+            tempLoanTransaction.AccountId = userId;
+            tempLoanTransaction.BookId = bookId;
+            tempLoanTransaction.Status = LoanStatus.OnLoan;
+            ds.AddLoanTransaction(tempLoanTransaction);
+
+            // update status of book to unavailable
+            Book_M tempBook = ds.GetBook(BookFilterKey.ID, item.ToString())[0];
+            tempBook.Status = BookStatus.Unavailable;
+            ds.UpdateBook(item.ToString(), tempBook);
+
+        }
+
+        // reset lists
+        bookBag.Clear();
+        TempBookList.Clear();
+        RefreshBookList();
+
+        // notification toast
+        NotificationService.Instance.AddNotificationItem(Components.NotificationToastStyle.Success, $"All books checkout out. Make sure to return them within {ad.loanDaysMax} days.");
     }
 
     public void RefreshBookList()
@@ -118,7 +149,11 @@ public partial class MainPage_VM : ObservableObject
 
     public void SetCurrentBook(int bookId) => CurrentBook = ds.GetBook(BookFilterKey.ID, bookId.ToString())[0];
 
-    public void UpdateIsNoResultsVisible() => IsNoResultsMessageVisible = BookList.Count() == 0 || BookList == null ? Visibility.Visible : Visibility.Collapsed;
+    public void UpdateIsNoResultsVisible()
+    {
+        IsNoResultsMessageVisible = BookList.Count() == 0 || BookList == null ? Visibility.Visible : Visibility.Collapsed;
+        FooterVisibility = BookList.Count() == 0 || BookList == null ? false : true;
+    }
 
     public void FilterListByGenre(BookGenre value)
     {
