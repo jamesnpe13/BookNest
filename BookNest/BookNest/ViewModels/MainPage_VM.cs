@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SharpVectors.Dom;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Runtime.CompilerServices;
 using System.Security.RightsManagement;
 using System.Windows;
 using System.Windows.Controls;
@@ -99,6 +100,7 @@ public partial class MainPage_VM : ObservableObject
         BookList = ds.GetBook(BookFilterKey.ALL);
         SessionService.UserSignedInOut += ResetInstance;
         BookBag.CollectionChanged += BookBagCollectionChanged;
+
         TestLoanTransaction();
 
     }
@@ -110,6 +112,13 @@ public partial class MainPage_VM : ObservableObject
         tempLT.BookId = 9;
         tempLT.Status = LoanStatus.OnLoan;
         ds.AddLoanTransaction(tempLT);
+
+        ObservableCollection<LoanTransaction_M> tempList = ds.GetLoanTransaction(LoanTransactionFilterKey.ALL);
+
+        foreach (var item in tempList)
+        {
+            Console.WriteLine($"Transaction ID: {item.LoanTransactionId} | Loaned by: {item.AccountId} | Loan date: {item.LoanDate} | Due date: {item.DueDate} | Days remaining: {item.GetRemainingDays()} | {item.IsOverdue}");
+        }
     }
 
     public void RefreshBookList()

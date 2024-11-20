@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Data.SQLite;
-using System.Diagnostics.Eventing.Reader;
 
 namespace BookNest.Data;
 

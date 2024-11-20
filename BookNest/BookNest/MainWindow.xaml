@@ -15,7 +15,7 @@
     Height="{StaticResource WindowDimensionsY}"
     MinWidth="{StaticResource WindowDimensionsXMin}"
     MinHeight="{StaticResource WindowDimensionsYMin}"
-    Icon="/favicon.png"
+    Icon="favicon.png"
     Loaded="MainWin_Loaded"
     WindowState="Maximized"
     mc:Ignorable="d">

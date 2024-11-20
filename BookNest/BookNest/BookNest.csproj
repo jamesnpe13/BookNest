@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
 
 	<ItemGroup>
 		<None Remove="assets\admin-dashboard-graphic-green.svg" />
@@ -14,6 +14,7 @@
 		<None Remove="assets\admin-dashboard-graphic-white.svg" />
 		<None Remove="assets\bookbag-graphic.svg" />
 		<None Remove="assets\booknest-logo-white.svg" />
+		<None Remove="assets\favicon.png" />
 		<None Remove="assets\icons\back-icon.svg" />
 		<None Remove="assets\icons\Icon awesome-binoculars.png" />
 		<None Remove="assets\icons\Icon awesome-book-open.png" />
@@ -45,11 +46,15 @@
 		<Resource Include="assets\admin-dashboard-graphic-orange.svg" />
 		<Resource Include="assets\admin-dashboard-graphic-white.svg" />
 		<Resource Include="assets\bookbag-graphic.svg">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="assets\booknest-logo-white.svg">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Resource>
+		<Resource Include="assets\favicon.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Resource>
+
 		<Resource Include="assets\icons\back-icon.svg" />
 		<Resource Include="assets\icons\Icon awesome-binoculars.png" />
 		<Resource Include="assets\icons\Icon awesome-book-open.png" />
@@ -62,13 +67,13 @@
 		<Resource Include="assets\icons\Icon metro-pin.png" />
 		<Resource Include="assets\icons\Icon open-account-logout.png" />
 		<Resource Include="assets\Member-Dashboard-graphic-picture.svg">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="assets\signin-graphic.svg">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="assets\signin2-graphic.svg">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="favicon.png" />
 	</ItemGroup>
@@ -78,14 +83,14 @@
 			<SubType>Code</SubType>
 		</Compile>
 		<Compile Update="Modules\BookSingleMember.xaml.cs">
-		  <SubType>Code</SubType>
+			<SubType>Code</SubType>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="booknest.db">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
+		<None Update="booknest.db">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 
 </Project>

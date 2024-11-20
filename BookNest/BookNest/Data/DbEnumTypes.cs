@@ -26,4 +26,9 @@ public enum BookFilterKey
 
 public enum LoanTransactionFilterKey
 {
+    ALL,
+    TRANSACTION_ID,
+    ACCOUNT_ID,
+    BOOK_ID,
+    STATUS
 }
