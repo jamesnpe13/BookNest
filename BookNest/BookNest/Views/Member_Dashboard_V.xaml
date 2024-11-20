@@ -35,21 +35,27 @@
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
                     <components:TextInputField
+                        x:Name="DashboardSearchField"
                         Grid.Column="0"
+                        Height="{StaticResource Controlheight2}"
                         Margin="0,0,10,0"
                         HorizontalAlignment="Stretch"
+                        FieldStyle="Dark"
+                        KeyDown="DashboardSearchField_KeyDown"
                         Placeholder="Enter keyword" />
                     <components:Button
+                        x:Name="DashboardSearchButton"
                         Grid.Column="1"
+                        ButtonHeight="Medium"
                         ButtonStyle="Outline"
-                        ButtonText="Search" />
+                        ButtonText="Search"
+                        MouseDown="DashboardSearchButton_MouseDown" />
                 </Grid>
                 <!--  Quick access buttons  -->
                 <StackPanel
                     Margin="0,0,0,40"
                     HorizontalAlignment="Center"
-                    Orientation="Horizontal">
-                </StackPanel>
+                    Orientation="Horizontal" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

@@ -2,14 +2,281 @@
     x:Class="BookNest.Views.Member_Bag_V"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:components="clr-namespace:BookNest.Components"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:BookNest.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    xmlns:modules="clr-namespace:BookNest.Modules"
+    xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+    Background="{StaticResource Blue4}"
     mc:Ignorable="d">
-    <Grid>
-        <Label Content="Member bag" Foreground="White" />
+    <UserControl.Resources>
+        <Style x:Key="BookSingleVisibility" TargetType="modules:BookSingleMember">
+            <Setter Property="Visibility" Value="Visible" />
 
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentBook, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Utility bar  -->
+            <StackPanel Grid.Row="0" Orientation="Vertical">
+                <modules:HeaderBarModule Visibility="Collapsed" />
+
+                <Border Padding="40,10,40,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <!--  View Title bar  -->
+                        <Border
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Height="{StaticResource UtilityBarHeight}"
+                            VerticalAlignment="Center">
+
+                            <Label
+                                Content="{Binding CurrentPageTitle}"
+                                FontSize="{StaticResource XLarge}"
+                                Foreground="{StaticResource White}" />
+                        </Border>
+
+                        <!--  Cancel/back button  -->
+                        <Border
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Height="{StaticResource UtilityBarHeight}"
+                            VerticalAlignment="Center">
+
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+
+                                <components:TextButton
+                                    x:Name="backButtonUtility"
+                                    ButtonText="Back"
+                                    MouseDown="backButtonUtility_MouseDown" />
+                            </StackPanel>
+                        </Border>
+
+                        <!--  Utility buttons  -->
+                        <Border
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Height="{StaticResource UtilityBarHeight}">
+
+                            <StackPanel
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+
+                                <components:Button
+                                    x:Name="AddBookButtonUtility"
+                                    Margin="0,0,0,0"
+                                    ButtonStyle="Primary"
+                                    ButtonText="Add Book"
+                                    MouseDown="AddBookButtonUtility_MouseDown"
+                                    Visibility="Collapsed" />
+
+                                <components:Dropdown
+                                    x:Name="GenreDropdown"
+                                    Placeholder="Genre"
+                                    Visibility="Collapsed" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Border>
+            </StackPanel>
+
+            <!--  Main Section  -->
+
+            <ScrollViewer
+                x:Name="ListContainer"
+                Grid.Row="1"
+                Padding="40,0,40,40"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                HorizontalScrollBarVisibility="auto"
+                VerticalScrollBarVisibility="auto">
+
+                <StackPanel Orientation="Vertical">
+                    <Border
+                        MinHeight="300"
+                        Margin="0,0,0,20"
+                        Padding="40"
+                        Background="{StaticResource Blue3}"
+                        CornerRadius="{StaticResource CornerRadius2}">
+
+                        <StackPanel Orientation="Vertical">
+                            <svgc:SvgViewbox Margin="0,0,0,40" Source="/assets/bookbag-graphic.svg" />
+                            <TextBlock
+                                FontSize="{StaticResource XLarge}"
+                                Foreground="{StaticResource White}"
+                                Text=" Find books you like and add them to your bag."
+                                TextAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+                    <!--  list container  -->
+                    <Border
+                        Height="{StaticResource Controlheight2}"
+                        Margin="0,0,0,5"
+                        CornerRadius="{StaticResource CornerRadius1}">
+                        <!--  Column Headers  -->
+                        <Grid ShowGridLines="False">
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontWeight" Value="SemiBold" />
+                                    <Setter Property="FontSize" Value="{StaticResource Small}" />
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="250" />
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="180" />
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="140" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Margin="0,0,0,3"
+                                Padding="20,0,20,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource White}"
+                                Text="Title"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="NoWrap" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="0,0,0,3"
+                                Padding="20,0,20,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource White}"
+                                Text="Author"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="NoWrap" />
+
+                            <TextBlock
+                                Grid.Column="2"
+                                Margin="0,0,0,3"
+                                Padding="20,0,20,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource White}"
+                                Text="Year"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="NoWrap" />
+
+                            <TextBlock
+                                Grid.Column="3"
+                                Margin="0,0,0,3"
+                                Padding="20,0,20,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource White}"
+                                Text="Publisher"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="NoWrap" />
+
+                            <TextBlock
+                                Grid.Column="4"
+                                Margin="0,0,0,3"
+                                Padding="20,0,20,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource White}"
+                                Text="Genre"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="NoWrap" />
+
+                            <TextBlock
+                                Grid.Column="5"
+                                Margin="0,0,0,3"
+                                Padding="20,0,20,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource White}"
+                                Text="ISBN"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="NoWrap" />
+
+                            <TextBlock
+                                Grid.Column="6"
+                                Margin="0,0,0,3"
+                                Padding="20,0,20,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource White}"
+                                Text="Likes"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="NoWrap" />
+
+                            <StackPanel Grid.Column="7" Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="0,0,0,3"
+                                    Padding="0,0,20,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Foreground="{StaticResource White}"
+                                    Text="Status"
+                                    TextTrimming="CharacterEllipsis"
+                                    TextWrapping="NoWrap" />
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+                    <TextBlock
+                        x:Name="NoResultMessage"
+                        Margin="0,40"
+                        FontSize="{StaticResource XLarge}"
+                        Foreground="{StaticResource Grey2}"
+                        Text="Your bag is empty."
+                        TextAlignment="Center"
+                        Visibility="{Binding IsNoResultsMessageVisible}" />
+                    <ItemsControl ItemsSource="{Binding BookList, UpdateSourceTrigger=PropertyChanged}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <components:BookListItem
+                                    Title="{Binding Title}"
+                                    Author="{Binding Author}"
+                                    BookID="{Binding BookId}"
+                                    Genre="{Binding Genre}"
+                                    ISBN="{Binding Isbn}"
+                                    Likes="{Binding Likes}"
+                                    Publisher="{Binding Publisher}"
+                                    Status="{Binding Status}"
+                                    YearOfPublication="{Binding YearOfPublication}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <modules:BookSingleMember
+            Height="684"
+            VerticalAlignment="Bottom"
+            Style="{StaticResource BookSingleVisibility}" />
     </Grid>
 </UserControl>

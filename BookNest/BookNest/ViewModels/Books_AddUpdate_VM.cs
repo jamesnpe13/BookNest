@@ -51,6 +51,7 @@ public partial class Books_AddUpdate_VM : ObservableObject
     {
         try
         {
+            MainPageVM.TempBookList = new();
             Book_M tempBook = new()
             {
                 Title = BookTitle,
@@ -68,7 +69,10 @@ public partial class Books_AddUpdate_VM : ObservableObject
             // if success
             NotificationService.Instance.AddNotificationItem(Components.NotificationToastStyle.Success, "Book added to database");
 
+            mainPageVM.TempBookList = ds.GetBook(BookFilterKey.ALL);
+            MainPageVM.RefreshBookList();
             MainPageVM.SetCurrentView(PageView.Dashboard);
+
         }
         catch (Exception err)
         {

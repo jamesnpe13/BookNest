@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SharpVectors.Dom;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Security.RightsManagement;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -14,7 +15,6 @@ namespace BookNest.ViewModels;
 
 public enum PageView
 {
-
     Dashboard,
     Bag,
     Books,
@@ -31,58 +31,35 @@ public enum PageView
 
 public partial class MainPage_VM : ObservableObject
 {
-
+    ObservableCollection<int?> bookBag;
+    public ObservableCollection<int?> BookBag
+    {
+        get => bookBag;
+        set
+        {
+            if (bookBag != value)
+            {
+                bookBag = value;
+                OnPropertyChanged(nameof(BookBag));
+            }
+        }
+    }
+    [ObservableProperty] int bookBagCount = 0;
     private readonly AppData ad;
     private readonly SessionService ss;
     private readonly IServiceProvider sp;
     private readonly DatabaseService ds;
 
-    [ObservableProperty]
-    private bool isEditing = false;
-
-    [ObservableProperty]
-    private Book_M? currentBook;
-
-    [ObservableProperty]
-    private UserControl currentView;
-
-    [ObservableProperty]
-    private string welcomeTextLine1 = string.Empty;
-
-    [ObservableProperty]
-    private string welcomeTextLine2 = string.Empty;
-
-    [ObservableProperty]
-    private string accountType = string.Empty;
-
-    [ObservableProperty]
-    private UserControl? lastView;
-
-    [ObservableProperty]
-    private string currentPageTitle = "All books";
-
-    [ObservableProperty]
-    private BookGenre? selectedGenre = null;
-
-    [ObservableProperty]
-    private Visibility isNoResultsMessageVisible = Visibility.Collapsed;
-
-    private ObservableCollection<Book_M> bookList;
-
-    public ObservableCollection<Book_M> BookList
-    {
-        get => bookList;
-        set
-        {
-            if (bookList != value)
-            {
-                bookList = value;
-                OnPropertyChanged(nameof(BookList));
-
-            }
-        }
-    }
-
+    [ObservableProperty] private bool isEditing = false;
+    [ObservableProperty] private Book_M currentBook = new();
+    [ObservableProperty] private UserControl currentView;
+    [ObservableProperty] private string welcomeTextLine1 = string.Empty;
+    [ObservableProperty] private string welcomeTextLine2 = string.Empty;
+    [ObservableProperty] private string accountType = string.Empty;
+    [ObservableProperty] private UserControl? lastView;
+    [ObservableProperty] private string currentPageTitle = "All books";
+    [ObservableProperty] private BookGenre? selectedGenre = null;
+    [ObservableProperty] private Visibility isNoResultsMessageVisible = Visibility.Collapsed;
     [ObservableProperty] private Visibility dashboardNavButtonVisibility = Visibility.Collapsed;
     [ObservableProperty] private Visibility booksNavButtonVisibility = Visibility.Collapsed;
     [ObservableProperty] private Visibility bagNavButtonVisibility = Visibility.Collapsed;
@@ -92,6 +69,20 @@ public partial class MainPage_VM : ObservableObject
     [ObservableProperty] private Visibility peopleNavButtonVisibility = Visibility.Collapsed;
     [ObservableProperty] private Visibility accountNavButtonVisibility = Visibility.Collapsed;
     [ObservableProperty] private Visibility signOutNavButtonVisibility = Visibility.Collapsed;
+    private ObservableCollection<Book_M> bookList;
+    public ObservableCollection<Book_M> BookList
+    {
+        get => bookList;
+        set
+        {
+            if (bookList != value)
+            {
+                bookList = value;
+                OnPropertyChanged(nameof(BookList));
+            }
+        }
+    }
+    public ObservableCollection<Book_M> TempBookList;
 
     public MainPage_VM(AppData _ad, SessionService _ss, IServiceProvider _sp, DatabaseService _ds)
     {
@@ -99,34 +90,45 @@ public partial class MainPage_VM : ObservableObject
         ss = _ss;
         sp = _sp;
         ds = _ds;
-        BookList = new();
-        BookList = ds.GetBook(BookFilterKey.ALL);
 
-        SessionService.UserSignedInOut += ResetInstance;
-        //BookList.CollectionChanged += BookList_CollectionChanged;
+        CurrentBook = new();
+        BookList = new();
+        BookBag = new();
         ResetInstance();
+        UpdateIsNoResultsVisible();
+        BookList = ds.GetBook(BookFilterKey.ALL);
+        SessionService.UserSignedInOut += ResetInstance;
+        BookBag.CollectionChanged += BookBagCollectionChanged;
+        TestLoanTransaction();
+
+    }
+
+    public void TestLoanTransaction()
+    {
+        LoanTransaction_M tempLT = new();
+        tempLT.AccountId = ad.CurrentAccount.AccountId;
+        tempLT.BookId = 9;
+        tempLT.Status = LoanStatus.OnLoan;
+        ds.AddLoanTransaction(tempLT);
+    }
+
+    public void RefreshBookList()
+    {
+        if (BookList != TempBookList)
+        {
+            BookList = TempBookList;
+        }
         UpdateIsNoResultsVisible();
     }
 
-    //private void BookList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-    //{
-    //    NotificationService.Instance.AddNotificationItem(Components.NotificationToastStyle.Default, "Changing");
-
-    //    if (e.Action == NotifyCollectionChangedAction.Replace || e.Action == NotifyCollectionChangedAction.Add || e.Action == NotifyCollectionChangedAction.Reset || e.Action == NotifyCollectionChangedAction.Remove)
-    //    {
-    //        IsNoResultsMessageVisible = BookList.Count() == 0 ? Visibility.Visible : Visibility.Collapsed;
-    //    }
-    //}
-
-    public void SetCurrentBook(int bookId)
+    public void BookBagCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
-        CurrentBook = ds.GetBook(BookFilterKey.ID, bookId.ToString())[0];
+        BookBagCount = BookBag.Count();
     }
 
-    public void UpdateIsNoResultsVisible()
-    {
-        IsNoResultsMessageVisible = BookList.Count() == 0 ? Visibility.Visible : Visibility.Collapsed;
-    }
+    public void SetCurrentBook(int bookId) => CurrentBook = ds.GetBook(BookFilterKey.ID, bookId.ToString())[0];
+
+    public void UpdateIsNoResultsVisible() => IsNoResultsMessageVisible = BookList.Count() == 0 || BookList == null ? Visibility.Visible : Visibility.Collapsed;
 
     public void FilterListByGenre(BookGenre value)
     {
@@ -150,7 +152,6 @@ public partial class MainPage_VM : ObservableObject
     // navbar style (member or admin)
     public void NavbarInit()
     {
-
         // set account type display
         AccountType = ad.CurrentAccount.AccountType;
 
@@ -225,6 +226,14 @@ public partial class MainPage_VM : ObservableObject
     partial void OnCurrentViewChanged(UserControl? oldValue, UserControl? newValue)
     {
         LastView = oldValue;
+
+        if (currentView != null)
+        {
+            if (currentView.GetType() == typeof(Member_Bag_V))
+            {
+                currentPageTitle = "My Book Bag";
+            }
+        }
     }
 
     public void NavigateBack()
@@ -233,27 +242,16 @@ public partial class MainPage_VM : ObservableObject
         CurrentView = LastView;
     }
 
-    public void HandleUserSignOut()
-    {
-
-        ss.HandleUserSignOut();
-    }
-
     public void ResetInstance()
     {
-
         CurrentView = null;
-
         WelcomeTextLine1 = string.Empty;
-
         WelcomeTextLine2 = string.Empty;
-
+        CurrentBook = null;
         AccountType = string.Empty;
-
         LastView = null;
-
         CurrentPageTitle = "All books";
-
+        IsNoResultsMessageVisible = Visibility.Collapsed;
         DashboardNavButtonVisibility = Visibility.Collapsed;
         BooksNavButtonVisibility = Visibility.Collapsed;
         BagNavButtonVisibility = Visibility.Collapsed;

@@ -12,6 +12,7 @@
 		<None Remove="assets\admin-dashboard-graphic-green.svg" />
 		<None Remove="assets\admin-dashboard-graphic-orange.svg" />
 		<None Remove="assets\admin-dashboard-graphic-white.svg" />
+		<None Remove="assets\bookbag-graphic.svg" />
 		<None Remove="assets\booknest-logo-white.svg" />
 		<None Remove="assets\icons\back-icon.svg" />
 		<None Remove="assets\icons\Icon awesome-binoculars.png" />
@@ -43,6 +44,9 @@
 		<Resource Include="assets\admin-dashboard-graphic-green.svg" />
 		<Resource Include="assets\admin-dashboard-graphic-orange.svg" />
 		<Resource Include="assets\admin-dashboard-graphic-white.svg" />
+		<Resource Include="assets\bookbag-graphic.svg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Resource>
 		<Resource Include="assets\booknest-logo-white.svg">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Resource>
@@ -73,6 +77,15 @@
 		<Compile Update="Components\PasswordInputField.xaml.cs">
 			<SubType>Code</SubType>
 		</Compile>
+		<Compile Update="Modules\BookSingleMember.xaml.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="booknest.db">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>

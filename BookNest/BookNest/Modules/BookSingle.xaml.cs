@@ -2,6 +2,7 @@
 using BookNest.Models;
 using BookNest.Services;
 using BookNest.ViewModels;
+using BookNest.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using System.Windows.Controls;
@@ -81,9 +82,22 @@ public partial class BookSingle : UserControl
     {
         try
         {
-            ds.DeleteBook(vm.CurrentBook.BookId.ToString());
+
+            if (vm.CurrentView.GetType() == typeof(Admin_Books_V))
+            {
+                vm.TempBookList = vm.BookList;
+
+                for (int i = 0; i < vm.TempBookList.Count(); i++)
+                {
+                    if (vm.CurrentBook.BookId == vm.TempBookList[i].BookId)
+                    {
+                        vm.TempBookList.Remove(vm.BookList[i]);
+                    }
+                }
+                ds.DeleteBook(vm.CurrentBook.BookId.ToString());
+                vm.RefreshBookList();            }
             NavigateBack();
-            NotificationService.Instance.AddNotificationItem(Components.NotificationToastStyle.Success, "Successfuly updated book.");
+            NotificationService.Instance.AddNotificationItem(Components.NotificationToastStyle.Success, "Successfuly deleted book.");
         }
         catch (Exception err)
         {

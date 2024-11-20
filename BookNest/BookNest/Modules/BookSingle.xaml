@@ -281,7 +281,6 @@
                                             Style="{StaticResource DropdownFieldVisibility}" />
                                     </Grid>
                                 </StackPanel>
-
                                 <Grid Grid.Column="2" Margin="10,0,0,0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto" />
@@ -292,22 +291,18 @@
                                         Content="Status"
                                         FontSize="{StaticResource Normal}"
                                         Foreground="{StaticResource Grey1}" />
-                                    <Border
+
+                                    <components:TextInputField
+                                        x:Name="StatusField"
                                         Grid.Row="1"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Stretch">
-
-                                        <Viewbox Height="20">
-                                            <CheckBox
-                                                VerticalAlignment="Center"
-                                                Content="Available"
-                                                FocusVisualStyle="{x:Null}"
-                                                FontSize="{StaticResource Small}"
-                                                Foreground="{StaticResource Secondary}" />
-                                        </Viewbox>
-                                    </Border>
+                                        Width="auto"
+                                        Height="{StaticResource Controlheight2}"
+                                        HorizontalAlignment="Stretch"
+                                        FieldStyle="Dark"
+                                        Placeholder="Status"
+                                        Style="{StaticResource InputField}"
+                                        Text="{Binding CurrentBook.Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                 </Grid>
-
                             </Grid>
                         </StackPanel>
 

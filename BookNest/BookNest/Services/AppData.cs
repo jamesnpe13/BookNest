@@ -28,9 +28,5 @@ public partial class AppData : ObservableObject
     [ObservableProperty]
     private Account_M? currentAccount = new();
 
-    public AppData()
-    {
-
-    }
-
+    public int loanDaysMax = 28;
 }
