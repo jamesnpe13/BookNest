@@ -10,7 +10,7 @@ public partial class NotificationService : ObservableObject
     private static NotificationService _instance;
     public static NotificationService Instance => _instance ??= new NotificationService();
 
-    public int NotificationDuration = 8000; // toast duration in ms
+    public int NotificationDuration = 5000; // toast duration in ms
 
     public ObservableCollection<NotificationItem> NotificationList { get; set; }
 

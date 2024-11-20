@@ -148,7 +148,7 @@
                     <components:NavButton
                         x:Name="ReservedNavButton"
                         ButtonStyle="Transparent"
-                        ButtonText="Reserved"
+                        ButtonText="Books on loan"
                         IconSource="../assets/icons/Icon metro-pin.png"
                         MouseDown="ReservedNavButton_MouseDown"
                         Visibility="{Binding ReservedNavButtonVisibility}" />

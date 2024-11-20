@@ -16,21 +16,30 @@
             CornerRadius="0"
             Cursor="Hand"
             Style="{StaticResource ButtonBorderDefault}">
-            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
                 <Image
                     x:Name="NavButtonImage"
+                    Grid.Column="0"
                     MaxWidth="{StaticResource Normal}"
                     MaxHeight="{StaticResource Normal}"
-                    Margin="0,0,15,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
                     Source="{Binding IconSource, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                 <Label
                     x:Name="NavButtonLabel"
+                    Grid.Column="1"
                     Padding="0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
                     Content="{Binding ButtonText, RelativeSource={RelativeSource AncestorType=UserControl}}"
                     FontSize="{StaticResource Normal}"
                     Foreground="white"
                     Style="{StaticResource ButtonLabelDefault}" />
-            </StackPanel>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>
