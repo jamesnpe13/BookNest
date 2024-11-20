@@ -1,4 +1,5 @@
 ﻿using BookNest.Data;
+using BookNest.Models;
 using BookNest.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -24,7 +25,6 @@ public partial class MainWindow_VM : ObservableObject
         ad = _ad;
 
         ns.SetCurrentPage(ad.DefaultPage); // sets default page
-
     }
 
     [RelayCommand]
@@ -33,4 +33,5 @@ public partial class MainWindow_VM : ObservableObject
         ns.SetCurrentPage(targetPage);
 
     }
+
 }

@@ -113,10 +113,6 @@
                 HorizontalScrollBarVisibility="auto"
                 VerticalScrollBarVisibility="auto">
 
-                <ScrollViewer.Effect>
-                    <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
-                </ScrollViewer.Effect>
-
                 <StackPanel Orientation="Vertical">
                     <!--  list container  -->
                     <Border

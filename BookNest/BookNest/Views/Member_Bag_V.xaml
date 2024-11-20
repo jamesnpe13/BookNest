@@ -7,6 +7,7 @@
     xmlns:local="clr-namespace:BookNest.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:modules="clr-namespace:BookNest.Modules"
+    xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
     Background="{StaticResource Blue4}"
     mc:Ignorable="d">
     <UserControl.Resources>
@@ -113,11 +114,23 @@
                 HorizontalScrollBarVisibility="auto"
                 VerticalScrollBarVisibility="auto">
 
-                <ScrollViewer.Effect>
-                    <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
-                </ScrollViewer.Effect>
-
                 <StackPanel Orientation="Vertical">
+                    <Border
+                        MinHeight="300"
+                        Margin="0,0,0,20"
+                        Padding="40"
+                        Background="{StaticResource Blue3}"
+                        CornerRadius="{StaticResource CornerRadius2}">
+
+                        <StackPanel Orientation="Vertical">
+                            <svgc:SvgViewbox Margin="0,0,0,40" Source="/assets/bookbag-graphic.svg" />
+                            <TextBlock
+                                FontSize="{StaticResource XLarge}"
+                                Foreground="{StaticResource White}"
+                                Text=" Find books you like and add them to your bag."
+                                TextAlignment="Center" />
+                        </StackPanel>
+                    </Border>
                     <!--  list container  -->
                     <Border
                         Height="{StaticResource Controlheight2}"
@@ -238,7 +251,7 @@
                         Margin="0,40"
                         FontSize="{StaticResource XLarge}"
                         Foreground="{StaticResource Grey2}"
-                        Text="No Results"
+                        Text="Your bag is empty."
                         TextAlignment="Center"
                         Visibility="{Binding IsNoResultsMessageVisible}" />
                     <ItemsControl ItemsSource="{Binding BookList, UpdateSourceTrigger=PropertyChanged}">
@@ -261,6 +274,9 @@
             </ScrollViewer>
         </Grid>
 
-        <modules:BookSingleMember Style="{StaticResource BookSingleVisibility}" />
+        <modules:BookSingleMember
+            Height="684"
+            VerticalAlignment="Bottom"
+            Style="{StaticResource BookSingleVisibility}" />
     </Grid>
 </UserControl>

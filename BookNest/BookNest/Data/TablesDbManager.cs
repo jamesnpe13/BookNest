@@ -62,11 +62,10 @@ partial class DatabaseService : ObservableObject
             @"
                 CREATE TABLE IF NOT EXISTS LoanTransactions(
                 TransactionID    INTEGER NOT NULL UNIQUE,
-                MemberId  INTEGER NOT NULL,
-                BookId    INTEGER NOT NULL,
+                AccountID  INTEGER NOT NULL,
+                BookID    INTEGER NOT NULL,
                 LoanDate  TEXT NOT NULL,
-                DueDate   TEXT NOT NULL,
-                ReturnDate    INTEGER,
+                DueDate   TEXT NOT NULL,              
                 Status    TEXT,
                 PRIMARY KEY(TransactionID AUTOINCREMENT))
             ";

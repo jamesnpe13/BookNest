@@ -139,13 +139,12 @@ partial class DatabaseService : ObservableObject
                         while (reader.Read())
                         {
 
+                            tempAccount.AccountId = reader.GetInt32(reader.GetOrdinal("UserID"));
                             tempAccount.FirstName = reader["FirstName"].ToString() ?? string.Empty;
                             tempAccount.LastName = reader["Lastname"].ToString() ?? string.Empty;
                             tempAccount.Username = reader["Username"].ToString() ?? string.Empty;
                             tempAccount.Email = reader["Email"].ToString() ?? string.Empty;
                             tempAccount.Password = reader["Password"].ToString() ?? string.Empty;
-                            tempAccount.PasswordHash = reader["PasswordHash"].ToString() ?? string.Empty;
-                            tempAccount.Salt = reader["Salt"].ToString() ?? string.Empty;
                             tempAccount.AccountType = reader["AccountType"].ToString() ?? string.Empty;
                         }
                     }
@@ -176,11 +175,12 @@ partial class DatabaseService : ObservableObject
                             {
                                 Account_M tempAccount = new Account_M
                                 {
+                                    AccountId = reader.GetInt32(reader.GetOrdinal("UserID")),
+                                    Password = reader["Password"].ToString() ?? string.Empty,
+                                    Email = reader["Email"].ToString() ?? string.Empty,
                                     FirstName = reader["FirstName"].ToString() ?? string.Empty,
                                     LastName = reader["Lastname"].ToString() ?? string.Empty,
                                     Username = reader["Username"].ToString() ?? string.Empty,
-                                    PasswordHash = reader["PasswordHash"].ToString() ?? string.Empty,
-                                    Salt = reader["Salt"].ToString() ?? string.Empty,
                                     AccountType = reader["AccountType"].ToString() ?? string.Empty,
                                 };
                                 tempAccounts.Add(tempAccount);

@@ -99,7 +99,17 @@ public partial class MainPage_VM : ObservableObject
         BookList = ds.GetBook(BookFilterKey.ALL);
         SessionService.UserSignedInOut += ResetInstance;
         BookBag.CollectionChanged += BookBagCollectionChanged;
+        TestLoanTransaction();
 
+    }
+
+    public void TestLoanTransaction()
+    {
+        LoanTransaction_M tempLT = new();
+        tempLT.AccountId = ad.CurrentAccount.AccountId;
+        tempLT.BookId = 9;
+        tempLT.Status = LoanStatus.OnLoan;
+        ds.AddLoanTransaction(tempLT);
     }
 
     public void RefreshBookList()
