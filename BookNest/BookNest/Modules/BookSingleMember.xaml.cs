@@ -1,8 +1,10 @@
 ﻿using BookNest.Data;
 using BookNest.Models;
 using BookNest.ViewModels;
+using BookNest.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
+using SharpVectors.Dom.Css;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows;
@@ -99,13 +101,28 @@ public partial class BookSingleMember : UserControl
     {
         vm.BookBag.Remove(vm.CurrentBook.BookId);
         SetDynaButton();
+        UpdateNewBookList();
     }
 
     private void AddBookToBag()
     {
         vm.BookBag.Add(vm.CurrentBook.BookId);
         SetDynaButton();
+        UpdateNewBookList();
+    }
 
+    private void UpdateNewBookList()
+    {
+
+        if (vm.CurrentView.GetType() == typeof(Member_Bag_V))
+        {
+            vm.TempBookList = new();
+            foreach (var item in vm.BookBag)
+            {
+                vm.TempBookList.Add(ds.GetBook(BookFilterKey.ID, item.ToString())[0]);
+            }
+            vm.RefreshBookList();
+        }
     }
 
     private void SetDynaButton()

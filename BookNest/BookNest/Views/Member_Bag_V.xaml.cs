@@ -21,6 +21,13 @@ public partial class Member_Bag_V : UserControl
         vm = ((App)Application.Current).ServiceProvider.GetRequiredService<MainPage_VM>();
         ds = ((App)Application.Current).ServiceProvider.GetRequiredService<DatabaseService>();
 
+        DisplayBagItems();
+        vm.UpdateIsNoResultsVisible();
+
+    }
+
+    private void DisplayBagItems()
+    {
         vm.BookList.Clear();
         foreach (var item in vm.BookBag)
         {

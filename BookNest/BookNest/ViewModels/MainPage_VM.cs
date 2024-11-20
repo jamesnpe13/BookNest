@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SharpVectors.Dom;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Security.RightsManagement;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -48,6 +49,7 @@ public partial class MainPage_VM : ObservableObject
     private readonly SessionService ss;
     private readonly IServiceProvider sp;
     private readonly DatabaseService ds;
+
     [ObservableProperty] private bool isEditing = false;
     [ObservableProperty] private Book_M currentBook = new();
     [ObservableProperty] private UserControl currentView;
@@ -80,6 +82,7 @@ public partial class MainPage_VM : ObservableObject
             }
         }
     }
+    public ObservableCollection<Book_M> TempBookList;
 
     public MainPage_VM(AppData _ad, SessionService _ss, IServiceProvider _sp, DatabaseService _ds)
     {
@@ -96,6 +99,15 @@ public partial class MainPage_VM : ObservableObject
         BookList = ds.GetBook(BookFilterKey.ALL);
         SessionService.UserSignedInOut += ResetInstance;
         BookBag.CollectionChanged += BookBagCollectionChanged;
+
+    }
+
+    public void RefreshBookList()
+    {
+        if (BookList != TempBookList)
+        {
+            BookList = TempBookList;
+        }
     }
 
     public void BookBagCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -105,7 +117,7 @@ public partial class MainPage_VM : ObservableObject
 
     public void SetCurrentBook(int bookId) => CurrentBook = ds.GetBook(BookFilterKey.ID, bookId.ToString())[0];
 
-    public void UpdateIsNoResultsVisible() => IsNoResultsMessageVisible = BookList.Count() == 0 ? Visibility.Visible : Visibility.Collapsed;
+    public void UpdateIsNoResultsVisible() => IsNoResultsMessageVisible = BookList.Count() == 0 || BookList == null ? Visibility.Visible : Visibility.Collapsed;
 
     public void FilterListByGenre(BookGenre value)
     {

@@ -114,13 +114,13 @@
                     <DockPanel
                         HorizontalAlignment="Stretch"
                         Cursor="Hand"
-                        MouseDown="BagNavButton_MouseDown">
+                        MouseDown="BagNavButton_MouseDown"
+                        Visibility="{Binding BagNavButtonVisibility}">
                         <components:NavButton
                             x:Name="BagNavButton"
                             ButtonStyle="Transparent"
                             ButtonText="My Bag"
-                            IconSource="../assets/icons/Icon awesome-shopping-bag.png"
-                            Visibility="{Binding BagNavButtonVisibility}" />
+                            IconSource="../assets/icons/Icon awesome-shopping-bag.png" />
 
                         <Label
                             HorizontalAlignment="Left"
