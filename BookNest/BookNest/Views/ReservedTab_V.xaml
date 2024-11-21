@@ -7,7 +7,7 @@
     xmlns:local="clr-namespace:BookNest.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Grid>
+    <StackPanel Orientation="Vertical">
         <Border
             Height="{StaticResource Controlheight2}"
             Margin="0,0,0,5"
@@ -147,5 +147,5 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-    </Grid>
+    </StackPanel>
 </UserControl>

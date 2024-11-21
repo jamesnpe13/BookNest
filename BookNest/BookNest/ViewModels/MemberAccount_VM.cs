@@ -1,4 +1,6 @@
-﻿using BookNest.Models;
+﻿using BookNest.Data;
+using BookNest.Models;
+using BookNest.Services;
 using BookNest.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +19,8 @@ namespace BookNest.ViewModels;
 public partial class MemberAccount_VM : ObservableObject
 {
     private readonly MainPage_VM vm;
+    private readonly DatabaseService ds;
+    private readonly AppData ad;
 
     [ObservableProperty] private UserControl currentView;
     [ObservableProperty] private Visibility isNoResultsMessageVisible = Visibility.Collapsed;
@@ -40,6 +44,8 @@ public partial class MemberAccount_VM : ObservableObject
     {
         BookList = new();
         vm = ((App)Application.Current).ServiceProvider.GetRequiredService<MainPage_VM>();
+        ds = ((App)Application.Current).ServiceProvider.GetRequiredService<DatabaseService>();
+        ad = ((App)Application.Current).ServiceProvider.GetRequiredService<AppData>();
         vm.PropertyChanged += OnCurrentViewChanged;
         SetCurentView("Account");
     }
@@ -54,15 +60,34 @@ public partial class MemberAccount_VM : ObservableObject
 
     public void OnCurrentViewChanged(object sender, PropertyChangedEventArgs e)
     {
-        if (vm.CurrentView.GetType() == typeof(Member_Account_V)) SetCurentView("Account");
+        BookList.Clear();
+        if (vm.CurrentView.GetType() == typeof(Member_Account_V))
+        {
+            SetCurentView("Account");
+        }
     }
 
     partial void OnCurrentViewChanged(UserControl? oldValue, UserControl newValue)
     {
+        BookList.Clear();
         if (currentView != null)
         {
             if (CurrentView.GetType() == typeof(AccountTab_V)) this.CurrentPageTitle = "Account details";
-            if (CurrentView.GetType() == typeof(LoanedTab_V)) this.CurrentPageTitle = "Loaned books";
+            if (CurrentView.GetType() == typeof(LoanedTab_V))
+            {
+                this.CurrentPageTitle = "Loaned books";
+
+                ObservableCollection<Book_M> tempBookList = new();
+                ObservableCollection<LoanTransaction_M> tempTransactionList = new();
+                tempTransactionList = ds.GetLoanTransaction(LoanTransactionFilterKey.ACCOUNT_ID, ad.CurrentAccount.AccountId.ToString());
+
+                foreach (var transaction in tempTransactionList)
+                {
+                    tempBookList.Add(ds.GetBook(BookFilterKey.ID, transaction.BookId.ToString())[0]);
+                }
+                BookList.Clear();
+                BookList = tempBookList;
+            }
             if (CurrentView.GetType() == typeof(ReservedTab_V)) this.CurrentPageTitle = "Reserved books";
             if (CurrentView.GetType() == typeof(HistoryTab_V)) this.CurrentPageTitle = "Borrowing history";
         }
