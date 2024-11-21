@@ -4,11 +4,8 @@ using BookNest.Services;
 using BookNest.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
-using SharpVectors.Dom;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Runtime.CompilerServices;
-using System.Security.RightsManagement;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -186,7 +183,7 @@ public partial class MainPage_VM : ObservableObject
             DashboardNavButtonVisibility = Visibility.Visible;
             BooksNavButtonVisibility = Visibility.Visible;
             BagNavButtonVisibility = Visibility.Visible;
-            WatchlistNavButtonVisibility = Visibility.Visible;
+            WatchlistNavButtonVisibility = Visibility.Collapsed;
             ReturnsNavButtonVisibility = Visibility.Collapsed;
             ReservedNavButtonVisibility = Visibility.Collapsed;
             PeopleNavButtonVisibility = Visibility.Collapsed;
@@ -254,10 +251,16 @@ public partial class MainPage_VM : ObservableObject
 
         if (currentView != null)
         {
-            if (currentView.GetType() == typeof(Member_Bag_V))
+            if (CurrentView.GetType() == typeof(Member_Bag_V))
             {
-                currentPageTitle = "My Book Bag";
+                CurrentPageTitle = "My Book Bag";
             }
+
+            if (CurrentView.GetType() == typeof(Member_Account_V))
+            {
+                CurrentPageTitle = "My Account";
+            }
+
         }
     }
 

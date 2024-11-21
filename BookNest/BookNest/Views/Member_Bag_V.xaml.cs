@@ -23,7 +23,6 @@ public partial class Member_Bag_V : UserControl
 
         DisplayBagItems();
         vm.UpdateIsNoResultsVisible();
-
     }
 
     private void DisplayBagItems()
@@ -62,11 +61,4 @@ public partial class Member_Bag_V : UserControl
     {
         vm.CheckoutBooks();
     }
-
-    //private void RemoveAllButton_MouseDown(object sender, MouseButtonEventArgs e)
-    //{
-    //    vm.BookBag.Clear();
-    //    vm.RefreshBookList();
-
-    //}
 }

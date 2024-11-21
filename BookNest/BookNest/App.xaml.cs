@@ -85,6 +85,12 @@ public static class ServiceCollectionExtensions
         services.AddTransient<Book_AddUpdate_V>();
         services.AddTransient<Books_AddUpdate_VM>();
 
+        services.AddTransient<AccountTab_V>();
+        services.AddTransient<LoanedTab_V>();
+        services.AddTransient<ReservedTab_V>();
+        services.AddTransient<HistoryTab_V>();
+        services.AddSingleton<MemberAccount_VM>();
+
     }
 
 }

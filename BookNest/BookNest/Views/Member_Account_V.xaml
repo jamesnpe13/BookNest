@@ -2,14 +2,176 @@
     x:Class="BookNest.Views.Member_Account_V"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:components="clr-namespace:BookNest.Components"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:BookNest.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    xmlns:modules="clr-namespace:BookNest.Modules"
+    xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+    Background="{StaticResource Blue4}"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="BookSingleVisibility" TargetType="modules:BookSingleMember">
+            <Setter Property="Visibility" Value="Visible" />
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentBook, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="CheckoutBarVisibility" TargetType="DockPanel">
+            <Setter Property="Visibility" Value="Collapsed" />
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding FooterVisibility, UpdateSourceTrigger=PropertyChanged}" Value="true">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
-        <Label Content="Member account" Foreground="White" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <!--  Utility bar  -->
+            <StackPanel Grid.Row="0" Orientation="Vertical">
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Height="{StaticResource UtilityBarHeight}"
+                    Padding="40,10,40,10"
+                    VerticalAlignment="Center"
+                    Background="{StaticResource Blue4}">
+
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="{StaticResource DropShadowBlur}" Opacity="{StaticResource DropShadowOpacity}" />
+                    </Border.Effect>
+
+                    <StackPanel Orientation="Horizontal">
+                        <components:TextButton
+                            x:Name="AccountTabButton"
+                            Margin="0,0,40,0"
+                            ButtonText="Account"
+                            MouseDown="AccountTabButton_MouseDown" />
+                        <components:TextButton
+                            x:Name="LoanedBooksTabButton"
+                            Margin="0,0,40,0"
+                            ButtonText="Loaned books"
+                            MouseDown="LoanedBooksTabButton_MouseDown" />
+                        <components:TextButton
+                            x:Name="ReservedTabButton"
+                            Margin="0,0,40,0"
+                            ButtonText="Reserved"
+                            MouseDown="ReservedTabButton_MouseDown" />
+                        <components:TextButton
+                            x:Name="HistoryTabButton"
+                            Margin="0,0,40,0"
+                            ButtonText="History"
+                            MouseDown="HistoryTabButton_MouseDown" />
+                    </StackPanel>
+                </Border>
+                <Border Padding="40,10,40,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <!--  View Title bar  -->
+                        <Border
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Height="{StaticResource UtilityBarHeight}"
+                            VerticalAlignment="Center">
+
+                            <Label
+                                x:Name="TitleBar"
+                                Content="{Binding CurrentPageTitle, UpdateSourceTrigger=PropertyChanged}"
+                                FontSize="{StaticResource XLarge}"
+                                Foreground="{StaticResource White}" />
+                        </Border>
+
+                        <!--  Cancel/back button  -->
+                        <Border
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Height="{StaticResource UtilityBarHeight}"
+                            VerticalAlignment="Center">
+
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+
+                                <components:TextButton
+                                    x:Name="backButtonUtility"
+                                    ButtonText="Back"
+                                    MouseDown="backButtonUtility_MouseDown" />
+                            </StackPanel>
+                        </Border>
+
+                        <!--  Utility buttons  -->
+                        <Border
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Height="{StaticResource UtilityBarHeight}">
+
+                            <StackPanel
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal" />
+                        </Border>
+                    </Grid>
+                </Border>
+            </StackPanel>
+
+            <!--  Main Section  -->
+            <ScrollViewer
+                x:Name="ListContainer"
+                Grid.Row="1"
+                Padding="40,0,40,40"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                HorizontalScrollBarVisibility="auto"
+                VerticalScrollBarVisibility="auto">
+
+                <StackPanel Orientation="Vertical">
+                    <Border
+                        MinHeight="300"
+                        Margin="0,0,0,20"
+                        Padding="40"
+                        Background="{StaticResource Blue3}"
+                        CornerRadius="{StaticResource CornerRadius2}">
+
+                        <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                            <svgc:SvgViewbox Margin="0,0,0,40" Source="/assets/account-graphic.svg" />
+                            <TextBlock
+                                Width="350"
+                                FontSize="{StaticResource Large}"
+                                Foreground="{StaticResource White}"
+                                Text="View and update your account details and check your borrowing history."
+                                TextAlignment="Center"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+                    <!--  list container  -->
+                    <ContentControl x:Name="AccountContentControl" Content="{Binding CurrentView}" />
+
+                </StackPanel>
+            </ScrollViewer>
+
+            <!--  Footer buttons  -->
+
+        </Grid>
 
     </Grid>
 </UserControl>

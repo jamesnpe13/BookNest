@@ -134,10 +134,12 @@
                         <StackPanel Orientation="Vertical">
                             <svgc:SvgViewbox Margin="0,0,0,40" Source="/assets/bookbag-graphic.svg" />
                             <TextBlock
-                                FontSize="{StaticResource XLarge}"
+                                Width="350"
+                                FontSize="{StaticResource Large}"
                                 Foreground="{StaticResource White}"
-                                Text=" Find books you like and add them to your bag."
-                                TextAlignment="Center" />
+                                Text="Find books you like and add them to your bag."
+                                TextAlignment="Center"
+                                TextWrapping="Wrap" />
                         </StackPanel>
                     </Border>
                     <!--  list container  -->
