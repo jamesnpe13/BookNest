@@ -84,6 +84,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		
 		<Compile Update="Components\PasswordInputField.xaml.cs">
 			<SubType>Code</SubType>
 		</Compile>

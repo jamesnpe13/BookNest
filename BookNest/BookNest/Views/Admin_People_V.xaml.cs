@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BookNest.Models;
+using BookNest.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +15,27 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BookNest.Views
+namespace BookNest.Views;
+
+public partial class Admin_People_V : UserControl
 {
-    /// <summary>
-    /// Interaction logic for Admin_People_V.xaml
-    /// </summary>
-    public partial class Admin_People_V : UserControl
+    public Admin_People_V()
     {
-        public Admin_People_V()
+        InitializeComponent();
+    }
+    private void backButtonUtility_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        if (DataContext is MainPage_VM vm)
         {
-            InitializeComponent();
+            vm.NavigateBack();
+        }
+    }
+
+    private void AddBookButtonUtility_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        if (DataContext is MainPage_VM vm)
+        {
+            vm.SetCurrentView(PageView.BookAdd);
         }
     }
 }

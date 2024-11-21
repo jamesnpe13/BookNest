@@ -23,12 +23,11 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="250" />
                     <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="150" />
                     <ColumnDefinition Width="150" />
                     <ColumnDefinition Width="180" />
                     <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="80" />
-                    <ColumnDefinition Width="140" />
+
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
@@ -37,6 +36,8 @@
                     Padding="20,0,20,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
+                    FontSize="{StaticResource XSmall}"
+                    FontWeight="SemiBold"
                     Foreground="{StaticResource White}"
                     Text="Title"
                     TextTrimming="CharacterEllipsis"
@@ -48,6 +49,7 @@
                     Padding="20,0,20,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
+                    FontSize="{StaticResource XSmall}"
                     Foreground="{StaticResource White}"
                     Text="Author"
                     TextTrimming="CharacterEllipsis"
@@ -59,8 +61,9 @@
                     Padding="20,0,20,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
+                    FontSize="{StaticResource XSmall}"
                     Foreground="{StaticResource White}"
-                    Text="Year"
+                    Text="Loan date"
                     TextTrimming="CharacterEllipsis"
                     TextWrapping="NoWrap" />
 
@@ -70,8 +73,9 @@
                     Padding="20,0,20,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
+                    FontSize="{StaticResource XSmall}"
                     Foreground="{StaticResource White}"
-                    Text="Publisher"
+                    Text="Due date"
                     TextTrimming="CharacterEllipsis"
                     TextWrapping="NoWrap" />
 
@@ -81,8 +85,9 @@
                     Padding="20,0,20,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
+                    FontSize="{StaticResource XSmall}"
                     Foreground="{StaticResource White}"
-                    Text="Genre"
+                    Text="Status"
                     TextTrimming="CharacterEllipsis"
                     TextWrapping="NoWrap" />
 
@@ -92,33 +97,11 @@
                     Padding="20,0,20,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
+                    FontSize="{StaticResource XSmall}"
                     Foreground="{StaticResource White}"
-                    Text="ISBN"
+                    Text="Remaining days"
                     TextTrimming="CharacterEllipsis"
                     TextWrapping="NoWrap" />
-
-                <TextBlock
-                    Grid.Column="6"
-                    Margin="0,0,0,3"
-                    Padding="20,0,20,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Foreground="{StaticResource White}"
-                    Text="Likes"
-                    TextTrimming="CharacterEllipsis"
-                    TextWrapping="NoWrap" />
-
-                <StackPanel Grid.Column="7" Orientation="Horizontal">
-                    <TextBlock
-                        Margin="0,0,0,3"
-                        Padding="0,0,20,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Foreground="{StaticResource White}"
-                        Text="Status"
-                        TextTrimming="CharacterEllipsis"
-                        TextWrapping="NoWrap" />
-                </StackPanel>
 
             </Grid>
         </Border>
@@ -130,19 +113,16 @@
             Text="Your bag is empty."
             TextAlignment="Center"
             Visibility="{Binding IsNoResultsMessageVisible}" />
-        <ItemsControl ItemsSource="{Binding BookList, UpdateSourceTrigger=PropertyChanged}">
+        <ItemsControl ItemsSource="{Binding LoanTransactionList, UpdateSourceTrigger=PropertyChanged}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <components:BookListItem
-                        Title="{Binding Title}"
-                        Author="{Binding Author}"
-                        BookID="{Binding BookId}"
-                        Genre="{Binding Genre}"
-                        ISBN="{Binding Isbn}"
-                        Likes="{Binding Likes}"
-                        Publisher="{Binding Publisher}"
-                        Status="{Binding Status}"
-                        YearOfPublication="{Binding YearOfPublication}" />
+                    <components:LoanTransactionListItem
+                        AccountId="{Binding AccountId}"
+                        BookId="{Binding BookId}"
+                        DueDate="{Binding DueDate}"
+                        LoanDate="{Binding LoanDate}"
+                        LoanTransactionId="{Binding LoanTransactionId}"
+                        Status="{Binding Status}" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

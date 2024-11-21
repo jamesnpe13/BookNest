@@ -22,7 +22,7 @@ public partial class MainWindow : Window
     {
         Console.WriteLine("Main window loaded");
 
-        Console.WriteLine("Auto signin user on window load (MainWindow.xaml.cs)");
-        ss.HandleUserSignIn("member", "123", "Member");
+        //Console.WriteLine("Auto signin user on window load (MainWindow.xaml.cs)");
+        //ss.HandleUserSignIn("member", "123", "Member");
     }
 }

@@ -4,13 +4,8 @@ using BookNest.Services;
 using BookNest.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -39,10 +34,24 @@ public partial class MemberAccount_VM : ObservableObject
             }
         }
     }
+    private ObservableCollection<LoanTransaction_M> loanTransactionList;
+    public ObservableCollection<LoanTransaction_M> LoanTransactionList
+    {
+        get => loanTransactionList;
+        set
+        {
+            if (loanTransactionList != value)
+            {
+                loanTransactionList = value;
+                OnPropertyChanged(nameof(LoanTransactionList));
+            }
+        }
+    }
 
     public MemberAccount_VM()
     {
         BookList = new();
+        LoanTransactionList = new();
         vm = ((App)Application.Current).ServiceProvider.GetRequiredService<MainPage_VM>();
         ds = ((App)Application.Current).ServiceProvider.GetRequiredService<DatabaseService>();
         ad = ((App)Application.Current).ServiceProvider.GetRequiredService<AppData>();
@@ -61,9 +70,12 @@ public partial class MemberAccount_VM : ObservableObject
     public void OnCurrentViewChanged(object sender, PropertyChangedEventArgs e)
     {
         BookList.Clear();
-        if (vm.CurrentView.GetType() == typeof(Member_Account_V))
+        if (vm.CurrentBook != null)
         {
-            SetCurentView("Account");
+            if (vm.CurrentView.GetType() == typeof(Member_Account_V))
+            {
+                SetCurentView("Account");
+            }
         }
     }
 
@@ -87,9 +99,16 @@ public partial class MemberAccount_VM : ObservableObject
                 }
                 BookList.Clear();
                 BookList = tempBookList;
+                LoanTransactionList = tempTransactionList;
+
             }
             if (CurrentView.GetType() == typeof(ReservedTab_V)) this.CurrentPageTitle = "Reserved books";
-            if (CurrentView.GetType() == typeof(HistoryTab_V)) this.CurrentPageTitle = "Borrowing history";
+            if (CurrentView.GetType() == typeof(HistoryTab_V))
+            {
+                this.CurrentPageTitle = "Borrowing history";
+
+                LoanTransactionList = ds.GetLoanTransaction(LoanTransactionFilterKey.ALL, ad.CurrentAccount.AccountId.ToString());
+            }
         }
     }
 

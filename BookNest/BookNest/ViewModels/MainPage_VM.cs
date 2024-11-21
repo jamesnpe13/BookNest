@@ -82,6 +82,19 @@ public partial class MainPage_VM : ObservableObject
             }
         }
     }
+    private ObservableCollection<Account_M> accountList;
+    public ObservableCollection<Account_M> AccountList
+    {
+        get => accountList;
+        set
+        {
+            if (accountList != value)
+            {
+                accountList = value;
+                OnPropertyChanged(nameof(AccountList));
+            }
+        }
+    }
 
     public MainPage_VM(AppData _ad, SessionService _ss, IServiceProvider _sp, DatabaseService _ds)
     {
@@ -90,12 +103,14 @@ public partial class MainPage_VM : ObservableObject
         sp = _sp;
         ds = _ds;
 
+        AccountList = new();
         CurrentBook = new();
         TempBookList = new();
         BookList = new();
         BookBag = new();
         ResetInstance();
         UpdateIsNoResultsVisible();
+        AccountList = ds.GetAccount(AccountFilterKey.ALL);
         BookList = ds.GetBook(BookFilterKey.ALL);
         SessionService.UserSignedInOut += ResetInstance;
         BookBag.CollectionChanged += BookBagCollectionChanged;
@@ -196,7 +211,7 @@ public partial class MainPage_VM : ObservableObject
             BooksNavButtonVisibility = Visibility.Visible;
             BagNavButtonVisibility = Visibility.Collapsed;
             WatchlistNavButtonVisibility = Visibility.Collapsed;
-            ReturnsNavButtonVisibility = Visibility.Visible;
+            ReturnsNavButtonVisibility = Visibility.Collapsed;
             ReservedNavButtonVisibility = Visibility.Visible;
             PeopleNavButtonVisibility = Visibility.Visible;
             AccountNavButtonVisibility = Visibility.Visible;
@@ -259,6 +274,11 @@ public partial class MainPage_VM : ObservableObject
             if (CurrentView.GetType() == typeof(Member_Account_V))
             {
                 CurrentPageTitle = "My Account";
+            }
+
+            if (CurrentView.GetType() == typeof(Admin_People_V))
+            {
+                CurrentPageTitle = "Manage accounts";
             }
 
         }

@@ -229,8 +229,8 @@ partial class DatabaseService : ObservableObject
                             tempAccount.Email = reader["Email"].ToString();
                             tempAccount.AccountType = reader["AccountType"].ToString();
 
-                            tempAccountList.Add(tempAccount);
                         };
+                        tempAccountList.Add(tempAccount);
                     }
                 }
             }
