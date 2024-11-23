@@ -106,8 +106,18 @@ public partial class MemberAccount_VM : ObservableObject
             if (CurrentView.GetType() == typeof(HistoryTab_V))
             {
                 this.CurrentPageTitle = "Borrowing history";
+                LoanTransactionList.Clear();
 
-                LoanTransactionList = ds.GetLoanTransaction(LoanTransactionFilterKey.ALL, ad.CurrentAccount.AccountId.ToString());
+                ObservableCollection<LoanTransaction_M> tempList = new();
+                tempList = ds.GetLoanTransaction(LoanTransactionFilterKey.ALL);
+                foreach (var item in tempList)
+                {
+                    if (item.AccountId == ad.CurrentAccount.AccountId)
+                    {
+                        LoanTransactionList.Add(item);
+                    }
+                }
+
             }
         }
     }

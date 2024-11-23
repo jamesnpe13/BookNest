@@ -36,7 +36,7 @@
                 NavigationUIVisibility="Hidden" />
 
             <!--  Development page navigator  -->
-            <modules:TempPageNav Grid.Row="1" Visibility="Visible" />
+            <modules:TempPageNav Grid.Row="1" Visibility="Collapsed" />
         </Grid>
 
         <!--  notification overlay  -->
