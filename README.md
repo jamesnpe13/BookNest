@@ -1,58 +1,80 @@
 # BookNest - Library Management System
 
-BookNest is a comprehensive library management system built with .NET WPF, designed to streamline the management of library resources for both administrators and members. The application provides easy-to-use tools for organising books, tracking lending and returns, managing member information, and more, all within an intuitive desktop interface.
+**BookNest** is a robust desktop application built with **.NET WPF** that simplifies library management for administrators and members alike. It offers a clean, user-friendly interface to efficiently organize books, manage lending and returns, track member activities, and much more — all designed to improve your library’s workflow.
+
+---
 
 ## Features
 
-- **Admin Dashboard**: Allows administrators to add, edit, and delete book records, manage member accounts, and oversee lending activity.
-- **Member Access**: Enables members to view available books, check borrowing history, and monitor due dates.
-- **Book Catalogue**: Provides a searchable and sortable collection of all books in the library.
-- **User Management**: Tools for managing member profiles, including personal information and membership status.
-- **Loan Management**: Simplifies tracking of book lending, return dates, and overdue items.
-- **Search and Filter**: Quick search and filtering options to find specific books or members.
+- **Admin Dashboard**  
+  Manage book records effortlessly: add, edit, or delete books, oversee member accounts, and monitor all lending activities in one place.
+
+- **Member Access**  
+  Allow members to browse the book catalogue, review their borrowing history, and keep track of upcoming due dates.
+
+- **Book Catalogue**  
+  Searchable and sortable library collection for quick access to any book.
+
+- **User Management**  
+  Handle member profiles including personal details and membership status with ease.
+
+- **Loan Management**  
+  Streamline tracking of book loans, due dates, and overdue items.
+
+- **Search and Filter**  
+  Powerful, fast search and filtering options for finding books or member records instantly.
+
+---
 
 ## Installation
 
-1. **Fork the repository**: Navigate to the BookNest GitHub repository and click the "Fork" button to create your own copy of the project.
+1. **Fork the repository**  
+   Navigate to the [BookNest GitHub repository](https://github.com/jamesnpe13/BookNest) and click **Fork** to create your own copy.
 
-2. **Clone the repository and navigate to the project directory**:
+2. **Clone your fork** and navigate to the project directory:
 
    ```bash
    git clone https://github.com/jamesnpe13/BookNest.git
-   ```
-   
-   ```bash
-   cd BookNest
+   cd BookNest/BookNest
    ```
 
-3. **Restore dependencies, build the project, and run the application**:
+3. **Restore dependencies, build, and run the application:**
 
    ```bash
    dotnet restore
-   ```
-   ```bash
    dotnet build
-   ```
-   ```bash
    dotnet run
    ```
 
+---
+
 ## Contributing
 
-Contributions are welcome! To contribute to BookNest, please follow these guidelines:
+Contributions to BookNest are highly appreciated! To contribute, please follow these steps:
 
-1. **Fork the repository**: Click the "Fork" button to create your own copy of the project.
-2. **Create your feature branch**: Use the command:
+1. **Fork the repository**  
+   Click the **Fork** button to create your own copy.
+
+2. **Create a feature branch:**
+
    ```bash
    git checkout -b feature/YourFeature
    ```
-3. **Commit your changes**: Write clear, concise commit messages that describe the changes made:
+
+3. **Make your changes** with clear, descriptive commit messages:
+
    ```bash
-   git commit -m 'Add some feature'
+   git commit -m "Add some feature"
    ```
-4. **Push to the branch**: 
+
+4. **Push your branch:**
+
    ```bash
    git push origin feature/YourFeature
    ```
-5. **Open a pull request**: Once your changes are pushed, open a pull request on the original repository to discuss and review your changes.
 
+5. **Open a Pull Request** on the original repository to start the discussion and review process.
+
+---
+
+Feel free to reach out if you need any help or want to suggest improvements!
