@@ -35,14 +35,7 @@
 
    ```bash
    git clone https://github.com/jamesnpe13/BookNest.git
-<<<<<<< HEAD
    cd BookNest/BookNest
-=======
-   ```
-   
-   ```bash
-   cd booknest/booknest
->>>>>>> e6c86c6b2eff589853a6743064f0abf9b2f58a63
    ```
 
 3. **Restore dependencies, build, and run the application:**
