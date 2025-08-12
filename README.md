@@ -22,7 +22,7 @@ BookNest is a comprehensive library management system built with .NET WPF, desig
    ```
    
    ```bash
-   cd BookNest
+   cd booknest/booknest
    ```
 
 3. **Restore dependencies, build the project, and run the application**:
