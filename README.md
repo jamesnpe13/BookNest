@@ -1,3 +1,5 @@
+![BookNest Screenshot](mockup.png)
+
 # BookNest - Library Management System
 
 **BookNest** is a robust desktop application built with **.NET WPF** that simplifies library management for administrators and members alike. It offers a clean, user-friendly interface to efficiently organize books, manage lending and returns, track member activities, and much more — all designed to improve your library’s workflow.
